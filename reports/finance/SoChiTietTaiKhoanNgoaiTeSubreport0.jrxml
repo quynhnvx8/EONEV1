@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="SoChiTietTaiKhoanNgoaiTeSubreport0" pageWidth="1000" pageHeight="595" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="1000" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" resourceBundle="SoChiTietTaiKhoanNgoaiTe" uuid="55d0ba0c-10e7-4795-b37e-70746c1656a2">
+	<property name="ireport.zoom" value="1.2100000000000006"/>
+	<property name="ireport.x" value="150"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Bold_Left" hAlign="Left" vAlign="Middle" isBlankWhenNull="true" fontName="Arial" isBold="true" isItalic="false" isUnderline="false" pdfFontName="TIMESBD.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true">
+		<box leftPadding="3" rightPadding="2"/>
+	</style>
+	<style name="Bold_Right" hAlign="Right" vAlign="Middle" isBlankWhenNull="true" fontName="Arial" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="TIMESBD.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true">
+		<box leftPadding="2" rightPadding="3"/>
+	</style>
+	<style name="Bold_Center" hAlign="Center" vAlign="Middle" isBlankWhenNull="true" fontName="Arial" isBold="true" isItalic="false" isUnderline="false" pdfFontName="TIMESBD.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+	<style name="Italic_Left" hAlign="Left" vAlign="Middle" isBlankWhenNull="true" fontName="Arial" isBold="false" isItalic="true" isUnderline="false" pdfFontName="TIMESI.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true">
+		<box leftPadding="3" rightPadding="2"/>
+	</style>
+	<style name="Italic_Right" hAlign="Right" vAlign="Middle" isBlankWhenNull="true" fontName="Arial" isBold="false" isItalic="true" isUnderline="false" pdfFontName="TIMESI.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true">
+		<box leftPadding="2" rightPadding="3"/>
+	</style>
+	<style name="Italic_Center" hAlign="Center" vAlign="Middle" isBlankWhenNull="true" fontName="Arial" isBold="false" isItalic="true" isUnderline="false" pdfFontName="TIMESI.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+	<style name="Nomal_Left" hAlign="Left" vAlign="Middle" isBlankWhenNull="true" fontName="Arial" isBold="false" isItalic="false" isUnderline="false" pdfFontName="TIMES.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true">
+		<box leftPadding="3" rightPadding="2"/>
+	</style>
+	<style name="Nomal_Right" hAlign="Right" vAlign="Middle" isBlankWhenNull="true" fontName="Arial" isBold="false" isItalic="false" isUnderline="false" pdfFontName="TIMES.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true">
+		<box leftPadding="2" rightPadding="3"/>
+	</style>
+	<style name="Nomal_Center" hAlign="Center" vAlign="Middle" isBlankWhenNull="true" fontName="Arial" isBold="false" isItalic="false" isUnderline="false" pdfFontName="TIMES.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+	<style name="BoldItalic_Left" hAlign="Left" vAlign="Middle" isBlankWhenNull="true" fontName="Arial" isBold="true" isItalic="true" isUnderline="false" pdfFontName="TIMESBI.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true">
+		<box leftPadding="3" rightPadding="2"/>
+	</style>
+	<style name="BoldItalic_Right" hAlign="Right" vAlign="Middle" isBlankWhenNull="true" fontName="Arial" isBold="true" isItalic="true" isUnderline="false" pdfFontName="TIMESBI.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true">
+		<box leftPadding="2" rightPadding="3"/>
+	</style>
+	<style name="BoldItalic_Center" hAlign="Center" vAlign="Middle" isBlankWhenNull="true" fontName="Arial" isBold="true" isItalic="true" isUnderline="false" pdfFontName="TIMESBI.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+	<parameter name="ToDate" class="java.util.Date">
+		<defaultValueExpression><![CDATA[new Date()]]></defaultValueExpression>
+	</parameter>
+	<parameter name="FromDate" class="java.util.Date">
+		<defaultValueExpression><![CDATA[new Date()]]></defaultValueExpression>
+	</parameter>
+	<parameter name="C_ElementValue_ID" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="C_BPartner_ID" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="C_Currency_ID" class="java.lang.Integer"/>
+	<parameter name="AD_Client_ID" class="java.lang.Integer"/>
+	<parameter name="AD_Language" class="java.lang.String"/>
+	<parameter name="C_ELEMENT_ID" class="java.lang.Integer"/>
+	<parameter name="DK" class="java.math.BigDecimal"/>
+	<parameter name="DK_CUR" class="java.math.BigDecimal"/>
+	<parameter name="C_CURRENCY_DEF_ID" class="java.lang.Integer"/>
+	<parameter name="AD_Org_ID" class="java.lang.Integer"/>
+	<parameter name="AD_CLIENT_ID" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[With tmp_account as
+(
+    select c_elementvalue_id Node_id,value,(case when SUBSTR(value,1,1) = '3' then 'Y' else 'N' end) Doiung
+    from c_elementvalue
+	where  c_element_id = $P{C_ELEMENT_ID}
+ 		and ((value like (select value from c_elementvalue where c_elementvalue_id = $P{C_ElementValue_ID})|| '%' )
+ 		or $P{C_ElementValue_ID} is null)
+)
+, openbalance as
+(
+	select
+		   sum(tmp.DK) DK, sum(tmp.DK_Cur) DK_Cur
+	from (
+	-- TK DR
+	select
+			(case when Doiung = 'Y' then fa.Amount *-1 else fa.Amount end) DK,
+		  	(case when Doiung = 'Y' then fa.AmountConvert *-1 else fa.AmountConvert end) DK_Cur
+	from fact_acct fa
+		inner join tmp_account on (fa.account_dr_id = tmp_account.Node_id)
+	where  (fa.dateacct < $P{FromDate})
+		AND (fa.c_bpartner_dr_id =  $P{C_BPartner_ID} or $P{C_BPartner_ID} is null)
+		and fa.PostingType = 'A'
+		and (fa.AD_Org_ID= $P{AD_Org_ID} or $P{AD_Org_ID} is null)
+	Union all
+	-- TK DR
+	select
+		   (case when Doiung = 'Y' then fa.Amount else  fa.Amount *-1 end) DK,
+		   (case when Doiung = 'Y' then fa.AmountConvert else fa.AmountConvert *-1 end) DK_Cur
+	from fact_acct fa
+		inner join tmp_account on (fa.account_Cr_id = tmp_account.Node_id)
+	where  (fa.dateacct < $P{FromDate} )
+		AND (fa.c_bpartner_Cr_id =  $P{C_BPartner_ID} or $P{C_BPartner_ID} is null)
+		and fa.PostingType = 'A'
+		and (fa.AD_Org_ID= $P{AD_Org_ID} or $P{AD_Org_ID} is null)
+	) tmp
+)
+
+select
+	(select name from c_bpartner where c_bpartner_id = $P{C_BPartner_ID}) PartnerName,
+	(Select Value From C_ElementValue Where C_ElementValue_ID = $P{C_ElementValue_ID}) Account,
+	(select iso_code from c_currency where c_currency_id = $P{C_CURRENCY_DEF_ID}) Currency,
+	point_cur($P{C_CURRENCY_DEF_ID}, $P{AD_CLIENT_ID}) PATTERNEXP,
+	(Select NAME From AD_Org Where AD_Org_ID = $P{AD_Org_ID}	AND Isactive = 'Y') DepartmentName,
+	(select DK from openbalance) DK,
+	(select DK_Cur from openbalance ) DK_Cur]]>
+	</queryString>
+	<field name="partnername" class="java.lang.String"/>
+	<field name="account" class="java.lang.String"/>
+	<field name="currency" class="java.lang.String"/>
+	<field name="patternexp" class="java.lang.String"/>
+	<field name="departmentname" class="java.lang.String"/>
+	<field name="dk" class="java.math.BigDecimal"/>
+	<field name="dk_cur" class="java.math.BigDecimal"/>
+	<variable name="PATTERNEXP" class="java.lang.String">
+		<variableExpression><![CDATA[$F{patternexp}]]></variableExpression>
+	</variable>
+	<variable name="S_DK_CUR" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{dk_cur}]]></variableExpression>
+	</variable>
+	<variable name="S_DK" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{dk}]]></variableExpression>
+	</variable>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="120">
+			<textField>
+				<reportElement style="BoldItalic_Center" x="0" y="0" width="1000" height="20" uuid="59ea782e-0dc9-45ea-8c89-8718f8e51ea5"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" isItalic="true" pdfFontName="ARIALBI.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{From} + " "+ new SimpleDateFormat("dd/MM/yyyy").format($P{FromDate}) + "  " + $R{To} + " "+ new SimpleDateFormat("dd/MM/yyyy").format($P{ToDate})]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
+				<reportElement style="Bold_Center" stretchType="RelativeToBandHeight" x="0" y="20" width="1000" height="20" isRemoveLineWhenBlank="true" uuid="335b1d75-a07c-477c-944c-4f5201858c3c"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Arial" size="10" isBold="true" pdfFontName="ARIALBD.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{account}!= null? ($R{Account} + ": " + $F{account}):null]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
+				<reportElement style="Bold_Center" stretchType="RelativeToBandHeight" x="0" y="60" width="1000" height="20" isRemoveLineWhenBlank="true" uuid="9ca6bbfc-13cb-4b9c-94a2-6020b1002723"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font fontName="Arial" size="10" isBold="true" pdfFontName="ARIALBD.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{currency}!= null? ($R{Currency} + " " + $F{currency}):null]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
+				<reportElement style="Bold_Center" stretchType="RelativeToBandHeight" x="0" y="40" width="1000" height="20" isRemoveLineWhenBlank="true" uuid="6cb860b5-dc1b-4494-81ff-368c8bf71f93"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Arial" size="10" isBold="true" pdfFontName="ARIALBD.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{partnername}!= null? ($R{text.Partner}+": " + $F{partnername}):null]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
+				<reportElement style="Bold_Center" stretchType="RelativeToBandHeight" x="657" y="80" width="115" height="20" isRemoveLineWhenBlank="true" uuid="e192af41-1bce-482d-91f2-3a7f13f9902e"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true" pdfFontName="ARIALBD.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["DƯ ĐẦU KỲ VND:"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
+				<reportElement style="Bold_Center" stretchType="RelativeToBandHeight" x="657" y="100" width="115" height="20" isRemoveLineWhenBlank="true" uuid="ebf59e6a-1269-4017-b3c2-cdba78be7dd6"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true" pdfFontName="ARIALBD.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["DƯ ĐẦU KỲ NGOẠI TỆ:"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0" isBlankWhenNull="true">
+				<reportElement style="Bold_Center" stretchType="RelativeToBandHeight" x="772" y="100" width="228" height="20" isRemoveLineWhenBlank="true" uuid="23340606-b4be-45e5-8780-98d646b390ee"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true" pdfFontName="ARIALBD.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{C_Currency_ID} == null || $P{C_Currency_ID}.doubleValue() == 234) ? null : $F{dk}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0" isBlankWhenNull="true">
+				<reportElement style="Bold_Center" stretchType="RelativeToBandHeight" x="772" y="80" width="228" height="20" isRemoveLineWhenBlank="true" uuid="1a0eac29-5eff-4523-a31d-5c314a6a46bc"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true" pdfFontName="ARIALBD.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dk_cur}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+</jasperReport>

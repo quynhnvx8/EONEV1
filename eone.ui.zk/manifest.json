@@ -1,0 +1,13 @@
+{
+  "short_name": "EONE",
+  "name": "EONE",
+  "icons": [
+    {
+      "src": "images/iD192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "index.zul",
+  "display": "standalone"
+}

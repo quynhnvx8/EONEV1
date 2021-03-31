@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zk >
+<borderlayout id="layout">
+	<center border="none" autoscroll="true" sclass="login-bg">			
+			<window use="org.adempiere.webui.window.LoginWindow" id="loginWindow"/>			
+	</center>	
+</borderlayout>	
+
+</zk>

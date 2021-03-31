@@ -1,0 +1,456 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="SoCaiSubreport1" pageWidth="782" pageHeight="595" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="782" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" resourceBundle="SoCai" uuid="86f63fb6-be25-47f5-ac87-6af16cd238e3">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<style name="Bold_Left" hAlign="Left" vAlign="Middle" isBlankWhenNull="true" fontName="Arial" isBold="true" isItalic="false" isUnderline="false" pdfFontName="TIMESBD.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true">
+		<box leftPadding="3" rightPadding="2"/>
+	</style>
+	<style name="Bold_Right" hAlign="Right" vAlign="Middle" isBlankWhenNull="true" fontName="Arial" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="TIMESBD.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true">
+		<box leftPadding="2" rightPadding="3"/>
+	</style>
+	<style name="Bold_Center" hAlign="Center" vAlign="Middle" isBlankWhenNull="true" fontName="Arial" isBold="true" isItalic="false" isUnderline="false" pdfFontName="TIMESBD.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+	<style name="Italic_Left" hAlign="Left" vAlign="Middle" isBlankWhenNull="true" fontName="Arial" isBold="false" isItalic="true" isUnderline="false" pdfFontName="TIMESI.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true">
+		<box leftPadding="3" rightPadding="2"/>
+	</style>
+	<style name="Italic_Right" hAlign="Right" vAlign="Middle" isBlankWhenNull="true" fontName="Arial" isBold="false" isItalic="true" isUnderline="false" pdfFontName="TIMESI.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true">
+		<box leftPadding="2" rightPadding="3"/>
+	</style>
+	<style name="Italic_Center" hAlign="Center" vAlign="Middle" isBlankWhenNull="true" fontName="Arial" isBold="false" isItalic="true" isUnderline="false" pdfFontName="TIMESI.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+	<style name="Nomal_Left" hAlign="Left" vAlign="Middle" isBlankWhenNull="true" fontName="Arial" isBold="false" isItalic="false" isUnderline="false" pdfFontName="TIMES.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true">
+		<box leftPadding="3" rightPadding="2"/>
+	</style>
+	<style name="Nomal_Right" hAlign="Right" vAlign="Middle" isBlankWhenNull="true" fontName="Arial" isBold="false" isItalic="false" isUnderline="false" pdfFontName="TIMES.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true">
+		<box leftPadding="2" rightPadding="3"/>
+	</style>
+	<style name="Nomal_Center" hAlign="Center" vAlign="Middle" isBlankWhenNull="true" fontName="Arial" isBold="false" isItalic="false" isUnderline="false" pdfFontName="TIMES.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+	<style name="BoldItalic_Left" hAlign="Left" vAlign="Middle" isBlankWhenNull="true" fontName="Arial" isBold="true" isItalic="true" isUnderline="false" pdfFontName="TIMESBI.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true">
+		<box leftPadding="3" rightPadding="2"/>
+	</style>
+	<style name="BoldItalic_Right" hAlign="Right" vAlign="Middle" isBlankWhenNull="true" fontName="Arial" isBold="true" isItalic="true" isUnderline="false" pdfFontName="TIMESBI.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true">
+		<box leftPadding="2" rightPadding="3"/>
+	</style>
+	<style name="BoldItalic_Center" hAlign="Center" vAlign="Middle" isBlankWhenNull="true" fontName="Arial" isBold="true" isItalic="true" isUnderline="false" pdfFontName="TIMESBI.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+	<parameter name="AD_Org_ID" class="java.math.BigDecimal"/>
+	<parameter name="AD_PINSTANCE_ID" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="C_ElementValue_ID" class="java.math.BigDecimal"/>
+	<parameter name="C_BPartner_ID" class="java.math.BigDecimal"/>
+	<parameter name="AD_Client_ID" class="java.math.BigDecimal"/>
+	<parameter name="C_Currency_ID" class="java.math.BigDecimal"/>
+	<parameter name="From_Date" class="java.util.Date"/>
+	<parameter name="To_Date" class="java.util.Date"/>
+	<parameter name="AD_Language" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="PATTERNEXP" class="java.lang.String"/>
+	<parameter name="AD_Language_Acct" class="java.lang.String"/>
+	<parameter name="C_Department_ID" class="java.math.BigDecimal"/>
+	<parameter name="ViewObject" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[With tmpAcctMap as (
+     Select Distinct cam.C_elementvalue_from_id Node_ID,Value
+     From C_accountingmap cam
+     Inner join
+         (SELECT tn.Node_ID,ce.Value
+         FROM C_ElementValue ce
+         INNER JOIN AD_Treenode tn on tn.Node_ID = ce.C_ElementValue_ID
+         Inner join C_Element e on e.C_Element_ID = ce.C_Element_ID
+         WHERE tn.AD_Tree_ID = 1000085
+         AND ce.issummary = 'N'
+         and ce.IsActive = 'Y'
+         AND e.AD_Language_ID = (Select AD_Language_ID From AD_Language Where AD_Language = $P{AD_Language_Acct})
+         START WITH tn.Parent_ID = nvl($P{C_ElementValue_ID},0)
+         CONNECT BY PRIOR tn.Node_ID = tn.Parent_ID
+         Union
+         Select C_ElementValue_ID Node_ID,Value
+         From C_ElementValue
+         Where C_ElementValue_ID = $P{C_ElementValue_ID}
+         ) acct on cam.C_elementvalue_to_id = acct.Node_ID
+         Where cam.IsActive = 'Y'
+      union
+      Select C_ElementValue_ID Node_ID,Value
+      From C_ElementValue
+      Where C_ElementValue_ID = $P{C_ElementValue_ID}
+),
+tmp as (
+     SELECT tn.Node_ID,ce.Value
+     FROM C_ElementValue ce
+     INNER JOIN AD_Treenode tn on tn.Node_ID = ce.C_ElementValue_ID
+     WHERE tn.AD_Tree_ID = 105
+     AND ce.issummary = 'N'
+     and ce.IsActive = 'Y'
+     AND ce.C_Element_ID =  105
+     START WITH tn.Parent_ID In (Select Node_ID From tmpAcctMap)
+     CONNECT BY PRIOR tn.Node_ID = tn.Parent_ID
+     union
+     Select Node_ID,Value From tmpAcctMap
+),
+Balance as (
+  SELECT Node_ID,SUM(nvl(Debit,0) - nvl(Credit,0)) OpeningBalance
+  FROM
+  (
+    select ev.Node_ID,sum(case when (fa.account_id = ev.Node_ID and (fa.C_BPartner_ID = $P{C_BPartner_ID} Or nvl($P{C_BPartner_ID},-1) = -1))
+                    then (case when $P{C_Currency_ID} is Null then nvl(fa.amtacct, 0) else nvl(fa.amtsource, 0) end) else 0 end) Debit,
+           sum(case when (fa.account_cr_id = ev.Node_ID and (fa.C_BPartner_CR_ID = $P{C_BPartner_ID} Or nvl($P{C_BPartner_ID},-1) = -1))
+                    then (case when $P{C_Currency_ID} is Null then nvl(fa.amtacct, 0) else nvl(fa.amtsource, 0) end) else 0 end) Credit
+    from fact_acct fa
+        inner join tmp ev on (fa.account_id = ev.Node_ID or fa.account_Cr_id = ev.Node_ID)
+    where  (fa.c_bpartner_id = nvl($P{C_BPartner_ID}, -1)
+        or fa.c_bpartner_cr_id = nvl($P{C_BPartner_ID}, -1)
+        OR $P{C_BPartner_ID} is null)
+        and (fa.c_currency_id = nvl($P{C_Currency_ID},fa.c_currency_id))
+        AND fa.DateAcct < $P{From_Date}
+        AND $P{From_Date} <= $P{To_Date}
+        and fa.PostingType = 'A'
+        and (fa.C_Department_IsOrg_ID= $P{C_Department_ID} or $P{C_Department_ID} is null)
+    Group by ev.Node_ID
+  ) group by Node_ID
+)
+
+select ev.Value AccountValue,
+    (Select Name from C_ElementValue Where C_ElementValue_ID = ev.Node_ID) AccountName,
+    nvl((Select SUM(OpeningBalance) From Balance Where Balance.Node_ID = ev.Node_ID),0) OpeningBalance,
+    fa.DateAcct, fa.DateTrx, fa.Documentno,
+    (Select DocRecord From C_DocRecordForUserLine Where C_DocRecordForUserLine_ID = fa.DocRecord_ID) DocRecord,
+    fa.Description,fa.Account_ID,
+    case when (fa.account_id = ev.Node_ID and (fa.C_BPartner_ID = nvl($P{C_BPartner_ID}, -1) or nvl($P{C_BPartner_ID}, -1) = -1))
+        then (case when $P{C_Currency_ID} Is Null then nvl(fa.amtacct, 0) else nvl(fa.amtsource, 0) end)
+        else 0 end Debit,
+    case when (fa.account_cr_id = ev.Node_ID and (fa.C_BPartner_Cr_ID = nvl($P{C_BPartner_ID}, -1) or nvl($P{C_BPartner_ID}, -1) = -1))
+        then (case when $P{C_Currency_ID} Is Null then nvl(fa.amtacct, 0) else nvl(fa.amtsource, 0) end)
+        else 0 end Credit,
+    (CASE WHEN fa.Account_ID = ev.Node_ID THEN
+        (SELECT (nvl(trl.Value, ce.VALUE) || ' - ' || nvl(trl.Name, ce.Name)) FROM C_ElementValue ce
+        left join C_ElementValue_Trl trl on (trl.C_ElementValue_ID = ce.C_ElementValue_ID and trl.AD_Language = $P{AD_Language})
+        WHERE ce.C_ElementValue_ID = fa.Account_Cr_ID )
+        WHEN fa.Account_Cr_ID = ev.Node_ID THEN
+        (SELECT (nvl(trl.Value, ce.VALUE) || ' - ' || nvl(trl.Name, ce.Name)) FROM C_ElementValue ce
+        left join C_ElementValue_Trl trl on (trl.C_ElementValue_ID = ce.C_ElementValue_ID and trl.AD_Language = $P{AD_Language})
+        WHERE ce.C_ElementValue_ID = fa.Account_ID)
+    END) AS ContraValue,
+    TO_CHAR(fa.dateacct, 'MMyyyy') MONTHS,
+	0 OPENNING_BALANCE,
+(select value || '-' || name from c_elementvalue where c_elementvalue_ID = (select  C_ElementValue_To_ID from C_AccountingMap where C_ElementValue_From_ID = ev.Node_ID )) AccountValueConvert,
+(select value || '-' || name from c_elementvalue where c_elementvalue_ID = (select  C_ElementValue_To_ID from C_AccountingMap where C_ElementValue_From_ID = decode (ev.Node_ID,fa.Account_ID,fa.Account_Cr_ID,fa.Account_Cr_ID ,fa.Account_ID  )   )) ContraValueConvert
+from fact_acct fa
+    inner join tmp ev on (fa.account_id = ev.Node_ID or fa.account_Cr_id = ev.Node_ID)
+where  (fa.c_bpartner_id = nvl($P{C_BPartner_ID}, -1)
+        or fa.c_bpartner_cr_id = nvl($P{C_BPartner_ID}, -1)
+        or nvl($P{C_BPartner_ID}, -1) = -1)
+    and fa.DateAcct between $P{From_Date} and $P{To_Date}
+    and (fa.c_currency_id = $P{C_Currency_ID} or nvl($P{C_Currency_ID}, -1) = -1)
+    and fa.PostingType = 'A'
+    and (fa.C_Department_IsOrg_ID= $P{C_Department_ID} or $P{C_Department_ID} is null)
+Order By ev.Value,fa.DateAcct,fa.Documentno, fa.line_id]]>
+	</queryString>
+	<field name="ACCOUNTVALUE" class="java.lang.String"/>
+	<field name="ACCOUNTNAME" class="java.lang.String"/>
+	<field name="OPENINGBALANCE" class="java.math.BigDecimal"/>
+	<field name="DATEACCT" class="java.sql.Timestamp"/>
+	<field name="DATETRX" class="java.sql.Timestamp"/>
+	<field name="DOCUMENTNO" class="java.lang.String"/>
+	<field name="DOCRECORD" class="java.lang.String"/>
+	<field name="DESCRIPTION" class="java.lang.String"/>
+	<field name="ACCOUNT_ID" class="java.math.BigDecimal"/>
+	<field name="DEBIT" class="java.math.BigDecimal"/>
+	<field name="CREDIT" class="java.math.BigDecimal"/>
+	<field name="CONTRAVALUE" class="java.lang.String"/>
+	<field name="MONTHS" class="java.lang.String"/>
+	<field name="OPENNING_BALANCE" class="java.math.BigDecimal"/>
+	<field name="ACCOUNTVALUECONVERT" class="java.lang.String"/>
+	<field name="CONTRAVALUECONVERT" class="java.lang.String"/>
+	<variable name="SUM_CREDIT" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{CREDIT}]]></variableExpression>
+		<initialValueExpression><![CDATA[new BigDecimal(0)]]></initialValueExpression>
+	</variable>
+	<variable name="SUM_DEBIT" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{DEBIT}]]></variableExpression>
+		<initialValueExpression><![CDATA[new BigDecimal(0)]]></initialValueExpression>
+	</variable>
+	<variable name="DEBIT" class="java.math.BigDecimal" resetType="Group" resetGroup="AccountName" calculation="Sum">
+		<variableExpression><![CDATA[$F{DEBIT}]]></variableExpression>
+	</variable>
+	<variable name="CREDIT" class="java.math.BigDecimal" resetType="Group" resetGroup="AccountName" calculation="Sum">
+		<variableExpression><![CDATA[$F{CREDIT}]]></variableExpression>
+	</variable>
+	<variable name="ClosingBalance" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[new BigDecimal($F{OPENINGBALANCE}.doubleValue() + $V{DEBIT}.doubleValue() - $V{CREDIT}.doubleValue())]]></variableExpression>
+	</variable>
+	<group name="AccountName">
+		<groupExpression><![CDATA[$F{ACCOUNTVALUE}]]></groupExpression>
+		<groupHeader>
+			<band height="80">
+				<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
+					<reportElement key="textField-6" style="Bold_Right" stretchType="RelativeToBandHeight" x="622" y="0" width="160" height="20" uuid="4b80b16b-0377-473a-9453-0e13ad850956"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5" lineColor="#000000"/>
+						<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.5" lineColor="#000000"/>
+						<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" pdfFontName="ARIALBD.TTF"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{OPENINGBALANCE}.abs()]]></textFieldExpression>
+					<patternExpression><![CDATA[$P{PATTERNEXP}]]></patternExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" evaluationTime="Group" evaluationGroup="AccountName" pattern="" isBlankWhenNull="true">
+					<reportElement key="textField-6" style="Bold_Right" stretchType="RelativeToBandHeight" x="622" y="20" width="160" height="20" uuid="5db0ed7e-f14d-4f9c-9fdb-cdd967863a8a"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5" lineColor="#000000"/>
+						<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.5" lineColor="#000000"/>
+						<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" pdfFontName="ARIALBD.TTF"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{DEBIT}]]></textFieldExpression>
+					<patternExpression><![CDATA[$P{PATTERNEXP}]]></patternExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" evaluationTime="Group" evaluationGroup="AccountName" pattern="" isBlankWhenNull="true">
+					<reportElement key="textField-6" style="Bold_Right" stretchType="RelativeToBandHeight" x="622" y="40" width="160" height="20" uuid="535b3b25-b3cb-4940-a51d-caeeb9a15078"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5" lineColor="#000000"/>
+						<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.5" lineColor="#000000"/>
+						<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" pdfFontName="ARIALBD.TTF"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{CREDIT}]]></textFieldExpression>
+					<patternExpression><![CDATA[$P{PATTERNEXP}]]></patternExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" evaluationTime="Group" evaluationGroup="AccountName" pattern="" isBlankWhenNull="true">
+					<reportElement key="textField-6" style="Bold_Right" stretchType="RelativeToBandHeight" x="622" y="60" width="160" height="20" uuid="c1ef2747-b97f-4dd0-9fcc-afd1e7a8c9f9"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5" lineColor="#000000"/>
+						<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.5" lineColor="#000000"/>
+						<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" pdfFontName="ARIALBD.TTF"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{ClosingBalance}.abs()]]></textFieldExpression>
+					<patternExpression><![CDATA[$P{PATTERNEXP}]]></patternExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement key="textField-3" style="Bold_Left" positionType="Float" x="491" y="0" width="131" height="20" uuid="129216c8-5361-41d1-9d85-6abeda685cab"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Arial" size="10" isBold="true" pdfFontName="ARIALBD.TTF"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{OPENINGBALANCE} != null?(($F{OPENINGBALANCE}.doubleValue() <= 0) ? $R{text.OpenningCredit}  : $R{text.OpenningDebit}): $R{text.OpenningCredit}]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Group" evaluationGroup="AccountName">
+					<reportElement style="Bold_Left" positionType="Float" x="491" y="60" width="131" height="20" uuid="bb650101-ded8-4f23-9f30-fa35a27c5e08"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Left" verticalAlignment="Middle" markup="none">
+						<font fontName="Arial" isBold="true" isItalic="false" pdfFontName="ARIALBD.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{ClosingBalance}.doubleValue() >=0? $R{ClosingDebit}:$R{ClosingCredit}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Bold_Left" positionType="Float" x="491" y="20" width="131" height="20" uuid="48fb8a7d-3e6c-4d9b-b458-721e2ef3fef6"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Left" verticalAlignment="Middle" markup="none">
+						<font fontName="Arial" isBold="true" isItalic="false" pdfFontName="ARIALBD.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$R{Debit}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Bold_Left" positionType="Float" x="491" y="40" width="131" height="20" uuid="bac344dd-b963-4d6a-ba16-976912f90b8c"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5"/>
+						<leftPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+						<rightPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Left" verticalAlignment="Middle" markup="none">
+						<font fontName="Arial" isBold="true" isItalic="false" pdfFontName="ARIALBD.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$R{Credit}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement key="textField-3" style="Bold_Center" stretchType="RelativeToBandHeight" x="0" y="0" width="382" height="80" uuid="c7435316-b907-427e-aa73-181996fe5ac6"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5" lineColor="#000000"/>
+						<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.5" lineColor="#000000"/>
+						<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="10" pdfFontName="ARIALBD.TTF"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{ACCOUNTVALUE} +" - "+ $F{ACCOUNTNAME}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement key="textField-3" style="Bold_Center" stretchType="RelativeToBandHeight" x="382" y="0" width="109" height="80" uuid="35ee0cf8-d5bc-4d89-a8e9-3ed809cf06d6"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.5" lineColor="#000000"/>
+						<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.5" lineColor="#000000"/>
+						<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="10" pdfFontName="ARIALBD.TTF"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{ACCOUNTVALUECONVERT}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band/>
+	</title>
+	<pageHeader>
+		<band/>
+	</pageHeader>
+	<detail>
+		<band height="20" splitType="Prevent">
+			<printWhenExpression><![CDATA[$P{ViewObject}.compareTo( "D" )==0? true: false]]></printWhenExpression>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement key="textField-2" style="Nomal_Center" stretchType="RelativeToBandHeight" x="110" y="0" width="55" height="20" uuid="165796f4-0b6e-458c-9ad0-36f05e075b98"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5" lineColor="#000000"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.5" lineColor="#000000"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[(new SimpleDateFormat("dd/MM/yyyy")).format($F{DATEACCT})]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement key="textField-3" style="Nomal_Left" stretchType="RelativeToBandHeight" x="165" y="0" width="217" height="20" uuid="383ca187-8080-47a0-a83c-39f5437a8c7c"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5" lineColor="#000000"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.5" lineColor="#000000"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DESCRIPTION}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
+				<reportElement key="textField-4" style="Nomal_Left" stretchType="RelativeToBandHeight" x="491" y="0" width="131" height="20" uuid="e49c1797-b0c4-4453-bf4b-7b90376bed3a"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5" lineColor="#000000"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.5" lineColor="#000000"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CONTRAVALUE}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
+				<reportElement key="textField-5" style="Nomal_Right" stretchType="RelativeToBandHeight" x="622" y="0" width="80" height="20" uuid="7b265405-8818-48e7-8301-e4f2606c52ea"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5" lineColor="#000000"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.5" lineColor="#000000"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DEBIT}.doubleValue() == 0 ? null : new BigDecimal($F{DEBIT}.doubleValue())]]></textFieldExpression>
+				<patternExpression><![CDATA[$P{PATTERNEXP}]]></patternExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
+				<reportElement key="textField-6" style="Nomal_Right" stretchType="RelativeToBandHeight" x="702" y="0" width="80" height="20" uuid="eb36fb2e-538f-4106-b3ed-3281a01a593e"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5" lineColor="#000000"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.5" lineColor="#000000"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CREDIT}.doubleValue() == 0 ? null : new BigDecimal($F{CREDIT}.doubleValue())]]></textFieldExpression>
+				<patternExpression><![CDATA[$P{PATTERNEXP}]]></patternExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement key="textField-7" style="Nomal_Left" stretchType="RelativeToBandHeight" x="0" y="0" width="110" height="20" uuid="5615bf69-69fe-40f5-9e6a-47db9b0d80ed"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5" lineColor="#000000"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.5" lineColor="#000000"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DOCUMENTNO}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement key="textField-3" style="Nomal_Left" stretchType="RelativeToBandHeight" x="382" y="0" width="109" height="20" uuid="be292942-48e4-48e0-89c1-f4d3057c8f0c"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5" lineColor="#000000"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.5" lineColor="#000000"/>
+					<rightPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CONTRAVALUECONVERT}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band/>
+	</pageFooter>
+</jasperReport>

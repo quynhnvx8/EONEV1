@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         id="org.adempiere.db.config.ConfigOracle"
+         name="Oracle Database Configuration"
+         point="org.adempiere.install.IDatabaseConfig">
+      <database
+            class="org.adempiere.db.config.ConfigOracle"
+            id="Oracle">
+      </database>
+   </extension>
+	<extension
+         id="org.adempiere.db.config.ConfigPostgreSQL"
+         name="PostgreSQL Database Configuration"
+         point="org.adempiere.install.IDatabaseConfig">
+      <database
+            class="org.adempiere.db.config.ConfigPostgreSQL"
+            id="PostgreSQL">
+      </database>
+   </extension>
+   
+	<extension
+         id="org.adempiere.db.config.ConfigMSSQL"
+         name="SQL Server Database Configuration"
+         point="org.adempiere.install.IDatabaseConfig">
+      <database
+            class="org.adempiere.db.config.ConfigMSSQL"
+            id="MSSQL">
+      </database>
+   </extension>
+</plugin>

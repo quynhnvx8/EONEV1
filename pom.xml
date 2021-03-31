@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>eone.main</artifactId>
+	<packaging>pom</packaging>
+	<parent>
+		<groupId>eone</groupId>
+		<artifactId>eone.parent</artifactId>
+		<version>7.1.0-SNAPSHOT</version>
+		<relativePath>eone.parent/pom.xml</relativePath>
+	</parent>
+	<modules>
+		<module>eone.base</module>
+		<module>eone.eclipse.equinox.http.servlet</module>
+		<module>eone.install</module>
+		<module>eone.report.jasper.library</module>
+		<module>eone.report.jasper</module>
+		<module>eone.server</module>		
+		<module>eone.ui</module>
+		<module>eone.ui.zk</module>
+		<module>org.apache.ecs</module>
+		<module>eone.db.provider</module>
+		<module>eone.felix.webconsole</module>
+		<module>eone.hazelcast.service</module>
+		<module>eone.webservices</module>
+		<module>eone.webservices-feature</module>
+		<module>eone.zk.extra</module>
+		<module>eone.report.jasper-feature</module>
+		<module>eone.base-feature</module>
+		<module>eone.server-feature</module>
+		<module>eone.ui.zk-feature</module>
+		<module>eone.db.provider-feature</module>
+		<module>eone.eclipse.platform-feature</module>
+		<module>eone.equinox.p2.director-feature</module>
+		<module>eone.felix.webconsole-feature</module>
+		<module>eone.hazelcast.service-feature</module>
+		<module>eone.zk-feature</module>
+		<module>eone.webservices.client-feature</module>
+		<module>eone.p2</module>
+		<module>${eone.target}</module>
+	</modules>
+
+</project>

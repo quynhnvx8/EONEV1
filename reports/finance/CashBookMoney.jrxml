@@ -1,0 +1,483 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="CashBookMoney" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="bf8d9b4d-f436-40e7-887b-55a14bffe030">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="AD_ORG_NAME" class="java.lang.String"/>
+	<parameter name="ADDRESS" class="java.lang.String"/>
+	<parameter name="FromDate" class="java.util.Date"/>
+	<parameter name="ToDate" class="java.util.Date"/>
+	<parameter name="#AD_CLIENT_ID" class="java.math.BigDecimal"/>
+	<parameter name="AD_Org_ID" class="java.lang.Integer"/>
+	<parameter name="C_ELEMENT_ID" class="java.lang.Integer"/>
+	<parameter name="C_ElementValue_ID" class="java.lang.Integer"/>
+	<parameter name="C_BPartner_ID" class="java.lang.Integer"/>
+	<parameter name="parameter1" class="java.lang.String"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["D:\\EONE\\EONEV5\\reports\\finance\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[With tmp_account as (
+    select c_elementvalue_id Node_id,value
+    from c_elementvalue where value like '111%'
+
+),
+openbalance as
+(
+	select   sum(tmp.DK) DK, sum(tmp.DK_Cur) DK_Cur
+	from
+	(
+		-- TK DR
+		select	fa.Amount  DK,  fa.AmountConvert DK_Cur
+		from fact_acct fa
+			inner join tmp_account on (fa.account_dr_id = tmp_account.Node_id)
+		where  (fa.dateacct < $P{FromDate})
+		AND (fa.c_bpartner_dr_id =  $P{C_BPartner_ID} or $P{C_BPartner_ID} is null)
+		and fa.PostingType = 'A'
+		and (fa.AD_Org_ID= $P{AD_Org_ID} or $P{AD_Org_ID} is null)
+		Union all
+		-- TK DR
+		select
+			   fa.Amount * -1  DK,  fa.AmountConvert * -1 DK_Cur
+		from fact_acct fa
+			inner join tmp_account on (fa.account_Cr_id = tmp_account.Node_id)
+		where  (fa.dateacct < $P{FromDate} )
+		AND (fa.c_bpartner_dr_id =  $P{C_BPartner_ID} or $P{C_BPartner_ID} is null)
+		and fa.PostingType = 'A'
+		and (fa.AD_Org_ID= $P{AD_Org_ID} or $P{AD_Org_ID} is null)
+	) tmp
+)
+select
+       tmp.documentno,tmp.dateacct,DESCRIPTION,
+       (select value from c_elementvalue where c_elementvalue_id = tmp.account_ID_DU) tkDoiUng,
+       (select DK from openbalance) DK,
+       (select DK_cur from openbalance) DK_Cur,
+       sum(tmp.TK_Dr) TK_Dr, sum(tmp.TK_Dr_Cur) TK_Dr_Cur,
+       sum(tmp.TK_Cr) TK_Cr, sum(tmp.TK_Cr_Cur) TK_Cr_Cur
+from
+(
+	-- TK DR
+	select
+		1 STT,fa.documentno,fa.dateacct,fa.account_cr_id account_ID_DU,FA.DESCRIPTION,
+		fa.Amount TK_Dr,
+		fa.AmountConvert TK_Dr_Cur,
+		0 TK_Cr,
+		0 TK_Cr_Cur
+	from fact_acct fa
+		inner join tmp_account on (fa.account_Dr_id = tmp_account.Node_id)
+	where  (fa.dateacct between $P{FromDate} and $P{ToDate})
+		AND (fa.c_bpartner_dr_id =  $P{C_BPartner_ID} or $P{C_BPartner_ID} is null)
+		and fa.PostingType = 'A'
+		and (fa.AD_Org_ID= $P{AD_Org_ID} or $P{AD_Org_ID} is null)
+	Union all
+	-- TK DR
+	select  2 STT,fa.documentno,fa.dateacct,fa.account_Dr_id account_ID_DU,FA.DESCRIPTION,
+			0 TK_Dr,
+			0 TK_Dr_Cur,
+			fa.Amount TK_Cr,
+			fa.AmountConvert TK_Cr_Cur
+	from fact_acct fa
+		inner join tmp_account on (fa.account_Cr_id = tmp_account.Node_id)
+	where  (fa.dateacct between $P{FromDate} and $P{ToDate})
+		AND (fa.c_bpartner_dr_id =  $P{C_BPartner_ID} or $P{C_BPartner_ID} is null)
+		and fa.PostingType = 'A'
+		and (fa.AD_Org_ID= $P{AD_Org_ID} or $P{AD_Org_ID} is null)
+) tmp
+group by tmp.documentno,tmp.dateacct,tmp.account_ID_DU,DESCRIPTION,STT
+order by tmp.dateacct,STT]]>
+	</queryString>
+	<field name="documentno" class="java.lang.String"/>
+	<field name="dateacct" class="java.sql.Timestamp"/>
+	<field name="description" class="java.lang.String"/>
+	<field name="tkdoiung" class="java.lang.String"/>
+	<field name="dk" class="java.math.BigDecimal"/>
+	<field name="dk_cur" class="java.math.BigDecimal"/>
+	<field name="tk_dr" class="java.math.BigDecimal"/>
+	<field name="tk_dr_cur" class="java.math.BigDecimal"/>
+	<field name="tk_cr" class="java.math.BigDecimal"/>
+	<field name="tk_cr_cur" class="java.math.BigDecimal"/>
+	<variable name="CK_Cur" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[new BigDecimal($V{CK_Cur}.doubleValue() + $F{tk_dr_cur}.doubleValue() - $F{tk_cr_cur}.doubleValue())]]></variableExpression>
+		<initialValueExpression><![CDATA[new BigDecimal($F{dk_cur} == null ? 0 : $F{dk_cur}.doubleValue())]]></initialValueExpression>
+	</variable>
+	<variable name="TongDR_Cur" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{tk_dr_cur}]]></variableExpression>
+		<initialValueExpression><![CDATA[new BigDecimal(0)]]></initialValueExpression>
+	</variable>
+	<variable name="TongCR_Cur" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{tk_cr_cur}]]></variableExpression>
+		<initialValueExpression><![CDATA[new BigDecimal(0)]]></initialValueExpression>
+	</variable>
+	<variable name="TongTon" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$V{CK_Cur}]]></variableExpression>
+		<initialValueExpression><![CDATA[new BigDecimal(0)]]></initialValueExpression>
+	</variable>
+	<variable name="CurrentDate" class="java.util.Date" calculation="System">
+		<initialValueExpression><![CDATA[new Date()]]></initialValueExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="98" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="49" width="555" height="24" uuid="670d04de-3973-418c-9e50-dfc7ff827da6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["SỔ QUỸ TIỀN MẶT"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="319" height="20" uuid="ee2e35b1-0d26-412c-bb4c-156fcfd96dde"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{AD_ORG_NAME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="20" width="319" height="20" uuid="094cdc7f-4318-4fae-9d44-8a9292fb9189"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{ADDRESS}]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement x="0" y="73" width="555" height="25" uuid="008ef3cc-d539-406e-883e-e79ad046cd93"/>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="C_ELEMENT_ID">
+					<subreportParameterExpression><![CDATA[$P{C_ELEMENT_ID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ToDate">
+					<subreportParameterExpression><![CDATA[$P{ToDate}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="C_ElementValue_ID">
+					<subreportParameterExpression><![CDATA[$P{C_ElementValue_ID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="AD_ORG_NAME">
+					<subreportParameterExpression><![CDATA[$P{AD_ORG_NAME}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ADDRESS">
+					<subreportParameterExpression><![CDATA[$P{ADDRESS}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="AD_Org_ID">
+					<subreportParameterExpression><![CDATA[$P{AD_Org_ID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="#AD_CLIENT_ID">
+					<subreportParameterExpression><![CDATA[$P{#AD_CLIENT_ID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="FromDate">
+					<subreportParameterExpression><![CDATA[$P{FromDate}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="C_BPartner_ID">
+					<subreportParameterExpression><![CDATA[$P{C_BPartner_ID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "cashbookmoney_subreport0.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="74" height="20" uuid="156ab2c1-836c-4799-abd3-24dbb9635310"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ngày chứng từ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="74" y="0" width="80" height="20" uuid="3417cbc0-8883-43bc-8105-e90bef84b413"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Số chứng từ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="154" y="0" width="150" height="20" uuid="1cae3984-f577-4e30-af49-9908a911fe8c"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Diễn giải]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="304" y="0" width="51" height="20" uuid="e36e4a90-67f3-4f4c-a3dd-ee92dea1d54e"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Đối ứng]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="355" y="0" width="64" height="20" uuid="bd5bbb78-3a3c-4a01-8937-7f264cdcd957"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Thu]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="419" y="0" width="65" height="20" uuid="34cf86df-e4d3-4751-ac2d-c59e12f34326"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Chi]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="484" y="0" width="71" height="20" uuid="8883f597-e309-4f35-83e4-2e0c8f07d692"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tồn]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement x="0" y="0" width="74" height="20" uuid="2a909c90-153c-448f-b4e5-c3b19a207dd0"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{dateacct}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="74" y="0" width="80" height="20" uuid="3cea68ae-5629-456d-a254-4c05c41c9b10"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{documentno}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="154" y="0" width="150" height="20" uuid="fb5201f7-9ee5-460c-a853-03b8b59131cd"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{description}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="304" y="0" width="51" height="20" uuid="723d77e8-9875-4bcc-bced-29f846c70aa1"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{tkdoiung}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="true">
+				<reportElement x="355" y="0" width="64" height="20" uuid="575dce06-c57c-4014-a1d9-15efdd73dc74"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{tk_dr_cur}.doubleValue()==0?null:$F{tk_dr_cur}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="true">
+				<reportElement x="484" y="0" width="71" height="20" uuid="9c43e77b-e722-49e0-a7b7-6058f5cc9213"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{CK_Cur}.doubleValue()==0?null:$V{CK_Cur}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="true">
+				<reportElement x="419" y="0" width="65" height="20" uuid="f03d4461-c3f7-459a-aad2-9f5ab6a6b379"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{tk_cr_cur}.doubleValue()==0?null:$F{tk_cr_cur}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="14" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="484" y="0" width="71" height="20" uuid="687ab8aa-0605-431c-8805-8a77fa6b51b2"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["Trang" + " " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="144" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="54" width="304" height="20" uuid="007e1ec1-d126-4fc3-bd96-eb23d81725cd"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["NGƯỜI LẬP BIỂU"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="74" width="304" height="20" uuid="5eeb7212-6ebd-4382-a4f0-1aad01be98bd"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="false" isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["(Ký, ghi rõ họ tên)"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="304" y="54" width="251" height="20" uuid="df1079b8-67b4-4851-a623-0f0b28bab5d8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["KẾ TOÁN TRƯỞNG"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="304" y="74" width="251" height="20" uuid="165c50ba-9a09-4017-9ef5-da449350447c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="false" isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["(Ký, ghi rõ họ tên)"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="355" height="20" uuid="fefa1dfd-5776-4dac-a619-930152a76691"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Sô phát sinh trong kỳ:"]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0">
+				<reportElement x="355" y="0" width="64" height="20" uuid="1954272f-4dde-47b3-a37c-af2a5627f0fb"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TongDR_Cur}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0">
+				<reportElement x="419" y="0" width="65" height="20" uuid="e520898e-30d0-40e3-8b65-9a9a4f90e9d0"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TongCR_Cur}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0">
+				<reportElement x="484" y="0" width="71" height="20" uuid="cb502ab3-189b-48dd-a1b3-9f664b930fbe"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TongTon}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="304" y="34" width="251" height="20" uuid="eaa93e07-1b96-4d93-9199-e712f1a05638"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="false" isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Ngày " + new SimpleDateFormat("dd").format($V{CurrentDate}) + " tháng  "+ new SimpleDateFormat("MM").format($V{CurrentDate}) +" năm " + new SimpleDateFormat("yyyy").format($V{CurrentDate})]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

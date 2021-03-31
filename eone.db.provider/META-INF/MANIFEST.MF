@@ -1,0 +1,23 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: EONE DB Provider
+Bundle-SymbolicName: eone.db.provider;singleton:=true
+Bundle-Version: 7.1.0.qualifier
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version>=11))"
+Require-Bundle: eone.base;bundle-version="0.0.0",
+ eone.install;bundle-version="0.0.0"
+Bundle-ClassPath: .,
+ lib/c3p0-oracle-thin-extras.jar,
+ lib/c3p0.jar,
+ lib/mchange-commons-java.jar,
+ lib/ojdbc7.jar,
+ lib/mssql-jdbc.jar,
+ lib/postgresql.jar
+Import-Package: org.osgi.framework,
+ org.slf4j;version="1.7.2"
+Bundle-ActivationPolicy: lazy
+Bundle-Activator: org.adempiere.db.DBBundleActivator
+Service-Component: OSGI-INF/*.xml
+Automatic-Module-Name: org.compiere.db.provider
+Bundle-Vendor: EONE
+Bundle-RequiredExecutionEnvironment: JavaSE-11

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="PhieuIN" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="571" leftMargin="10" rightMargin="14" topMargin="20" bottomMargin="10" uuid="8379527e-533f-4ce2-bf8c-01c885d686cb">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="RECORD_ID" class="java.lang.Integer"/>
+	<parameter name="ADDRESS" class="java.lang.String"/>
+	<parameter name="AD_ORG_NAME" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select
+	'' PatternExp,
+    '' rsname, '' address, ca.description, ca.documentno,
+    AmountConvert amount,
+    spell_number_vietnam(AmountConvert, cc.C_Currency_ID) doctien,
+    ca.dateacct, cc.iso_code cursymbol, '' Department,
+    cc.description curdescription,
+	case when dt.docbasetype = '111CR' then 'PC' else 'PT' end doctype,
+	'' diachi
+from c_cash ca
+    inner join c_currency cc on ca.c_currency_id = cc.c_currency_id
+	inner join c_doctype dt on ca.c_doctype_id = dt.c_doctype_id
+where ca.c_cash_id = $P{RECORD_ID}
+and ca.docstatus = 'CO';
+]]>
+	</queryString>
+	<field name="patternexp" class="java.lang.String"/>
+	<field name="rsname" class="java.lang.String"/>
+	<field name="address" class="java.lang.String"/>
+	<field name="description" class="java.lang.String"/>
+	<field name="documentno" class="java.lang.String"/>
+	<field name="amount" class="java.math.BigDecimal"/>
+	<field name="doctien" class="java.lang.String"/>
+	<field name="dateacct" class="java.sql.Timestamp"/>
+	<field name="cursymbol" class="java.lang.String"/>
+	<field name="department" class="java.lang.String"/>
+	<field name="curdescription" class="java.lang.String"/>
+	<field name="doctype" class="java.lang.String"/>
+	<field name="diachi" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="262" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="15" width="341" height="15" uuid="46442dee-bc3e-41cf-92f7-80ae52e3da92"/>
+				<textElement>
+					<font fontName="Times New Roman" pdfEncoding="Cp1258" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{ADDRESS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="341" height="15" uuid="5c2c6a14-eab4-4175-9adf-aba24072679c"/>
+				<textElement>
+					<font fontName="Times New Roman" isBold="true" pdfEncoding="Cp1258" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{AD_ORG_NAME}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="28" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="27" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -1,0 +1,1030 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="SoChiTietTaiKhoanNgoaiTe" pageWidth="1040" pageHeight="595" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="1000" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" resourceBundle="SoChiTietTaiKhoanNgoaiTe" uuid="1fba66b7-cc10-4dbc-8e48-752d6ed87b07">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Bold_Left" hAlign="Left" vAlign="Middle" isBlankWhenNull="true" fontName="Arial" isBold="true" isItalic="false" isUnderline="false" pdfFontName="TIMESBD.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true">
+		<box leftPadding="3" rightPadding="2"/>
+	</style>
+	<style name="Bold_Right" hAlign="Right" vAlign="Middle" isBlankWhenNull="true" fontName="Arial" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="TIMESBD.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true">
+		<box leftPadding="2" rightPadding="3"/>
+	</style>
+	<style name="Bold_Center" hAlign="Center" vAlign="Middle" isBlankWhenNull="true" fontName="Arial" isBold="true" isItalic="false" isUnderline="false" pdfFontName="TIMESBD.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+	<style name="Italic_Left" hAlign="Left" vAlign="Middle" isBlankWhenNull="true" fontName="Arial" isBold="false" isItalic="true" isUnderline="false" pdfFontName="TIMESI.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true">
+		<box leftPadding="3" rightPadding="2"/>
+	</style>
+	<style name="Italic_Right" hAlign="Right" vAlign="Middle" isBlankWhenNull="true" fontName="Arial" isBold="false" isItalic="true" isUnderline="false" pdfFontName="TIMESI.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true">
+		<box leftPadding="2" rightPadding="3"/>
+	</style>
+	<style name="Italic_Center" hAlign="Center" vAlign="Middle" isBlankWhenNull="true" fontName="Arial" isBold="false" isItalic="true" isUnderline="false" pdfFontName="TIMESI.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+	<style name="Nomal_Left" hAlign="Left" vAlign="Middle" isBlankWhenNull="true" fontName="Arial" isBold="false" isItalic="false" isUnderline="false" pdfFontName="TIMES.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true">
+		<box leftPadding="3" rightPadding="2"/>
+	</style>
+	<style name="Nomal_Right" hAlign="Right" vAlign="Middle" isBlankWhenNull="true" fontName="Arial" isBold="false" isItalic="false" isUnderline="false" pdfFontName="TIMES.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true">
+		<box leftPadding="2" rightPadding="3"/>
+	</style>
+	<style name="Nomal_Center" hAlign="Center" vAlign="Middle" isBlankWhenNull="true" fontName="Arial" isBold="false" isItalic="false" isUnderline="false" pdfFontName="TIMES.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+	<style name="BoldItalic_Left" hAlign="Left" vAlign="Middle" isBlankWhenNull="true" fontName="Arial" isBold="true" isItalic="true" isUnderline="false" pdfFontName="TIMESBI.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true">
+		<box leftPadding="3" rightPadding="2"/>
+	</style>
+	<style name="BoldItalic_Right" hAlign="Right" vAlign="Middle" isBlankWhenNull="true" fontName="Arial" isBold="true" isItalic="true" isUnderline="false" pdfFontName="TIMESBI.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true">
+		<box leftPadding="2" rightPadding="3"/>
+	</style>
+	<style name="BoldItalic_Center" hAlign="Center" vAlign="Middle" isBlankWhenNull="true" fontName="Arial" isBold="true" isItalic="true" isUnderline="false" pdfFontName="TIMESBI.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PATH_IMAGE" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="C_ElementValue_ID" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="FromDate" class="java.util.Date">
+		<defaultValueExpression><![CDATA[new Date()]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ToDate" class="java.util.Date">
+		<defaultValueExpression><![CDATA[new Date()]]></defaultValueExpression>
+	</parameter>
+	<parameter name="AD_Org_ID" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="C_BPartner_ID" class="java.lang.Integer"/>
+	<parameter name="C_Currency_ID" class="java.lang.Integer"/>
+	<parameter name="#AD_Client_ID" class="java.math.BigDecimal"/>
+	<parameter name="AD_Language_Report" class="java.lang.String"/>
+	<parameter name="AD_Language_Acct" class="java.lang.String"/>
+	<parameter name="C_ELEMENT_ID" class="java.lang.Integer"/>
+	<parameter name="AD_CLIENT_NAME" class="java.lang.String"/>
+	<parameter name="ADDRESS" class="java.lang.String"/>
+	<parameter name="AD_ORG_NAME" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[With tmp_account as (
+    select c_elementvalue_id Node_id,value
+    from c_elementvalue
+	where  c_element_id = $P{C_ELEMENT_ID}
+ 		and ((value like (select value from c_elementvalue where c_elementvalue_id = $P{C_ElementValue_ID})|| '%' )
+ 		or $P{C_ElementValue_ID} is null)
+),
+openbalance as
+(
+	select   sum(tmp.DK) DK, sum(tmp.DK_Cur) DK_Cur
+	from
+	(
+		-- TK DR
+		select	fa.Amount  DK,  fa.AmountConvert DK_Cur
+		from fact_acct fa
+			inner join tmp_account on (fa.account_dr_id = tmp_account.Node_id)
+		where  (fa.dateacct < $P{FromDate})
+			AND (fa.c_bpartner_dr_id =  $P{C_BPartner_ID} or $P{C_BPartner_ID} is null)
+			and fa.PostingType = 'A'
+			and (fa.AD_Org_ID= $P{AD_Org_ID} or $P{AD_Org_ID} is null)
+		Union all
+		-- TK DR
+		select
+			   fa.Amount * -1  DK,  fa.AmountConvert * -1 DK_Cur
+		from fact_acct fa
+			inner join tmp_account on (fa.account_Cr_id = tmp_account.Node_id)
+		where  (fa.dateacct < $P{FromDate} )
+			AND (fa.c_bpartner_Cr_id =  $P{C_BPartner_ID} or $P{C_BPartner_ID} is null)
+			and fa.PostingType = 'A'
+			and (fa.AD_Org_ID= $P{AD_Org_ID} or $P{AD_Org_ID} is null)
+	) tmp
+)
+select
+       tmp.documentno,tmp.dateacct,DESCRIPTION,
+       (select value from c_elementvalue where c_elementvalue_id = tmp.account_ID_DU) tkDoiUng,
+       (select DK from openbalance) DK,
+       (select DK_cur from openbalance) DK_Cur,
+       sum(tmp.TK_Dr) TK_Dr, sum(tmp.TK_Dr_Cur) TK_Dr_Cur,
+       sum(tmp.TK_Cr) TK_Cr, sum(tmp.TK_Cr_Cur) TK_Cr_Cur
+from
+(
+	-- TK DR
+	select
+		fa.documentno,fa.dateacct,fa.account_cr_id account_ID_DU,FA.DESCRIPTION,
+		fa.Amount TK_Dr,
+		fa.AmountConvert TK_Dr_Cur,
+		0 TK_Cr,
+		0 TK_Cr_Cur
+	from fact_acct fa
+		inner join tmp_account on (fa.account_Dr_id = tmp_account.Node_id)
+	where  (fa.dateacct between $P{FromDate} and $P{ToDate})
+		AND (fa.c_bpartner_dr_id =  $P{C_BPartner_ID} or $P{C_BPartner_ID} is null)
+		and fa.PostingType = 'A'
+		and (fa.AD_Org_ID= $P{AD_Org_ID} or $P{AD_Org_ID} is null)
+	Union all
+	-- TK DR
+	select  fa.documentno,fa.dateacct,fa.account_Dr_id account_ID_DU,FA.DESCRIPTION,
+			0 TK_Dr,
+			0 TK_Dr_Cur,
+			fa.Amount TK_Cr,
+			fa.AmountConvert TK_Cr_Cur
+	from fact_acct fa
+		inner join tmp_account on (fa.account_Cr_id = tmp_account.Node_id)
+	where  (fa.dateacct between $P{FromDate} and $P{ToDate})
+		AND (fa.c_bpartner_Cr_id =  $P{C_BPartner_ID} or $P{C_BPartner_ID} is null)
+		and fa.PostingType = 'A'
+		and (fa.AD_Org_ID= $P{AD_Org_ID} or $P{AD_Org_ID} is null)
+) tmp
+group by tmp.documentno,tmp.dateacct,tmp.account_ID_DU,DESCRIPTION
+order by tmp.dateacct,tmp.documentno,tkDoiUng]]>
+	</queryString>
+	<field name="documentno" class="java.lang.String"/>
+	<field name="dateacct" class="java.sql.Timestamp"/>
+	<field name="description" class="java.lang.String"/>
+	<field name="tkdoiung" class="java.lang.String"/>
+	<field name="dk" class="java.math.BigDecimal"/>
+	<field name="dk_cur" class="java.math.BigDecimal"/>
+	<field name="tk_dr" class="java.math.BigDecimal"/>
+	<field name="tk_dr_cur" class="java.math.BigDecimal"/>
+	<field name="tk_cr" class="java.math.BigDecimal"/>
+	<field name="tk_cr_cur" class="java.math.BigDecimal"/>
+	<variable name="STT" class="java.lang.Integer">
+		<variableExpression><![CDATA[new Integer($V{STT}.intValue() + 1)]]></variableExpression>
+		<initialValueExpression><![CDATA[new Integer(0)]]></initialValueExpression>
+	</variable>
+	<variable name="TongTK_DR" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{tk_dr}]]></variableExpression>
+		<initialValueExpression><![CDATA[new BigDecimal(0)]]></initialValueExpression>
+	</variable>
+	<variable name="TongTK_CR" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{tk_cr}]]></variableExpression>
+		<initialValueExpression><![CDATA[new BigDecimal(0)]]></initialValueExpression>
+	</variable>
+	<variable name="CurrentDate" class="java.util.Date" calculation="System">
+		<initialValueExpression><![CDATA[new Date()]]></initialValueExpression>
+	</variable>
+	<variable name="PATTERNEXP" class="java.lang.String" calculation="System"/>
+	<variable name="TongTK_DR_Cur" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{tk_dr_cur}]]></variableExpression>
+		<initialValueExpression><![CDATA[new BigDecimal(0)]]></initialValueExpression>
+	</variable>
+	<variable name="TongTK_CR_Cur" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{tk_cr_cur}]]></variableExpression>
+		<initialValueExpression><![CDATA[new BigDecimal(0)]]></initialValueExpression>
+	</variable>
+	<variable name="CK_Cur" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[new BigDecimal($V{CK_Cur}.doubleValue() + $F{tk_dr_cur}.doubleValue() - $F{tk_cr_cur}.doubleValue())]]></variableExpression>
+		<initialValueExpression><![CDATA[new BigDecimal($F{dk_cur} == null ? 0 : $F{dk_cur}.doubleValue())]]></initialValueExpression>
+	</variable>
+	<variable name="CK" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[new BigDecimal($V{CK}.doubleValue() + $F{tk_dr}.doubleValue() - $F{tk_cr}.doubleValue())]]></variableExpression>
+		<initialValueExpression><![CDATA[new BigDecimal($F{dk} == null ? 0 : $F{dk}.doubleValue())]]></initialValueExpression>
+	</variable>
+	<variable name="CK_1" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{tk_dr}.doubleValue() - $F{tk_cr}.doubleValue()]]></variableExpression>
+	</variable>
+	<variable name="CK_Cur_1" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{tk_dr_cur}.doubleValue() - $F{tk_cr_cur}.doubleValue()]]></variableExpression>
+	</variable>
+	<variable name="S_DK_CUR" class="java.math.BigDecimal" calculation="System">
+		<variableExpression><![CDATA[]]></variableExpression>
+	</variable>
+	<variable name="S_DK" class="java.math.BigDecimal" calculation="System">
+		<variableExpression><![CDATA[]]></variableExpression>
+	</variable>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="155">
+			<textField>
+				<reportElement style="Bold_Center" x="0" y="67" width="1000" height="28" uuid="14d9aa80-702e-4a45-a1d2-ae972f2efb9b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="Arial" size="17" isBold="true" pdfFontName="ARIALBD.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["SỔ CHI TIẾT TÀI KHOẢN"]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement x="0" y="95" width="1000" height="60" uuid="d4e99932-6a70-490a-b37e-e70180405ad3"/>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="ToDate">
+					<subreportParameterExpression><![CDATA[$P{ToDate}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="AD_Client_ID">
+					<subreportParameterExpression><![CDATA[$P{#AD_Client_ID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="C_ElementValue_ID">
+					<subreportParameterExpression><![CDATA[$P{C_ElementValue_ID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="AD_Language">
+					<subreportParameterExpression><![CDATA[$P{AD_Language_Report}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="C_Currency_ID">
+					<subreportParameterExpression><![CDATA[$P{C_Currency_ID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="FromDate">
+					<subreportParameterExpression><![CDATA[$P{FromDate}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="C_BPartner_ID">
+					<subreportParameterExpression><![CDATA[$P{C_BPartner_ID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="DK">
+					<subreportParameterExpression><![CDATA[$F{dk}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="REPORT_RESOURCE_BUNDLE">
+					<subreportParameterExpression><![CDATA[$P{REPORT_RESOURCE_BUNDLE}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="C_Department_ID">
+					<subreportParameterExpression><![CDATA[$P{C_ELEMENT_ID}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="DK_CUR">
+					<subreportParameterExpression><![CDATA[$F{dk_cur}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<returnValue subreportVariable="PATTERNEXP" toVariable="PATTERNEXP"/>
+				<returnValue subreportVariable="S_DK_CUR" toVariable="S_DK_CUR"/>
+				<returnValue subreportVariable="S_DK" toVariable="S_DK"/>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "SoChiTietTaiKhoanNgoaiTeSubreport0.jasper"]]></subreportExpression>
+			</subreport>
+			<textField>
+				<reportElement x="0" y="20" width="321" height="20" uuid="38865f56-7502-4999-bba0-e8e4d7cf582e"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{ADDRESS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="321" height="20" uuid="7938176d-b274-4254-a886-ea2d4e796f62"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" isBold="true" pdfFontName="Times-Roman" pdfEncoding="&lt;Different Values&gt;" isPdfEmbedded="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{AD_ORG_NAME}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="60">
+			<textField>
+				<reportElement style="Bold_Center" x="682" y="0" width="318" height="20" uuid="cc363c10-5445-4b62-9e23-db7eefb0ae80"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="Arial" size="9" isBold="true" pdfFontName="ARIALBD.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["SỐ DƯ"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Bold_Center" x="841" y="20" width="159" height="20" uuid="461a3b1f-251d-48f7-97c4-0b31ab5fe434"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="Arial" size="9" isBold="true" pdfFontName="ARIALBD.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Có"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Bold_Center" x="682" y="20" width="159" height="20" uuid="1aa21585-8e9d-4b59-a0f6-ac9081a55e74"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="Arial" size="9" isBold="true" pdfFontName="ARIALBD.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Nợ"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Bold_Center" x="92" y="40" width="65" height="20" uuid="de03a60a-8bc0-48f3-84ce-a368ef162134"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="Arial" size="9" isBold="true" pdfFontName="ARIALBD.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Ngày"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Bold_Center" x="523" y="20" width="159" height="20" uuid="ef58cc11-477b-4bb2-8114-ff2e3b865355"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="Arial" size="9" isBold="true" pdfFontName="ARIALBD.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Có"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Bold_Center" x="364" y="0" width="318" height="20" uuid="ff2c9229-f818-4b6c-bbde-776bedf9a6b9"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="Arial" size="9" isBold="true" pdfFontName="ARIALBD.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["PHÁT SINH TK"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Bold_Center" x="0" y="40" width="92" height="20" uuid="869d275e-7c9b-4172-8d06-8fdf7de1ac5a"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="Arial" size="9" isBold="true" pdfFontName="ARIALBD.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Số GS"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Bold_Center" x="364" y="20" width="159" height="20" uuid="1be87a75-7cfc-49f3-bad9-c63c09001296"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="Arial" size="9" isBold="true" pdfFontName="ARIALBD.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Nợ"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Bold_Center" x="157" y="0" width="164" height="60" uuid="10b5ac4c-ab87-4b40-a846-8f9559bbc815"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="Arial" size="9" isBold="true" pdfFontName="ARIALBD.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["NỘI DUNG"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Bold_Center" x="454" y="40" width="69" height="20" uuid="d8519fb1-41f8-4c3d-8138-ec9e11739b57"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="Arial" size="9" isBold="true" pdfFontName="ARIALBD.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Ngoại tệ"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Bold_Center" x="364" y="40" width="90" height="20" uuid="61a410d2-5759-4677-b941-7298e118cb78"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="Arial" size="9" isBold="true" pdfFontName="ARIALBD.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["VND"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Bold_Center" x="613" y="40" width="69" height="20" uuid="d2a0f5a3-6dfd-4938-a88d-6fceb5731ab2"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="Arial" size="9" isBold="true" pdfFontName="ARIALBD.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Ngoại tệ"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Bold_Center" x="523" y="40" width="90" height="20" uuid="f6835267-b564-4b57-8620-5ac298cad753"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="Arial" size="9" isBold="true" pdfFontName="ARIALBD.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["VND"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Bold_Center" x="772" y="40" width="69" height="20" uuid="050085f0-0bf4-4361-871b-de80311741ab"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="Arial" size="9" isBold="true" pdfFontName="ARIALBD.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Ngoại tệ"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Bold_Center" x="682" y="40" width="90" height="20" uuid="a45825ab-50c1-43a3-a9bf-98110e4e0c37"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="Arial" size="9" isBold="true" pdfFontName="ARIALBD.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["VND"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Bold_Center" x="931" y="40" width="69" height="20" uuid="481bf6b3-cdf4-49fc-b12f-88e0ed85d6e2"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="Arial" size="9" isBold="true" pdfFontName="ARIALBD.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Ngoại tệ"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Bold_Center" x="841" y="40" width="90" height="20" uuid="33dabefe-a1ec-4b3a-bf36-021738e4d349"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="Arial" size="9" isBold="true" pdfFontName="ARIALBD.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["VND"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Bold_Center" x="0" y="0" width="157" height="40" uuid="e3479a92-48df-474f-a82b-0d78a0f935dd"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="Arial" size="9" isBold="true" pdfFontName="ARIALBD.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["CHỨNG TỪ"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Bold_Center" x="321" y="0" width="43" height="60" uuid="cd7645fd-3758-465f-b0e1-08163f483369"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="Arial" size="9" isBold="true" pdfFontName="ARIALBD.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["TK Đối ứng"]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Prevent">
+			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="92" y="0" width="65" height="20" forecolor="#000000" uuid="52ffc50a-6679-4b73-8c4d-80f0b19a8e0c"/>
+				<box topPadding="2" leftPadding="3" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5" lineStyle="Dotted"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5" lineStyle="Dotted"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" pdfFontName="ARIAL.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dateacct}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="157" y="0" width="164" height="20" uuid="8e25ff3e-44d5-4213-885b-405a56ed0a3e"/>
+				<box topPadding="2" leftPadding="3" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5" lineStyle="Dotted"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5" lineStyle="Dotted"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="9" pdfFontName="ARIAL.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{description}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="682" y="0" width="90" height="20" uuid="82f2e525-b832-4f1c-85e8-77d3c43de09b"/>
+				<box topPadding="2" leftPadding="0" bottomPadding="2" rightPadding="3">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5" lineStyle="Dotted"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5" lineStyle="Dotted"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" pdfFontName="ARIAL.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{CK_Cur}.doubleValue() > 0 ? $V{CK_Cur}.doubleValue() : null]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="364" y="0" width="90" height="20" uuid="1937eb1b-db3c-4059-9278-8cd937580960"/>
+				<box topPadding="2" leftPadding="0" bottomPadding="2" rightPadding="3">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5" lineStyle="Dotted"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5" lineStyle="Dotted"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" pdfFontName="ARIAL.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tk_dr_cur}.doubleValue()==0?null:$F{tk_dr_cur}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="841" y="0" width="90" height="20" uuid="d1eda66d-7873-4807-85c6-3a6ecad8022e"/>
+				<box topPadding="2" leftPadding="0" bottomPadding="2" rightPadding="3">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5" lineStyle="Dotted"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5" lineStyle="Dotted"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" pdfFontName="ARIAL.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{CK_Cur}.doubleValue() < 0 ? $V{CK_Cur}.doubleValue() *-1 : null]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="523" y="0" width="90" height="20" uuid="7d8029e6-0e2a-4b44-846f-14da0f91efdb"/>
+				<box topPadding="2" leftPadding="0" bottomPadding="2" rightPadding="3">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5" lineStyle="Dotted"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5" lineStyle="Dotted"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" pdfFontName="ARIAL.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tk_cr_cur}.doubleValue()==0?null:$F{tk_cr_cur}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="92" height="20" uuid="b1bcba01-9198-44c9-92d4-5755319b3df4"/>
+				<box topPadding="2" leftPadding="3" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5" lineStyle="Dotted"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5" lineStyle="Dotted"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="9" pdfFontName="ARIAL.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{documentno}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="931" y="0" width="69" height="20" uuid="32bd79d8-84ca-48cd-baf1-2a1f856d5f4a"/>
+				<box topPadding="2" leftPadding="0" bottomPadding="2" rightPadding="3">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5" lineStyle="Dotted"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5" lineStyle="Dotted"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" pdfFontName="ARIAL.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{C_Currency_ID} == null || $P{C_Currency_ID}.doubleValue() == 234) ? null : ($V{CK}.doubleValue() < 0 ? $V{CK}.doubleValue() *-1 : null)]]></textFieldExpression>
+				<patternExpression><![CDATA[$V{PATTERNEXP}]]></patternExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="772" y="0" width="69" height="20" uuid="1bcf9ec6-aac6-499b-808c-16a806d2780e"/>
+				<box topPadding="2" leftPadding="0" bottomPadding="2" rightPadding="3">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5" lineStyle="Dotted"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5" lineStyle="Dotted"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" pdfFontName="ARIAL.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{C_Currency_ID} == null || $P{C_Currency_ID}.doubleValue() == 234) ? null :($V{CK}.doubleValue() > 0 ? $V{CK}.doubleValue() : null)]]></textFieldExpression>
+				<patternExpression><![CDATA[$V{PATTERNEXP}]]></patternExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="613" y="0" width="69" height="20" uuid="7bcc6498-5d58-4d23-a5af-679975667aa9"/>
+				<box topPadding="2" leftPadding="0" bottomPadding="2" rightPadding="3">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5" lineStyle="Dotted"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5" lineStyle="Dotted"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" pdfFontName="ARIAL.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{C_Currency_ID} == null || $P{C_Currency_ID}.doubleValue() == 234) ? null :($F{tk_cr}.doubleValue()==0?null:$F{tk_cr})]]></textFieldExpression>
+				<patternExpression><![CDATA[$V{PATTERNEXP}]]></patternExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="454" y="0" width="69" height="20" uuid="ba966927-87db-4360-9cc8-58a9e62d4034"/>
+				<box topPadding="2" leftPadding="0" bottomPadding="2" rightPadding="3">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5" lineStyle="Dotted"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5" lineStyle="Dotted"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" pdfFontName="ARIAL.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{C_Currency_ID} == null || $P{C_Currency_ID}.doubleValue() == 234) ? null :($F{tk_dr}.doubleValue()==0?null:$F{tk_dr})]]></textFieldExpression>
+				<patternExpression><![CDATA[$V{PATTERNEXP}]]></patternExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToBandHeight" x="321" y="0" width="43" height="20" uuid="956dda99-a33d-4af9-b074-47e1aaa2547a"/>
+				<box topPadding="2" leftPadding="3" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5" lineStyle="Dotted"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5" lineStyle="Dotted"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="9" pdfFontName="ARIAL.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tkdoiung}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="19">
+			<textField evaluationTime="Report" pattern="" isBlankWhenNull="false">
+				<reportElement key="textField-27" x="931" y="0" width="69" height="19" forecolor="#000000" backcolor="#FFFFFF" uuid="c349fbe8-ba00-44d6-ac06-e9d5ae330ef3"/>
+				<box leftPadding="3">
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None">
+					<font fontName="Arial" size="9" pdfFontName="ARIAL.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["" + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement key="textField-26" x="841" y="0" width="90" height="19" uuid="86dcb170-04e8-4cdc-be54-9443650d920b"/>
+				<box rightPadding="3">
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" pdfFontName="ARIAL.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{Page} + $V{PAGE_NUMBER} + "/ "]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="169">
+			<textField>
+				<reportElement style="Bold_Center" stretchType="RelativeToBandHeight" x="0" y="0" width="364" height="20" uuid="a86d34a2-3eb6-4f46-8128-dc339ae74dae"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font fontName="Arial" size="9" isBold="true" pdfFontName="ARIALBD.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["SỐ PHÁT SINH TRONG KỲ:"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
+				<reportElement style="Bold_Right" stretchType="RelativeToBandHeight" x="682" y="0" width="90" height="20" uuid="dab83e81-a3e4-4b0e-a963-0cab987baa92"/>
+				<box topPadding="2" leftPadding="0" bottomPadding="2" rightPadding="3">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true" pdfFontName="ARIALBD.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<patternExpression><![CDATA[$V{PATTERNEXP}]]></patternExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" evaluationTime="Report" pattern="#,##0" isBlankWhenNull="true">
+				<reportElement style="Bold_Right" stretchType="RelativeToBandHeight" x="364" y="0" width="90" height="20" uuid="8019a517-ee23-4a5c-891c-675cec7d2702"/>
+				<box topPadding="2" leftPadding="0" bottomPadding="2" rightPadding="3">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true" pdfFontName="ARIALBD.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TongTK_DR_Cur}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
+				<reportElement style="Bold_Right" stretchType="RelativeToBandHeight" x="841" y="0" width="90" height="20" uuid="1e366669-87e1-432a-8f98-04c7d6d26cbf"/>
+				<box topPadding="2" leftPadding="0" bottomPadding="2" rightPadding="3">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true" pdfFontName="ARIALBD.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<patternExpression><![CDATA[$V{PATTERNEXP}]]></patternExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" evaluationTime="Report" pattern="#,##0" isBlankWhenNull="true">
+				<reportElement style="Bold_Right" stretchType="RelativeToBandHeight" x="523" y="0" width="90" height="20" uuid="e22666cb-f2a1-40de-bced-949197f62dc3"/>
+				<box topPadding="2" leftPadding="0" bottomPadding="2" rightPadding="3">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true" pdfFontName="ARIALBD.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TongTK_CR_Cur}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement style="Italic_Left" x="682" y="63" width="318" height="20" uuid="244e1528-6035-4376-83e4-64ea0d7394e4"/>
+				<box topPadding="3" leftPadding="3" bottomPadding="3" rightPadding="3"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Arial" size="9" isBold="false" isItalic="true" pdfFontName="ARIALI.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{Date} +"  "+ new SimpleDateFormat("dd").format($V{CurrentDate}) + "  "+$R{Month}+"  "+ new SimpleDateFormat("MM").format($V{CurrentDate}) +"  "+ $R{text.Year} +"  "+ new SimpleDateFormat("yyyy").format($V{CurrentDate})]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" evaluationTime="Report" pattern="" isBlankWhenNull="true">
+				<reportElement style="Bold_Right" stretchType="RelativeToBandHeight" x="454" y="0" width="69" height="20" uuid="4f715b21-e2c6-4784-aed9-42fdb7e52efb"/>
+				<box topPadding="2" leftPadding="0" bottomPadding="2" rightPadding="3">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true" pdfFontName="ARIALBD.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{C_Currency_ID} == null || $P{C_Currency_ID}.doubleValue() == 234) ? null :$V{TongTK_DR}]]></textFieldExpression>
+				<patternExpression><![CDATA[$V{PATTERNEXP}]]></patternExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" evaluationTime="Report" pattern="" isBlankWhenNull="true">
+				<reportElement style="Bold_Right" stretchType="RelativeToBandHeight" x="613" y="0" width="69" height="20" uuid="95f95500-6d2b-4a04-afd8-afcbdbf717cd"/>
+				<box topPadding="2" leftPadding="0" bottomPadding="2" rightPadding="3">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true" pdfFontName="ARIALBD.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{C_Currency_ID} == null || $P{C_Currency_ID}.doubleValue() == 234) ? null :$V{TongTK_CR}]]></textFieldExpression>
+				<patternExpression><![CDATA[$V{PATTERNEXP}]]></patternExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
+				<reportElement style="Bold_Right" stretchType="RelativeToBandHeight" x="772" y="0" width="69" height="20" uuid="906352e6-c8f6-4832-aca5-e6044c4f8311"/>
+				<box topPadding="2" leftPadding="0" bottomPadding="2" rightPadding="3">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true" pdfFontName="ARIALBD.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<patternExpression><![CDATA[$V{PATTERNEXP}]]></patternExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
+				<reportElement style="Bold_Right" stretchType="RelativeToBandHeight" x="931" y="0" width="69" height="20" uuid="739bf072-0e0e-4902-bd0f-4e5a08c35421"/>
+				<box topPadding="2" leftPadding="0" bottomPadding="2" rightPadding="3">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true" pdfFontName="ARIALBD.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<patternExpression><![CDATA[$V{PATTERNEXP}]]></patternExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0" isBlankWhenNull="true">
+				<reportElement style="Bold_Right" positionType="Float" stretchType="RelativeToBandHeight" x="682" y="20" width="90" height="28" uuid="556fd4a3-e7f7-40b6-ba73-cc0e7118e4b8"/>
+				<box topPadding="2" leftPadding="0" bottomPadding="2" rightPadding="3">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true" pdfFontName="ARIALBD.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($V{S_DK_CUR}.doubleValue() + ($V{CK_Cur_1} == null ? 0 :$V{CK_Cur_1}.doubleValue())) > 0 ? ($V{S_DK_CUR}.doubleValue() + ($V{CK_Cur_1} == null ? 0 :$V{CK_Cur_1}.doubleValue()) ) : 0]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
+				<reportElement style="Bold_Right" positionType="Float" stretchType="RelativeToBandHeight" x="931" y="20" width="69" height="28" uuid="6035704e-9236-48f0-8edc-ba9702be9c46"/>
+				<box topPadding="2" leftPadding="0" bottomPadding="2" rightPadding="3">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true" pdfFontName="ARIALBD.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{C_Currency_ID} == null || $P{C_Currency_ID}.doubleValue() == 234) ? null :(($V{S_DK}.doubleValue() + ($V{CK_1} == null ? 0 : $V{CK_1}.doubleValue())) < 0 ? ($V{S_DK}.doubleValue() + ($V{CK_1} == null ? 0 : $V{CK_1}.doubleValue())) *-1 : 0)]]></textFieldExpression>
+				<patternExpression><![CDATA[$V{PATTERNEXP}]]></patternExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0" isBlankWhenNull="true">
+				<reportElement style="Bold_Right" positionType="Float" stretchType="RelativeToBandHeight" x="841" y="20" width="90" height="28" uuid="0f0cb39e-0f6a-4564-b098-5a4f0b92cf4f"/>
+				<box topPadding="2" leftPadding="0" bottomPadding="2" rightPadding="3">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true" pdfFontName="ARIALBD.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($V{S_DK_CUR}.doubleValue() + ( $V{CK_Cur_1} == null ? 0 :$V{CK_Cur_1}.doubleValue())) < 0 ? ($V{S_DK_CUR}.doubleValue() + ( $V{CK_Cur_1} == null ? 0 :$V{CK_Cur_1}.doubleValue())) *-1 : 0]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Bold_Center" positionType="Float" stretchType="RelativeToBandHeight" x="0" y="20" width="364" height="28" uuid="48c8f7f6-f0da-439f-8cea-6d2eee306888"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font fontName="Arial" size="9" isBold="true" pdfFontName="ARIALBD.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["LŨY KẾ SỐ DƯ CUỐI KỲ:"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" evaluationTime="Report" pattern="" isBlankWhenNull="true">
+				<reportElement style="Bold_Right" positionType="Float" stretchType="RelativeToBandHeight" x="523" y="20" width="90" height="28" uuid="62967d52-20e7-44d7-99b9-85a3fc674e25"/>
+				<box topPadding="2" leftPadding="0" bottomPadding="2" rightPadding="3">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true" pdfFontName="ARIALBD.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<patternExpression><![CDATA[$V{PATTERNEXP}]]></patternExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" evaluationTime="Report" pattern="" isBlankWhenNull="true">
+				<reportElement style="Bold_Right" positionType="Float" stretchType="RelativeToBandHeight" x="454" y="20" width="69" height="28" uuid="aec54fc9-ef32-48d6-b548-5dafcd901a21"/>
+				<box topPadding="2" leftPadding="0" bottomPadding="2" rightPadding="3">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true" pdfFontName="ARIALBD.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<patternExpression><![CDATA[$V{PATTERNEXP}]]></patternExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
+				<reportElement style="Bold_Right" positionType="Float" stretchType="RelativeToBandHeight" x="772" y="20" width="69" height="28" uuid="f8d18919-b427-43ff-b655-8b5056f1abee"/>
+				<box topPadding="2" leftPadding="0" bottomPadding="2" rightPadding="3">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true" pdfFontName="ARIALBD.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{C_Currency_ID} == null || $P{C_Currency_ID}.doubleValue() == 234) ? null : (($V{S_DK}.doubleValue() + ($V{CK_1} == null ? 0 : $V{CK_1}.doubleValue())) > 0 ? $V{S_DK}.doubleValue() + ($V{CK_1} == null ? 0 : $V{CK_1}.doubleValue()) : 0)]]></textFieldExpression>
+				<patternExpression><![CDATA[$V{PATTERNEXP}]]></patternExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" evaluationTime="Report" pattern="" isBlankWhenNull="true">
+				<reportElement style="Bold_Right" positionType="Float" stretchType="RelativeToBandHeight" x="364" y="20" width="90" height="28" uuid="a5b87533-64c4-4303-8372-322fc4eafd72"/>
+				<box topPadding="2" leftPadding="0" bottomPadding="2" rightPadding="3">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true" pdfFontName="ARIALBD.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<patternExpression><![CDATA[$V{PATTERNEXP}]]></patternExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" evaluationTime="Report" pattern="" isBlankWhenNull="true">
+				<reportElement style="Bold_Right" positionType="Float" stretchType="RelativeToBandHeight" x="613" y="20" width="69" height="28" uuid="19eb1392-9d05-450f-9149-b9675932820f"/>
+				<box topPadding="2" leftPadding="0" bottomPadding="2" rightPadding="3">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true" pdfFontName="ARIALBD.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<patternExpression><![CDATA[$V{PATTERNEXP}]]></patternExpression>
+			</textField>
+			<textField>
+				<reportElement style="Bold_Center" positionType="Float" stretchType="RelativeToBandHeight" x="0" y="83" width="321" height="20" uuid="a7bc1155-0066-498e-ad1b-0cfa994e2b51"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font fontName="Arial" size="9" isBold="true" pdfFontName="ARIALBD.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["NGƯỜI LẬP BIỂU"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Bold_Center" positionType="Float" stretchType="RelativeToBandHeight" x="682" y="83" width="318" height="20" uuid="a9eda12b-587a-4e24-8ed0-cb5dbf9c1438"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="styled">
+					<font fontName="Arial" size="9" isBold="true" pdfFontName="ARIALBD.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["KẾ TOÁN TRƯỞNG"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement style="Italic_Left" x="682" y="103" width="318" height="20" uuid="fb13fd54-425e-4107-8378-134e0f1c9253"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="false" isItalic="true" pdfFontName="ARIALI.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["(Ký, ghi rõ họ tên)"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement style="Italic_Left" x="0" y="103" width="321" height="20" uuid="338e249b-8567-41bd-95aa-b8e5ac249de9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="false" isItalic="true" pdfFontName="ARIALI.TTF" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["(Ký, ghi rõ họ tên)"]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

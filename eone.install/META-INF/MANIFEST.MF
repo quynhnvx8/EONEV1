@@ -1,0 +1,22 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: EONE Setup
+Bundle-SymbolicName: eone.install;singleton:=true
+Bundle-Version: 7.1.0.qualifier
+Export-Package: org.adempiere.install,
+ org.compiere.install
+Require-Bundle: eone.base;bundle-version="0.0.0"
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version>=11))"
+Import-Package: javax.mail;version="1.5",
+ javax.mail.internet;version="1.5",
+ org.apache.tools.ant,
+ org.eclipse.ant.core,
+ org.eclipse.core.runtime;version="3.4.0",
+ org.eclipse.equinox.app,
+ org.osgi.framework
+Bundle-ActivationPolicy: lazy
+Bundle-Activator: org.adempiere.install.InstallBundleActivator
+Bundle-ClassPath: .
+Automatic-Module-Name: org.adempiere.install
+Bundle-Vendor: EONE Community
+Bundle-RequiredExecutionEnvironment: JavaSE-11

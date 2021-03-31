@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="cashbookmoney_subreport0" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="ba4b142f-d8ca-41e6-a209-97eaa9261e01">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="FromDate" class="java.util.Date"/>
+	<parameter name="ToDate" class="java.util.Date"/>
+	<parameter name="C_BPartner_ID" class="java.lang.Integer"/>
+	<parameter name="AD_Org_ID" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select (select name from c_bpartner where c_bpartner_id = $P{C_BPartner_ID}) PartnerName,
+sum(DK) DK, sum (DK_Cur) DK_Cur from
+(select sum(amount) DK,sum(amountConvert) DK_cur from Fact_Acct fa where dateAcct < $P{FromDate}
+and fa.account_dr_id in (select c_elementValue_id from  c_elementvalue where value like '111%')
+AND (fa.c_bpartner_dr_id =  $P{C_BPartner_ID} or $P{C_BPartner_ID} is null)
+and fa.PostingType = 'A'
+and (fa.AD_Org_ID= $P{AD_Org_ID} or $P{AD_Org_ID} is null)
+union all
+select sum(amount)*-1 DK,sum(amountConvert)*-1 DK_cur from Fact_Acct fa where dateAcct < $P{FromDate}
+and fa.account_cr_id in (select c_elementValue_id from  c_elementvalue where value like '111%')
+AND (fa.c_bpartner_dr_id =  $P{C_BPartner_ID} or $P{C_BPartner_ID} is null)
+and fa.PostingType = 'A'
+and (fa.AD_Org_ID= $P{AD_Org_ID} or $P{AD_Org_ID} is null)
+) temp]]>
+	</queryString>
+	<field name="partnername" class="java.lang.String"/>
+	<field name="dk" class="java.math.BigDecimal"/>
+	<field name="dk_cur" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="67" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="0" width="555" height="20" uuid="3cba7e6d-7645-4cbc-a910-4b670a1b2600"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Từ ngày :" + " "+ new SimpleDateFormat("dd/MM/yyyy").format($P{FromDate}) + " Đến ngày: " + " " + new SimpleDateFormat("dd/MM/yyyy").format($P{ToDate})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="419" y="45" width="65" height="20" uuid="67aa5fc7-85cd-4145-ad77-dfa9e98160fe"/>
+				<box>
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Dư đầu kỳ:]]></text>
+			</staticText>
+			<textField pattern="#,##0" isBlankWhenNull="true">
+				<reportElement x="484" y="45" width="71" height="20" uuid="e0428b65-f840-46a4-ad95-99b9509c8aeb"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dk_cur}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="20" width="555" height="20" uuid="b0e69898-2163-4147-9fae-1490d0793ab6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{partnername}!= null? ("Đối tượng "+": " + $F{partnername}):null]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+</jasperReport>
