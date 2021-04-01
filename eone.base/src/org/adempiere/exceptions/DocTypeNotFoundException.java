@@ -13,10 +13,11 @@
  *****************************************************************************/
 package org.adempiere.exceptions;
 
-import org.compiere.model.MDocType;
-import org.compiere.model.MRefList;
 import org.compiere.util.Env;
 import org.compiere.util.Util;
+
+import eone.base.model.MDocType;
+import eone.base.model.MRefList;
 
 /**
  * Throwed when desired document type was not found

@@ -12,9 +12,9 @@ import java.util.Properties;
 import java.util.Set;
 import java.util.Vector;
 
-import org.compiere.model.GridField;
-import org.compiere.model.GridTab;
-import org.compiere.model.GridTable;
+import eone.base.model.GridField;
+import eone.base.model.GridTab;
+import eone.base.model.GridTable;
 
 /**
  * Context (Properties) wrapper to be able to evaluate grid row context

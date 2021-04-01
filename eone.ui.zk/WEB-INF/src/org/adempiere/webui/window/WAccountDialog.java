@@ -16,7 +16,7 @@
  *****************************************************************************/
 package org.adempiere.webui.window;
 
-import static org.compiere.model.SystemIDs.WINDOW_ACCOUNTCOMBINATION;
+import static eone.base.model.SystemIDs.WINDOW_ACCOUNTCOMBINATION;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -43,16 +43,6 @@ import org.adempiere.webui.session.SessionManager;
 import org.adempiere.webui.theme.ITheme;
 import org.adempiere.webui.theme.ThemeManager;
 import org.adempiere.webui.util.ZKUpdateUtil;
-import org.compiere.model.DataStatusEvent;
-import org.compiere.model.DataStatusListener;
-import org.compiere.model.GridField;
-import org.compiere.model.GridTab;
-import org.compiere.model.GridWindow;
-import org.compiere.model.GridWindowVO;
-import org.compiere.model.MAccount;
-import org.compiere.model.MAccountLookup;
-import org.compiere.model.MElementValue;
-import org.compiere.model.MQuery;
 import org.compiere.util.CLogger;
 import org.compiere.util.Callback;
 import org.compiere.util.DB;
@@ -73,6 +63,17 @@ import org.zkoss.zul.Hbox;
 import org.zkoss.zul.North;
 import org.zkoss.zul.South;
 import org.zkoss.zul.Vbox;
+
+import eone.base.model.DataStatusEvent;
+import eone.base.model.DataStatusListener;
+import eone.base.model.GridField;
+import eone.base.model.GridTab;
+import eone.base.model.GridWindow;
+import eone.base.model.GridWindowVO;
+import eone.base.model.MAccount;
+import eone.base.model.MAccountLookup;
+import eone.base.model.MElementValue;
+import eone.base.model.MQuery;
 
 /**
  *	Dialog to enter Account Info

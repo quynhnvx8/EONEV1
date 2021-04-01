@@ -28,8 +28,9 @@ package org.compiere.server;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
-import org.compiere.model.AdempiereProcessor;
 import org.idempiere.distributed.IClusterMember;
+
+import eone.base.model.AdempiereProcessor;
 
 /**
  * 

@@ -40,7 +40,6 @@ import org.adempiere.webui.event.WTableModelEvent;
 import org.adempiere.webui.util.ZKUpdateUtil;
 import org.compiere.minigrid.ColumnInfo;
 import org.compiere.minigrid.IDColumn;
-import org.compiere.model.MLookupFactory;
 import org.compiere.util.DB;
 import org.compiere.util.DisplayType;
 import org.compiere.util.Env;
@@ -57,6 +56,8 @@ import org.zkoss.zul.Div;
 import org.zkoss.zul.Hbox;
 import org.zkoss.zul.Separator;
 import org.zkoss.zul.Vbox;
+
+import eone.base.model.MLookupFactory;
 
 /**
 * Based on InfoCashLine written by Jorg Janke

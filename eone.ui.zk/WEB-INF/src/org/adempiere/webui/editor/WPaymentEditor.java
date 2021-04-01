@@ -22,9 +22,6 @@ import org.adempiere.webui.event.ContextMenuListener;
 import org.adempiere.webui.event.ValueChangeEvent;
 import org.adempiere.webui.theme.ThemeManager;
 import org.adempiere.webui.window.WFieldRecordInfo;
-import org.compiere.model.GridField;
-import org.compiere.model.GridTab;
-import org.compiere.model.MPaymentLookup;
 import org.compiere.util.DisplayType;
 import org.compiere.util.Env;
 import org.compiere.util.KeyNamePair;
@@ -33,6 +30,10 @@ import org.compiere.util.ValueNamePair;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zul.Comboitem;
+
+import eone.base.model.GridField;
+import eone.base.model.GridTab;
+import eone.base.model.MPaymentLookup;
 
 /**
  * 

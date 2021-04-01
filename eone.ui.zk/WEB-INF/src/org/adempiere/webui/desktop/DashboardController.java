@@ -23,12 +23,6 @@ import org.adempiere.webui.factory.IDashboardGadgetFactory;
 import org.adempiere.webui.session.SessionManager;
 import org.adempiere.webui.theme.ThemeManager;
 import org.adempiere.webui.util.ZKUpdateUtil;
-import org.compiere.model.MChart;
-import org.compiere.model.MDashboardContent;
-import org.compiere.model.MDashboardContentAccess;
-import org.compiere.model.MDashboardPreference;
-import org.compiere.model.MGoal;
-import org.compiere.model.MSysConfig;
 import org.compiere.util.CLogger;
 import org.compiere.util.Env;
 import org.zkoss.zk.ui.Component;
@@ -52,6 +46,13 @@ import org.zkoss.zul.Panelchildren;
 import org.zkoss.zul.Timer;
 import org.zkoss.zul.Toolbarbutton;
 import org.zkoss.zul.Vlayout;
+
+import eone.base.model.MChart;
+import eone.base.model.MDashboardContent;
+import eone.base.model.MDashboardContentAccess;
+import eone.base.model.MDashboardPreference;
+import eone.base.model.MGoal;
+import eone.base.model.MSysConfig;
 
 /**
  * @author Mod Quynhnv.x8

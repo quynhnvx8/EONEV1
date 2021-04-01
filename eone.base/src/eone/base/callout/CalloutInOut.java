@@ -7,19 +7,20 @@ import java.sql.Timestamp;
 import java.util.List;
 import java.util.Properties;
 
-import org.compiere.model.CalloutEngine;
-import org.compiere.model.GridField;
-import org.compiere.model.GridTab;
-import org.compiere.model.MDocType;
-import org.compiere.model.MInOut;
-import org.compiere.model.MInOutLine;
-import org.compiere.model.MStorage;
-import org.compiere.model.MTax;
-import org.compiere.model.X_M_InOut;
 import org.compiere.util.Env;
 
-//org.compiere.model.CalloutInOut.fillAmount_QtyPrice
-//org.compiere.model.CalloutInOut.fillAmount_Discount
+import eone.base.model.CalloutEngine;
+import eone.base.model.GridField;
+import eone.base.model.GridTab;
+import eone.base.model.MDocType;
+import eone.base.model.MInOut;
+import eone.base.model.MInOutLine;
+import eone.base.model.MStorage;
+import eone.base.model.MTax;
+import eone.base.model.X_M_InOut;
+
+//eone.base.model.CalloutInOut.fillAmount_QtyPrice
+//eone.base.model.CalloutInOut.fillAmount_Discount
 
 public class CalloutInOut extends CalloutEngine
 {

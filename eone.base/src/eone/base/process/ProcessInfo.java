@@ -9,7 +9,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.compiere.model.PO;
 import org.compiere.print.PrintDataItem;
 import org.compiere.util.DisplayType;
 import org.compiere.util.Env;
@@ -17,6 +16,8 @@ import org.compiere.util.IProcessUI;
 import org.compiere.util.Ini;
 import org.compiere.util.Msg;
 import org.compiere.util.Util;
+
+import eone.base.model.PO;
 
 /**
  *  Quynhnv.x8. Mod 06/10/2020

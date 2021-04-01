@@ -15,7 +15,7 @@ package org.adempiere.webui.apps.graph.model;
 
 import java.awt.Color;
 
-import org.compiere.model.MGoal;
+import eone.base.model.MGoal;
 
 /**
  * 

@@ -3,9 +3,9 @@
  */
 package eone.base.process;
 
-import org.compiere.model.X_AD_FieldSuggestion;
 import org.compiere.util.Env;
 
+import eone.base.model.X_AD_FieldSuggestion;
 import eone.base.process.SvrProcess;
 
 /**

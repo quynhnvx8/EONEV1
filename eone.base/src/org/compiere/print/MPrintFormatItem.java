@@ -7,11 +7,12 @@ import java.util.HashMap;
 import java.util.Properties;
 import java.util.logging.Level;
 
-import org.compiere.model.X_AD_PrintFormatItem;
 import org.compiere.util.DB;
 import org.compiere.util.DisplayType;
 import org.compiere.util.Env;
 import org.compiere.util.Language;
+
+import eone.base.model.X_AD_PrintFormatItem;
 
 /**
  * 	@author 	Quynhnv.x8

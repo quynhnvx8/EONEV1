@@ -31,13 +31,14 @@ import org.adempiere.webui.info.InfoWindow;
 import org.adempiere.webui.theme.ThemeManager;
 import org.compiere.minigrid.ColumnInfo;
 import org.compiere.minigrid.IDColumn;
-import org.compiere.model.GridField;
-import org.compiere.model.MInfoColumn;
-import org.compiere.model.MStyle;
 import org.compiere.util.Env;
 import org.compiere.util.Evaluatee;
 import org.compiere.util.KeyNamePair;
 import org.zkoss.zul.Listcell;
+
+import eone.base.model.GridField;
+import eone.base.model.MInfoColumn;
+import eone.base.model.MStyle;
 
 public class WInfoWindowListItemRenderer extends WListItemRenderer
 {

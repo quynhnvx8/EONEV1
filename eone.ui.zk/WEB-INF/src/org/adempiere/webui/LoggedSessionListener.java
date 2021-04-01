@@ -14,14 +14,15 @@ import javax.servlet.http.HttpSessionListener;
 import org.adempiere.exceptions.AdempiereException;
 import org.adempiere.webui.session.SessionManager;
 import org.compiere.Adempiere;
-import org.compiere.model.ServerStateChangeEvent;
-import org.compiere.model.ServerStateChangeListener;
 import org.compiere.util.CLogger;
 import org.compiere.util.DB;
 import org.compiere.util.Ini;
 import org.compiere.util.ServerContext;
 import org.compiere.util.ServerContextURLHandler;
 import org.compiere.util.WebUtil;
+
+import eone.base.model.ServerStateChangeEvent;
+import eone.base.model.ServerStateChangeListener;
 
 public class LoggedSessionListener implements HttpSessionListener, ServletContextListener, ServerStateChangeListener{
 	private static Hashtable<String, HttpSession> AD_SessionList = new Hashtable<String, HttpSession>();

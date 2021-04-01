@@ -14,8 +14,9 @@ package org.adempiere.webui;
 
 import org.adempiere.webui.desktop.IDesktop;
 import org.adempiere.webui.util.UserPreference;
-import org.compiere.model.MUser;
 import org.zkforge.keylistener.Keylistener;
+
+import eone.base.model.MUser;
 
 /**
  * 

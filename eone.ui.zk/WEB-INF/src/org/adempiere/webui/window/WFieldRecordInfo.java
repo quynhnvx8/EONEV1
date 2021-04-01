@@ -32,14 +32,6 @@ import org.adempiere.webui.component.Window;
 import org.adempiere.webui.editor.WEditorPopupMenu;
 import org.adempiere.webui.theme.ThemeManager;
 import org.adempiere.webui.util.ZKUpdateUtil;
-import org.compiere.model.GridField;
-import org.compiere.model.MChangeLog;
-import org.compiere.model.MColumn;
-import org.compiere.model.MLookup;
-import org.compiere.model.MLookupFactory;
-import org.compiere.model.MRole;
-import org.compiere.model.MTable;
-import org.compiere.model.MUser;
 import org.compiere.util.CLogger;
 import org.compiere.util.DB;
 import org.compiere.util.DisplayType;
@@ -55,6 +47,15 @@ import org.zkoss.zul.Listhead;
 import org.zkoss.zul.Listheader;
 import org.zkoss.zul.Menuitem;
 import org.zkoss.zul.South;
+
+import eone.base.model.GridField;
+import eone.base.model.MChangeLog;
+import eone.base.model.MColumn;
+import eone.base.model.MLookup;
+import eone.base.model.MLookupFactory;
+import eone.base.model.MRole;
+import eone.base.model.MTable;
+import eone.base.model.MUser;
 
 /**
  * Change History for field

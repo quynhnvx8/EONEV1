@@ -15,7 +15,8 @@ package org.adempiere.webui.apps.form;
 
 import org.adempiere.webui.Extensions;
 import org.compiere.grid.ICreateFrom;
-import org.compiere.model.GridTab;
+
+import eone.base.model.GridTab;
 
 public class WCreateFromFactory
 {

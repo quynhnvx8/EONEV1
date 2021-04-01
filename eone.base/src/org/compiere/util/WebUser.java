@@ -24,11 +24,11 @@ import java.util.logging.Level;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.compiere.model.MBPartner;
-import org.compiere.model.MBPartnerInfo;
-import org.compiere.model.MSysConfig;
-import org.compiere.model.MTable;
-import org.compiere.model.MUser;
+import eone.base.model.MBPartner;
+import eone.base.model.MBPartnerInfo;
+import eone.base.model.MSysConfig;
+import eone.base.model.MTable;
+import eone.base.model.MUser;
 
 /**
  *  Web User Info.

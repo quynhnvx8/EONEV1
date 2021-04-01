@@ -6,17 +6,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import org.compiere.model.MDayOff;
-import org.compiere.model.MDayOffLine;
-import org.compiere.model.MHoliday;
-import org.compiere.model.MTimekeeperMap;
-import org.compiere.model.MWorkDay;
-import org.compiere.model.PO;
-import org.compiere.model.X_HR_DayOffLine;
-import org.compiere.model.X_HR_SalaryLine;
 import org.compiere.util.DB;
 import org.compiere.util.Env;
 import org.compiere.util.TimeUtil;
+
+import eone.base.model.MDayOff;
+import eone.base.model.MDayOffLine;
+import eone.base.model.MHoliday;
+import eone.base.model.MTimekeeperMap;
+import eone.base.model.MWorkDay;
+import eone.base.model.PO;
+import eone.base.model.X_HR_DayOffLine;
+import eone.base.model.X_HR_SalaryLine;
 
 public class CreateDayOffLine extends SvrProcess {
 

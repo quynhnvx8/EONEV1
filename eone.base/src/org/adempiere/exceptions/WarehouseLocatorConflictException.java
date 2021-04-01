@@ -13,7 +13,7 @@
  *****************************************************************************/
 package org.adempiere.exceptions;
 
-import org.compiere.model.I_M_Warehouse;
+import eone.base.model.I_M_Warehouse;
 
 /**
  * Throwed when a document warehouse does not match with document or document line locator.

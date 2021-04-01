@@ -16,7 +16,6 @@ package org.adempiere.webui.component;
 import java.util.Map;
 
 import org.adempiere.webui.event.DrillEvent;
-import org.compiere.model.MQuery;
 import org.zkoss.json.JSONArray;
 import org.zkoss.lang.Objects;
 import org.zkoss.zk.au.AuRequest;
@@ -25,6 +24,8 @@ import org.zkoss.zk.mesg.MZk;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.UiException;
 import org.zkoss.zk.ui.event.Events;
+
+import eone.base.model.MQuery;
 
 /**
  * 

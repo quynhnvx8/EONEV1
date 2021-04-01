@@ -18,12 +18,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.logging.Level;
 
-import org.compiere.acct.Doc;
-import org.compiere.model.MTable;
 import org.compiere.util.AdempiereUserError;
 import org.compiere.util.CLogger;
 import org.compiere.util.DB;
 import org.compiere.util.Env;
+
+import eone.base.acct.Doc;
+import eone.base.model.MTable;
 
 /**
  *
@@ -77,7 +78,7 @@ public class DefaultDocumentFactory implements IDocFactory {
 
 
 		String tableName = MTable.getTableName(Env.getCtx(), AD_Table_ID);
-		String packageName = "org.compiere.acct";
+		String packageName = "eone.base.acct";
 		String className = null;
 
 		int firstUnderscore = tableName.indexOf("_");

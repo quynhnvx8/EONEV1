@@ -23,10 +23,11 @@ import java.util.logging.Level;
 
 import org.compiere.apps.IStatusBar;
 import org.compiere.minigrid.IMiniTable;
-import org.compiere.model.GridTab;
 import org.compiere.util.DisplayType;
 import org.compiere.util.Env;
 import org.compiere.util.Msg;
+
+import eone.base.model.GridTab;
 
 /**
  * 

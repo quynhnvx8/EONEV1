@@ -3,7 +3,7 @@
  */
 package org.adempiere.webui.desktop;
 
-import static org.compiere.model.SystemIDs.TREE_MENUPRIMARY;
+import static eone.base.model.SystemIDs.TREE_MENUPRIMARY;
 
 import java.util.ArrayList;
 import java.util.Enumeration;
@@ -11,13 +11,14 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.compiere.model.MTree;
-import org.compiere.model.MTreeNode;
-import org.compiere.model.MUser;
 import org.compiere.util.Callback;
 import org.compiere.util.DB;
 import org.compiere.util.Env;
 import org.zkoss.zk.ui.Session;
+
+import eone.base.model.MTree;
+import eone.base.model.MTreeNode;
+import eone.base.model.MUser;
 
 /**
  * @author hengsin

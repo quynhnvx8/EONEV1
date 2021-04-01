@@ -34,8 +34,6 @@ import org.adempiere.webui.session.SessionManager;
 import org.adempiere.webui.util.ZKUpdateUtil;
 import org.adempiere.webui.window.FDialog;
 import org.compiere.apps.form.Merge;
-import org.compiere.model.Lookup;
-import org.compiere.model.MLookupFactory;
 import org.compiere.util.Callback;
 import org.compiere.util.DisplayType;
 import org.compiere.util.Env;
@@ -47,6 +45,9 @@ import org.zkoss.zk.ui.util.Clients;
 import org.zkoss.zul.Borderlayout;
 import org.zkoss.zul.Center;
 import org.zkoss.zul.South;
+
+import eone.base.model.Lookup;
+import eone.base.model.MLookupFactory;
 
 /**
  *	Merge Dialog.

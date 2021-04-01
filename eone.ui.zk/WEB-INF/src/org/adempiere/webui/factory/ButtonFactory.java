@@ -16,10 +16,11 @@ package org.adempiere.webui.factory;
 import org.adempiere.webui.LayoutUtils;
 import org.adempiere.webui.component.Button;
 import org.adempiere.webui.theme.ThemeManager;
-import org.compiere.model.MSysConfig;
 import org.compiere.util.Env;
 import org.compiere.util.Msg;
 import org.compiere.util.Util;
+
+import eone.base.model.MSysConfig;
 
 /**
  * Factory class to create button with consistent look and feel

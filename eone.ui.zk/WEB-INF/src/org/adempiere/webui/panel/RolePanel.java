@@ -21,12 +21,6 @@ import org.adempiere.webui.util.UserPreference;
 import org.adempiere.webui.util.ZKUpdateUtil;
 import org.adempiere.webui.window.FDialog;
 import org.adempiere.webui.window.LoginWindow;
-import org.compiere.model.MBPartner;
-import org.compiere.model.MDepartment;
-import org.compiere.model.MEmployee;
-import org.compiere.model.MRole;
-import org.compiere.model.MSysConfig;
-import org.compiere.model.MUser;
 import org.compiere.util.Callback;
 import org.compiere.util.Env;
 import org.compiere.util.ItemDisplayLogic;
@@ -50,6 +44,13 @@ import org.zkoss.zk.ui.util.Clients;
 import org.zkoss.zul.Button;
 import org.zkoss.zul.Comboitem;
 import org.zkoss.zul.Div;
+
+import eone.base.model.MBPartner;
+import eone.base.model.MDepartment;
+import eone.base.model.MEmployee;
+import eone.base.model.MRole;
+import eone.base.model.MSysConfig;
+import eone.base.model.MUser;
 
 /**
  *

@@ -3,25 +3,25 @@ package eone.base.callout;
 import java.util.List;
 import java.util.Properties;
 
-import org.compiere.model.CalloutEngine;
-import org.compiere.model.GridField;
-import org.compiere.model.GridTab;
-import org.compiere.model.MAccount;
-import org.compiere.model.MBPartner;
-import org.compiere.model.MBPartnerInfo;
-import org.compiere.model.MDocType;
-import org.compiere.model.X_C_Account;
-import org.compiere.model.X_C_DocType;
+import eone.base.model.CalloutEngine;
+import eone.base.model.GridField;
+import eone.base.model.GridTab;
+import eone.base.model.MAccount;
+import eone.base.model.MBPartner;
+import eone.base.model.MBPartnerInfo;
+import eone.base.model.MDocType;
+import eone.base.model.X_C_Account;
+import eone.base.model.X_C_DocType;
 
-//org.compiere.model.CalloutAccount.fillByDocType
-//org.compiere.model.CalloutAccount.fillByBPartner
-//org.compiere.model.CalloutAccount.fillByAsset
-//org.compiere.model.CalloutAccount.fillByProduct
-//org.compiere.model.CalloutAccount.fillByContract
-//org.compiere.model.CalloutAccount.fillByProject
-//org.compiere.model.CalloutAccount.fillByConstruc
-//org.compiere.model.CalloutAccount.fillByWarehouse
-//org.compiere.model.CalloutAccount.fillByTax
+//eone.base.model.CalloutAccount.fillByDocType
+//eone.base.model.CalloutAccount.fillByBPartner
+//eone.base.model.CalloutAccount.fillByAsset
+//eone.base.model.CalloutAccount.fillByProduct
+//eone.base.model.CalloutAccount.fillByContract
+//eone.base.model.CalloutAccount.fillByProject
+//eone.base.model.CalloutAccount.fillByConstruc
+//eone.base.model.CalloutAccount.fillByWarehouse
+//eone.base.model.CalloutAccount.fillByTax
 public class CalloutAccount extends CalloutEngine
 {
 	

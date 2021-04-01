@@ -35,9 +35,6 @@ import org.adempiere.webui.window.FDialog;
 import org.adempiere.webui.window.MultiFileDownloadDialog;
 import org.adempiere.webui.window.SimplePDFViewer;
 import org.compiere.Adempiere;
-import org.compiere.model.MLookup;
-import org.compiere.model.MProcess;
-import org.compiere.model.MSysConfig;
 import org.compiere.util.CLogger;
 import org.compiere.util.Callback;
 import org.compiere.util.ContextRunnable;
@@ -61,6 +58,9 @@ import org.zkoss.zul.Html;
 import org.zkoss.zul.Space;
 import org.zkoss.zul.Vlayout;
 
+import eone.base.model.MLookup;
+import eone.base.model.MProcess;
+import eone.base.model.MSysConfig;
 import eone.base.process.ProcessInfo;
 
 public abstract class AbstractProcessDialog extends Window implements IProcessUI, EventListener<Event>

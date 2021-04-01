@@ -13,7 +13,7 @@
  *****************************************************************************/
 package org.adempiere.webui.apps.form;
 
-import static org.compiere.model.SystemIDs.COLUMN_C_INVOICE_C_BPARTNER_ID;
+import static eone.base.model.SystemIDs.COLUMN_C_INVOICE_C_BPARTNER_ID;
 
 import java.util.ArrayList;
 import java.util.Vector;
@@ -40,9 +40,6 @@ import org.adempiere.webui.event.ValueChangeEvent;
 import org.adempiere.webui.event.ValueChangeListener;
 import org.adempiere.webui.util.ZKUpdateUtil;
 import org.compiere.grid.CreateFromInvoice;
-import org.compiere.model.GridTab;
-import org.compiere.model.MLookup;
-import org.compiere.model.MLookupFactory;
 import org.compiere.util.CLogger;
 import org.compiere.util.DisplayType;
 import org.compiere.util.Env;
@@ -52,6 +49,10 @@ import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zul.Space;
+
+import eone.base.model.GridTab;
+import eone.base.model.MLookup;
+import eone.base.model.MLookupFactory;
 
 public class WCreateFromInvoiceUI extends CreateFromInvoice implements EventListener<Event>, ValueChangeListener
 {

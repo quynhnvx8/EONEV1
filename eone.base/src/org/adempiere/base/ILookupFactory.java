@@ -12,8 +12,8 @@
  *****************************************************************************/
 package org.adempiere.base;
 
-import org.compiere.model.GridFieldVO;
-import org.compiere.model.Lookup;
+import eone.base.model.GridFieldVO;
+import eone.base.model.Lookup;
 
 /**
  * @author Jan Thielemann - jan.thielemann@evenos.de

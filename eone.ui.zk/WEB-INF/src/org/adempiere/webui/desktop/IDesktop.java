@@ -19,12 +19,13 @@ import org.adempiere.webui.apps.ProcessDialog;
 import org.adempiere.webui.component.Window;
 import org.adempiere.webui.panel.ADForm;
 import org.adempiere.webui.part.UIPart;
-import org.compiere.model.GridField;
-import org.compiere.model.GridTab;
-import org.compiere.model.MQuery;
 import org.compiere.util.Callback;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Page;
+
+import eone.base.model.GridField;
+import eone.base.model.GridTab;
+import eone.base.model.MQuery;
 
 /**
  * Desktop interface

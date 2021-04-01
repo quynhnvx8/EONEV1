@@ -13,7 +13,7 @@
  *****************************************************************************/
 package org.adempiere.webui.apps.form;
 
-import static org.compiere.model.SystemIDs.COLUMN_C_BANKSTATEMENT_C_BANKACCOUNT_ID;
+import static eone.base.model.SystemIDs.COLUMN_C_BANKSTATEMENT_C_BANKACCOUNT_ID;
 
 import java.sql.Timestamp;
 import java.util.Vector;
@@ -42,10 +42,6 @@ import org.adempiere.webui.editor.WTableDirEditor;
 import org.adempiere.webui.util.ZKUpdateUtil;
 import org.adempiere.webui.window.FDialog;
 import org.compiere.grid.CreateFromStatement;
-import org.compiere.model.GridTab;
-import org.compiere.model.MBank;
-import org.compiere.model.MLookup;
-import org.compiere.model.MLookupFactory;
 import org.compiere.util.CLogger;
 import org.compiere.util.DisplayType;
 import org.compiere.util.Env;
@@ -54,6 +50,11 @@ import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zul.Hbox;
+
+import eone.base.model.GridTab;
+import eone.base.model.MBank;
+import eone.base.model.MLookup;
+import eone.base.model.MLookupFactory;
 
 /**
  * 

@@ -20,13 +20,14 @@ package org.adempiere.webui;
 import org.adempiere.base.event.AbstractEventHandler;
 import org.adempiere.base.event.EventManager;
 import org.adempiere.base.event.IEventTopics;
-import org.compiere.model.I_AD_SysConfig;
-import org.compiere.model.MSysConfig;
-import org.compiere.model.PO;
-import org.compiere.model.X_AD_SysConfig;
 import org.osgi.service.event.Event;
 import org.zkoss.zk.ui.WebApp;
 import org.zkoss.zk.ui.util.WebAppInit;
+
+import eone.base.model.I_AD_SysConfig;
+import eone.base.model.MSysConfig;
+import eone.base.model.PO;
+import eone.base.model.X_AD_SysConfig;
 
 /**
  * Handle web app init event to sync config store in web config file and database 

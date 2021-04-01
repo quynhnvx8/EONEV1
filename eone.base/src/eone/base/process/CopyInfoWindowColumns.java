@@ -27,10 +27,11 @@ package eone.base.process;
 
 import java.util.logging.Level;
 
-import org.compiere.model.MInfoColumn;
-import org.compiere.model.MInfoWindow;
-import org.compiere.model.PO;
 import org.compiere.util.AdempiereSystemError;
+
+import eone.base.model.MInfoColumn;
+import eone.base.model.MInfoWindow;
+import eone.base.model.PO;
 
 /**
  *	Copy Info Window Columns from other Info Window

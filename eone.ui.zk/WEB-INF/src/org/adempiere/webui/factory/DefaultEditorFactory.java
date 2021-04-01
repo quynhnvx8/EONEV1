@@ -29,9 +29,10 @@ import org.adempiere.webui.editor.WUrlEditor;
 import org.adempiere.webui.editor.WYesNoEditor;
 import org.adempiere.webui.editor.grid.selection.WGridTabMultiSelectionEditor;
 import org.adempiere.webui.editor.grid.selection.WGridTabSingleSelectionEditor;
-import org.compiere.model.GridField;
-import org.compiere.model.GridTab;
 import org.compiere.util.DisplayType;
+
+import eone.base.model.GridField;
+import eone.base.model.GridTab;
 
 /**
  *

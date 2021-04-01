@@ -13,8 +13,7 @@
  *****************************************************************************/
 package org.adempiere.base.event;
 
-import org.compiere.model.PO;
-
+import eone.base.model.PO;
 import eone.base.process.ImportProcess;
 
 /**

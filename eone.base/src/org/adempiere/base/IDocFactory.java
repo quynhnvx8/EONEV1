@@ -15,7 +15,7 @@ package org.adempiere.base;
 
 import java.sql.ResultSet;
 
-import org.compiere.acct.Doc;
+import eone.base.acct.Doc;
 
 /**
  *

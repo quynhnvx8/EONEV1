@@ -42,9 +42,6 @@ import org.adempiere.webui.event.WTableModelEvent;
 import org.adempiere.webui.util.ZKUpdateUtil;
 import org.compiere.minigrid.ColumnInfo;
 import org.compiere.minigrid.IDColumn;
-import org.compiere.model.MLookup;
-import org.compiere.model.MLookupFactory;
-import org.compiere.model.MQuery;
 import org.compiere.util.DisplayType;
 import org.compiere.util.Env;
 import org.compiere.util.KeyNamePair;
@@ -59,6 +56,10 @@ import org.zkoss.zul.Div;
 import org.zkoss.zul.Hbox;
 import org.zkoss.zul.Separator;
 import org.zkoss.zul.Vbox;
+
+import eone.base.model.MLookup;
+import eone.base.model.MLookupFactory;
+import eone.base.model.MQuery;
 
 /**
  * Search Invoice and return selection

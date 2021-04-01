@@ -16,9 +16,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 
-import org.compiere.model.Lookup;
-import org.compiere.model.MLookup;
-import org.compiere.model.MRole;
 import org.compiere.util.CLogger;
 import org.compiere.util.DB;
 import org.compiere.util.Env;
@@ -26,6 +23,10 @@ import org.compiere.util.KeyNamePair;
 import org.compiere.util.ValueNamePair;
 import org.idempiere.adInterface.x10.LookupValue;
 import org.idempiere.adInterface.x10.LookupValues;
+
+import eone.base.model.Lookup;
+import eone.base.model.MLookup;
+import eone.base.model.MRole;
 
 /*
  * ADEMPIERE/COMPIERE

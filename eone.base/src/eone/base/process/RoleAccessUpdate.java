@@ -21,11 +21,12 @@ import java.util.List;
 import java.util.logging.Level;
 
 import org.compiere.Adempiere;
-import org.compiere.model.MRole;
-import org.compiere.model.Query;
 import org.compiere.util.CLogMgt;
 import org.compiere.util.CLogger;
 import org.compiere.util.Env;
+
+import eone.base.model.MRole;
+import eone.base.model.Query;
 
 /**
  *	Update Role Access

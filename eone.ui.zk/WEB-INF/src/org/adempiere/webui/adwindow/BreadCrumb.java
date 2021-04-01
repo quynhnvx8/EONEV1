@@ -31,9 +31,6 @@ import org.adempiere.webui.session.SessionManager;
 import org.adempiere.webui.theme.ITheme;
 import org.adempiere.webui.theme.ThemeManager;
 import org.adempiere.webui.window.WRecordInfo;
-import org.compiere.model.DataStatusEvent;
-import org.compiere.model.GridTab;
-import org.compiere.model.MRole;
 import org.compiere.util.Env;
 import org.compiere.util.Msg;
 import org.compiere.util.Util;
@@ -49,6 +46,10 @@ import org.zkoss.zk.ui.util.Clients;
 import org.zkoss.zul.Div;
 import org.zkoss.zul.Hlayout;
 import org.zkoss.zul.Menuitem;
+
+import eone.base.model.DataStatusEvent;
+import eone.base.model.GridTab;
+import eone.base.model.MRole;
 
 /**
  * @author hengsin

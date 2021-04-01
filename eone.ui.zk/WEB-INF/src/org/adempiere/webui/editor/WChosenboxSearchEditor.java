@@ -33,11 +33,6 @@ import org.adempiere.webui.part.WindowContainer;
 import org.adempiere.webui.session.SessionManager;
 import org.adempiere.webui.theme.ThemeManager;
 import org.adempiere.webui.window.WFieldRecordInfo;
-import org.compiere.model.GridField;
-import org.compiere.model.Lookup;
-import org.compiere.model.MColumn;
-import org.compiere.model.MLookup;
-import org.compiere.model.MTable;
 import org.compiere.util.CLogger;
 import org.compiere.util.Env;
 import org.compiere.util.Util;
@@ -49,6 +44,12 @@ import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zul.ListModel;
 import org.zkoss.zul.ListModelList;
 import org.zkoss.zul.ListSubModel;
+
+import eone.base.model.GridField;
+import eone.base.model.Lookup;
+import eone.base.model.MColumn;
+import eone.base.model.MLookup;
+import eone.base.model.MTable;
 
 /**
  * 

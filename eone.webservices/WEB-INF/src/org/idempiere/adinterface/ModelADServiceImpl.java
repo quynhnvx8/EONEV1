@@ -46,20 +46,7 @@ import org.apache.cxf.jaxrs.ext.MessageContext;
 import org.apache.xmlbeans.StringEnumAbstractBase.Table;
 import org.apache.xmlbeans.XmlInt;
 import org.apache.xmlbeans.impl.values.XmlValueOutOfRangeException;
-import org.compiere.model.I_AD_Column;
-import org.compiere.model.Lookup;
-import org.compiere.model.MColumn;
-import org.compiere.model.MLookup;
-import org.compiere.model.MLookupFactory;
-import org.compiere.model.MRefTable;
-import org.compiere.model.MReference;
-import org.compiere.model.MRole;
-import org.compiere.model.MTable;
 import org.compiere.model.MWebServiceType;
-import org.compiere.model.PO;
-import org.compiere.model.POInfo;
-import org.compiere.model.X_WS_WebServiceFieldInput;
-import org.compiere.model.X_WS_WebService_Para;
 import org.compiere.util.CLogger;
 import org.compiere.util.DB;
 import org.compiere.util.DisplayType;
@@ -90,6 +77,20 @@ import org.idempiere.adInterface.x10.WindowTabDataDocument;
 import org.idempiere.webservices.AbstractService;
 import org.idempiere.webservices.IWSValidator;
 import org.idempiere.webservices.fault.IdempiereServiceFault;
+
+import eone.base.model.I_AD_Column;
+import eone.base.model.Lookup;
+import eone.base.model.MColumn;
+import eone.base.model.MLookup;
+import eone.base.model.MLookupFactory;
+import eone.base.model.MRefTable;
+import eone.base.model.MReference;
+import eone.base.model.MRole;
+import eone.base.model.MTable;
+import eone.base.model.PO;
+import eone.base.model.POInfo;
+import eone.base.model.X_WS_WebServiceFieldInput;
+import eone.base.model.X_WS_WebService_Para;
 
 /*
  * ADEMPIERE/COMPIERE

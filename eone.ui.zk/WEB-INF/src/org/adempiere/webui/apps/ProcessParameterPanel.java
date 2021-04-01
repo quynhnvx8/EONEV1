@@ -34,11 +34,6 @@ import org.adempiere.webui.session.SessionManager;
 import org.adempiere.webui.util.ZKUpdateUtil;
 import org.adempiere.webui.window.FDialog;
 import org.compiere.apps.IProcessParameter;
-import org.compiere.model.GridField;
-import org.compiere.model.GridFieldVO;
-import org.compiere.model.MLookup;
-//import org.compiere.model.MPInstancePara;
-import org.compiere.model.MProcess;
 import org.compiere.util.CLogger;
 import org.compiere.util.DB;
 import org.compiere.util.Env;
@@ -56,6 +51,10 @@ import org.zkoss.zul.Space;
 import org.zkoss.zul.impl.InputElement;
 import org.zkoss.zul.impl.XulElement;
 
+import eone.base.model.GridField;
+import eone.base.model.GridFieldVO;
+import eone.base.model.MLookup;
+import eone.base.model.MProcess;
 import eone.base.process.ProcessInfo;
 import eone.base.process.ProcessInfoParameter;
 
@@ -647,7 +646,7 @@ public class ProcessParameterPanel extends Panel implements
 	 * Restore window context.
 	 * 
 	 * @author teo_sarca [ 1699826 ]
-	 * @see org.compiere.model.GridField#restoreValue()
+	 * @see eone.base.model.GridField#restoreValue()
 	 */
 	protected void restoreContext() {
 		for (GridField f : m_mFields) {

@@ -23,12 +23,13 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import org.adempiere.exceptions.AdempiereException;
-import org.compiere.model.MTable;
-import org.compiere.model.MViewColumn;
-import org.compiere.model.MViewComponent;
 import org.compiere.util.DB;
 import org.compiere.util.Msg;
 import org.compiere.util.Trx;
+
+import eone.base.model.MTable;
+import eone.base.model.MViewColumn;
+import eone.base.model.MViewComponent;
 
 public class DatabaseViewValidate extends SvrProcess {
 

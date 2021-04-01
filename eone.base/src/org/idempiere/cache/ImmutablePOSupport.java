@@ -25,7 +25,7 @@
 **********************************************************************/
 package org.idempiere.cache;
 
-import org.compiere.model.PO;
+import eone.base.model.PO;
 
 /**
  * Model class that support immutable should implement this interface

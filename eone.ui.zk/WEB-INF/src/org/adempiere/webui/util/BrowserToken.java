@@ -21,13 +21,14 @@ import java.util.logging.Level;
 
 import org.apache.commons.codec.binary.Base64;
 import org.compiere.Adempiere;
-import org.compiere.model.MSystem;
-import org.compiere.model.MUser;
 import org.compiere.util.CLogger;
 import org.compiere.util.Env;
 import org.zkoss.zk.au.out.AuScript;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.util.Clients;
+
+import eone.base.model.MSystem;
+import eone.base.model.MUser;
 
 /**
  * class to manage browser token for auto authentication

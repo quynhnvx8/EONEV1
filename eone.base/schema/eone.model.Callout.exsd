@@ -1,12 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- Schema file written by PDE -->
-<schema targetNamespace="org.adempiere.base" xmlns="http://www.w3.org/2001/XMLSchema">
+<schema targetNamespace="eone.base" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appinfo>
-         <meta.schema plugin="org.adempiere.base" id="org.compiere.model.Callout" name="Callout"/>
+         <meta.schema plugin="eone.base" id="eone.base.model.Callout" name="Callout"/>
       </appinfo>
       <documentation>
-         Extension point for bundle to contribute Callout implementation. Use the {extension id}.{methodName} syntax in AD_Column.Callout to reference the extension that will provide the CalloutEngine instance (replace {extension id} with your actual extension id ). This extension point is provided to ease migration from pre-OSGi ADempiere code, new code is recommended to use the org.adempiere.base.IColumnCallout extension point.
+         Extension point for bundle to contribute Callout implementation. Use the {extension id}.{methodName} syntax in AD_Column.Callout to reference the extension that will provide the CalloutEngine instance (replace {extension id} with your actual extension id ). This extension point is provided to ease migration from pre-OSGi ADempiere code, new code is recommended to use the eone.base.IColumnCallout extension point.
       </documentation>
    </annotation>
 
@@ -52,10 +52,10 @@
          <attribute name="class" type="string" use="required">
             <annotation>
                <documentation>
-                  Implementation class name that extend org.compiere.model.CalloutEngine
+                  Implementation class name that extend eone.base.model.CalloutEngine
                </documentation>
                <appinfo>
-                  <meta.attribute kind="java" basedOn="org.compiere.model.CalloutEngine:"/>
+                  <meta.attribute kind="java" basedOn="eone.base.model.CalloutEngine:"/>
                </appinfo>
             </annotation>
          </attribute>
@@ -85,15 +85,15 @@
       <documentation>
          &lt;pre&gt;
 	&lt;extension 
-	      point=&quot;org.compiere.model.Callout&quot; 
-		  id=&quot;org.compiere.model.CalloutOrder&quot;
+	      point=&quot;eone.base.model.Callout&quot; 
+		  id=&quot;eone.base.model.CalloutOrder&quot;
 		  name=&quot;Order Callout&quot;&gt;
 		&lt;callout 
-		    class=&quot;org.compiere.model.CalloutOrder&quot;&gt;
+		    class=&quot;eone.base.model.CalloutOrder&quot;&gt;
 		&lt;/callout&gt;
 	&lt;/extension&gt;
 	
-	AD_Column.Callout=&quot;org.compiere.model.CalloutOrder.bPartner
+	AD_Column.Callout=&quot;eone.base.model.CalloutOrder.bPartner
 &lt;/pre&gt;
 
       </documentation>
@@ -104,7 +104,7 @@
          <meta.section type="apiinfo"/>
       </appinfo>
       <documentation>
-         Class attribute must represent a subclass of org.compiere.model.CalloutEngine
+         Class attribute must represent a subclass of eone.base.model.CalloutEngine
       </documentation>
    </annotation>
 

@@ -21,10 +21,6 @@ import java.util.List;
 import java.util.logging.Level;
 
 import org.adempiere.webui.apps.AEnv;
-import org.compiere.model.MQuery;
-import org.compiere.model.PO;
-import org.compiere.model.Query;
-import org.compiere.model.ZoomInfoFactory;
 import org.compiere.util.CLogger;
 import org.compiere.util.Env;
 import org.compiere.util.Msg;
@@ -34,6 +30,11 @@ import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zul.Menuitem;
 import org.zkoss.zul.Menupopup;
+
+import eone.base.model.MQuery;
+import eone.base.model.PO;
+import eone.base.model.Query;
+import eone.base.model.ZoomInfoFactory;
 
 /**
  *	Application Zoom Across Launcher.

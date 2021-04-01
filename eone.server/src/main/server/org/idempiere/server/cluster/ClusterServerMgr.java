@@ -38,7 +38,6 @@ import java.util.concurrent.Future;
 
 import org.adempiere.base.Core;
 import org.compiere.Adempiere;
-import org.compiere.model.MScheduler;
 import org.compiere.server.IServerManager;
 import org.compiere.server.ServerCount;
 import org.compiere.server.ServerInstance;
@@ -57,6 +56,8 @@ import org.idempiere.server.cluster.callable.StartAllCallable;
 import org.idempiere.server.cluster.callable.StartCallable;
 import org.idempiere.server.cluster.callable.StopAllCallable;
 import org.idempiere.server.cluster.callable.StopCallable;
+
+import eone.base.model.MScheduler;
 
 /**
  * 

@@ -16,9 +16,10 @@ package org.adempiere.exceptions;
 import java.util.logging.Level;
 
 import org.adempiere.exceptions.AdempiereException;
-import org.compiere.model.PO;
 import org.compiere.util.CLogger;
 import org.compiere.util.Msg;
+
+import eone.base.model.PO;
 
 /**
  * 

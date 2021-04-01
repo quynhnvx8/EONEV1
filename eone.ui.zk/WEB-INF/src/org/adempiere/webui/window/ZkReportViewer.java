@@ -59,10 +59,6 @@ import org.apache.ecs.xhtml.td;
 import org.apache.ecs.xhtml.th;
 import org.apache.ecs.xhtml.tr;
 import org.compiere.Adempiere;
-import org.compiere.model.I_AD_PrintFormat;
-import org.compiere.model.MClient;
-import org.compiere.model.MLanguage;
-import org.compiere.model.MQuery;
 import org.compiere.print.IHTMLExtension;
 import org.compiere.print.MPrintColor;
 import org.compiere.print.MPrintFont;
@@ -110,6 +106,10 @@ import org.zkoss.zul.Vlayout;
 import org.zkoss.zul.impl.Utils;
 import org.zkoss.zul.impl.XulElement;
 
+import eone.base.model.I_AD_PrintFormat;
+import eone.base.model.MClient;
+import eone.base.model.MLanguage;
+import eone.base.model.MQuery;
 import eone.base.process.ProcessInfo;
 
 /**

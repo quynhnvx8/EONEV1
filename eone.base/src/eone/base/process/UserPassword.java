@@ -18,9 +18,10 @@ package eone.base.process;
 
 import java.util.logging.Level;
 
-import org.compiere.model.MSysConfig;
-import org.compiere.model.MUser;
 import org.compiere.util.Util;
+
+import eone.base.model.MSysConfig;
+import eone.base.model.MUser;
 /**
  *	Reset Password
  *	

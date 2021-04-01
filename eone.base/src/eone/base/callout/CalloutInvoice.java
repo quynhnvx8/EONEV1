@@ -5,13 +5,14 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Properties;
 
-import org.compiere.model.CalloutEngine;
-import org.compiere.model.GridField;
-import org.compiere.model.GridTab;
-import org.compiere.model.MTax;
 import org.compiere.util.Env;
 
-//org.compiere.model.CalloutInvoice.fillAmount_TaxRate
+import eone.base.model.CalloutEngine;
+import eone.base.model.GridField;
+import eone.base.model.GridTab;
+import eone.base.model.MTax;
+
+//eone.base.model.CalloutInvoice.fillAmount_TaxRate
 public class CalloutInvoice extends CalloutEngine
 {
 

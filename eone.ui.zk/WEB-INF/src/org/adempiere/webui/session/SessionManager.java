@@ -23,9 +23,10 @@ import java.util.Properties;
 import org.adempiere.webui.IWebClient;
 import org.adempiere.webui.apps.AEnv;
 import org.adempiere.webui.desktop.IDesktop;
-import org.compiere.model.MUser;
 import org.compiere.util.Env;
 import org.zkoss.zk.ui.Desktop;
+
+import eone.base.model.MUser;
 
 /**
  * 

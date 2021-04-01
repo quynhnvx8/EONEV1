@@ -14,12 +14,13 @@ import org.adempiere.webui.panel.CustomizeGridViewPanel;
 import org.adempiere.webui.theme.ThemeManager;
 import org.adempiere.webui.util.ZKUpdateUtil;
 import org.adempiere.webui.panel.QuickCustomizeGridViewPanel;
-import org.compiere.model.GridField;
 import org.compiere.util.Env;
 import org.compiere.util.Msg;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zul.Column;
 import org.zkoss.zul.Columns;
+
+import eone.base.model.GridField;
 
 public class CustomizeGridViewDialog extends Window {
 

@@ -14,7 +14,7 @@
  *****************************************************************************/
 package org.adempiere.webui.panel.action;
 
-import static org.compiere.model.SystemIDs.REFERENCE_IMPORT_MODE;
+import static eone.base.model.SystemIDs.REFERENCE_IMPORT_MODE;
 
 import java.io.File;
 import java.io.InputStream;
@@ -51,10 +51,6 @@ import org.adempiere.webui.event.DialogEvents;
 import org.adempiere.webui.util.ReaderInputStream;
 import org.adempiere.webui.util.ZKUpdateUtil;
 import org.adempiere.webui.window.FDialog;
-import org.compiere.model.GridTab;
-import org.compiere.model.MLookup;
-import org.compiere.model.MLookupFactory;
-import org.compiere.model.MLookupInfo;
 import org.compiere.util.Env;
 import org.compiere.util.Ini;
 import org.compiere.util.Msg;
@@ -70,6 +66,11 @@ import org.zkoss.zul.Filedownload;
 import org.zkoss.zul.Space;
 import org.zkoss.zul.Vbox;
 import org.zkoss.zul.Vlayout;
+
+import eone.base.model.GridTab;
+import eone.base.model.MLookup;
+import eone.base.model.MLookupFactory;
+import eone.base.model.MLookupInfo;
 
 /**
  *

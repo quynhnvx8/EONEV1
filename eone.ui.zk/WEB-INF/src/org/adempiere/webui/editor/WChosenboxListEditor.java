@@ -13,9 +13,6 @@ import org.adempiere.webui.event.ContextMenuEvent;
 import org.adempiere.webui.event.ContextMenuListener;
 import org.adempiere.webui.event.ValueChangeEvent;
 import org.adempiere.webui.window.WFieldRecordInfo;
-import org.compiere.model.GridField;
-import org.compiere.model.Lookup;
-import org.compiere.model.MLookup;
 import org.compiere.util.CCache;
 import org.compiere.util.CLogger;
 import org.compiere.util.CacheMgt;
@@ -32,6 +29,10 @@ import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zk.ui.util.DesktopCleanup;
 import org.zkoss.zul.ListModelList;
+
+import eone.base.model.GridField;
+import eone.base.model.Lookup;
+import eone.base.model.MLookup;
 
 /**
  * 

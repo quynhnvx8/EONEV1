@@ -28,15 +28,16 @@ import org.apache.ecs.xhtml.p;
 import org.apache.ecs.xhtml.table;
 import org.apache.ecs.xhtml.td;
 import org.apache.ecs.xhtml.tr;
-import org.compiere.model.GridField;
-import org.compiere.model.GridTab;
-import org.compiere.model.GridWindow;
 import org.compiere.util.Env;
 import org.compiere.util.Msg;
 import org.compiere.util.WebDoc;
 import org.zkoss.zul.Center;
 import org.zkoss.zul.Div;
 import org.zkoss.zul.Html;
+
+import eone.base.model.GridField;
+import eone.base.model.GridTab;
+import eone.base.model.GridWindow;
 
 public class HelpWindow extends Window {
 	/**

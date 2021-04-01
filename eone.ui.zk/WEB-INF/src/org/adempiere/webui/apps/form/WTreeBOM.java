@@ -42,13 +42,6 @@ import org.adempiere.webui.session.SessionManager;
 import org.adempiere.webui.util.TreeUtils;
 import org.adempiere.webui.util.ZKUpdateUtil;
 import org.compiere.apps.form.TreeBOM;
-import org.compiere.model.MColumn;
-import org.compiere.model.MLookup;
-import org.compiere.model.MLookupFactory;
-import org.compiere.model.MProduct;
-import org.compiere.model.MProductBOM;
-import org.compiere.model.MUOM;
-import org.compiere.model.Query;
 import org.compiere.util.DisplayType;
 import org.compiere.util.Env;
 import org.compiere.util.KeyNamePair;
@@ -69,6 +62,14 @@ import org.zkoss.zul.Treecol;
 import org.zkoss.zul.Treecols;
 import org.zkoss.zul.Treeitem;
 import org.zkoss.zul.West;
+
+import eone.base.model.MColumn;
+import eone.base.model.MLookup;
+import eone.base.model.MLookupFactory;
+import eone.base.model.MProduct;
+import eone.base.model.MProductBOM;
+import eone.base.model.MUOM;
+import eone.base.model.Query;
 
 public class WTreeBOM extends TreeBOM implements IFormController, EventListener<Event> {
 	

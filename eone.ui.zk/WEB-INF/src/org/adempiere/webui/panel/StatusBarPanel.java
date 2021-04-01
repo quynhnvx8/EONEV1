@@ -25,8 +25,6 @@ import org.adempiere.webui.session.SessionManager;
 import org.adempiere.webui.util.ZKUpdateUtil;
 import org.adempiere.webui.window.WRecordInfo;
 import org.compiere.apps.IStatusBar;
-import org.compiere.model.DataStatusEvent;
-import org.compiere.model.MRole;
 import org.compiere.util.Env;
 import org.compiere.util.Msg;
 import org.zkoss.zhtml.Text;
@@ -41,6 +39,9 @@ import org.zkoss.zul.Cell;
 import org.zkoss.zul.Div;
 import org.zkoss.zul.Hbox;
 import org.zkoss.zul.Vbox;
+
+import eone.base.model.DataStatusEvent;
+import eone.base.model.MRole;
 
 /**
  * This class is based on org.compiere.apps.StatusBar written by Jorg Janke.

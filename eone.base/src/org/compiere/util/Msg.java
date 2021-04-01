@@ -28,8 +28,9 @@ import java.util.Properties;
 import java.util.logging.Level;
 
 import org.compiere.Adempiere;
-import org.compiere.model.I_AD_Element;
-import org.compiere.model.I_AD_Message;
+
+import eone.base.model.I_AD_Element;
+import eone.base.model.I_AD_Message;
 
 /**
  *	Reads all Messages and stores them in a HashMap

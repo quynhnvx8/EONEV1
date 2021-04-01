@@ -15,8 +15,9 @@ package org.adempiere.webui.factory;
 
 import org.adempiere.webui.info.InfoWindow;
 import org.adempiere.webui.panel.InfoPanel;
-import org.compiere.model.GridField;
-import org.compiere.model.Lookup;
+
+import eone.base.model.GridField;
+import eone.base.model.Lookup;
 
 /**
  *

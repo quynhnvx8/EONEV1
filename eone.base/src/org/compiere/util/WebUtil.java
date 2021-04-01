@@ -56,8 +56,9 @@ import org.apache.ecs.xhtml.option;
 import org.apache.ecs.xhtml.script;
 import org.apache.ecs.xhtml.td;
 import org.apache.ecs.xhtml.tr;
-import org.compiere.model.MAttachment;
-import org.compiere.model.MAttachmentEntry;
+
+import eone.base.model.MAttachment;
+import eone.base.model.MAttachmentEntry;
 
 /**
  *  Servlet Utilities

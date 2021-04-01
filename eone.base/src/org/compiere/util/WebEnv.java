@@ -44,8 +44,9 @@ import org.apache.ecs.xhtml.table;
 import org.apache.ecs.xhtml.td;
 import org.apache.ecs.xhtml.tr;
 import org.compiere.Adempiere;
-import org.compiere.model.MClient;
-import org.compiere.model.MSystem;
+
+import eone.base.model.MClient;
+import eone.base.model.MSystem;
 
 /**
  *  Web Environment and debugging

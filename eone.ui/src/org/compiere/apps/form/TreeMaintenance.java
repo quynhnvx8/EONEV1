@@ -18,13 +18,14 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.logging.Level;
 
-import org.compiere.model.MRole;
-import org.compiere.model.MTree;
-import org.compiere.model.MTree_Node;
 import org.compiere.util.CLogger;
 import org.compiere.util.DB;
 import org.compiere.util.Env;
 import org.compiere.util.KeyNamePair;
+
+import eone.base.model.MRole;
+import eone.base.model.MTree;
+import eone.base.model.MTree_Node;
 
 public class TreeMaintenance {
 

@@ -16,7 +16,7 @@ package org.idempiere.broadcast;
 
 import java.util.ArrayList;
 
-import org.compiere.model.MBroadcastMessage;
+import eone.base.model.MBroadcastMessage;
 
 /**
  * 

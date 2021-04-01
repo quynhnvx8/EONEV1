@@ -5,11 +5,12 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.compiere.model.MPermission;
-import org.compiere.model.PO;
-import org.compiere.model.X_AD_Permission;
 import org.compiere.util.DB;
 import org.compiere.util.Env;
+
+import eone.base.model.MPermission;
+import eone.base.model.PO;
+import eone.base.model.X_AD_Permission;
 
 //org.compiere.process.VerifyRole
 /*

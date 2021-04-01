@@ -8,13 +8,13 @@ import javax.script.ScriptEngine;
 import javax.script.ScriptEngineFactory;
 import javax.script.ScriptEngineManager;
 
-import org.compiere.model.Callout;
-import org.compiere.model.ModelValidator;
 import org.compiere.util.CCache;
 import org.idempiere.distributed.ICacheService;
 import org.idempiere.distributed.IClusterService;
 import org.idempiere.distributed.IMessageService;
 
+import eone.base.model.Callout;
+import eone.base.model.ModelValidator;
 import eone.base.process.ProcessCall;
 
 

@@ -13,19 +13,20 @@
  *****************************************************************************/
 package org.compiere.apps.form;
 
-import static org.compiere.model.SystemIDs.WINDOW_MATERIALTRANSACTIONS_INDIRECTUSER;
+import static eone.base.model.SystemIDs.WINDOW_MATERIALTRANSACTIONS_INDIRECTUSER;
 
 import java.sql.Timestamp;
 import java.util.logging.Level;
 
 import org.compiere.apps.IStatusBar;
-import org.compiere.model.GridTab;
-import org.compiere.model.GridWindow;
-import org.compiere.model.GridWindowVO;
-import org.compiere.model.MQuery;
 import org.compiere.util.CLogger;
 import org.compiere.util.Env;
 import org.compiere.util.Msg;
+
+import eone.base.model.GridTab;
+import eone.base.model.GridWindow;
+import eone.base.model.GridWindowVO;
+import eone.base.model.MQuery;
 
 public class TrxMaterial {
 

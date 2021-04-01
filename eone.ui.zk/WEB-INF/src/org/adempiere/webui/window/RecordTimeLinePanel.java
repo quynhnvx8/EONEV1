@@ -35,13 +35,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 
-import org.compiere.model.GridField;
-import org.compiere.model.GridTab;
-import org.compiere.model.MChangeLog;
-import org.compiere.model.MColumn;
-import org.compiere.model.MLookup;
-import org.compiere.model.MLookupFactory;
-import org.compiere.model.MUser;
 import org.compiere.util.CLogger;
 import org.compiere.util.DB;
 import org.compiere.util.DisplayType;
@@ -53,6 +46,13 @@ import org.zkoss.zul.Hbox;
 import org.zkoss.zul.Html;
 import org.zkoss.zul.Vlayout;
 
+import eone.base.model.GridField;
+import eone.base.model.GridTab;
+import eone.base.model.MChangeLog;
+import eone.base.model.MColumn;
+import eone.base.model.MLookup;
+import eone.base.model.MLookupFactory;
+import eone.base.model.MUser;
 import eone.base.process.DocAction;
 import eone.base.process.DocumentEngine;
 

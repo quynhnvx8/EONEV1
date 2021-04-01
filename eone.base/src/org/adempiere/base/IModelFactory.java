@@ -15,7 +15,7 @@ package org.adempiere.base;
 
 import java.sql.ResultSet;
 
-import org.compiere.model.PO;
+import eone.base.model.PO;
 
 /**
  * Model factory interface, extracted from legacy code in MTable.

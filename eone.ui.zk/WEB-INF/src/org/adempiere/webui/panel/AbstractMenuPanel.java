@@ -2,7 +2,7 @@
 
 package org.adempiere.webui.panel;
 
-import static org.compiere.model.SystemIDs.TREE_MENUPRIMARY;
+import static eone.base.model.SystemIDs.TREE_MENUPRIMARY;
 
 import java.util.Collection;
 import java.util.Enumeration;
@@ -15,10 +15,6 @@ import org.adempiere.webui.exception.ApplicationException;
 import org.adempiere.webui.session.SessionManager;
 import org.adempiere.webui.theme.ThemeManager;
 import org.adempiere.webui.util.ZKUpdateUtil;
-import org.compiere.model.MMenu;
-import org.compiere.model.MQuery;
-import org.compiere.model.MTree;
-import org.compiere.model.MTreeNode;
 import org.compiere.util.Callback;
 import org.compiere.util.DB;
 import org.compiere.util.Env;
@@ -40,6 +36,11 @@ import org.zkoss.zul.Treecol;
 import org.zkoss.zul.Treecols;
 import org.zkoss.zul.Treeitem;
 import org.zkoss.zul.Treerow;
+
+import eone.base.model.MMenu;
+import eone.base.model.MQuery;
+import eone.base.model.MTree;
+import eone.base.model.MTreeNode;
 
 /**
  * Menu Panel Base

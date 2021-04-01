@@ -22,11 +22,12 @@ import java.sql.ResultSet;
 import java.util.Properties;
 
 import org.adempiere.exceptions.AdempiereException;
-import org.compiere.model.MIndexColumn;
-import org.compiere.model.MTableIndex;
 import org.compiere.util.DB;
 import org.compiere.util.Msg;
 import org.compiere.util.Trx;
+
+import eone.base.model.MIndexColumn;
+import eone.base.model.MTableIndex;
 
 public class TableIndexValidate extends SvrProcess {
 

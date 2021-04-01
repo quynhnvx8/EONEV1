@@ -25,13 +25,14 @@ import org.adempiere.base.event.EventManager;
 import org.adempiere.base.event.IEventTopics;
 import org.adempiere.exceptions.DBException;
 import org.compiere.Adempiere;
-import org.compiere.model.MBroadcastMessage;
-import org.compiere.model.MNote;
-import org.compiere.model.MUser;
 import org.compiere.util.CLogger;
 import org.compiere.util.DB;
 import org.compiere.util.Env;
 import org.compiere.util.WebUtil;
+
+import eone.base.model.MBroadcastMessage;
+import eone.base.model.MNote;
+import eone.base.model.MUser;
 
 /**
  * 

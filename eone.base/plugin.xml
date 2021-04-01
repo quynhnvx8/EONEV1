@@ -6,7 +6,7 @@
    <extension-point id="org.adempiere.base.ModelValidator" name="Model Validator" schema="schema/eone.base.ModelValidator.exsd"/>
    <extension-point id="org.adempiere.base.IGridTabExporter" name="Grid data export extension" schema="schema/eone.base.IGridTabExporter.exsd"/>
    <extension-point id="org.adempiere.base.IGridTabImporter" name="Grid data import extension" schema="schema/eone.base.IGridTabImporter.exsd"/>
-   <extension-point id="org.compiere.model.Callout" name="Callout" schema="schema/eone.model.Callout.exsd"/>
+   <extension-point id="eone.base.model.Callout" name="Callout" schema="schema/eone.model.Callout.exsd"/>
    
    <extension
          id="eone.base.ModelGeneratorApplication"
@@ -35,65 +35,52 @@
       </application>
    </extension>
    <extension
-         id="org.compiere.model.CalloutInfoWindow.element"
+         id="eone.base.model.CalloutInfoWindow.element"
          point="org.adempiere.base.IColumnCallout">
       <callout
-            class="org.compiere.model.CalloutInfoWindow"
+            class="eone.base.model.CalloutInfoWindow"
             columnName="AD_Element_ID"
             priority="0"
             tableName="AD_InfoColumn">
       </callout>
    </extension>
    <extension
-         id="org.compiere.model.CalloutInfoWindow.table"
+         id="eone.base.model.CalloutInfoWindow.table"
          point="org.adempiere.base.IColumnCallout">
       <callout
-            class="org.compiere.model.CalloutInfoWindow"
+            class="eone.base.model.CalloutInfoWindow"
             columnName="AD_Table_ID"
             priority="0"
             tableName="AD_InfoWindow">
       </callout>
    </extension>
    <extension
-         id="org.compiere.model.CalloutInfoWindow.reference"
+         id="eone.base.model.CalloutInfoWindow.reference"
          point="org.adempiere.base.IColumnCallout">
       <callout
-            class="org.compiere.model.CalloutInfoWindow"
+            class="eone.base.model.CalloutInfoWindow"
             columnName="AD_Reference_ID"
             priority="0"
             tableName="AD_InfoColumn">
       </callout>
    </extension>
    
-   <extension
-         id="org.adempiere.install.translation"
-         point="org.eclipse.core.runtime.applications">
-      <application
-            cardinality="singleton-global"
-            thread="main"
-            visible="true">
-      	 <run
-               class="org.compiere.install.Translation">
-         </run>
-      </application>
-   </extension>
-   
- 
+  
   <extension
-         id="org.adempiere.impexp.GridTabXLSExporter"
+         id="eone.base.impexp.GridTabXLSExporter"
          name="Grid data excel template exporter"
          point="org.adempiere.base.IGridTabExporter">
       <exporter
-            class="org.adempiere.impexp.GridTabXLSExporter"
+            class="eone.base.impexp.GridTabXLSExporter"
             priority="0">
       </exporter>
    </extension>
    <extension
-         id="org.adempiere.impexp.GridTabXLSImporter"
+         id="eone.base.impexp.GridTabXLSImporter"
          name="Grid data XLS importer"
          point="org.adempiere.base.IGridTabImporter">
       <importer
-            class="org.adempiere.impexp.GridTabXLSImporter"
+            class="eone.base.impexp.GridTabXLSImporter"
             priority="0">
       </importer>
    </extension>

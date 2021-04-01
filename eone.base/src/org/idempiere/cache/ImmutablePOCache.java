@@ -30,10 +30,11 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Properties;
 import java.util.function.UnaryOperator;
 
-import org.compiere.model.PO;
 import org.compiere.util.CCache;
 import org.compiere.util.Env;
 import org.compiere.util.Util;
+
+import eone.base.model.PO;
 
 /**
  * Thread safe PO cache. For thread safety, only PO with thread local context (po.getCtx() == Env.getCtx() and without trxName is keep in cache.

@@ -27,10 +27,11 @@ package eone.base.callout;
 import java.nio.charset.Charset;
 import java.util.Properties;
 
-import org.compiere.model.CalloutEngine;
-import org.compiere.model.GridField;
-import org.compiere.model.GridTab;
 import org.compiere.util.Msg;
+
+import eone.base.model.CalloutEngine;
+import eone.base.model.GridField;
+import eone.base.model.GridTab;
 
 /**
  * Import Template callout

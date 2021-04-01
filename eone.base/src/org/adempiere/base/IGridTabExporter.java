@@ -16,7 +16,7 @@ package org.adempiere.base;
 import java.io.File;
 import java.util.List;
 
-import org.compiere.model.GridTab;
+import eone.base.model.GridTab;
 
 /**
  *

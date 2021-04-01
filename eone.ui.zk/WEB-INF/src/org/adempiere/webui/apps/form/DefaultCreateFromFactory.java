@@ -15,9 +15,10 @@ package org.adempiere.webui.apps.form;
 
 import org.compiere.grid.ICreateFrom;
 import org.compiere.grid.ICreateFromFactory;
-import org.compiere.model.GridTab;
-import org.compiere.model.I_C_Bank;
-import org.compiere.model.I_C_Invoice;
+
+import eone.base.model.GridTab;
+import eone.base.model.I_C_Bank;
+import eone.base.model.I_C_Invoice;
 
 /**
  * 

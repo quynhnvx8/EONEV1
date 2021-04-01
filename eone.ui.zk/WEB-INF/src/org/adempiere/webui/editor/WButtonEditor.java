@@ -17,9 +17,9 @@
 
 package org.adempiere.webui.editor;
 
-import static org.compiere.model.SystemIDs.REFERENCE_DOCUMENTACTION;
-import static org.compiere.model.SystemIDs.REFERENCE_PAYMENTRULE;
-import static org.compiere.model.SystemIDs.REFERENCE_POSTED;
+import static eone.base.model.SystemIDs.REFERENCE_DOCUMENTACTION;
+import static eone.base.model.SystemIDs.REFERENCE_PAYMENTRULE;
+import static eone.base.model.SystemIDs.REFERENCE_POSTED;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -33,10 +33,6 @@ import org.adempiere.webui.component.Button;
 import org.adempiere.webui.event.ActionEvent;
 import org.adempiere.webui.event.ActionListener;
 import org.adempiere.webui.theme.ThemeManager;
-import org.compiere.model.GridField;
-import org.compiere.model.MLookup;
-import org.compiere.model.MLookupFactory;
-import org.compiere.model.MSysConfig;
 import org.compiere.util.CLogger;
 import org.compiere.util.DB;
 import org.compiere.util.DisplayType;
@@ -45,6 +41,11 @@ import org.compiere.util.Msg;
 import org.compiere.util.NamePair;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.Events;
+
+import eone.base.model.GridField;
+import eone.base.model.MLookup;
+import eone.base.model.MLookupFactory;
+import eone.base.model.MSysConfig;
 
 /**
  * This class is based on org.compiere.grid.ed.VButton written by Jorg Janke.

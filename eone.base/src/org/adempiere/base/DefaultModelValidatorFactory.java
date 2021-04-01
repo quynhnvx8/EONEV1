@@ -14,7 +14,8 @@
 package org.adempiere.base;
 
 import org.adempiere.base.equinox.EquinoxExtensionLocator;
-import org.compiere.model.ModelValidator;
+
+import eone.base.model.ModelValidator;
 
 /**
  * @author hengsin

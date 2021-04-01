@@ -23,18 +23,6 @@ import java.util.List;
 
 import org.adempiere.webui.component.Label;
 import org.adempiere.webui.util.ZKUpdateUtil;
-import org.compiere.model.I_AD_SearchDefinition;
-import org.compiere.model.MColumn;
-import org.compiere.model.MLookup;
-import org.compiere.model.MLookupFactory;
-import org.compiere.model.MLookupInfo;
-import org.compiere.model.MQuery;
-import org.compiere.model.MRole;
-import org.compiere.model.MSearchDefinition;
-import org.compiere.model.MSysConfig;
-import org.compiere.model.MTable;
-import org.compiere.model.MWindow;
-import org.compiere.model.Query;
 import org.compiere.util.DB;
 import org.compiere.util.DisplayType;
 import org.compiere.util.Env;
@@ -46,6 +34,19 @@ import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zul.A;
 import org.zkoss.zul.Textbox;
 import org.zkoss.zul.Vlayout;
+
+import eone.base.model.I_AD_SearchDefinition;
+import eone.base.model.MColumn;
+import eone.base.model.MLookup;
+import eone.base.model.MLookupFactory;
+import eone.base.model.MLookupInfo;
+import eone.base.model.MQuery;
+import eone.base.model.MRole;
+import eone.base.model.MSearchDefinition;
+import eone.base.model.MSysConfig;
+import eone.base.model.MTable;
+import eone.base.model.MWindow;
+import eone.base.model.Query;
 
 /**
  * @author hengsin

@@ -31,9 +31,6 @@ import org.adempiere.webui.part.WindowContainer;
 import org.adempiere.webui.util.ZKUpdateUtil;
 import org.adempiere.webui.window.FDialog;
 import org.adempiere.webui.window.WTask;
-import org.compiere.model.MInfoWindow;
-import org.compiere.model.MQuery;
-import org.compiere.model.MTask;
 import org.compiere.util.Callback;
 import org.compiere.util.Env;
 import org.zkoss.util.media.AMedia;
@@ -43,6 +40,10 @@ import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zul.Iframe;
 import org.zkoss.zul.Tab;
 import org.zkoss.zul.Tabpanels;
+
+import eone.base.model.MInfoWindow;
+import eone.base.model.MQuery;
+import eone.base.model.MTask;
 
 /**
  * A Tabbed MDI implementation

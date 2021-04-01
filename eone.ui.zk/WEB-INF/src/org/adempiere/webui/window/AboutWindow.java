@@ -53,7 +53,6 @@ import org.adempiere.webui.util.FeedbackManager;
 import org.adempiere.webui.util.ZKUpdateUtil;
 import org.compiere.Adempiere;
 import org.compiere.minigrid.IDColumn;
-import org.compiere.model.MUser;
 import org.compiere.util.CLogErrorBuffer;
 import org.compiere.util.CLogMgt;
 import org.compiere.util.Env;
@@ -84,6 +83,8 @@ import org.zkoss.zul.Separator;
 import org.zkoss.zul.South;
 import org.zkoss.zul.Space;
 import org.zkoss.zul.Vbox;
+
+import eone.base.model.MUser;
 
 /**
  *

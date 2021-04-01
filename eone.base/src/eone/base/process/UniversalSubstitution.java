@@ -5,8 +5,9 @@ import java.util.List;
 import java.util.logging.Level;
 
 import org.adempiere.exceptions.AdempiereException;
-import org.compiere.model.MProductBOM;
-import org.compiere.model.Query;
+
+import eone.base.model.MProductBOM;
+import eone.base.model.Query;
 
 public class UniversalSubstitution extends SvrProcess {
 

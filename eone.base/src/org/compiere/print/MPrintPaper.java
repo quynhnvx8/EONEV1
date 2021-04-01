@@ -26,12 +26,13 @@ import javax.print.attribute.standard.MediaSize;
 import javax.print.attribute.standard.MediaSizeName;
 
 import org.adempiere.exceptions.AdempiereException;
-import org.compiere.model.PO;
-import org.compiere.model.X_AD_PrintPaper;
 import org.compiere.util.CCache;
 import org.compiere.util.CLogger;
 import org.compiere.util.Env;
 import org.compiere.util.Language;
+
+import eone.base.model.PO;
+import eone.base.model.X_AD_PrintPaper;
 
 /**
  *	AD_PrintPaper Print Paper Model

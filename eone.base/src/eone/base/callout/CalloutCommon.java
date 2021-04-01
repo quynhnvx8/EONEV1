@@ -4,20 +4,21 @@ import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.Properties;
 
-import org.compiere.model.CalloutEngine;
-import org.compiere.model.GridField;
-import org.compiere.model.GridTab;
-import org.compiere.model.MDocType;
-import org.compiere.model.MProduct;
-import org.compiere.model.MWarehouse;
-import org.compiere.model.X_C_DocType;
 import org.compiere.util.CalloutUtil;
 import org.compiere.util.Env;
 
-//org.compiere.model.CalloutCommon.cal_From_Curr_To_Rate
-//org.compiere.model.CalloutCommon.cal_From_Amount_To_AmountConvert
-//org.compiere.model.CalloutCommon.fill_UOM
-//org.compiere.model.CalloutCommon.getNewDocumentNo
+import eone.base.model.CalloutEngine;
+import eone.base.model.GridField;
+import eone.base.model.GridTab;
+import eone.base.model.MDocType;
+import eone.base.model.MProduct;
+import eone.base.model.MWarehouse;
+import eone.base.model.X_C_DocType;
+
+//eone.base.model.CalloutCommon.cal_From_Curr_To_Rate
+//eone.base.model.CalloutCommon.cal_From_Amount_To_AmountConvert
+//eone.base.model.CalloutCommon.fill_UOM
+//eone.base.model.CalloutCommon.getNewDocumentNo
 public class CalloutCommon extends CalloutEngine
 {
 	

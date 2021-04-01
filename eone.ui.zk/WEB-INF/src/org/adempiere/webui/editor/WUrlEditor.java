@@ -24,9 +24,10 @@ import org.adempiere.webui.event.ContextMenuListener;
 import org.adempiere.webui.event.ValueChangeEvent;
 import org.adempiere.webui.theme.ThemeManager;
 import org.adempiere.webui.window.WFieldRecordInfo;
-import org.compiere.model.GridField;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.Events;
+
+import eone.base.model.GridField;
 
 public class WUrlEditor extends WEditor implements ContextMenuListener
 {

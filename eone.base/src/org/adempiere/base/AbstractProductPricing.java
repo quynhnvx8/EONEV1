@@ -4,11 +4,12 @@ package org.adempiere.base;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 
-import org.compiere.model.I_C_InvoiceLine;
-import org.compiere.model.I_C_OrderLine;
-import org.compiere.model.I_C_Project;
-import org.compiere.model.I_C_ProjectLine;
 import org.compiere.util.Env;
+
+import eone.base.model.I_C_InvoiceLine;
+import eone.base.model.I_C_OrderLine;
+import eone.base.model.I_C_Project;
+import eone.base.model.I_C_ProjectLine;
 
 public abstract class AbstractProductPricing implements IProductPricing {
 	

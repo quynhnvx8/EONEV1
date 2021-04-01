@@ -5,7 +5,6 @@ import org.adempiere.webui.component.Grid;
 import org.adempiere.webui.component.Panel;
 import org.adempiere.webui.component.Row;
 import org.adempiere.webui.component.Rows;
-import org.compiere.model.MGoal;
 import org.compiere.util.CLogger;
 import org.compiere.util.Env;
 import org.zkoss.zk.ui.event.Event;
@@ -13,6 +12,8 @@ import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zul.Div;
 import org.zkoss.zul.Label;
+
+import eone.base.model.MGoal;
 
 public class WPAPanel extends Panel implements EventListener<Event>
 {	

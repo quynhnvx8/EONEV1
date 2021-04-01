@@ -2,10 +2,11 @@ package eone.base.process;
 
 import java.util.List;
 
-import org.compiere.model.MOrg;
-import org.compiere.model.Query;
-import org.compiere.model.X_AD_Org;
 import org.compiere.util.DB;
+
+import eone.base.model.MOrg;
+import eone.base.model.Query;
+import eone.base.model.X_AD_Org;
 
 //org.compiere.process.VerifyDepartment
 public class VerifyRelatedClient extends SvrProcess

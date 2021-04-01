@@ -24,10 +24,11 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.logging.Level;
 
-import org.compiere.model.PO;
-import org.compiere.model.X_AD_PrintFont;
 import org.compiere.util.CCache;
 import org.compiere.util.Env;
+
+import eone.base.model.PO;
+import eone.base.model.X_AD_PrintFont;
 
 /**
  *	AD_PrintFont Print Font Model

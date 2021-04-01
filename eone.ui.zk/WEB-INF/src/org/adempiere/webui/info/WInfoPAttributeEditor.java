@@ -20,12 +20,13 @@ import org.adempiere.webui.editor.WEditor;
 import org.adempiere.webui.event.DialogEvents;
 import org.adempiere.webui.panel.InfoPAttributePanel;
 import org.adempiere.webui.theme.ThemeManager;
-import org.compiere.model.GridField;
 import org.compiere.util.Env;
 import org.compiere.util.Msg;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zk.ui.event.Events;
+
+import eone.base.model.GridField;
 
 /**
  * @author hengsin

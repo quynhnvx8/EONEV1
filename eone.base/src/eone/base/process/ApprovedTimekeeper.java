@@ -35,12 +35,13 @@ import java.util.List;
 import java.util.Properties;
 import java.util.logging.Level;
 
-import org.compiere.model.MPeriod;
-import org.compiere.model.MTimekeeper;
-import org.compiere.model.MTimekeeperLine;
 import org.compiere.util.DB;
 import org.compiere.util.Env;
 import org.compiere.util.TimeUtil;
+
+import eone.base.model.MPeriod;
+import eone.base.model.MTimekeeper;
+import eone.base.model.MTimekeeperLine;
 
 public class ApprovedTimekeeper extends SvrProcess {
 

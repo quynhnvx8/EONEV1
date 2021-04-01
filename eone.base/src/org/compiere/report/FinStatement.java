@@ -16,7 +16,7 @@
  *****************************************************************************/
 package org.compiere.report;
 
-import static org.compiere.model.SystemIDs.PRINTFORMAT_STATEMENTOFACCOUNT;
+import static eone.base.model.SystemIDs.PRINTFORMAT_STATEMENTOFACCOUNT;
 
 import java.math.BigDecimal;
 import java.sql.PreparedStatement;

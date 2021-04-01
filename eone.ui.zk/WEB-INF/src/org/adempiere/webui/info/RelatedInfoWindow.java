@@ -33,7 +33,6 @@ import org.adempiere.webui.editor.WEditor;
 import org.compiere.minigrid.ColumnInfo;
 import org.compiere.minigrid.EmbedWinInfo;
 import org.compiere.minigrid.IDColumn;
-import org.compiere.model.MSysConfig;
 import org.compiere.util.CLogger;
 import org.compiere.util.DB;
 import org.compiere.util.KeyNamePair;
@@ -47,6 +46,8 @@ import org.zkoss.zul.Paging;
 import org.zkoss.zul.event.PagingEvent;
 import org.zkoss.zul.event.ZulEvents;
 import org.zkoss.zul.ext.Sortable;
+
+import eone.base.model.MSysConfig;
 
 /**
  * @author hengsin

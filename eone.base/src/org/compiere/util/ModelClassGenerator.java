@@ -1,6 +1,6 @@
 package org.compiere.util;
 
-import static org.compiere.model.SystemIDs.REFERENCE_PAYMENTRULE;
+import static eone.base.model.SystemIDs.REFERENCE_PAYMENTRULE;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -18,7 +18,8 @@ import java.util.logging.Level;
 
 import org.adempiere.exceptions.DBException;
 import org.compiere.Adempiere;
-import org.compiere.model.MTable;
+
+import eone.base.model.MTable;
 public class ModelClassGenerator
 {
 	/**
@@ -114,8 +115,8 @@ public class ModelClassGenerator
 
 		addImportClass(java.util.Properties.class);
 		addImportClass(java.sql.ResultSet.class);
-		if (!packageName.equals("org.compiere.model"))
-			addImportClass("org.compiere.model.*");
+		if (!packageName.equals("eone.base.model"))
+			addImportClass("eone.base.model.*");
 		createImports(start);
 		//	Class
 		start.append("/** Generated Model for ").append(tableName).append(NL)

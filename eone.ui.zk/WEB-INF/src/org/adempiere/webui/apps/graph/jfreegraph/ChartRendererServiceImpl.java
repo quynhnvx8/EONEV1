@@ -23,8 +23,6 @@ import org.adempiere.webui.apps.graph.IChartRendererService;
 import org.adempiere.webui.apps.graph.model.ChartModel;
 import org.adempiere.webui.apps.graph.model.GoalModel;
 import org.adempiere.webui.apps.graph.model.IndicatorModel;
-import org.compiere.model.MGoal;
-import org.compiere.model.MQuery;
 import org.compiere.util.CLogger;
 import org.jfree.chart.ChartRenderingInfo;
 import org.jfree.chart.JFreeChart;
@@ -42,6 +40,9 @@ import org.zkoss.zk.ui.event.MouseEvent;
 import org.zkoss.zul.Area;
 import org.zkoss.zul.Image;
 import org.zkoss.zul.Imagemap;
+
+import eone.base.model.MGoal;
+import eone.base.model.MQuery;
 
 /**
  * 

@@ -18,9 +18,10 @@ package eone.base.process;
 
 import java.util.logging.Level;
 
-import org.compiere.model.MEntityType;
 import org.compiere.util.AdempiereSystemError;
 import org.compiere.util.AdempiereUserError;
+
+import eone.base.model.MEntityType;
 
 /**
  * 	Register Entity Type

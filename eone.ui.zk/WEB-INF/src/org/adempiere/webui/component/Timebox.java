@@ -24,9 +24,10 @@
  **********************************************************************/
 package org.adempiere.webui.component;
 
-import org.compiere.model.MLanguage;
 import org.compiere.util.Env;
 import org.compiere.util.Language;
+
+import eone.base.model.MLanguage;
 
 public class Timebox extends org.zkoss.zul.Timebox
 {

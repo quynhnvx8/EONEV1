@@ -6,10 +6,11 @@ import java.math.BigDecimal;
 import java.util.Properties;
 import java.util.logging.Level;
 
-import org.compiere.model.CalloutEngine;
-import org.compiere.model.GridField;
-import org.compiere.model.GridTab;
 import org.compiere.util.Env;
+
+import eone.base.model.CalloutEngine;
+import eone.base.model.GridField;
+import eone.base.model.GridTab;
 
 /**
  *	Cash Book Journal Callouts

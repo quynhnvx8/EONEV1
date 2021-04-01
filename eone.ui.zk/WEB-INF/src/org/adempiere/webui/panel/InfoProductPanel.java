@@ -34,8 +34,6 @@ import org.adempiere.webui.theme.ThemeManager;
 import org.adempiere.webui.util.ZKUpdateUtil;
 import org.compiere.minigrid.ColumnInfo;
 import org.compiere.minigrid.IDColumn;
-import org.compiere.model.MQuery;
-import org.compiere.model.MRole;
 import org.compiere.util.DB;
 import org.compiere.util.Env;
 import org.compiere.util.Msg;
@@ -48,6 +46,9 @@ import org.zkoss.zul.Borderlayout;
 import org.zkoss.zul.Center;
 import org.zkoss.zul.North;
 import org.zkoss.zul.South;
+
+import eone.base.model.MQuery;
+import eone.base.model.MRole;
 
 
 @Deprecated // replaced with InfoProductWindow IDEMPIERE-325

@@ -31,8 +31,9 @@
 package org.adempiere.webui.util;
 
 import org.adempiere.webui.session.SessionManager;
-import org.compiere.model.MQuery;
 import org.compiere.util.AbstractDocumentSearch;
+
+import eone.base.model.MQuery;
 
 /**
  *

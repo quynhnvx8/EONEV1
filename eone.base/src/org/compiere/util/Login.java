@@ -12,14 +12,14 @@ import java.util.logging.Level;
 
 import javax.swing.JOptionPane;
 
-import org.compiere.model.MRole;
-import org.compiere.model.MSysConfig;
-import org.compiere.model.MSystem;
-import org.compiere.model.MTree;
-import org.compiere.model.MUser;
-import org.compiere.model.MUserPreference;
-import org.compiere.model.ModelValidationEngine;
-import org.compiere.model.Query;
+import eone.base.model.MRole;
+import eone.base.model.MSysConfig;
+import eone.base.model.MSystem;
+import eone.base.model.MTree;
+import eone.base.model.MUser;
+import eone.base.model.MUserPreference;
+import eone.base.model.ModelValidationEngine;
+import eone.base.model.Query;
 
 
 public class Login

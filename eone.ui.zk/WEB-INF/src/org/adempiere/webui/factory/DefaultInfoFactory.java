@@ -33,10 +33,11 @@ import org.adempiere.webui.panel.InfoOrderPanel;
 import org.adempiere.webui.panel.InfoPanel;
 import org.adempiere.webui.panel.InfoPaymentPanel;
 import org.adempiere.webui.panel.InfoProductPanel;
-import org.compiere.model.GridField;
-import org.compiere.model.Lookup;
-import org.compiere.model.MInfoWindow;
 import org.compiere.util.Env;
+
+import eone.base.model.GridField;
+import eone.base.model.Lookup;
+import eone.base.model.MInfoWindow;
 
 /**
  *

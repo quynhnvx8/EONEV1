@@ -6,8 +6,6 @@ import java.util.logging.Level;
 
 import org.adempiere.apps.graph.ChartBuilder;
 import org.adempiere.webui.apps.AEnv;
-import org.compiere.model.MChart;
-import org.compiere.model.MQuery;
 import org.compiere.util.CLogger;
 import org.jfree.chart.ChartRenderingInfo;
 import org.jfree.chart.JFreeChart;
@@ -28,6 +26,9 @@ import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zk.ui.event.MouseEvent;
 import org.zkoss.zul.Area;
 import org.zkoss.zul.Imagemap;
+
+import eone.base.model.MChart;
+import eone.base.model.MQuery;
 
 /**
  * @author Paul Bowden, Adaxa Pty Ltd

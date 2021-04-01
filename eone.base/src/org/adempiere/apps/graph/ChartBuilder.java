@@ -22,12 +22,6 @@ import java.util.HashMap;
 import java.util.logging.Level;
 
 import org.adempiere.exceptions.DBException;
-import org.compiere.model.MChart;
-import org.compiere.model.MChartDatasource;
-import org.compiere.model.MQuery;
-import org.compiere.model.MRole;
-import org.compiere.model.MTable;
-import org.compiere.model.X_AD_Chart;
 import org.compiere.util.CLogger;
 import org.compiere.util.DB;
 import org.compiere.util.Env;
@@ -56,6 +50,13 @@ import org.jfree.data.time.TimeSeriesCollection;
 import org.jfree.data.time.Week;
 import org.jfree.data.time.Year;
 import org.jfree.data.xy.IntervalXYDataset;
+
+import eone.base.model.MChart;
+import eone.base.model.MChartDatasource;
+import eone.base.model.MQuery;
+import eone.base.model.MRole;
+import eone.base.model.MTable;
+import eone.base.model.X_AD_Chart;
 
 /**
  * @author Paul Bowden, Adaxa Pty Ltd 

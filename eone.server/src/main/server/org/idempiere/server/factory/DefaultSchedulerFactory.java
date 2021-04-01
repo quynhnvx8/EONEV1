@@ -18,8 +18,9 @@ import java.util.List;
 import java.util.Properties;
 
 import org.adempiere.server.IServerFactory;
-import org.compiere.model.MScheduler;
 import org.compiere.server.Scheduler;
+
+import eone.base.model.MScheduler;
 
 /**
  * @author hengsin

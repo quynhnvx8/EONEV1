@@ -32,18 +32,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import org.compiere.model.I_HR_SalaryLine;
-import org.compiere.model.MConfig;
-import org.compiere.model.MFamilyTies;
-import org.compiere.model.MPayroll;
-import org.compiere.model.MSalary;
-import org.compiere.model.MSalaryExtra;
-import org.compiere.model.MSalaryLine;
-import org.compiere.model.MTaxPersonal;
-import org.compiere.model.PO;
-import org.compiere.model.X_HR_Config;
 import org.compiere.util.DB;
 import org.compiere.util.Env;
+
+import eone.base.model.I_HR_SalaryLine;
+import eone.base.model.MConfig;
+import eone.base.model.MFamilyTies;
+import eone.base.model.MPayroll;
+import eone.base.model.MSalary;
+import eone.base.model.MSalaryExtra;
+import eone.base.model.MSalaryLine;
+import eone.base.model.MTaxPersonal;
+import eone.base.model.PO;
+import eone.base.model.X_HR_Config;
 
 public class CalculateSalary extends SvrProcess {
 

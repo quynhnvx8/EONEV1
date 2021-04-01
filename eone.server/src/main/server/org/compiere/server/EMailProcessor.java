@@ -33,10 +33,11 @@ import javax.mail.Session;
 import javax.mail.Store;
 
 import org.compiere.Adempiere;
-import org.compiere.model.MClient;
 import org.compiere.util.CLogMgt;
 import org.compiere.util.CLogger;
 import org.compiere.util.EMailAuthenticator;
+
+import eone.base.model.MClient;
 
 /**
  *	Request Mail Processor

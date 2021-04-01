@@ -20,8 +20,6 @@ import org.adempiere.webui.LayoutUtils;
 import org.adempiere.webui.event.DialogEvents;
 import org.adempiere.webui.event.ValueChangeEvent;
 import org.adempiere.webui.window.WImageDialog;
-import org.compiere.model.GridField;
-import org.compiere.model.MImage;
 import org.compiere.util.CLogger;
 import org.compiere.util.Env;
 import org.zkoss.image.AImage;
@@ -32,6 +30,9 @@ import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zul.Cell;
 import org.zkoss.zul.Image;
+
+import eone.base.model.GridField;
+import eone.base.model.MImage;
 
 /**
  * This class is based on org.compiere.grid.ed.VImage written by Jorg Janke.

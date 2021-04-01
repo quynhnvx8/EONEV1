@@ -3,8 +3,9 @@ package org.compiere.report;
 import java.sql.ResultSet;
 import java.util.Properties;
 
-import org.compiere.model.X_PA_Report;
 import org.compiere.util.DB;
+
+import eone.base.model.X_PA_Report;
 
 
 public class MReport extends X_PA_Report

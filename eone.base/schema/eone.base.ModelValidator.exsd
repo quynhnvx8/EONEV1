@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- Schema file written by PDE -->
-<schema targetNamespace="org.adempiere.base" xmlns="http://www.w3.org/2001/XMLSchema">
+<schema targetNamespace="eone.base" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appinfo>
-         <meta.schema plugin="org.adempiere.base" id="org.adempiere.base.ModelValidator" name="Model Validator"/>
+         <meta.schema plugin="eone.base" id="eone.base.ModelValidator" name="Model Validator"/>
       </appinfo>
       <documentation>
          Extension point for bundle to contribute model validator implementation. Use the {extension id} syntax in AD_ModelValidator.ModelValidationClass to reference the extension that will provide the  concrete ModelValidator instance ( replace {extension id} with your actual extension id ). This extension point is provided to ease migration of pre-OSGi ADempiere code, new code is recommended to use the IEventManager service to listen to model and document event( see event.test project for example ).
@@ -52,10 +52,10 @@
          <attribute name="class" type="string" use="required">
             <annotation>
                <documentation>
-                  Implementation class name for the org.compiere.model.ModelValidator interface
+                  Implementation class name for the eone.base.model.ModelValidator interface
                </documentation>
                <appinfo>
-                  <meta.attribute kind="java" basedOn=":org.compiere.model.ModelValidator"/>
+                  <meta.attribute kind="java" basedOn=":eone.base.model.ModelValidator"/>
                </appinfo>
             </annotation>
          </attribute>
@@ -87,7 +87,7 @@
 &lt;extension
          id=&quot;org.adempiere.extend.myModelValidator&quot;
          name=&quot;My Model Validator&quot;
-         point=&quot;org.adempiere.base.ModelValidator&quot;&gt;
+         point=&quot;eone.base.ModelValidator&quot;&gt;
       &lt;listener
             class=&quot;org.adempiere.extend.MyModelValidator&quot;
             priority=&quot;0&quot;&gt;
@@ -104,7 +104,7 @@ AD_ModelValidator.ModelValidationClass=&quot;org.adempiere.extend.myModelValidat
          <meta.section type="apiinfo"/>
       </appinfo>
       <documentation>
-         The class attribute must represent an implementor of org.compiere.model.ModelValidator
+         The class attribute must represent an implementor of eone.base.model.ModelValidator
       </documentation>
    </annotation>
 

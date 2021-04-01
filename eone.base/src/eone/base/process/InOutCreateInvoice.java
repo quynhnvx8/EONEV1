@@ -18,7 +18,7 @@ package eone.base.process;
 
 import java.util.logging.Level;
 
-import org.compiere.model.MInOut;
+import eone.base.model.MInOut;
  
 /**
  *	Create (Generate) Invoice from Shipment

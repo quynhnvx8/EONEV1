@@ -18,13 +18,14 @@ import java.sql.Timestamp;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 
-import org.compiere.model.MAchievement;
-import org.compiere.model.MGoal;
-import org.compiere.model.MMeasureCalc;
-import org.compiere.model.MQuery;
-import org.compiere.model.MRole;
 import org.compiere.util.CLogger;
 import org.compiere.util.DisplayType;
+
+import eone.base.model.MAchievement;
+import eone.base.model.MGoal;
+import eone.base.model.MMeasureCalc;
+import eone.base.model.MQuery;
+import eone.base.model.MRole;
 
 /**
  *

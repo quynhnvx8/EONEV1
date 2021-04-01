@@ -37,10 +37,6 @@ import org.adempiere.webui.util.ZKUpdateUtil;
 import org.adempiere.webui.window.FDialog;
 import org.compiere.minigrid.ColumnInfo;
 import org.compiere.minigrid.IDColumn;
-import org.compiere.model.I_C_ElementValue;
-import org.compiere.model.MColumn;
-import org.compiere.model.MLookupFactory;
-import org.compiere.model.MTable;
 import org.compiere.util.DB;
 import org.compiere.util.DisplayType;
 import org.compiere.util.Env;
@@ -58,6 +54,11 @@ import org.zkoss.zul.North;
 import org.zkoss.zul.Separator;
 import org.zkoss.zul.South;
 import org.zkoss.zul.Vbox;
+
+import eone.base.model.I_C_ElementValue;
+import eone.base.model.MColumn;
+import eone.base.model.MLookupFactory;
+import eone.base.model.MTable;
 
 /**
  * Zk Port

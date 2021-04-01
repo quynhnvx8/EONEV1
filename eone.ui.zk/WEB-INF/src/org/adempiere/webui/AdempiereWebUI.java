@@ -41,12 +41,6 @@ import org.adempiere.webui.theme.ITheme;
 import org.adempiere.webui.theme.ThemeManager;
 import org.adempiere.webui.util.BrowserToken;
 import org.adempiere.webui.util.UserPreference;
-import org.compiere.model.MRole;
-import org.compiere.model.MSysConfig;
-import org.compiere.model.MSystem;
-import org.compiere.model.MTable;
-import org.compiere.model.MUser;
-import org.compiere.model.MUserPreference;
 import org.compiere.util.CLogger;
 import org.compiere.util.DB;
 import org.compiere.util.Env;
@@ -68,6 +62,13 @@ import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zk.ui.util.Clients;
 import org.zkoss.zul.Window;
+
+import eone.base.model.MRole;
+import eone.base.model.MSysConfig;
+import eone.base.model.MSystem;
+import eone.base.model.MTable;
+import eone.base.model.MUser;
+import eone.base.model.MUserPreference;
 
 /**
  *

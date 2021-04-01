@@ -18,13 +18,14 @@ import static org.compiere.util.DisplayType.Locator;
 import static org.compiere.util.DisplayType.PAttribute;
 import static org.compiere.util.DisplayType.Payment;
 
-import org.compiere.model.GridFieldVO;
-import org.compiere.model.Lookup;
-import org.compiere.model.MAccountLookup;
-import org.compiere.model.MLookup;
-import org.compiere.model.MPAttributeLookup;
-import org.compiere.model.MPaymentLookup;
-import org.compiere.util.DisplayType; 
+import org.compiere.util.DisplayType;
+
+import eone.base.model.GridFieldVO;
+import eone.base.model.Lookup;
+import eone.base.model.MAccountLookup;
+import eone.base.model.MLookup;
+import eone.base.model.MPAttributeLookup;
+import eone.base.model.MPaymentLookup; 
 
 /**
  * @author Jan Thielemann - jan.thielemann@evenos.de

@@ -28,10 +28,6 @@ import org.adempiere.webui.session.SessionManager;
 import org.adempiere.webui.util.FeedbackManager;
 import org.adempiere.webui.window.FDialog;
 import org.adempiere.webui.window.WPreference;
-import org.compiere.model.MClient;
-import org.compiere.model.MOrg;
-import org.compiere.model.MRole;
-import org.compiere.model.MUser;
 import org.compiere.util.Callback;
 import org.compiere.util.Env;
 import org.compiere.util.Msg;
@@ -49,6 +45,11 @@ import org.zkoss.zul.Popup;
 import org.zkoss.zul.Space;
 import org.zkoss.zul.Vlayout;
 import org.zkoss.zul.impl.LabelImageElement;
+
+import eone.base.model.MClient;
+import eone.base.model.MOrg;
+import eone.base.model.MRole;
+import eone.base.model.MUser;
 
 /**
  *

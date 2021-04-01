@@ -22,8 +22,6 @@ import java.util.Date;
 import java.util.Enumeration;
 
 import org.compiere.Adempiere;
-import org.compiere.model.ServerStateChangeEvent;
-import org.compiere.model.ServerStateChangeListener;
 import org.compiere.util.CLogger;
 import org.eclipse.osgi.framework.console.CommandProvider;
 import org.osgi.framework.BundleActivator;
@@ -35,6 +33,9 @@ import com.hazelcast.config.MapConfig;
 import com.hazelcast.config.UrlXmlConfig;
 import com.hazelcast.core.Hazelcast;
 import com.hazelcast.core.HazelcastInstance;
+
+import eone.base.model.ServerStateChangeEvent;
+import eone.base.model.ServerStateChangeListener;
 
 /**
  * 

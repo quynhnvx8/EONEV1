@@ -4,10 +4,11 @@ package eone.base.process;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-import org.compiere.model.MTimekeeper;
-import org.compiere.model.MTimekeeperLine;
-import org.compiere.model.X_HR_TimekeeperLine;
 import org.compiere.util.DB;
+
+import eone.base.model.MTimekeeper;
+import eone.base.model.MTimekeeperLine;
+import eone.base.model.X_HR_TimekeeperLine;
 
 public class CreateEmployeeTimekeeper extends SvrProcess {
 

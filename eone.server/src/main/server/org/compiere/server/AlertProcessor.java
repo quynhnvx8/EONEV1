@@ -11,17 +11,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.logging.Level;
 
-import org.adempiere.impexp.ArrayExcelExporter;
-import org.compiere.model.MAlert;
-import org.compiere.model.MAlertProcessor;
-import org.compiere.model.MAlertRule;
-import org.compiere.model.MAttachment;
-import org.compiere.model.MClient;
-import org.compiere.model.MNote;
-import org.compiere.model.MSysConfig;
-import org.compiere.model.MSystem;
-import org.compiere.model.MUser;
-import org.compiere.model.SystemIDs;
 import org.compiere.util.CLogger;
 import org.compiere.util.DB;
 import org.compiere.util.DisplayType;
@@ -30,6 +19,18 @@ import org.compiere.util.Language;
 import org.compiere.util.Msg;
 import org.compiere.util.Trx;
 import org.compiere.util.ValueNamePair;
+
+import eone.base.impexp.ArrayExcelExporter;
+import eone.base.model.MAlert;
+import eone.base.model.MAlertProcessor;
+import eone.base.model.MAlertRule;
+import eone.base.model.MAttachment;
+import eone.base.model.MClient;
+import eone.base.model.MNote;
+import eone.base.model.MSysConfig;
+import eone.base.model.MSystem;
+import eone.base.model.MUser;
+import eone.base.model.SystemIDs;
 
 
 public class AlertProcessor extends AdempiereServer

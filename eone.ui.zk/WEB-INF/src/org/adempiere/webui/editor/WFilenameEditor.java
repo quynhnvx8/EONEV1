@@ -25,12 +25,13 @@ import org.adempiere.webui.AdempiereWebUI;
 import org.adempiere.webui.component.FilenameBox;
 import org.adempiere.webui.event.ValueChangeEvent;
 import org.adempiere.webui.theme.ThemeManager;
-import org.compiere.model.GridField;
 import org.compiere.util.CLogger;
 import org.zkoss.util.media.Media;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zk.ui.event.UploadEvent;
+
+import eone.base.model.GridField;
 
 /**
  *

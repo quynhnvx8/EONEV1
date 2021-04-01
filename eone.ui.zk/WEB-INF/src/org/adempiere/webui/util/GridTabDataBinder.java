@@ -20,12 +20,13 @@ import org.adempiere.exceptions.AdempiereException;
 import org.adempiere.webui.editor.WEditor;
 import org.adempiere.webui.event.ValueChangeEvent;
 import org.adempiere.webui.event.ValueChangeListener;
-import org.compiere.model.GridField;
-import org.compiere.model.GridTab;
-import org.compiere.model.GridTable;
 import org.compiere.util.CLogger;
 import org.compiere.util.Env;
 import org.compiere.util.Trx;
+
+import eone.base.model.GridField;
+import eone.base.model.GridTab;
+import eone.base.model.GridTable;
 
 /**
  * Transfer data from editor to GridTab

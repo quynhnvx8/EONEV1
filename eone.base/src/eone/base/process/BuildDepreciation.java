@@ -6,16 +6,17 @@ import java.sql.Timestamp;
 import java.util.List;
 import java.util.logging.Level;
 
-import org.compiere.model.MAsset;
-import org.compiere.model.MDepreciation;
-import org.compiere.model.MDepreciationExp;
-import org.compiere.model.MDepreciationSplit;
-import org.compiere.model.MDepreciationWorkfile;
-import org.compiere.model.X_A_Asset;
-import org.compiere.model.X_A_Depreciation_Split;
-import org.compiere.model.X_A_Depreciation_Workfile;
 import org.compiere.util.Env;
 import org.compiere.util.TimeUtil;
+
+import eone.base.model.MAsset;
+import eone.base.model.MDepreciation;
+import eone.base.model.MDepreciationExp;
+import eone.base.model.MDepreciationSplit;
+import eone.base.model.MDepreciationWorkfile;
+import eone.base.model.X_A_Asset;
+import eone.base.model.X_A_Depreciation_Split;
+import eone.base.model.X_A_Depreciation_Workfile;
 
 
 public class BuildDepreciation extends SvrProcess
@@ -47,13 +48,13 @@ public class BuildDepreciation extends SvrProcess
 		String sqlWhereAsset = "IsActive = 'Y' And IsDepreciated = 'Y' And IsDisposed != 'Y' And IsTransferred != 'Y' "+
 				" And AD_Client_ID = ? And AD_Org_ID = ?  And RemainAmt > 0 "+
 				" And Not Exists (Select 1 From A_Depreciation_Exp e Where A_Depreciation_ID = ? And A_Asset_ID = e.A_Asset_ID)";
-		List<MAsset> assets = new org.compiere.model.Query(getCtx(), X_A_Asset.Table_Name, sqlWhereAsset, get_TrxName())
+		List<MAsset> assets = new eone.base.model.Query(getCtx(), X_A_Asset.Table_Name, sqlWhereAsset, get_TrxName())
 				.setParameters(de.getAD_Client_ID(), de.getAD_Org_ID(), p_Record_ID)
 				.list();
 		
 		//Lay danh sach khau hao
 		String sqlWhereWf = "Exists (Select 1 From A_Asset c Where c.A_Asset_ID = A_Asset_ID And "+ sqlWhereAsset +")";
-		List<MDepreciationWorkfile> wf = new org.compiere.model.Query(getCtx(), X_A_Depreciation_Workfile.Table_Name, sqlWhereWf, get_TrxName())
+		List<MDepreciationWorkfile> wf = new eone.base.model.Query(getCtx(), X_A_Depreciation_Workfile.Table_Name, sqlWhereWf, get_TrxName())
 				.setParameters(de.getAD_Client_ID(), de.getAD_Org_ID())
 				.list();
 		
@@ -114,7 +115,7 @@ public class BuildDepreciation extends SvrProcess
 			if(assets.get(i).isDepreciationSplit()) {
 				//Lay danh sach khau hao phan tach
 				String sqlWhereDS = "A_Asset_ID = ?";
-				List<MDepreciationSplit> ds = new org.compiere.model.Query(getCtx(), X_A_Depreciation_Split.Table_Name, sqlWhereDS, get_TrxName())
+				List<MDepreciationSplit> ds = new eone.base.model.Query(getCtx(), X_A_Depreciation_Split.Table_Name, sqlWhereDS, get_TrxName())
 						.setParameters(A_Asset_ID)
 						.list();
 				int percent = 0;

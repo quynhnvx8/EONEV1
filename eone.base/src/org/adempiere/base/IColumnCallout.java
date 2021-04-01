@@ -18,8 +18,8 @@ package org.adempiere.base;
 
 import java.util.Properties;
 
-import org.compiere.model.GridField;
-import org.compiere.model.GridTab;
+import eone.base.model.GridField;
+import eone.base.model.GridTab;
 
 /**
  *  Column Callout Interface

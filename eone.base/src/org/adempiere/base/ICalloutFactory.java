@@ -13,7 +13,7 @@
  *****************************************************************************/
 package org.adempiere.base;
 
-import org.compiere.model.Callout;
+import eone.base.model.Callout;
 
 /**
  * 

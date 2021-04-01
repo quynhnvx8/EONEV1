@@ -3,10 +3,10 @@ package org.compiere.print;
 import java.util.Properties;
 import java.util.logging.Level;
 
-import org.compiere.model.PrintInfo;
 import org.compiere.util.CLogger;
 import org.compiere.util.Env;
 
+import eone.base.model.PrintInfo;
 import eone.base.process.ProcessInfo;
 
 

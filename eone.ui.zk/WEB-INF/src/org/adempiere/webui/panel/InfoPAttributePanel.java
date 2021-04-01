@@ -32,7 +32,6 @@ import org.adempiere.webui.component.Rows;
 import org.adempiere.webui.component.Window;
 import org.adempiere.webui.editor.WStringEditor;
 import org.adempiere.webui.util.ZKUpdateUtil;
-import org.compiere.model.MRole;
 import org.compiere.util.CLogger;
 import org.compiere.util.DB;
 import org.compiere.util.Env;
@@ -46,6 +45,8 @@ import org.zkoss.zul.Div;
 import org.zkoss.zul.Separator;
 import org.zkoss.zul.Textbox;
 import org.zkoss.zul.Vbox;
+
+import eone.base.model.MRole;
 
 /**
  * Search by Product Attribute.

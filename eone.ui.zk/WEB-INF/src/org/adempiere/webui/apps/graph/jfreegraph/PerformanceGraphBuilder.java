@@ -20,13 +20,14 @@ import java.awt.LinearGradientPaint;
 import java.awt.geom.Point2D;
 
 import org.adempiere.webui.apps.graph.model.IndicatorModel;
-import org.compiere.model.MColorSchema;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.DialShape;
 import org.jfree.chart.plot.MeterInterval;
 import org.jfree.chart.plot.MeterPlot;
 import org.jfree.data.Range;
 import org.jfree.data.general.DefaultValueDataset;
+
+import eone.base.model.MColorSchema;
 
 /**
  * 

@@ -16,7 +16,7 @@
  *****************************************************************************/
 package eone.base.process;
 
-import org.compiere.model.MInfoWindow;
+import eone.base.model.MInfoWindow;
 
 /**
  * 	Validate Info Window SQL

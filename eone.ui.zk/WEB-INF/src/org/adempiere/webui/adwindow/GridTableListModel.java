@@ -18,14 +18,15 @@ import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 
 import org.adempiere.webui.util.SortComparator;
-import org.compiere.model.GridField;
-import org.compiere.model.GridTable;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zul.AbstractListModel;
 import org.zkoss.zul.ListModel;
 import org.zkoss.zul.ListitemComparator;
 import org.zkoss.zul.event.ListDataEvent;
 import org.zkoss.zul.ext.Sortable;
+
+import eone.base.model.GridField;
+import eone.base.model.GridTable;
 
 /**
  * 

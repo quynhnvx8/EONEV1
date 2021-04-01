@@ -12,9 +12,9 @@ import javax.script.ScriptEngine;
 
 import org.adempiere.base.Core;
 import org.adempiere.exceptions.AdempiereException;
-import org.compiere.model.MProcess;
-import org.compiere.model.MRule;
 
+import eone.base.model.MProcess;
+import eone.base.model.MRule;
 import eone.base.process.ProcessCall;
 import eone.base.process.ProcessInfo;
 import eone.base.process.ProcessInfoParameter;

@@ -13,7 +13,7 @@
  *****************************************************************************/
 package org.adempiere.base;
 
-import org.compiere.model.ModelValidator;
+import eone.base.model.ModelValidator;
 
 /**
  * 

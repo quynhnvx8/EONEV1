@@ -24,13 +24,7 @@ import java.util.logging.Level;
 
 import javax.sql.DataSource;
 
-import org.adempiere.db.DBBundleActivator;
 import org.adempiere.exceptions.DBException;
-import org.compiere.dbPort.Convert;
-import org.compiere.dbPort.Convert_Oracle;
-import org.compiere.model.MColumn;
-import org.compiere.model.MTable;
-import org.compiere.model.PO;
 import org.compiere.util.CLogger;
 import org.compiere.util.DB;
 import org.compiere.util.DisplayType;
@@ -41,6 +35,9 @@ import org.compiere.util.Util;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
+import eone.base.model.MColumn;
+import eone.base.model.MTable;
+import eone.base.model.PO;
 import oracle.jdbc.OracleDriver;
 
 
@@ -704,7 +701,7 @@ public class DB_Oracle implements AdempiereDatabase
         try
         {
         	if (conn != null) {
-        		boolean trace = "true".equalsIgnoreCase(System.getProperty("org.adempiere.db.traceStatus"));
+        		boolean trace = "true".equalsIgnoreCase(System.getProperty("org.compiere.db.traceStatus"));
         		int numConnections = m_ds.getNumBusyConnections();
         		if (numConnections > 1)
         		{

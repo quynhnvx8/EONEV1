@@ -22,12 +22,13 @@ import java.util.Vector;
 import java.util.logging.Level;
 
 import org.compiere.minigrid.IMiniTable;
-import org.compiere.model.GridTab;
-import org.compiere.model.MBank;
 import org.compiere.util.DB;
 import org.compiere.util.Env;
 import org.compiere.util.KeyNamePair;
 import org.compiere.util.Msg;
+
+import eone.base.model.GridTab;
+import eone.base.model.MBank;
 
 /**
  * 

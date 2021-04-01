@@ -16,8 +16,7 @@ package org.compiere.util;
 import java.io.File;
 import java.util.List;
 
-import org.compiere.model.MLookup;
-
+import eone.base.model.MLookup;
 import eone.base.process.ProcessInfo;
 
 /**

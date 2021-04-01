@@ -25,7 +25,6 @@ import org.adempiere.webui.session.SessionManager;
 import org.adempiere.webui.theme.ThemeManager;
 import org.adempiere.webui.util.ZKUpdateUtil;
 import org.adempiere.webui.window.CustomizeGridViewDialog;
-import org.compiere.model.MToolBarButton;
 import org.compiere.util.Env;
 import org.compiere.util.Msg;
 import org.compiere.util.Util;
@@ -50,6 +49,8 @@ import org.zkoss.zul.Space;
 import org.zkoss.zul.Tabpanels;
 import org.zkoss.zul.Tabs;
 import org.zkoss.zul.Toolbar;
+
+import eone.base.model.MToolBarButton;
 
 /**
  * @author hengsin

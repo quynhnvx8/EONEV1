@@ -22,13 +22,14 @@ import java.sql.ResultSet;
 import java.util.Properties;
 import java.util.logging.Level;
 
-import org.compiere.model.MEntityType;
-import org.compiere.model.MTable;
-import org.compiere.model.PO;
 import org.compiere.util.CCache;
 import org.compiere.util.CLogger;
 import org.compiere.util.Env;
 import org.compiere.util.Util;
+
+import eone.base.model.MEntityType;
+import eone.base.model.MTable;
+import eone.base.model.PO;
 
 /**
  * Default model factory implementation base on legacy code in MTable.
@@ -45,22 +46,22 @@ public class DefaultModelFactory implements IModelFactory {
 	/**	Packages for Model Classes	*/
 	private static final String[]	s_packages = new String[] {
 
-		"org.compiere.model", "org.compiere.wf",
-		"org.compiere.print", "org.compiere.impexp",
+		"eone.base.model", "org.compiere.wf",
+		"org.compiere.print", "eone.base.impexp",
 		"compiere.model",			//	globalqss allow compatibility with other plugins
 		"adempiere.model"
 	};
 
 	/**	Special Classes				*/
 	private static final String[]	s_special = new String[] {
-		"AD_Element", "org.compiere.model.M_Element",
-		"AD_Tree", "org.compiere.model.MTree_Base",
-		"R_Category", "org.compiere.model.MRequestCategory",
-		"GL_Category", "org.compiere.model.MGLCategory",
-		"K_Category", "org.compiere.model.MKCategory",
-		"C_Account", "org.compiere.model.MAccount",
-		"C_Phase", "org.compiere.model.MProjectTypePhase",
-		"C_Task", "org.compiere.model.MProjectTypeTask"
+		"AD_Element", "eone.base.model.M_Element",
+		"AD_Tree", "eone.base.model.MTree_Base",
+		"R_Category", "eone.base.model.MRequestCategory",
+		"GL_Category", "eone.base.model.MGLCategory",
+		"K_Category", "eone.base.model.MKCategory",
+		"C_Account", "eone.base.model.MAccount",
+		"C_Phase", "eone.base.model.MProjectTypePhase",
+		"C_Task", "eone.base.model.MProjectTypeTask"
 	};
 
 	/* (non-Javadoc)
@@ -93,7 +94,7 @@ public class DefaultModelFactory implements IModelFactory {
 			MEntityType et = MEntityType.get(Env.getCtx(), entityType);
 			String etmodelpackage = et.getModelPackage();
 			if (etmodelpackage == null || MEntityType.ENTITYTYPE_Dictionary.equals(entityType))
-				etmodelpackage = "org.compiere.model"; // fallback for dictionary or empty model package on entity type
+				etmodelpackage = "eone.base.model"; // fallback for dictionary or empty model package on entity type
 			Class<?> clazz = getPOclass(etmodelpackage + ".X_" + tableName, tableName);
 			if (clazz != null)
 			{
@@ -175,7 +176,7 @@ public class DefaultModelFactory implements IModelFactory {
 
 
 		//	Adempiere Extension
-		Class<?> clazz = getPOclass("adempiere.model.X_" + tableName, tableName);
+		Class<?> clazz = getPOclass("base.model.X_" + tableName, tableName);
 		if (clazz != null)
 		{
 			s_classCache.put(tableName, clazz);
@@ -184,7 +185,7 @@ public class DefaultModelFactory implements IModelFactory {
 
 		//hengsin - allow compatibility with compiere plugins
 		//Compiere Extension
-		clazz = getPOclass("compiere.model.X_" + tableName, tableName);
+		clazz = getPOclass("base.model.X_" + tableName, tableName);
 		if (clazz != null)
 		{
 			s_classCache.put(tableName, clazz);
@@ -192,7 +193,7 @@ public class DefaultModelFactory implements IModelFactory {
 		}
 
 		//	Default
-		clazz = getPOclass("org.compiere.model.X_" + tableName, tableName);
+		clazz = getPOclass("eone.base.model.X_" + tableName, tableName);
 		if (clazz != null)
 		{
 			s_classCache.put(tableName, clazz);

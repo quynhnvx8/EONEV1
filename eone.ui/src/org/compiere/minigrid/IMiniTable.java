@@ -2,7 +2,7 @@ package org.compiere.minigrid;
 
 import java.sql.ResultSet;
 
-import org.compiere.model.PO;
+import eone.base.model.PO;
 
 public interface IMiniTable 
 {

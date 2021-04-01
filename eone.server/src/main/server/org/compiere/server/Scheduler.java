@@ -24,21 +24,21 @@ import java.util.List;
 import java.util.Properties;
 import java.util.logging.Level;
 
-import org.compiere.model.MAttachment;
-import org.compiere.model.MClient;
-import org.compiere.model.MNote;
-import org.compiere.model.MOrgInfo;
-import org.compiere.model.MProcess;
-import org.compiere.model.MRole;
-import org.compiere.model.MScheduler;
-import org.compiere.model.MSchedulerLog;
-import org.compiere.model.MUser;
 import org.compiere.util.CCache;
 import org.compiere.util.Env;
 import org.compiere.util.TimeUtil;
 import org.compiere.util.Trx;
 import org.compiere.util.Util;
 
+import eone.base.model.MAttachment;
+import eone.base.model.MClient;
+import eone.base.model.MNote;
+import eone.base.model.MOrgInfo;
+import eone.base.model.MProcess;
+import eone.base.model.MRole;
+import eone.base.model.MScheduler;
+import eone.base.model.MSchedulerLog;
+import eone.base.model.MUser;
 import eone.base.process.ProcessInfo;
 import eone.base.process.ServerProcessCtl;
 

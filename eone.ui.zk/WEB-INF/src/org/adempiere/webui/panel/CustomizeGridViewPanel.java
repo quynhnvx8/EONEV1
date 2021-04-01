@@ -42,14 +42,6 @@ import org.adempiere.webui.factory.ButtonFactory;
 import org.adempiere.webui.theme.ThemeManager;
 import org.adempiere.webui.util.ZKUpdateUtil;
 import org.adempiere.webui.window.FDialog;
-import org.compiere.model.I_AD_Field;
-import org.compiere.model.MField;
-import org.compiere.model.MRefList;
-import org.compiere.model.MRole;
-import org.compiere.model.MTab;
-import org.compiere.model.MTabCustomization;
-import org.compiere.model.Query;
-import org.compiere.model.X_AD_Tab_Customization;
 import org.compiere.util.CLogger;
 import org.compiere.util.Env;
 import org.compiere.util.Msg;
@@ -66,6 +58,15 @@ import org.zkoss.zul.Center;
 import org.zkoss.zul.Hlayout;
 import org.zkoss.zul.Separator;
 import org.zkoss.zul.South;
+
+import eone.base.model.I_AD_Field;
+import eone.base.model.MField;
+import eone.base.model.MRefList;
+import eone.base.model.MRole;
+import eone.base.model.MTab;
+import eone.base.model.MTabCustomization;
+import eone.base.model.Query;
+import eone.base.model.X_AD_Tab_Customization;
 
 /**
  * 

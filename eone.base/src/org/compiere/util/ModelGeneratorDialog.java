@@ -65,7 +65,7 @@ public class ModelGeneratorDialog extends JDialog implements ActionListener {
 		bFolder.addActionListener(this);
 
 		mainPanel.add(new JLabel("Package Name"));
-		fPackageName = new JTextField("org.compiere.model");
+		fPackageName = new JTextField("eone.base.model");
 		mainPanel.add(fPackageName);
 
 		mainPanel.add(new JLabel("Table Name"));

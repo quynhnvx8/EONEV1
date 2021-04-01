@@ -20,16 +20,17 @@ import java.sql.Timestamp;
 import java.util.Properties;
 import java.util.logging.Level;
 
-import org.compiere.model.AdempiereProcessor;
-import org.compiere.model.AdempiereProcessor2;
-import org.compiere.model.AdempiereProcessorLog;
-import org.compiere.model.MClient;
-import org.compiere.model.MSchedule;
-import org.compiere.model.MSystem;
-import org.compiere.model.PO;
 import org.compiere.util.CLogger;
 import org.compiere.util.Env;
 import org.compiere.util.TimeUtil;
+
+import eone.base.model.AdempiereProcessor;
+import eone.base.model.AdempiereProcessor2;
+import eone.base.model.AdempiereProcessorLog;
+import eone.base.model.MClient;
+import eone.base.model.MSchedule;
+import eone.base.model.MSystem;
+import eone.base.model.PO;
 
 /**
  *	Adempiere Server Base

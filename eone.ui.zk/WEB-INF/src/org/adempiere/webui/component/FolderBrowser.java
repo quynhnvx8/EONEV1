@@ -20,7 +20,6 @@ import org.adempiere.webui.apps.AEnv;
 import org.adempiere.webui.theme.ThemeManager;
 import org.adempiere.webui.util.ZKUpdateUtil;
 import org.adempiere.webui.window.FDialog;
-import org.compiere.model.MSysConfig;
 import org.compiere.util.Ini;
 import org.compiere.util.Util;
 import org.compiere.util.ValueNamePair;
@@ -31,6 +30,8 @@ import org.zkoss.zul.Borderlayout;
 import org.zkoss.zul.Center;
 import org.zkoss.zul.North;
 import org.zkoss.zul.South;
+
+import eone.base.model.MSysConfig;
 
 /**
  * Directory and File Browser

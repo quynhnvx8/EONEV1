@@ -38,12 +38,11 @@ import java.util.Properties;
 import java.util.Vector;
 import java.util.logging.Level;
 
-
-import org.compiere.model.MColumn;
-import org.compiere.model.MQuery;
-import org.compiere.model.MRole;
-import org.compiere.model.MSearchDefinition;
-import org.compiere.model.MTable;
+import eone.base.model.MColumn;
+import eone.base.model.MQuery;
+import eone.base.model.MRole;
+import eone.base.model.MSearchDefinition;
+import eone.base.model.MTable;
 
 /**
  * Executes search and opens windows for defined transaction codes

@@ -15,8 +15,9 @@ package org.adempiere.server;
 
 import java.util.Properties;
 
-import org.compiere.model.AdempiereProcessor;
 import org.compiere.server.AdempiereServer;
+
+import eone.base.model.AdempiereProcessor;
 
 /**
  *

@@ -23,8 +23,6 @@ import org.adempiere.webui.component.ZkCssHelper;
 import org.adempiere.webui.theme.ThemeManager;
 import org.adempiere.webui.util.ZKUpdateUtil;
 import org.adempiere.webui.window.FDialog;
-import org.compiere.model.GridField;
-import org.compiere.model.MRole;
 import org.compiere.util.CLogMgt;
 import org.compiere.util.CLogger;
 import org.compiere.util.DB;
@@ -41,6 +39,9 @@ import org.zkoss.zul.Div;
 import org.zkoss.zul.Hlayout;
 import org.zkoss.zul.Space;
 import org.zkoss.zul.Vlayout;
+
+import eone.base.model.GridField;
+import eone.base.model.MRole;
 
 /**
  *  Click button Right get value.

@@ -15,10 +15,11 @@
 package org.adempiere.webui.apps;
 
 import org.adempiere.webui.window.FDialog;
-import org.compiere.model.MLookup;
 import org.compiere.util.Callback;
 import org.compiere.util.ICalloutUI;
 import org.zkoss.zk.ui.Desktop;
+
+import eone.base.model.MLookup;
 
 /**
  * Callout Dialog used for Ask For Input

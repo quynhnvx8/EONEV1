@@ -26,7 +26,6 @@ import org.adempiere.webui.component.Tabs;
 import org.adempiere.webui.component.Textbox;
 import org.adempiere.webui.component.VerticalBox;
 import org.adempiere.webui.component.Window;
-import org.compiere.model.MPostIt;
 import org.compiere.util.Env;
 import org.compiere.util.Language;
 import org.zkforge.ckez.CKeditor;
@@ -34,6 +33,8 @@ import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zul.Separator;
+
+import eone.base.model.MPostIt;
 
 /**
  * bas� sur WTextEditorDialog

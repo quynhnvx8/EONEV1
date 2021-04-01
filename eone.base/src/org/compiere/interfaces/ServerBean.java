@@ -19,13 +19,13 @@ package org.compiere.interfaces;
 import java.util.Properties;
 import java.util.logging.Level;
 
-import org.compiere.model.MTask;
 import org.compiere.util.CLogger;
 import org.compiere.util.CacheMgt;
 import org.compiere.util.EMail;
 import org.compiere.util.Env;
 import org.compiere.util.ProcessUtil;
 
+import eone.base.model.MTask;
 import eone.base.process.ProcessInfo;
 
 /**

@@ -15,12 +15,13 @@ package org.adempiere.webui.theme;
 
 import java.io.IOException;
 
-import org.compiere.model.MClientInfo;
-import org.compiere.model.MImage;
-import org.compiere.model.MSysConfig;
 import org.compiere.util.Env;
 import org.compiere.util.Util;
 import org.zkoss.image.AImage;
+
+import eone.base.model.MClientInfo;
+import eone.base.model.MImage;
+import eone.base.model.MSysConfig;
 
 /**
  *

@@ -4,9 +4,10 @@ package org.adempiere.webui.scheduler;
 import org.adempiere.webui.editor.IEditorConfiguration;
 import org.adempiere.webui.editor.WEditor;
 import org.adempiere.webui.factory.IEditorFactory;
-import org.compiere.model.GridField;
-import org.compiere.model.GridTab;
 import org.osgi.service.component.annotations.Component;
+
+import eone.base.model.GridField;
+import eone.base.model.GridTab;
 
 /**
  * @author hengsin

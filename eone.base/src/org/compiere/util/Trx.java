@@ -34,8 +34,9 @@ import java.util.logging.Level;
 import org.adempiere.exceptions.AdempiereException;
 import org.adempiere.exceptions.DBException;
 import org.compiere.Adempiere;
-import org.compiere.model.MSysConfig;
-import org.compiere.model.PO;
+
+import eone.base.model.MSysConfig;
+import eone.base.model.PO;
 
 /**
  *	Transaction Management.

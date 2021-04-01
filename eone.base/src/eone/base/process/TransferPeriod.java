@@ -7,12 +7,13 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 
-import org.compiere.model.MTransferConfig;
-import org.compiere.model.MTransferConfigLine;
-import org.compiere.model.MTransferPeriod;
-import org.compiere.model.MTransferPeriodLine;
 import org.compiere.util.DB;
 import org.compiere.util.Env;
+
+import eone.base.model.MTransferConfig;
+import eone.base.model.MTransferConfigLine;
+import eone.base.model.MTransferPeriod;
+import eone.base.model.MTransferPeriodLine;
 
 //TODO: Chua xu ly triet de.
 public class TransferPeriod extends SvrProcess

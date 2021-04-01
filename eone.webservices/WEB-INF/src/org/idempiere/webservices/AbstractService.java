@@ -32,15 +32,8 @@ import org.adempiere.base.ServiceQuery;
 import org.adempiere.base.equinox.EquinoxExtensionLocator;
 import org.adempiere.exceptions.AdempiereException;
 import org.apache.commons.codec.binary.Base64;
-import org.compiere.model.Lookup;
-import org.compiere.model.MUser;
 import org.compiere.model.MWebService;
 import org.compiere.model.MWebServiceType;
-import org.compiere.model.PO;
-import org.compiere.model.POInfo;
-import org.compiere.model.Query;
-import org.compiere.model.X_WS_WebServiceMethod;
-import org.compiere.model.X_WS_WebServiceTypeAccess;
 import org.compiere.util.CCache;
 import org.compiere.util.DB;
 import org.compiere.util.Env;
@@ -56,6 +49,14 @@ import org.idempiere.adInterface.x10.StandardResponse;
 import org.idempiere.adInterface.x10.StandardResponseDocument;
 import org.idempiere.adinterface.CompiereService;
 import org.idempiere.webservices.fault.IdempiereServiceFault;
+
+import eone.base.model.Lookup;
+import eone.base.model.MUser;
+import eone.base.model.PO;
+import eone.base.model.POInfo;
+import eone.base.model.Query;
+import eone.base.model.X_WS_WebServiceMethod;
+import eone.base.model.X_WS_WebServiceTypeAccess;
 
 
 

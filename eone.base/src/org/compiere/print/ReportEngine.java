@@ -27,7 +27,6 @@ import javax.print.event.PrintServiceAttributeListener;
 
 import org.adempiere.exceptions.AdempiereException;
 import org.adempiere.pdf.WritePDF;
-import org.adempiere.print.export.PrintDataXLSXExporter;
 //import org.adempiere.webui.window.ZkReportViewer.HTMLRendererRunnable.CSSInfo;
 import org.apache.ecs.XhtmlDocument;
 import org.apache.ecs.xhtml.a;
@@ -37,14 +36,15 @@ import org.apache.ecs.xhtml.tbody;
 import org.apache.ecs.xhtml.td;
 import org.apache.ecs.xhtml.th;
 import org.apache.ecs.xhtml.tr;
-import org.compiere.model.I_AD_PrintFormat;
-import org.compiere.model.MProcess;
-import org.compiere.model.PrintInfo;
 import org.compiere.util.CLogger;
 import org.compiere.util.Env;
 import org.compiere.util.Ini;
 import org.compiere.util.Util;
 
+import eone.base.impexp.PrintDataXLSXExporter;
+import eone.base.model.I_AD_PrintFormat;
+import eone.base.model.MProcess;
+import eone.base.model.PrintInfo;
 import eone.base.process.ProcessInfo;
 
 public class ReportEngine implements PrintServiceAttributeListener

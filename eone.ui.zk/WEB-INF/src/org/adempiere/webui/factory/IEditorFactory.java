@@ -3,8 +3,9 @@ package org.adempiere.webui.factory;
 
 import org.adempiere.webui.editor.IEditorConfiguration;
 import org.adempiere.webui.editor.WEditor;
-import org.compiere.model.GridField;
-import org.compiere.model.GridTab;
+
+import eone.base.model.GridField;
+import eone.base.model.GridTab;
 
 public interface IEditorFactory {
 

@@ -31,7 +31,6 @@ import org.compiere.util.CStatementVO;
 import org.compiere.util.DB;
 import org.compiere.util.DisplayType;
 import org.compiere.util.Trx;
-import org.idempiere.db.util.AutoCommitConnectionBroker;
 
 /**
  *

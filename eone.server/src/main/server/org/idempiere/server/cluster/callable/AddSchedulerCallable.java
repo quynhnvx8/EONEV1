@@ -28,9 +28,10 @@ package org.idempiere.server.cluster.callable;
 import java.io.Serializable;
 import java.util.concurrent.Callable;
 
-import org.compiere.model.MScheduler;
 import org.compiere.server.AdempiereServerMgr;
 import org.compiere.server.IServerManager;
+
+import eone.base.model.MScheduler;
 
 /**
  * @author hengsin

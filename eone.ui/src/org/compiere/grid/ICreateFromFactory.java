@@ -13,7 +13,7 @@
  *****************************************************************************/
 package org.compiere.grid;
 
-import org.compiere.model.GridTab;
+import eone.base.model.GridTab;
 
 /**
  * 

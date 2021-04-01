@@ -39,9 +39,6 @@ import org.adempiere.webui.component.Window;
 import org.adempiere.webui.session.SessionManager;
 import org.adempiere.webui.theme.ThemeManager;
 import org.adempiere.webui.util.ZKUpdateUtil;
-import org.compiere.model.MDashboardContent;
-import org.compiere.model.MDashboardPreference;
-import org.compiere.model.Query;
 import org.compiere.util.DB;
 import org.compiere.util.Env;
 import org.compiere.util.KeyNamePair;
@@ -58,6 +55,10 @@ import org.zkoss.zk.ui.util.Clients;
 import org.zkoss.zul.Hlayout;
 import org.zkoss.zul.Vbox;
 import org.zkoss.zul.Vlayout;
+
+import eone.base.model.MDashboardContent;
+import eone.base.model.MDashboardPreference;
+import eone.base.model.Query;
 
 /**
  * @author juliana

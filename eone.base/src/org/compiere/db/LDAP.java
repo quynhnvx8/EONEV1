@@ -26,8 +26,9 @@ import javax.naming.directory.Attribute;
 import javax.naming.directory.Attributes;
 import javax.naming.ldap.InitialLdapContext;
 
-import org.compiere.model.MSysConfig;
 import org.compiere.util.CLogger;
+
+import eone.base.model.MSysConfig;
 
 
 /**

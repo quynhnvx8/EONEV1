@@ -18,8 +18,9 @@ import java.util.List;
 import java.util.Properties;
 
 import org.adempiere.server.IServerFactory;
-import org.compiere.model.MAlertProcessor;
 import org.compiere.server.AlertProcessor;
+
+import eone.base.model.MAlertProcessor;
 
 /**
  * @author hengsin

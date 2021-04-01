@@ -21,11 +21,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.logging.Level;
 
-import org.compiere.model.MTable;
-import org.compiere.model.MTree;
-import org.compiere.model.MTree_Node;
-import org.compiere.model.PO;
 import org.compiere.util.DB;
+
+import eone.base.model.MTable;
+import eone.base.model.MTree;
+import eone.base.model.MTree_Node;
+import eone.base.model.PO;
 
 /**
  *	Tree Maintenance	

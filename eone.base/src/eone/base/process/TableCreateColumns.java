@@ -23,13 +23,14 @@ import java.sql.Types;
 import java.util.logging.Level;
 
 import org.compiere.db.AdempiereDatabase;
-import org.compiere.model.MColumn;
-import org.compiere.model.MTable;
-import org.compiere.model.M_Element;
-import org.compiere.model.PO;
 import org.compiere.util.AdempiereSystemError;
 import org.compiere.util.DB;
 import org.compiere.util.DisplayType;
+
+import eone.base.model.MColumn;
+import eone.base.model.MTable;
+import eone.base.model.M_Element;
+import eone.base.model.PO;
 
 
 /**

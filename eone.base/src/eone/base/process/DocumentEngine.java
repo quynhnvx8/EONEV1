@@ -16,16 +16,17 @@ import org.adempiere.base.event.EventManager;
 import org.adempiere.base.event.EventProperty;
 import org.adempiere.base.event.IEventTopics;
 import org.adempiere.exceptions.AdempiereException;
-import org.compiere.acct.DocManager;
-import org.compiere.model.MClient;
-import org.compiere.model.MColumn;
-import org.compiere.model.MTable;
-import org.compiere.model.PO;
-import org.compiere.model.SystemIDs;
 import org.compiere.util.CLogger;
 import org.compiere.util.DB;
 import org.compiere.util.Env;
 import org.osgi.service.event.Event;
+
+import eone.base.acct.DocManager;
+import eone.base.model.MClient;
+import eone.base.model.MColumn;
+import eone.base.model.MTable;
+import eone.base.model.PO;
+import eone.base.model.SystemIDs;
 
 
 public class DocumentEngine implements DocAction

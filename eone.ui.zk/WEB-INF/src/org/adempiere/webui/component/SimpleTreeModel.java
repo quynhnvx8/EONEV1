@@ -9,8 +9,6 @@ import java.util.logging.Level;
 
 import org.adempiere.webui.ClientInfo;
 import org.adempiere.webui.panel.TreeSearchPanel;
-import org.compiere.model.MTree;
-import org.compiere.model.MTreeNode;
 import org.compiere.util.CLogger;
 import org.compiere.util.Env;
 import org.compiere.util.Msg;
@@ -28,6 +26,9 @@ import org.zkoss.zul.Treeitem;
 import org.zkoss.zul.TreeitemRenderer;
 import org.zkoss.zul.Treerow;
 import org.zkoss.zul.event.TreeDataEvent;
+
+import eone.base.model.MTree;
+import eone.base.model.MTreeNode;
 
 
 public class SimpleTreeModel extends org.zkoss.zul.DefaultTreeModel<Object> implements TreeitemRenderer<Object>, EventListener<Event> {

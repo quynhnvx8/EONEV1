@@ -33,14 +33,15 @@ import java.util.logging.Level;
 
 import org.adempiere.exceptions.DBException;
 import org.compiere.Adempiere;
-import org.compiere.model.MColumn;
-import org.compiere.model.MTable;
-import org.compiere.model.M_Element;
 import org.compiere.util.CLogMgt;
 import org.compiere.util.CLogger;
 import org.compiere.util.DB;
 import org.compiere.util.DisplayType;
 import org.compiere.util.Util;
+
+import eone.base.model.MColumn;
+import eone.base.model.MTable;
+import eone.base.model.M_Element;
 
 /**
  *  Class to Create a new Adempiere Database from a reference DB.

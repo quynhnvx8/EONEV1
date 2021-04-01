@@ -45,8 +45,6 @@ import org.adempiere.webui.event.ActionListener;
 import org.adempiere.webui.session.SessionManager;
 import org.adempiere.webui.util.GridTabDataBinder;
 import org.adempiere.webui.util.ZKUpdateUtil;
-import org.compiere.model.GridField;
-import org.compiere.model.GridTab;
 import org.compiere.util.DisplayType;
 import org.compiere.util.Env;
 import org.compiere.util.GridRowCtx;
@@ -69,6 +67,9 @@ import org.zkoss.zul.Row;
 import org.zkoss.zul.RowRenderer;
 import org.zkoss.zul.RowRendererExt;
 import org.zkoss.zul.Timebox;
+
+import eone.base.model.GridField;
+import eone.base.model.GridTab;
 
 /**
  * Row renderer for Quick GridTab grid.

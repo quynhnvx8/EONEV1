@@ -17,6 +17,8 @@
 
 package org.adempiere.webui.panel;
 
+import static eone.base.model.SystemIDs.*;
+
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Timestamp;
@@ -40,11 +42,6 @@ import org.adempiere.webui.theme.ThemeManager;
 import org.adempiere.webui.util.ZKUpdateUtil;
 import org.compiere.minigrid.ColumnInfo;
 import org.compiere.minigrid.IDColumn;
-import org.compiere.model.MLookupFactory;
-import org.compiere.model.MQuery;
-
-import static org.compiere.model.SystemIDs.*;
-
 import org.compiere.util.DB;
 import org.compiere.util.DisplayType;
 import org.compiere.util.Env;
@@ -59,6 +56,9 @@ import org.zkoss.zul.South;
 import org.zkoss.zul.Div;
 import org.zkoss.zul.Separator;
 import org.zkoss.zul.Vbox;
+
+import eone.base.model.MLookupFactory;
+import eone.base.model.MQuery;
 
 /**
 * Based on InfoAssignment written by Jorg Janke

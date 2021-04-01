@@ -16,7 +16,7 @@ Bundle-ClassPath: .,
 Import-Package: org.osgi.framework,
  org.slf4j;version="1.7.2"
 Bundle-ActivationPolicy: lazy
-Bundle-Activator: org.adempiere.db.DBBundleActivator
+Bundle-Activator: org.compiere.db.DBBundleActivator
 Service-Component: OSGI-INF/*.xml
 Automatic-Module-Name: org.compiere.db.provider
 Bundle-Vendor: EONE

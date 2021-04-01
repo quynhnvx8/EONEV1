@@ -21,8 +21,8 @@ import java.text.ParsePosition;
 import java.util.ArrayList;
 import java.util.logging.Level;
 
-import org.compiere.model.MBPartnerInfo;
-import org.compiere.model.MBPartner;
+import eone.base.model.MBPartner;
+import eone.base.model.MBPartnerInfo;
 
 /**
  * 

@@ -9,10 +9,9 @@ import java.sql.Timestamp;
 
 import javax.sql.DataSource;
 
-import org.compiere.dbPort.Convert;
-import org.compiere.model.MColumn;
-import org.compiere.model.MTable;
-import org.compiere.model.PO;
+import eone.base.model.MColumn;
+import eone.base.model.MTable;
+import eone.base.model.PO;
 
 
 public interface AdempiereDatabase

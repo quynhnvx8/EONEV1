@@ -26,7 +26,6 @@ import org.adempiere.webui.part.WindowContainer;
 import org.adempiere.webui.session.SessionManager;
 import org.adempiere.webui.util.OSTask;
 import org.adempiere.webui.util.ZKUpdateUtil;
-import org.compiere.model.MTask;
 import org.compiere.util.CLogger;
 import org.compiere.util.Env;
 import org.compiere.util.Msg;
@@ -40,6 +39,8 @@ import org.zkoss.zul.Center;
 import org.zkoss.zul.Div;
 import org.zkoss.zul.Html;
 import org.zkoss.zul.South;
+
+import eone.base.model.MTask;
 
 /**
  *  Application Task

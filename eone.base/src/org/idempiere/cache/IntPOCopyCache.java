@@ -25,7 +25,7 @@
 **********************************************************************/
 package org.idempiere.cache;
 
-import org.compiere.model.PO;
+import eone.base.model.PO;
 
 /**
  * POCopyCache key by Integer record id

@@ -37,13 +37,6 @@ import org.adempiere.webui.grid.WQuickEntry;
 import org.adempiere.webui.theme.ThemeManager;
 import org.adempiere.webui.util.ZKUpdateUtil;
 import org.adempiere.webui.window.WFieldRecordInfo;
-import org.compiere.model.GridField;
-import org.compiere.model.GridTable;
-import org.compiere.model.Lookup;
-import org.compiere.model.MColumn;
-import org.compiere.model.MLookup;
-import org.compiere.model.MRole;
-import org.compiere.model.MTable;
 import org.compiere.util.CCache;
 import org.compiere.util.CLogger;
 import org.compiere.util.CacheMgt;
@@ -67,6 +60,14 @@ import org.zkoss.zk.ui.util.Clients;
 import org.zkoss.zk.ui.util.DesktopCleanup;
 import org.zkoss.zul.Comboitem;
 import org.zkoss.zul.Menuitem;
+
+import eone.base.model.GridField;
+import eone.base.model.GridTable;
+import eone.base.model.Lookup;
+import eone.base.model.MColumn;
+import eone.base.model.MLookup;
+import eone.base.model.MRole;
+import eone.base.model.MTable;
 
 /**
  *

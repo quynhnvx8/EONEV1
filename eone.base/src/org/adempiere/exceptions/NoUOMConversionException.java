@@ -13,9 +13,10 @@
  *****************************************************************************/
 package org.adempiere.exceptions;
 
-import org.compiere.model.MProduct;
-import org.compiere.model.MUOM;
 import org.compiere.util.Env;
+
+import eone.base.model.MProduct;
+import eone.base.model.MUOM;
 
 /**
  * Any exception that occurs when no UOM conversion rate was found

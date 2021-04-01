@@ -22,8 +22,6 @@ import org.adempiere.webui.component.ListCell;
 import org.adempiere.webui.component.ListItem;
 import org.adempiere.webui.editor.WEditor;
 import org.adempiere.webui.editor.WebEditorFactory;
-import org.compiere.model.GridField;
-import org.compiere.model.GridTab;
 import org.compiere.util.DisplayType;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zul.Listbox;
@@ -32,6 +30,9 @@ import org.zkoss.zul.Listitem;
 import org.zkoss.zul.ListitemRenderer;
 import org.zkoss.zul.ListitemRendererExt;
 import org.zkoss.zul.RendererCtrl;
+
+import eone.base.model.GridField;
+import eone.base.model.GridTab;
 
 /**
  * ListItem renderer for GridTabSelectionListView

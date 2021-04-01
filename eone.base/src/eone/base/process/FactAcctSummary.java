@@ -5,9 +5,10 @@ package eone.base.process;
 import java.sql.Timestamp;
 import java.util.logging.Level;
 
-import org.compiere.model.MYear;
 import org.compiere.util.DB;
 import org.compiere.util.TimeUtil;
+
+import eone.base.model.MYear;
 
 
 public class FactAcctSummary extends SvrProcess {

@@ -24,7 +24,6 @@ import org.compiere.util.CCachedRowSet;
 import org.compiere.util.CStatementVO;
 import org.compiere.util.DB;
 import org.compiere.util.Trx;
-import org.idempiere.db.util.AutoCommitConnectionBroker;
 
 /**
  * Dynamic proxy for the CPreparedStatement interface 

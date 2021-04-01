@@ -15,8 +15,8 @@ package org.adempiere.base.event;
 
 import java.util.List;
 
-import org.compiere.acct.Fact;
-import org.compiere.model.PO;
+import eone.base.acct.Fact;
+import eone.base.model.PO;
 
 /**
  *

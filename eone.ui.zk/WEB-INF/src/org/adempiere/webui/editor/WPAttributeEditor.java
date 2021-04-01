@@ -15,7 +15,7 @@ package org.adempiere.webui.editor;
 
 
 
-import static org.compiere.model.SystemIDs.COLUMN_M_PRODUCT_M_ATTRIBUTESETINSTANCE_ID;
+import static eone.base.model.SystemIDs.COLUMN_M_PRODUCT_M_ATTRIBUTESETINSTANCE_ID;
 
 import java.util.logging.Level;
 
@@ -26,13 +26,14 @@ import org.adempiere.webui.event.ContextMenuListener;
 import org.adempiere.webui.event.ValueChangeEvent;
 import org.adempiere.webui.theme.ThemeManager;
 import org.adempiere.webui.window.WFieldRecordInfo;
-import org.compiere.model.GridField;
-import org.compiere.model.GridTab;
-import org.compiere.model.Lookup;
 import org.compiere.util.CLogger;
 import org.compiere.util.Env;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.Events;
+
+import eone.base.model.GridField;
+import eone.base.model.GridTab;
+import eone.base.model.Lookup;
 
 /**
  *

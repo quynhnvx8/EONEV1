@@ -19,13 +19,14 @@ package eone.base.process;
 import java.sql.Timestamp;
 import java.util.logging.Level;
 
-import org.compiere.model.MInOut;
-import org.compiere.model.MInOutLine;
-import org.compiere.model.MOrder;
-import org.compiere.model.MOrderLine;
 import org.compiere.util.DB;
 import org.compiere.util.Env;
 import org.compiere.util.Msg;
+
+import eone.base.model.MInOut;
+import eone.base.model.MInOutLine;
+import eone.base.model.MOrder;
+import eone.base.model.MOrderLine;
  
 /**
  *	Create (Generate) Invoice from Shipment

@@ -20,10 +20,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 
-import org.compiere.model.MPeriod;
 import org.compiere.util.AdempiereUserError;
 import org.compiere.util.CacheMgt;
 import org.compiere.util.DB;
+
+import eone.base.model.MPeriod;
 
 /**
  *	Open/Close all Period (Control)

@@ -27,7 +27,7 @@ package org.compiere.server;
 
 import java.sql.Timestamp;
 
-import org.compiere.model.MScheduler;
+import eone.base.model.MScheduler;
 
 /**
  * 

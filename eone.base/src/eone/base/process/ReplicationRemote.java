@@ -23,8 +23,9 @@ import java.util.logging.Level;
 
 import javax.sql.RowSet;
 
-import org.compiere.model.MSystem;
 import org.compiere.util.DB;
+
+import eone.base.model.MSystem;
 
 /**
  * 	Remote Data Replication.

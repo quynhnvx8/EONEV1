@@ -12,9 +12,10 @@
  *****************************************************************************/
 package org.adempiere.webui.adwindow;
 
-import org.compiere.model.GridTab;
 import org.compiere.util.Evaluatee;
 import org.zkoss.zk.ui.Component;
+
+import eone.base.model.GridTab;
 
 /**
  * Interface for UI component that edit/display record using ad_tab definitions

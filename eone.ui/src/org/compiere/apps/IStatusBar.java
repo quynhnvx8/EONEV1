@@ -1,6 +1,6 @@
 package org.compiere.apps;
 
-import org.compiere.model.DataStatusEvent;
+import eone.base.model.DataStatusEvent;
 
 public interface IStatusBar 
 {

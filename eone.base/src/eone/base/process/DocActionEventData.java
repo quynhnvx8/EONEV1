@@ -3,7 +3,7 @@ package eone.base.process;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import org.compiere.model.PO;
+import eone.base.model.PO;
 
 public class DocActionEventData {
 

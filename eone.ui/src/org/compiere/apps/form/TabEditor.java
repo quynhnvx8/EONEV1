@@ -21,11 +21,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.compiere.model.GridField;
-import org.compiere.model.MField;
-import org.compiere.model.MTab;
 import org.compiere.util.CLogger;
 import org.compiere.util.Env;
+
+import eone.base.model.GridField;
+import eone.base.model.MField;
+import eone.base.model.MTab;
 
 /**
  *

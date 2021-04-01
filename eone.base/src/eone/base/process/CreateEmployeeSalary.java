@@ -8,12 +8,13 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.compiere.model.MSalary;
-import org.compiere.model.MSalaryLine;
-import org.compiere.model.MTimekeeperMap;
-import org.compiere.model.X_HR_SalaryLine;
 import org.compiere.util.DB;
 import org.compiere.util.Env;
+
+import eone.base.model.MSalary;
+import eone.base.model.MSalaryLine;
+import eone.base.model.MTimekeeperMap;
+import eone.base.model.X_HR_SalaryLine;
 
 public class CreateEmployeeSalary extends SvrProcess {
 

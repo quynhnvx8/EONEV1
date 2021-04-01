@@ -28,9 +28,6 @@ import org.adempiere.webui.event.ValueChangeEvent;
 import org.adempiere.webui.event.ValueChangeListener;
 import org.adempiere.webui.util.ZKUpdateUtil;
 import org.adempiere.webui.window.FDialog;
-import org.compiere.model.MBPartner;
-import org.compiere.model.MRole;
-import org.compiere.model.MUser;
 import org.compiere.util.CLogger;
 import org.compiere.util.DB;
 import org.compiere.util.Env;
@@ -45,6 +42,10 @@ import org.zkoss.zul.Hlayout;
 import org.zkoss.zul.Separator;
 import org.zkoss.zul.Span;
 import org.zkoss.zul.Vlayout;
+
+import eone.base.model.MBPartner;
+import eone.base.model.MRole;
+import eone.base.model.MUser;
 
 /**
  * Business Partner : Based on VBPartner

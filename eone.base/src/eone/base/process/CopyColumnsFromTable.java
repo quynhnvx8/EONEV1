@@ -17,13 +17,14 @@ package eone.base.process;
 
 import java.util.logging.Level;
 
-import org.compiere.model.MColumn;
-import org.compiere.model.MTable;
-import org.compiere.model.M_Element;
-import org.compiere.model.PO;
 import org.compiere.util.AdempiereSystemError;
 import org.compiere.util.Env;
 import org.compiere.util.Msg;
+
+import eone.base.model.MColumn;
+import eone.base.model.MTable;
+import eone.base.model.M_Element;
+import eone.base.model.PO;
 
 /**
  *	Copy columns from one table to other

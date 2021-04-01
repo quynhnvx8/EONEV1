@@ -13,8 +13,8 @@
 
 package org.compiere.minigrid;
 
-import org.compiere.model.MInfoColumn;
-import org.compiere.model.MInfoWindow;
+import eone.base.model.MInfoColumn;
+import eone.base.model.MInfoWindow;
 
 public class EmbedWinInfo {
 	private MInfoWindow infowin;

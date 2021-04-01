@@ -18,10 +18,11 @@ package eone.base.process;
 
 import java.util.logging.Level;
 
-import org.compiere.model.MField;
-import org.compiere.model.MTab;
 import org.compiere.util.AdempiereUserError;
 import org.compiere.util.DB;
+
+import eone.base.model.MField;
+import eone.base.model.MTab;
 
 
 /**

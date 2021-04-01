@@ -27,11 +27,6 @@ import org.adempiere.webui.component.ListHead;
 import org.adempiere.webui.component.ListHeader;
 import org.adempiere.webui.component.Listbox;
 import org.adempiere.webui.util.ZKUpdateUtil;
-import org.compiere.model.GridField;
-import org.compiere.model.GridTab;
-import org.compiere.model.GridTable;
-import org.compiere.model.MSysConfig;
-import org.compiere.model.MTabCustomization;
 import org.compiere.util.DisplayType;
 import org.compiere.util.Env;
 import org.compiere.util.Msg;
@@ -42,6 +37,12 @@ import org.zkoss.zul.Box;
 import org.zkoss.zul.ListModel;
 import org.zkoss.zul.Vlayout;
 import org.zkoss.zul.ext.Selectable;
+
+import eone.base.model.GridField;
+import eone.base.model.GridTab;
+import eone.base.model.GridTable;
+import eone.base.model.MSysConfig;
+import eone.base.model.MTabCustomization;
 
 /**
  * Read only grid view for single or multi selection

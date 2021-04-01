@@ -13,7 +13,7 @@
  *****************************************************************************/
 package org.adempiere.webui.apps.graph.model;
 
-import org.compiere.model.MChart;
+import eone.base.model.MChart;
 
 /**
  * 

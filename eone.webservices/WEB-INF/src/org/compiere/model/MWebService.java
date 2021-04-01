@@ -40,6 +40,9 @@ import org.compiere.util.CCache;
 import org.compiere.util.CLogger;
 import org.compiere.util.DB;
 
+import eone.base.model.X_WS_WebService;
+import eone.base.model.X_WS_WebServiceMethod;
+
 /**
  *	Web Services Model
  *	

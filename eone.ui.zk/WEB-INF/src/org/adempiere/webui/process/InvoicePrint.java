@@ -24,12 +24,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 
-import org.compiere.model.MClient;
-import org.compiere.model.MInvoice;
-import org.compiere.model.MQuery;
-import org.compiere.model.MRole;
-import org.compiere.model.MUser;
-import org.compiere.model.PrintInfo;
 import org.compiere.print.MPrintFormat;
 import org.compiere.print.ReportEngine;
 import org.compiere.util.AdempiereUserError;
@@ -38,6 +32,12 @@ import org.compiere.util.Env;
 import org.compiere.util.Language;
 import org.compiere.util.Util;
 
+import eone.base.model.MClient;
+import eone.base.model.MInvoice;
+import eone.base.model.MQuery;
+import eone.base.model.MRole;
+import eone.base.model.MUser;
+import eone.base.model.PrintInfo;
 import eone.base.process.ProcessInfoParameter;
 import eone.base.process.SvrProcess;
 

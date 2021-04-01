@@ -46,9 +46,10 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
-import org.compiere.model.MClient;
-import org.compiere.model.MSysConfig;
 import com.sun.mail.smtp.SMTPMessage;
+
+import eone.base.model.MClient;
+import eone.base.model.MSysConfig;
 
 /**
  *	EMail Object.

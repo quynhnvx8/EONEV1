@@ -25,8 +25,6 @@ import org.adempiere.webui.editor.WYesNoEditor;
 import org.adempiere.webui.grid.WQuickEntry;
 import org.adempiere.webui.theme.ThemeManager;
 import org.adempiere.webui.util.ZKUpdateUtil;
-import org.compiere.model.MRole;
-import org.compiere.model.MUserPreference;
 import org.compiere.util.CLogger;
 import org.compiere.util.Env;
 import org.compiere.util.Msg;
@@ -36,6 +34,9 @@ import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zul.A;
 import org.zkoss.zul.Div;
+
+import eone.base.model.MRole;
+import eone.base.model.MUserPreference;
 /**
  *
  * @author hengsin

@@ -18,12 +18,13 @@ import java.beans.PropertyChangeSupport;
 
 import org.adempiere.webui.LayoutUtils;
 import org.adempiere.webui.util.ZKUpdateUtil;
-import org.compiere.model.MSysConfig;
 import org.compiere.util.Env;
 import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zul.Comboitem;
 import org.zkoss.zul.Div;
+
+import eone.base.model.MSysConfig;
 
 /**
  * 

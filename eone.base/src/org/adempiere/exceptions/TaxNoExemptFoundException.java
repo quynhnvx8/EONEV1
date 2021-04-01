@@ -13,8 +13,9 @@
  *****************************************************************************/
 package org.adempiere.exceptions;
 
-import org.compiere.model.MOrg;
 import org.compiere.util.Env;
+
+import eone.base.model.MOrg;
 
 /**
  * Throw by Tax Engine where no tax found for given criteria

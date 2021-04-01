@@ -34,9 +34,10 @@ import org.adempiere.webui.factory.IFormFactory;
 import org.adempiere.webui.panel.ADForm;
 import org.compiere.grid.ICreateFrom;
 import org.compiere.grid.ICreateFromFactory;
-import org.compiere.model.GridTab;
 import org.compiere.util.CCache;
 import org.zkoss.zk.ui.Component;
+
+import eone.base.model.GridTab;
 
 /**
  *

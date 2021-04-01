@@ -4,9 +4,6 @@ import java.util.logging.Level;
 
 import org.adempiere.webui.util.TreeUtils;
 import org.adempiere.webui.window.FDialog;
-import org.compiere.model.MRole;
-import org.compiere.model.MTree;
-import org.compiere.model.MTreeNode;
 import org.compiere.util.CLogger;
 import org.compiere.util.DB;
 import org.compiere.util.Env;
@@ -22,6 +19,10 @@ import org.zkoss.zul.Menupopup;
 import org.zkoss.zul.Tree;
 import org.zkoss.zul.Treeitem;
 import org.zkoss.zul.Treerow;
+
+import eone.base.model.MRole;
+import eone.base.model.MTree;
+import eone.base.model.MTreeNode;
 
 /**
  * 

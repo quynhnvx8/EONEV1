@@ -30,13 +30,14 @@ import javax.sql.RowSet;
 
 import org.compiere.db.CConnection;
 import org.compiere.interfaces.Server;
-import org.compiere.model.MReplication;
-import org.compiere.model.MReplicationLog;
-import org.compiere.model.MReplicationRun;
-import org.compiere.model.MSystem;
 import org.compiere.util.CCachedRowSet;
 import org.compiere.util.CLogger;
 import org.compiere.util.DB;
+
+import eone.base.model.MReplication;
+import eone.base.model.MReplicationLog;
+import eone.base.model.MReplicationRun;
+import eone.base.model.MSystem;
 
 /**
  * 	Local (Central) Data Replication.

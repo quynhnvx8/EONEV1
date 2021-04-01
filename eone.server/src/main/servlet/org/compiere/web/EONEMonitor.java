@@ -57,10 +57,6 @@ import org.apache.ecs.xhtml.td;
 import org.apache.ecs.xhtml.th;
 import org.apache.ecs.xhtml.tr;
 import org.compiere.Adempiere;
-import org.compiere.model.AdempiereProcessorLog;
-import org.compiere.model.MClient;
-import org.compiere.model.MSysConfig;
-import org.compiere.model.MSystem;
 import org.compiere.server.AdempiereServerGroup;
 import org.compiere.server.AdempiereServerMgr;
 import org.compiere.server.IServerManager;
@@ -90,6 +86,11 @@ import org.idempiere.server.cluster.callable.GetLogInfoCallable;
 import org.idempiere.server.cluster.callable.ReadLogCallable;
 import org.idempiere.server.cluster.callable.RotateLogCallable;
 import org.idempiere.server.cluster.callable.SetTraceLevelCallable;
+
+import eone.base.model.AdempiereProcessorLog;
+import eone.base.model.MClient;
+import eone.base.model.MSysConfig;
+import eone.base.model.MSystem;
 
 /**
  *	Adempiere Server Monitor

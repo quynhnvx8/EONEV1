@@ -19,9 +19,6 @@ import org.adempiere.webui.LayoutUtils;
 import org.adempiere.webui.component.ToolBarButton;
 import org.adempiere.webui.session.SessionManager;
 import org.adempiere.webui.theme.ThemeManager;
-import org.compiere.model.MInfoWindow;
-import org.compiere.model.MSysConfig;
-import org.compiere.model.Query;
 import org.compiere.util.Env;
 import org.compiere.util.Msg;
 import org.compiere.util.Util;
@@ -31,6 +28,10 @@ import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zul.Box;
 import org.zkoss.zul.Vbox;
+
+import eone.base.model.MInfoWindow;
+import eone.base.model.MSysConfig;
+import eone.base.model.Query;
 
 /**
  * Dashboard item: Info views

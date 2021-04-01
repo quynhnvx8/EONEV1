@@ -32,14 +32,15 @@ import java.sql.ResultSet;
 import java.util.logging.Level;
 
 import org.compiere.db.AdempiereDatabase;
-import org.compiere.model.MColumn;
-import org.compiere.model.MTable;
 import org.compiere.util.AdempiereUserError;
 import org.compiere.util.CacheMgt;
 import org.compiere.util.DB;
 import org.compiere.util.DisplayType;
 import org.compiere.util.SecureEngine;
 import org.compiere.util.Trx;
+
+import eone.base.model.MColumn;
+import eone.base.model.MTable;
 
 /**
  * Column Encryption Test

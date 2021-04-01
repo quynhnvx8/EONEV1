@@ -32,8 +32,6 @@ import org.adempiere.base.Service;
 import org.adempiere.server.AdempiereServerActivator;
 import org.adempiere.server.IServerFactory;
 import org.compiere.Adempiere;
-import org.compiere.model.AdempiereProcessor;
-import org.compiere.model.MScheduler;
 import org.compiere.util.CLogger;
 import org.compiere.util.Env;
 import org.idempiere.distributed.ICacheService;
@@ -45,6 +43,9 @@ import org.osgi.framework.BundleListener;
 import org.osgi.framework.ServiceReference;
 import org.osgi.util.tracker.ServiceTracker;
 import org.osgi.util.tracker.ServiceTrackerCustomizer;
+
+import eone.base.model.AdempiereProcessor;
+import eone.base.model.MScheduler;
 
 /**
  *	Adempiere Server Manager

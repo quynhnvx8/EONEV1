@@ -18,7 +18,7 @@
  *****************************************************************************/
 package org.compiere.apps.form;
 
-import static org.compiere.model.SystemIDs.REFERENCE_PAYMENTRULE;
+import static eone.base.model.SystemIDs.REFERENCE_PAYMENTRULE;
 
 import java.math.BigDecimal;
 import java.sql.PreparedStatement;
@@ -27,13 +27,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 
-import org.compiere.model.MLookupFactory;
-import org.compiere.model.MLookupInfo;
 import org.compiere.util.CLogger;
 import org.compiere.util.DB;
 import org.compiere.util.Env;
 import org.compiere.util.Language;
 import org.compiere.util.ValueNamePair;
+
+import eone.base.model.MLookupFactory;
+import eone.base.model.MLookupInfo;
 
 public class PayPrint {
 

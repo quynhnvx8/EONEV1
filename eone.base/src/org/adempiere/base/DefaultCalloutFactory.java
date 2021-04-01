@@ -17,8 +17,9 @@ import java.lang.reflect.Method;
 import java.util.logging.Level;
 
 import org.adempiere.base.equinox.EquinoxExtensionLocator;
-import org.compiere.model.Callout;
 import org.compiere.util.CLogger;
+
+import eone.base.model.Callout;
 
 /**
  * @author a42niem

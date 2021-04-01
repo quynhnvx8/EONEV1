@@ -7,12 +7,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 
-import org.compiere.model.MField;
-import org.compiere.model.M_Element;
-import org.compiere.model.X_AD_FieldSuggestion;
 import org.compiere.util.DB;
 import org.compiere.util.Env;
 import org.compiere.util.Util;
+
+import eone.base.model.MField;
+import eone.base.model.M_Element;
+import eone.base.model.X_AD_FieldSuggestion;
 
 /**
  * @author hengsin

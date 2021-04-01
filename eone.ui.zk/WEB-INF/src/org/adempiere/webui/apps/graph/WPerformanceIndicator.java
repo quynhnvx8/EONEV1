@@ -23,7 +23,6 @@ import org.adempiere.webui.apps.graph.model.IndicatorModel;
 import org.adempiere.webui.component.Panel;
 import org.adempiere.webui.theme.ThemeManager;
 import org.adempiere.webui.util.ZKUpdateUtil;
-import org.compiere.model.MGoal;
 import org.compiere.util.DisplayType;
 import org.compiere.util.Env;
 import org.compiere.util.Msg;
@@ -34,6 +33,8 @@ import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zul.Menuitem;
 import org.zkoss.zul.Menupopup;
+
+import eone.base.model.MGoal;
 
 /**
  * 	Performance Indicator

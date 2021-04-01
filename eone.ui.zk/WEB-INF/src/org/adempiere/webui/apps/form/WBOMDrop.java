@@ -43,15 +43,6 @@ import org.adempiere.webui.panel.ADForm;
 import org.adempiere.webui.session.SessionManager;
 import org.adempiere.webui.util.ZKUpdateUtil;
 import org.adempiere.webui.window.FDialog;
-import org.compiere.model.MInvoice;
-import org.compiere.model.MInvoiceLine;
-import org.compiere.model.MOrder;
-import org.compiere.model.MOrderLine;
-import org.compiere.model.MProduct;
-import org.compiere.model.MProductBOM;
-import org.compiere.model.MProject;
-import org.compiere.model.MProjectLine;
-import org.compiere.model.MRole;
 import org.compiere.util.CLogger;
 import org.compiere.util.DB;
 import org.compiere.util.Env;
@@ -74,6 +65,16 @@ import org.zkoss.zul.Radiogroup;
 import org.zkoss.zul.Separator;
 import org.zkoss.zul.Space;
 import org.zkoss.zul.Vlayout;
+
+import eone.base.model.MInvoice;
+import eone.base.model.MInvoiceLine;
+import eone.base.model.MOrder;
+import eone.base.model.MOrderLine;
+import eone.base.model.MProduct;
+import eone.base.model.MProductBOM;
+import eone.base.model.MProject;
+import eone.base.model.MProjectLine;
+import eone.base.model.MRole;
 
 
 

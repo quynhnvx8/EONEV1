@@ -29,15 +29,16 @@ import java.util.List;
 
 import org.adempiere.webui.factory.InfoManager;
 import org.adempiere.webui.panel.InfoPanel;
-import org.compiere.model.GridField;
-import org.compiere.model.Lookup;
-import org.compiere.model.MLookup;
 import org.compiere.util.NamePair;
 import org.compiere.util.Util;
 import org.compiere.util.ValueNamePair;
 import org.zkoss.zul.ListModel;
 import org.zkoss.zul.ListModelList;
 import org.zkoss.zul.ListSubModel;
+
+import eone.base.model.GridField;
+import eone.base.model.Lookup;
+import eone.base.model.MLookup;
 
 /**
  * 

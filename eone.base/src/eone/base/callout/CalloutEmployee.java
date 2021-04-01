@@ -3,15 +3,16 @@ package eone.base.callout;
 
 import java.util.Properties;
 
-import org.compiere.model.CalloutEngine;
-import org.compiere.model.GridField;
-import org.compiere.model.GridTab;
-import org.compiere.model.MSalaryTableLine;
-import org.compiere.model.X_HR_SalaryExtra;
-import org.compiere.model.X_HR_SalaryTableLine;
 import org.compiere.util.Env;
 
-//org.compiere.model.CalloutEmployee.fillSalaryExtra
+import eone.base.model.CalloutEngine;
+import eone.base.model.GridField;
+import eone.base.model.GridTab;
+import eone.base.model.MSalaryTableLine;
+import eone.base.model.X_HR_SalaryExtra;
+import eone.base.model.X_HR_SalaryTableLine;
+
+//eone.base.model.CalloutEmployee.fillSalaryExtra
 
 public class CalloutEmployee extends CalloutEngine
 {

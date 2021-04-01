@@ -1,7 +1,8 @@
 package org.adempiere.webui.apps.graph;
 
 import org.adempiere.webui.panel.ADForm;
-import org.compiere.model.MGoal;
+
+import eone.base.model.MGoal;
 
 public class WViewPI extends ADForm {
 

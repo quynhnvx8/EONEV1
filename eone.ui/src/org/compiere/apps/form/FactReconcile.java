@@ -1,5 +1,7 @@
 package org.compiere.apps.form;
 
+import static eone.base.model.SystemIDs.*;
+
 import java.math.BigDecimal;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,15 +11,15 @@ import java.util.Vector;
 import java.util.logging.Level;
 
 import org.compiere.minigrid.IMiniTable;
-import org.compiere.model.MFactReconciliation;
-import org.compiere.model.MRole;
-import org.compiere.model.Query;
-import static org.compiere.model.SystemIDs.*;
 import org.compiere.util.CLogger;
 import org.compiere.util.DB;
 import org.compiere.util.Env;
 import org.compiere.util.KeyNamePair;
 import org.compiere.util.Msg;
+
+import eone.base.model.MFactReconciliation;
+import eone.base.model.MRole;
+import eone.base.model.Query;
 
 public class FactReconcile {
 	

@@ -38,12 +38,6 @@ import org.adempiere.webui.component.SimpleListModel;
 import org.adempiere.webui.factory.ButtonFactory;
 import org.adempiere.webui.util.ZKUpdateUtil;
 import org.adempiere.webui.window.FDialog;
-import org.compiere.model.I_AD_Field;
-import org.compiere.model.MField;
-import org.compiere.model.MRole;
-import org.compiere.model.MTab;
-import org.compiere.model.MTabCustomization;
-import org.compiere.model.Query;
 import org.compiere.util.CLogger;
 import org.compiere.util.Env;
 import org.compiere.util.Msg;
@@ -60,6 +54,13 @@ import org.zkoss.zul.North;
 import org.zkoss.zul.Separator;
 import org.zkoss.zul.South;
 import org.zkoss.zul.Vbox;
+
+import eone.base.model.I_AD_Field;
+import eone.base.model.MField;
+import eone.base.model.MRole;
+import eone.base.model.MTab;
+import eone.base.model.MTabCustomization;
+import eone.base.model.Query;
 
 /**
  * Customize grid panel for quick form

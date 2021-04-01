@@ -20,11 +20,12 @@ import org.adempiere.base.IServiceReferenceHolder;
 import org.adempiere.base.Service;
 import org.adempiere.webui.info.InfoWindow;
 import org.adempiere.webui.panel.InfoPanel;
-import org.compiere.model.GridField;
-import org.compiere.model.Lookup;
-import org.compiere.model.MLookup;
 import org.compiere.util.CCache;
 import org.osgi.framework.Constants;
+
+import eone.base.model.GridField;
+import eone.base.model.Lookup;
+import eone.base.model.MLookup;
 
 /**
  *

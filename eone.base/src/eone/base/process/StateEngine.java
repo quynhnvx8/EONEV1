@@ -16,12 +16,13 @@
  *****************************************************************************/
 package eone.base.process;
 
-import static org.compiere.model.SystemIDs.REFERENCE_WFINSTANCE_STATE;
+import static eone.base.model.SystemIDs.REFERENCE_WFINSTANCE_STATE;
 
-import org.compiere.model.MRefList;
 import org.compiere.util.CLogger;
 import org.compiere.util.Env;
 import org.compiere.util.Util;
+
+import eone.base.model.MRefList;
 
 
 /**

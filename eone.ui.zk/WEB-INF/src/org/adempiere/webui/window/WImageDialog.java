@@ -31,7 +31,6 @@ import org.adempiere.webui.component.Window;
 import org.adempiere.webui.theme.ThemeManager;
 import org.adempiere.webui.util.ZKUpdateUtil;
 import org.apache.commons.codec.binary.Base64;
-import org.compiere.model.MImage;
 import org.compiere.util.CLogger;
 import org.compiere.util.Env;
 import org.compiere.util.Msg;
@@ -52,6 +51,8 @@ import org.zkoss.zul.North;
 import org.zkoss.zul.Separator;
 import org.zkoss.zul.South;
 import org.zkoss.zul.Space;
+
+import eone.base.model.MImage;
 
 /**
  *  Base on the original Swing Image Dialog.

@@ -30,16 +30,6 @@ import org.adempiere.webui.session.SessionManager;
 import org.adempiere.webui.theme.ThemeManager;
 import org.adempiere.webui.util.ZKUpdateUtil;
 import org.adempiere.webui.window.FDialog;
-import org.compiere.model.GridField;
-import org.compiere.model.GridTab;
-import org.compiere.model.GridTable;
-import org.compiere.model.GridWindow;
-import org.compiere.model.MField;
-import org.compiere.model.MLookup;
-import org.compiere.model.MQuery;
-import org.compiere.model.MRole;
-import org.compiere.model.MTable;
-import org.compiere.model.PO;
 import org.compiere.util.CLogger;
 import org.compiere.util.DisplayType;
 import org.compiere.util.Env;
@@ -54,6 +44,17 @@ import org.zkoss.zul.Hlayout;
 import org.zkoss.zul.Separator;
 import org.zkoss.zul.Span;
 import org.zkoss.zul.Vlayout;
+
+import eone.base.model.GridField;
+import eone.base.model.GridTab;
+import eone.base.model.GridTable;
+import eone.base.model.GridWindow;
+import eone.base.model.MField;
+import eone.base.model.MLookup;
+import eone.base.model.MQuery;
+import eone.base.model.MRole;
+import eone.base.model.MTable;
+import eone.base.model.PO;
 
 /**
  * Quick Entry Window

@@ -36,7 +36,6 @@ import org.adempiere.webui.part.WindowContainer;
 import org.adempiere.webui.session.SessionManager;
 import org.adempiere.webui.theme.ThemeManager;
 import org.adempiere.webui.util.ZKUpdateUtil;
-import org.compiere.model.MSysConfig;
 import org.compiere.util.DisplayType;
 import org.compiere.util.Env;
 import org.compiere.util.Msg;
@@ -69,6 +68,8 @@ import org.zkoss.zul.Span;
 import org.zkoss.zul.Tab;
 import org.zkoss.zul.Timer;
 import org.zkoss.zul.Toolbarbutton;
+
+import eone.base.model.MSysConfig;
 
 /**
  * 

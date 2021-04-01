@@ -85,11 +85,11 @@
       <documentation>
          &lt;pre&gt;
 &lt;extension
-         id=&quot;org.adempiere.impexp.GridTabCSVImporter&quot;
+         id=&quot;eone.base.impexp.GridTabCSVImporter&quot;
          name=&quot;Grid data CSV importer&quot;
          point=&quot;org.adempiere.base.IGridTabImporter&quot;&gt;
       &lt;importer
-            class=&quot;org.adempiere.impexp.GridTabCSVImporter&quot;
+            class=&quot;eone.base.impexp.GridTabCSVImporter&quot;
             priority=&quot;0&quot;&gt;
       &lt;/importer&gt;
 &lt;/extension&gt;

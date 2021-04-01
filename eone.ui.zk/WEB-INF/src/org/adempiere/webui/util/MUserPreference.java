@@ -15,7 +15,7 @@ package org.adempiere.webui.util;
 
 import java.util.Properties;
 
-import org.compiere.model.MPreference;
+import eone.base.model.MPreference;
 
 /**
  *

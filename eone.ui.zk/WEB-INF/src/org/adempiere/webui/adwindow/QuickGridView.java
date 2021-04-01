@@ -37,13 +37,6 @@ import org.adempiere.webui.editor.WSearchEditor;
 import org.adempiere.webui.session.SessionManager;
 import org.adempiere.webui.util.SortComparator;
 import org.adempiere.webui.util.ZKUpdateUtil;
-import org.compiere.model.GridField;
-import org.compiere.model.GridTab;
-import org.compiere.model.GridTable;
-import org.compiere.model.MSysConfig;
-import org.compiere.model.MTabCustomization;
-import org.compiere.model.StateChangeEvent;
-import org.compiere.model.StateChangeListener;
 import org.compiere.util.CLogger;
 import org.compiere.util.Callback;
 import org.compiere.util.DisplayType;
@@ -71,6 +64,14 @@ import org.zkoss.zul.Row;
 import org.zkoss.zul.Vbox;
 import org.zkoss.zul.event.ZulEvents;
 import org.zkoss.zul.impl.CustomGridDataLoader;
+
+import eone.base.model.GridField;
+import eone.base.model.GridTab;
+import eone.base.model.GridTable;
+import eone.base.model.MSysConfig;
+import eone.base.model.MTabCustomization;
+import eone.base.model.StateChangeEvent;
+import eone.base.model.StateChangeListener;
 
 /**
  * Quick Grid view implemented using the Grid component.

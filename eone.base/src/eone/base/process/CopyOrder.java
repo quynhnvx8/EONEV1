@@ -20,8 +20,8 @@ import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.logging.Level;
 
-import org.compiere.model.MDocType;
-import org.compiere.model.MOrder;
+import eone.base.model.MDocType;
+import eone.base.model.MOrder;
 
 /**
  *	Copy Order and optionally close

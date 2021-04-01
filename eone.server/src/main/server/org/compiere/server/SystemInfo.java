@@ -40,7 +40,6 @@ import java.util.logging.Level;
 import org.compiere.Adempiere;
 import org.compiere.db.AdempiereDatabase;
 import org.compiere.db.CConnection;
-import org.compiere.model.MSession;
 import org.compiere.util.CLogMgt;
 import org.compiere.util.CMemoryUsage;
 import org.compiere.util.Ini;
@@ -48,6 +47,8 @@ import org.idempiere.distributed.IClusterMember;
 import org.idempiere.distributed.IClusterService;
 import org.idempiere.server.cluster.ClusterServerMgr;
 import org.idempiere.server.cluster.callable.GetSystemInfoCallable;
+
+import eone.base.model.MSession;
 
 /**
  * @author hengsin

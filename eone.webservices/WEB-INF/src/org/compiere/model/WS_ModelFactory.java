@@ -30,6 +30,11 @@ import java.sql.ResultSet;
 import org.adempiere.base.IModelFactory;
 import org.compiere.util.Env;
 
+import eone.base.model.PO;
+import eone.base.model.X_WS_WebService;
+import eone.base.model.X_WS_WebServiceType;
+import eone.base.model.X_WS_WebService_Para;
+
 public class WS_ModelFactory implements IModelFactory {
 
 	@Override

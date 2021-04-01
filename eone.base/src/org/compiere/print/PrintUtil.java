@@ -16,15 +16,15 @@
  *****************************************************************************/
 package org.compiere.print;
 
-import static org.compiere.model.SystemIDs.PRINTFORMAT_INOUT_HEADER_TEMPLATE;
-import static org.compiere.model.SystemIDs.PRINTFORMAT_INOUT_LINE_TEMPLATE;
-import static org.compiere.model.SystemIDs.PRINTFORMAT_INVOICE_HEADER_TEMPLATE;
-import static org.compiere.model.SystemIDs.PRINTFORMAT_INVOICE_LINETAX_TEMPLATE;
-import static org.compiere.model.SystemIDs.PRINTFORMAT_ORDER_HEADER_TEMPLATE;
-import static org.compiere.model.SystemIDs.PRINTFORMAT_ORDER_LINETAX_TEMPLATE;
-import static org.compiere.model.SystemIDs.PRINTFORMAT_PAYSELECTION_CHECK_TEMPLATE;
-import static org.compiere.model.SystemIDs.PRINTFORMAT_PAYSELECTION_REMITTANCE_LINES_TEMPLATE;
-import static org.compiere.model.SystemIDs.PRINTFORMAT_PAYSELECTION_REMITTANCE__TEMPLATE;
+import static eone.base.model.SystemIDs.PRINTFORMAT_INOUT_HEADER_TEMPLATE;
+import static eone.base.model.SystemIDs.PRINTFORMAT_INOUT_LINE_TEMPLATE;
+import static eone.base.model.SystemIDs.PRINTFORMAT_INVOICE_HEADER_TEMPLATE;
+import static eone.base.model.SystemIDs.PRINTFORMAT_INVOICE_LINETAX_TEMPLATE;
+import static eone.base.model.SystemIDs.PRINTFORMAT_ORDER_HEADER_TEMPLATE;
+import static eone.base.model.SystemIDs.PRINTFORMAT_ORDER_LINETAX_TEMPLATE;
+import static eone.base.model.SystemIDs.PRINTFORMAT_PAYSELECTION_CHECK_TEMPLATE;
+import static eone.base.model.SystemIDs.PRINTFORMAT_PAYSELECTION_REMITTANCE_LINES_TEMPLATE;
+import static eone.base.model.SystemIDs.PRINTFORMAT_PAYSELECTION_REMITTANCE__TEMPLATE;
 
 import java.awt.print.PageFormat;
 import java.awt.print.Pageable;

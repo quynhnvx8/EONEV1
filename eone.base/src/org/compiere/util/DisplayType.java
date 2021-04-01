@@ -16,47 +16,47 @@
  *****************************************************************************/
 package org.compiere.util;
 
-import static org.compiere.model.SystemIDs.REFERENCE_DATATYPE_ACCOUNT;
-import static org.compiere.model.SystemIDs.REFERENCE_DATATYPE_AMOUNT;
-import static org.compiere.model.SystemIDs.REFERENCE_DATATYPE_ASSIGNMENT;
-import static org.compiere.model.SystemIDs.REFERENCE_DATATYPE_BINARY;
-import static org.compiere.model.SystemIDs.REFERENCE_DATATYPE_BUTTON;
-import static org.compiere.model.SystemIDs.REFERENCE_DATATYPE_CHOSEN_MULTIPLE_SELECTION_LIST;
-import static org.compiere.model.SystemIDs.REFERENCE_DATATYPE_CHOSEN_MULTIPLE_SELECTION_TABLE;
-import static org.compiere.model.SystemIDs.REFERENCE_DATATYPE_CHOSEN_MULTIPLE_SELECTION_SEARCH;
-import static org.compiere.model.SystemIDs.REFERENCE_DATATYPE_COLOR;
-import static org.compiere.model.SystemIDs.REFERENCE_DATATYPE_COSTPRICE;
-import static org.compiere.model.SystemIDs.REFERENCE_DATATYPE_DATE;
-import static org.compiere.model.SystemIDs.REFERENCE_DATATYPE_DATETIME;
-import static org.compiere.model.SystemIDs.REFERENCE_DATATYPE_FILENAME;
-import static org.compiere.model.SystemIDs.REFERENCE_DATATYPE_FILEPATH;
-import static org.compiere.model.SystemIDs.REFERENCE_DATATYPE_ID;
-import static org.compiere.model.SystemIDs.REFERENCE_DATATYPE_IMAGE;
-import static org.compiere.model.SystemIDs.REFERENCE_DATATYPE_INTEGER;
-import static org.compiere.model.SystemIDs.REFERENCE_DATATYPE_LIST;
-import static org.compiere.model.SystemIDs.REFERENCE_DATATYPE_LOCATION;
-import static org.compiere.model.SystemIDs.REFERENCE_DATATYPE_LOCATOR;
-import static org.compiere.model.SystemIDs.REFERENCE_DATATYPE_MEMO;
-import static org.compiere.model.SystemIDs.REFERENCE_DATATYPE_NUMBER;
-import static org.compiere.model.SystemIDs.REFERENCE_DATATYPE_PAYMENT;
-import static org.compiere.model.SystemIDs.REFERENCE_DATATYPE_PRINTNAME;
-import static org.compiere.model.SystemIDs.REFERENCE_DATATYPE_PRODUCTATTRIBUTE;
-import static org.compiere.model.SystemIDs.REFERENCE_DATATYPE_QUANTITY;
-import static org.compiere.model.SystemIDs.REFERENCE_DATATYPE_ROWID;
-import static org.compiere.model.SystemIDs.REFERENCE_DATATYPE_SEARCH;
-import static org.compiere.model.SystemIDs.REFERENCE_DATATYPE_STRING;
-import static org.compiere.model.SystemIDs.REFERENCE_DATATYPE_TABLE;
-import static org.compiere.model.SystemIDs.REFERENCE_DATATYPE_TABLEDIR;
-import static org.compiere.model.SystemIDs.REFERENCE_DATATYPE_TEXT;
-import static org.compiere.model.SystemIDs.REFERENCE_DATATYPE_TEXTLONG;
-import static org.compiere.model.SystemIDs.REFERENCE_DATATYPE_TIME;
-import static org.compiere.model.SystemIDs.REFERENCE_DATATYPE_URL;
-import static org.compiere.model.SystemIDs.REFERENCE_DATATYPE_YES_NO;
-import static org.compiere.model.SystemIDs.REFERENCE_DATATYPE_CHART;
-import static org.compiere.model.SystemIDs.REFERENCE_DATATYPE_DASHBOARD_CONTENT;
-import static org.compiere.model.SystemIDs.REFERENCE_DATATYPE_SINGLE_SELECTION_GRID;
-import static org.compiere.model.SystemIDs.REFERENCE_DATATYPE_MULTIPLE_SELECTION_GRID;
-import static org.compiere.model.SystemIDs.REFERENCE_DATATYPE_RADIOGROUP_LIST;
+import static eone.base.model.SystemIDs.REFERENCE_DATATYPE_ACCOUNT;
+import static eone.base.model.SystemIDs.REFERENCE_DATATYPE_AMOUNT;
+import static eone.base.model.SystemIDs.REFERENCE_DATATYPE_ASSIGNMENT;
+import static eone.base.model.SystemIDs.REFERENCE_DATATYPE_BINARY;
+import static eone.base.model.SystemIDs.REFERENCE_DATATYPE_BUTTON;
+import static eone.base.model.SystemIDs.REFERENCE_DATATYPE_CHART;
+import static eone.base.model.SystemIDs.REFERENCE_DATATYPE_CHOSEN_MULTIPLE_SELECTION_LIST;
+import static eone.base.model.SystemIDs.REFERENCE_DATATYPE_CHOSEN_MULTIPLE_SELECTION_SEARCH;
+import static eone.base.model.SystemIDs.REFERENCE_DATATYPE_CHOSEN_MULTIPLE_SELECTION_TABLE;
+import static eone.base.model.SystemIDs.REFERENCE_DATATYPE_COLOR;
+import static eone.base.model.SystemIDs.REFERENCE_DATATYPE_COSTPRICE;
+import static eone.base.model.SystemIDs.REFERENCE_DATATYPE_DASHBOARD_CONTENT;
+import static eone.base.model.SystemIDs.REFERENCE_DATATYPE_DATE;
+import static eone.base.model.SystemIDs.REFERENCE_DATATYPE_DATETIME;
+import static eone.base.model.SystemIDs.REFERENCE_DATATYPE_FILENAME;
+import static eone.base.model.SystemIDs.REFERENCE_DATATYPE_FILEPATH;
+import static eone.base.model.SystemIDs.REFERENCE_DATATYPE_ID;
+import static eone.base.model.SystemIDs.REFERENCE_DATATYPE_IMAGE;
+import static eone.base.model.SystemIDs.REFERENCE_DATATYPE_INTEGER;
+import static eone.base.model.SystemIDs.REFERENCE_DATATYPE_LIST;
+import static eone.base.model.SystemIDs.REFERENCE_DATATYPE_LOCATION;
+import static eone.base.model.SystemIDs.REFERENCE_DATATYPE_LOCATOR;
+import static eone.base.model.SystemIDs.REFERENCE_DATATYPE_MEMO;
+import static eone.base.model.SystemIDs.REFERENCE_DATATYPE_MULTIPLE_SELECTION_GRID;
+import static eone.base.model.SystemIDs.REFERENCE_DATATYPE_NUMBER;
+import static eone.base.model.SystemIDs.REFERENCE_DATATYPE_PAYMENT;
+import static eone.base.model.SystemIDs.REFERENCE_DATATYPE_PRINTNAME;
+import static eone.base.model.SystemIDs.REFERENCE_DATATYPE_PRODUCTATTRIBUTE;
+import static eone.base.model.SystemIDs.REFERENCE_DATATYPE_QUANTITY;
+import static eone.base.model.SystemIDs.REFERENCE_DATATYPE_RADIOGROUP_LIST;
+import static eone.base.model.SystemIDs.REFERENCE_DATATYPE_ROWID;
+import static eone.base.model.SystemIDs.REFERENCE_DATATYPE_SEARCH;
+import static eone.base.model.SystemIDs.REFERENCE_DATATYPE_SINGLE_SELECTION_GRID;
+import static eone.base.model.SystemIDs.REFERENCE_DATATYPE_STRING;
+import static eone.base.model.SystemIDs.REFERENCE_DATATYPE_TABLE;
+import static eone.base.model.SystemIDs.REFERENCE_DATATYPE_TABLEDIR;
+import static eone.base.model.SystemIDs.REFERENCE_DATATYPE_TEXT;
+import static eone.base.model.SystemIDs.REFERENCE_DATATYPE_TEXTLONG;
+import static eone.base.model.SystemIDs.REFERENCE_DATATYPE_TIME;
+import static eone.base.model.SystemIDs.REFERENCE_DATATYPE_URL;
+import static eone.base.model.SystemIDs.REFERENCE_DATATYPE_YES_NO;
 
 import java.text.DateFormat;
 import java.text.DecimalFormat;
@@ -73,7 +73,8 @@ import org.adempiere.base.IServiceReferenceHolder;
 import org.adempiere.base.Service;
 import org.compiere.db.AdempiereDatabase;
 import org.compiere.db.Database;
-import org.compiere.model.MLanguage;
+
+import eone.base.model.MLanguage;
 
 /**
  *	System Display Types.
@@ -179,9 +180,6 @@ public final class DisplayType
 		VALUES (35, 0,0,'Y',SysDate,0,SysDate,0,
 		'PAttribute','Product Attribute',null,'D',null,'D');
 	 *
-	 *  - org.compiere.model.MModel (??)
-	 *	- org.compiere.grid.ed.VEditor/Dialog
-	 *	- org.compiere.grid.ed.VEditorFactory
 	 *	- RColumn, WWindow
 	 *  add/check 0_cleanupAD.sql
 	 */

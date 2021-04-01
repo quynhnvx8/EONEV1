@@ -3,10 +3,6 @@ package org.idempiere.adinterface;
 import java.util.Map;
 import java.util.logging.Level;
 
-import org.compiere.model.Lookup;
-import org.compiere.model.MProcess;
-import org.compiere.model.MProcessPara;
-import org.compiere.model.PrintInfo;
 import org.compiere.print.MPrintFormat;
 import org.compiere.print.ReportEngine;
 import org.compiere.util.CLogger;
@@ -27,6 +23,10 @@ import org.idempiere.adInterface.x10.RunProcessDocument;
 import org.idempiere.adInterface.x10.RunProcessResponse;
 import org.idempiere.adInterface.x10.RunProcessResponseDocument;
 
+import eone.base.model.Lookup;
+import eone.base.model.MProcess;
+import eone.base.model.MProcessPara;
+import eone.base.model.PrintInfo;
 import eone.base.process.ProcessInfo;
 import eone.base.process.ProcessInfoParameter;
 import eone.base.process.ProcessInfoUtil;

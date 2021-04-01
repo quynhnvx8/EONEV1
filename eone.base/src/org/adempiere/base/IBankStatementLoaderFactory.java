@@ -13,7 +13,7 @@
  *****************************************************************************/
 package org.adempiere.base;
 
-import org.compiere.impexp.BankStatementLoaderInterface;
+import eone.base.impexp.BankStatementLoaderInterface;
 
 /**
  * Factory Interface for plugins to connect to the iDempiere core and provide a

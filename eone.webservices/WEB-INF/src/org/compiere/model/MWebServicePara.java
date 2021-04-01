@@ -32,6 +32,8 @@ package org.compiere.model;
 import java.sql.ResultSet;
 import java.util.Properties;
 
+import eone.base.model.X_WS_WebService_Para;
+
 /**
  *	Web Services Parameters Model
  *	

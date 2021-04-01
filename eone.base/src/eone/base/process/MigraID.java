@@ -31,13 +31,14 @@ import java.util.List;
 import java.util.UUID;
 import java.util.logging.Level;
 
-import org.compiere.model.MTable;
-import org.compiere.model.MTree;
-import org.compiere.model.Query;
 import org.compiere.util.AdempiereUserError;
 import org.compiere.util.DB;
 import org.compiere.util.DisplayType;
 import org.compiere.util.Util;
+
+import eone.base.model.MTable;
+import eone.base.model.MTree;
+import eone.base.model.Query;
 
 public class MigraID extends SvrProcess {
 

@@ -16,7 +16,7 @@
  *****************************************************************************/
 package org.compiere.minigrid;
 
-import org.compiere.model.GridField;
+import eone.base.model.GridField;
 
 /**
  *  Info Column Details

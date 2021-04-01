@@ -28,7 +28,6 @@ import org.adempiere.webui.component.ListboxFactory;
 import org.adempiere.webui.component.VerticalBox;
 import org.adempiere.webui.component.Window;
 import org.adempiere.webui.util.ZKUpdateUtil;
-import org.compiere.model.MAttachmentEntry;
 import org.compiere.util.CLogger;
 import org.zkoss.util.media.AMedia;
 import org.zkoss.zk.au.out.AuScript;
@@ -40,6 +39,8 @@ import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zk.ui.util.Clients;
 import org.zkoss.zul.Iframe;
 import org.zkoss.zul.Separator;
+
+import eone.base.model.MAttachmentEntry;
 
 /**
  * 

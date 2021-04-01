@@ -14,11 +14,11 @@ package eone.base.callout;
 
 import java.util.Properties;
 
-import org.compiere.model.CalloutEngine;
-import org.compiere.model.GridField;
-import org.compiere.model.GridTab;
-import org.compiere.model.MProcess;
-import org.compiere.model.MProcessPara;
+import eone.base.model.CalloutEngine;
+import eone.base.model.GridField;
+import eone.base.model.GridTab;
+import eone.base.model.MProcess;
+import eone.base.model.MProcessPara;
 
 
 /**

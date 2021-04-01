@@ -22,8 +22,9 @@ import java.util.ArrayList;
 import java.util.Properties;
 import java.util.logging.Level;
 
-import org.compiere.model.X_PA_ReportLine;
 import org.compiere.util.DB;
+
+import eone.base.model.X_PA_ReportLine;
 
 
 /**

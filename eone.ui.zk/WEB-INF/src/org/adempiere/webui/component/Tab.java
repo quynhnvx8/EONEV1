@@ -22,14 +22,15 @@ import java.util.Set;
 
 import org.adempiere.webui.adwindow.ADWindow;
 import org.adempiere.webui.util.ManageImageCache;
-import org.compiere.model.MImage;
-import org.compiere.model.MInfoWindow;
 import org.zkoss.image.Image;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zk.ui.event.SelectEvent;
 import org.zkoss.zul.Include;
 import org.zkoss.zul.impl.LabelImageElement;
+
+import eone.base.model.MImage;
+import eone.base.model.MInfoWindow;
 
 /**
  *

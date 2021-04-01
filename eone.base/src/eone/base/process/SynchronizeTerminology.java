@@ -18,12 +18,13 @@ import java.sql.ResultSet;
 import java.util.logging.Level;
 
 import org.compiere.Adempiere;
-import org.compiere.model.M_Element;
 import org.compiere.util.CLogMgt;
 import org.compiere.util.CLogger;
 import org.compiere.util.DB;
 import org.compiere.util.Env;
 import org.compiere.util.Trx;
+
+import eone.base.model.M_Element;
 
 /**
  *	Synchronize Column with Database

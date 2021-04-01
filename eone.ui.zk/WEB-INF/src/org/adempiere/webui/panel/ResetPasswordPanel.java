@@ -33,10 +33,6 @@ import org.adempiere.webui.theme.ITheme;
 import org.adempiere.webui.theme.ThemeManager;
 import org.adempiere.webui.util.ZKUpdateUtil;
 import org.adempiere.webui.window.LoginWindow;
-import org.compiere.model.MPasswordRule;
-import org.compiere.model.MSysConfig;
-import org.compiere.model.MUser;
-import org.compiere.model.Query;
 import org.compiere.util.Callback;
 import org.compiere.util.DB;
 import org.compiere.util.Env;
@@ -51,6 +47,11 @@ import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zk.ui.util.Clients;
 import org.zkoss.zul.Image;
+
+import eone.base.model.MPasswordRule;
+import eone.base.model.MSysConfig;
+import eone.base.model.MUser;
+import eone.base.model.Query;
 
 /**
  * Reset Password Panel

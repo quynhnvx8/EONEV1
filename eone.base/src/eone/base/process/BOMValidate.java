@@ -20,9 +20,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.logging.Level;
 
-import org.compiere.model.MProduct;
 import org.compiere.util.DB;
 import org.compiere.util.Env;
+
+import eone.base.model.MProduct;
 
 /**
  * 	Validate BOM

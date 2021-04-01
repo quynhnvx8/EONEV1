@@ -34,8 +34,6 @@ import org.adempiere.webui.panel.ResetPasswordPanel;
 import org.adempiere.webui.panel.RolePanel;
 import org.adempiere.webui.session.SessionContextListener;
 import org.adempiere.webui.theme.ThemeManager;
-import org.compiere.model.MSysConfig;
-import org.compiere.model.MUser;
 import org.compiere.util.Env;
 import org.compiere.util.KeyNamePair;
 import org.compiere.util.Login;
@@ -47,6 +45,9 @@ import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zk.ui.metainfo.PageDefinition;
 import org.zkoss.zk.ui.util.Clients;
+
+import eone.base.model.MSysConfig;
+import eone.base.model.MUser;
 
 /**
  *

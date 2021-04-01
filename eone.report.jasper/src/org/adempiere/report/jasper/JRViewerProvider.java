@@ -1,7 +1,6 @@
 package org.adempiere.report.jasper;
 
-import org.compiere.model.PrintInfo;
-
+import eone.base.model.PrintInfo;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperPrint;
 

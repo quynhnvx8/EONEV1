@@ -35,9 +35,6 @@ import org.adempiere.webui.event.DialogEvents;
 import org.adempiere.webui.theme.ThemeManager;
 import org.adempiere.webui.util.ZKUpdateUtil;
 import org.adempiere.webui.window.FDialog;
-import org.compiere.model.GridTab;
-import org.compiere.model.MTable;
-import org.compiere.model.PO;
 import org.compiere.util.CLogger;
 import org.compiere.util.Callback;
 import org.compiere.util.DB;
@@ -53,6 +50,9 @@ import org.zkoss.zul.Listitem;
 import org.zkoss.zul.Space;
 import org.zkoss.zul.Vlayout;
 
+import eone.base.model.GridTab;
+import eone.base.model.MTable;
+import eone.base.model.PO;
 import eone.base.process.DocumentEngine;
 
 

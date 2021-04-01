@@ -34,9 +34,10 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import org.adempiere.exceptions.AdempiereException;
-import org.compiere.model.MAttachment;
 import org.compiere.util.Env;
 import org.compiere.util.Util;
+
+import eone.base.model.MAttachment;
 
 /**
  *  File Utilities

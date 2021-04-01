@@ -17,8 +17,9 @@ import java.util.Map;
 import java.util.Properties;
 
 import org.compiere.model.MWebServiceType;
-import org.compiere.model.PO;
 import org.idempiere.webservices.fault.IdempiereServiceFault;
+
+import eone.base.model.PO;
 
 import org.idempiere.adInterface.x10.ADLoginRequest;
 import org.idempiere.adInterface.x10.DataField;

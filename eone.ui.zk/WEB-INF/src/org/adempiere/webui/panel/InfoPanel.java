@@ -52,16 +52,6 @@ import org.adempiere.webui.session.SessionManager;
 import org.adempiere.webui.util.ZKUpdateUtil;
 import org.compiere.minigrid.ColumnInfo;
 import org.compiere.minigrid.IDColumn;
-import org.compiere.model.GridField;
-import org.compiere.model.IInfoColumn;
-import org.compiere.model.MInfoColumn;
-import org.compiere.model.MInfoProcess;
-import org.compiere.model.MInfoRelated;
-import org.compiere.model.MInfoWindow;
-import org.compiere.model.MProcess;
-import org.compiere.model.MRole;
-import org.compiere.model.MSysConfig;
-import org.compiere.model.MTable;
 import org.compiere.util.CLogger;
 import org.compiere.util.DB;
 import org.compiere.util.DisplayType;
@@ -88,6 +78,16 @@ import org.zkoss.zul.event.PagingEvent;
 import org.zkoss.zul.event.ZulEvents;
 import org.zkoss.zul.ext.Sortable;
 
+import eone.base.model.GridField;
+import eone.base.model.IInfoColumn;
+import eone.base.model.MInfoColumn;
+import eone.base.model.MInfoProcess;
+import eone.base.model.MInfoRelated;
+import eone.base.model.MInfoWindow;
+import eone.base.model.MProcess;
+import eone.base.model.MRole;
+import eone.base.model.MSysConfig;
+import eone.base.model.MTable;
 import eone.base.process.ProcessInfo;
 
 /**

@@ -21,13 +21,14 @@ import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.logging.Level;
 
-import org.compiere.model.MColumn;
-import org.compiere.model.MIndexColumn;
-import org.compiere.model.MTable;
-import org.compiere.model.MTableIndex;
 import org.compiere.util.DB;
 import org.compiere.util.Msg;
 import org.compiere.util.Trx;
+
+import eone.base.model.MColumn;
+import eone.base.model.MIndexColumn;
+import eone.base.model.MTable;
+import eone.base.model.MTableIndex;
 
 /**
  * Create table index (AD_TableIndex) process

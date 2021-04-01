@@ -18,10 +18,11 @@ package org.compiere.apps.form;
 
 import java.util.Properties;
 
-import org.compiere.model.MProduct;
-import org.compiere.model.MUOM;
 import org.compiere.util.CLogger;
 import org.compiere.util.Env;
+
+import eone.base.model.MProduct;
+import eone.base.model.MUOM;
 
 public class TreeBOM {
 

@@ -5,8 +5,9 @@ import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.logging.Level;
 
-import org.compiere.model.MYear;
 import org.compiere.util.AdempiereUserError;
+
+import eone.base.model.MYear;
 
 
 public class YearCreatePeriods extends SvrProcess

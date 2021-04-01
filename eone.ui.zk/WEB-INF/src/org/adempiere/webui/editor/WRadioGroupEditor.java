@@ -36,13 +36,6 @@ import org.adempiere.webui.event.ContextMenuEvent;
 import org.adempiere.webui.event.ContextMenuListener;
 import org.adempiere.webui.event.ValueChangeEvent;
 import org.adempiere.webui.window.WFieldRecordInfo;
-import org.compiere.model.GridField;
-import org.compiere.model.GridTable;
-import org.compiere.model.Lookup;
-import org.compiere.model.MColumn;
-import org.compiere.model.MLookup;
-import org.compiere.model.MRole;
-import org.compiere.model.MTable;
 import org.compiere.util.CLogger;
 import org.compiere.util.DisplayType;
 import org.compiere.util.Env;
@@ -56,6 +49,14 @@ import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zul.Hlayout;
 import org.zkoss.zul.Radio;
 import org.zkoss.zul.Radiogroup;
+
+import eone.base.model.GridField;
+import eone.base.model.GridTable;
+import eone.base.model.Lookup;
+import eone.base.model.MColumn;
+import eone.base.model.MLookup;
+import eone.base.model.MRole;
+import eone.base.model.MTable;
 
 /**
  * 

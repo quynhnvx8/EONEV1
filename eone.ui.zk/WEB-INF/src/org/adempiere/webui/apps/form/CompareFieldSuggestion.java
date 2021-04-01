@@ -18,8 +18,6 @@ import org.adempiere.webui.component.Row;
 import org.adempiere.webui.component.Rows;
 import org.adempiere.webui.panel.ADForm;
 import org.adempiere.webui.session.SessionManager;
-import org.compiere.model.GridTab;
-import org.compiere.model.MField;
 import org.compiere.util.Env;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.event.Event;
@@ -31,6 +29,9 @@ import org.zkoss.zul.Html;
 import org.zkoss.zul.Textbox;
 import org.zkoss.zul.Timer;
 import org.zkoss.zul.Vlayout;
+
+import eone.base.model.GridTab;
+import eone.base.model.MField;
 
 /**
  * @author hengsin

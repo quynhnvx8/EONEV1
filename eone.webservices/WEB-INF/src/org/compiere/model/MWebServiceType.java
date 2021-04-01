@@ -39,6 +39,12 @@ import java.util.Properties;
 import org.compiere.util.CLogger;
 import org.compiere.util.DB;
 
+import eone.base.model.MColumn;
+import eone.base.model.Query;
+import eone.base.model.X_WS_WebServiceFieldInput;
+import eone.base.model.X_WS_WebServiceType;
+import eone.base.model.X_WS_WebService_Para;
+
 /**
  *	Web Services Type Model
  *	

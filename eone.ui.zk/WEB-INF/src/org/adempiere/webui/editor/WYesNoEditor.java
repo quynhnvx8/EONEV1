@@ -26,12 +26,13 @@ import org.adempiere.webui.event.ContextMenuEvent;
 import org.adempiere.webui.event.ContextMenuListener;
 import org.adempiere.webui.event.ValueChangeEvent;
 import org.adempiere.webui.window.WFieldRecordInfo;
-import org.compiere.model.GridField;
 import org.compiere.util.CLogger;
 import org.compiere.util.Env;
 import org.compiere.util.Msg;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.Events;
+
+import eone.base.model.GridField;
 
 /**
  *
@@ -115,7 +116,7 @@ public class WYesNoEditor extends WEditor implements ContextMenuListener
 
     public void propertyChange(PropertyChangeEvent evt)
     {
-        if (evt.getPropertyName().equals(org.compiere.model.GridField.PROPERTY))
+        if (evt.getPropertyName().equals(eone.base.model.GridField.PROPERTY))
         {
             setValue(evt.getNewValue());
         }

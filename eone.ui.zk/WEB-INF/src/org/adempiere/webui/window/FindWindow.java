@@ -1,7 +1,7 @@
 
 package org.adempiere.webui.window;
 
-import static org.compiere.model.SystemIDs.REFERENCE_YESNO;
+import static eone.base.model.SystemIDs.REFERENCE_YESNO;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -44,16 +44,6 @@ import org.adempiere.webui.event.ValueChangeEvent;
 import org.adempiere.webui.event.ValueChangeListener;
 import org.adempiere.webui.factory.ButtonFactory;
 import org.adempiere.webui.util.ZKUpdateUtil;
-import org.compiere.model.GridField;
-import org.compiere.model.GridFieldVO;
-import org.compiere.model.GridTab;
-import org.compiere.model.Lookup;
-import org.compiere.model.MColumn;
-import org.compiere.model.MLookup;
-import org.compiere.model.MLookupFactory;
-import org.compiere.model.MLookupInfo;
-import org.compiere.model.MQuery;
-import org.compiere.model.MRole;
 import org.compiere.util.CLogger;
 import org.compiere.util.DB;
 import org.compiere.util.DisplayType;
@@ -73,6 +63,17 @@ import org.zkoss.zul.Div;
 import org.zkoss.zul.Hbox;
 import org.zkoss.zul.South;
 import org.zkoss.zul.Space;
+
+import eone.base.model.GridField;
+import eone.base.model.GridFieldVO;
+import eone.base.model.GridTab;
+import eone.base.model.Lookup;
+import eone.base.model.MColumn;
+import eone.base.model.MLookup;
+import eone.base.model.MLookupFactory;
+import eone.base.model.MLookupInfo;
+import eone.base.model.MQuery;
+import eone.base.model.MRole;
 
 
 public class FindWindow extends Window implements EventListener<Event>, ValueChangeListener, DialogEvents

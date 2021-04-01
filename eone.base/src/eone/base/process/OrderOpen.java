@@ -18,8 +18,9 @@ package eone.base.process;
 
 import java.util.logging.Level;
 
-import org.compiere.model.MOrder;
 import org.compiere.util.AdempiereSystemError;
+
+import eone.base.model.MOrder;
  
 /**
  *	Re-Open Order Process (from Closed to Completed)

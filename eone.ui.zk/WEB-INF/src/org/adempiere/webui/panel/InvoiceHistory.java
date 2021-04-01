@@ -36,7 +36,6 @@ import org.adempiere.webui.component.Window;
 import org.adempiere.webui.info.InfoProductWindow;
 import org.adempiere.webui.theme.ThemeManager;
 import org.adempiere.webui.util.ZKUpdateUtil;
-import org.compiere.model.MDocType;
 import org.compiere.util.CLogger;
 import org.compiere.util.DB;
 import org.compiere.util.Env;
@@ -49,6 +48,8 @@ import org.zkoss.zul.Borderlayout;
 import org.zkoss.zul.Center;
 import org.zkoss.zul.North;
 import org.zkoss.zul.South;
+
+import eone.base.model.MDocType;
 
 /**
  * Price History for BPartner/Product

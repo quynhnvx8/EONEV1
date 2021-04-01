@@ -17,8 +17,8 @@
 
 package org.adempiere.webui.editor;
 
-import static org.compiere.model.SystemIDs.COLUMN_C_INVOICELINE_M_PRODUCT_ID;
-import static org.compiere.model.SystemIDs.COLUMN_C_INVOICE_C_BPARTNER_ID;
+import static eone.base.model.SystemIDs.COLUMN_C_INVOICELINE_M_PRODUCT_ID;
+import static eone.base.model.SystemIDs.COLUMN_C_INVOICE_C_BPARTNER_ID;
 
 import java.beans.PropertyChangeEvent;
 import java.util.Properties;
@@ -45,13 +45,6 @@ import org.adempiere.webui.part.WindowContainer;
 import org.adempiere.webui.session.SessionManager;
 import org.adempiere.webui.theme.ThemeManager;
 import org.adempiere.webui.window.WFieldRecordInfo;
-import org.compiere.model.GridField;
-import org.compiere.model.Lookup;
-import org.compiere.model.MColumn;
-import org.compiere.model.MLookup;
-import org.compiere.model.MLookupFactory;
-import org.compiere.model.MRole;
-import org.compiere.model.MTable;
 import org.compiere.util.CLogger;
 import org.compiere.util.DisplayType;
 import org.compiere.util.Env;
@@ -65,6 +58,14 @@ import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zk.ui.event.InputEvent;
 import org.zkoss.zk.ui.util.Clients;
+
+import eone.base.model.GridField;
+import eone.base.model.Lookup;
+import eone.base.model.MColumn;
+import eone.base.model.MLookup;
+import eone.base.model.MLookupFactory;
+import eone.base.model.MRole;
+import eone.base.model.MTable;
 
 /**
  * Search Editor for web UI.

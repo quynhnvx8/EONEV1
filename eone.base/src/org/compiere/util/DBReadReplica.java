@@ -35,8 +35,9 @@ import java.util.logging.Level;
 
 import org.adempiere.exceptions.AdempiereException;
 import org.adempiere.exceptions.DBException;
-import org.compiere.model.MSysConfig;
-import org.compiere.model.MSystem;
+
+import eone.base.model.MSysConfig;
+import eone.base.model.MSystem;
 
 public class DBReadReplica {
 

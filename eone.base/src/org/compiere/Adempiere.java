@@ -15,12 +15,6 @@ import javax.swing.event.EventListenerList;
 
 import org.adempiere.base.Core;
 import org.compiere.db.CConnection;
-import org.compiere.model.MClient;
-import org.compiere.model.MSysConfig;
-import org.compiere.model.MSystem;
-import org.compiere.model.ModelValidationEngine;
-import org.compiere.model.ServerStateChangeEvent;
-import org.compiere.model.ServerStateChangeListener;
 import org.compiere.util.CLogFile;
 import org.compiere.util.CLogMgt;
 import org.compiere.util.CLogger;
@@ -32,6 +26,13 @@ import org.compiere.util.SecureEngine;
 import org.compiere.util.SecureInterface;
 import org.compiere.util.Trx;
 import org.compiere.util.Util;
+
+import eone.base.model.MClient;
+import eone.base.model.MSysConfig;
+import eone.base.model.MSystem;
+import eone.base.model.ModelValidationEngine;
+import eone.base.model.ServerStateChangeEvent;
+import eone.base.model.ServerStateChangeListener;
 
 
 public final class Adempiere

@@ -29,9 +29,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.compiere.model.MUser;
 import org.compiere.util.CLogger;
 import org.compiere.util.Env;
+
+import eone.base.model.MUser;
 
 import org.apache.commons.codec.binary.Base64; 
 

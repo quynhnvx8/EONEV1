@@ -41,9 +41,6 @@ import org.adempiere.webui.theme.ITheme;
 import org.adempiere.webui.theme.ThemeManager;
 import org.adempiere.webui.util.ZKUpdateUtil;
 import org.adempiere.webui.window.FDialog;
-import org.compiere.model.GridTab;
-import org.compiere.model.MRole;
-import org.compiere.model.MToolBarButton;
 import org.compiere.util.CLogger;
 import org.compiere.util.Env;
 import org.compiere.util.Msg;
@@ -68,6 +65,10 @@ import org.zkoss.zul.Separator;
 import org.zkoss.zul.Space;
 import org.zkoss.zul.Toolbarbutton;
 import org.zkoss.zul.impl.LabelImageElement;
+
+import eone.base.model.GridTab;
+import eone.base.model.MRole;
+import eone.base.model.MToolBarButton;
 
 /**
  *

@@ -19,8 +19,6 @@ import org.adempiere.webui.part.WindowContainer;
 import org.adempiere.webui.session.SessionManager;
 import org.adempiere.webui.theme.ThemeManager;
 import org.adempiere.webui.util.ServerPushTemplate;
-import org.compiere.model.MSysConfig;
-import org.compiere.model.PO;
 import org.compiere.util.DisplayType;
 import org.compiere.util.Env;
 import org.compiere.util.Trx;
@@ -43,6 +41,9 @@ import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zk.ui.util.DesktopCleanup;
 import org.zkoss.zul.Label;
 import org.zkoss.zul.impl.LabelImageElement;
+
+import eone.base.model.MSysConfig;
+import eone.base.model.PO;
 
 
 public class DPCalendar extends DashboardPanel implements EventListener<Event>, EventHandler {

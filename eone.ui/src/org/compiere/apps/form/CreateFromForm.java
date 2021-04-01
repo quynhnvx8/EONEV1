@@ -15,8 +15,9 @@ package org.compiere.apps.form;
 
 import org.compiere.apps.IStatusBar;
 import org.compiere.minigrid.IMiniTable;
-import org.compiere.model.GridTab;
 import org.compiere.util.CLogger;
+
+import eone.base.model.GridTab;
 
 /**
  * 

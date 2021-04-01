@@ -25,7 +25,8 @@
 package org.adempiere.webui.window;
 
 import org.adempiere.webui.component.Window;
-import org.compiere.model.GridTab;
+
+import eone.base.model.GridTab;
 
 /**
  * @author hengsin

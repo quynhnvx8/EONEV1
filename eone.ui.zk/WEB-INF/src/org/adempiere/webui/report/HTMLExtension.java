@@ -25,11 +25,12 @@ import org.adempiere.webui.theme.ThemeManager;
 import org.apache.ecs.ConcreteElement;
 import org.apache.ecs.xhtml.a;
 import org.apache.ecs.xhtml.body;
-import org.compiere.model.MSysConfig;
 import org.compiere.print.IHTMLExtension;
 import org.compiere.print.PrintDataItem;
 import org.compiere.util.Env;
 import org.compiere.util.Msg;
+
+import eone.base.model.MSysConfig;
 
 /**
  * 

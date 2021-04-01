@@ -38,8 +38,6 @@ import org.adempiere.webui.util.TreeUtils;
 import org.adempiere.webui.util.ZKUpdateUtil;
 import org.adempiere.webui.window.FDialog;
 import org.compiere.apps.form.TreeMaintenance;
-import org.compiere.model.MTree;
-import org.compiere.model.MTreeNode;
 import org.compiere.util.Callback;
 import org.compiere.util.Env;
 import org.compiere.util.KeyNamePair;
@@ -62,6 +60,9 @@ import org.zkoss.zul.Tree;
 import org.zkoss.zul.TreeModel;
 import org.zkoss.zul.TreeNode;
 import org.zkoss.zul.Treeitem;
+
+import eone.base.model.MTree;
+import eone.base.model.MTreeNode;
 
 /**
  *	Tree Maintenance

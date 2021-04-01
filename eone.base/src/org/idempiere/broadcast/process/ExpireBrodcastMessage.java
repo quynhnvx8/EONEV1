@@ -14,10 +14,10 @@
 
 package org.idempiere.broadcast.process;
 
-import org.compiere.model.MBroadcastMessage;
 import org.compiere.util.DB;
 import org.compiere.util.Env;
 
+import eone.base.model.MBroadcastMessage;
 import eone.base.process.SvrProcess;
 
 /**

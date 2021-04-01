@@ -27,15 +27,16 @@ import org.adempiere.webui.desktop.IDesktop;
 import org.adempiere.webui.exception.ApplicationException;
 import org.adempiere.webui.part.AbstractUIPart;
 import org.adempiere.webui.session.SessionManager;
-import org.compiere.model.MImage;
-import org.compiere.model.MQuery;
-import org.compiere.model.MRole;
-import org.compiere.model.MToolBarButton;
-import org.compiere.model.MToolBarButtonRestrict;
-import org.compiere.model.MWindow;
-import org.compiere.model.X_AD_ToolBarButton;
 import org.compiere.util.Env;
 import org.zkoss.zk.ui.Component;
+
+import eone.base.model.MImage;
+import eone.base.model.MQuery;
+import eone.base.model.MRole;
+import eone.base.model.MToolBarButton;
+import eone.base.model.MToolBarButtonRestrict;
+import eone.base.model.MWindow;
+import eone.base.model.X_AD_ToolBarButton;
 
 /**
  *

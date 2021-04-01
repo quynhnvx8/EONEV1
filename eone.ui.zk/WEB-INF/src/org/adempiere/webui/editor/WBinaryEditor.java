@@ -24,11 +24,12 @@ import org.adempiere.webui.component.Button;
 import org.adempiere.webui.event.DialogEvents;
 import org.adempiere.webui.event.ValueChangeEvent;
 import org.adempiere.webui.window.WMediaDialog;
-import org.compiere.model.GridField;
 import org.compiere.util.CLogger;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zk.ui.event.Events;
+
+import eone.base.model.GridField;
 
 /**
  * @author Low Heng Sin

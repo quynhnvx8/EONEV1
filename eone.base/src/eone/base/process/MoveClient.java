@@ -36,13 +36,14 @@ import java.util.logging.Level;
 
 import org.adempiere.exceptions.AdempiereException;
 import org.compiere.db.CConnection;
-import org.compiere.model.MColumn;
-import org.compiere.model.MTable;
-import org.compiere.model.Query;
 import org.compiere.util.AdempiereUserError;
 import org.compiere.util.DB;
 import org.compiere.util.DisplayType;
 import org.compiere.util.Util;
+
+import eone.base.model.MColumn;
+import eone.base.model.MTable;
+import eone.base.model.Query;
 
 public class MoveClient extends SvrProcess {
 

@@ -42,10 +42,6 @@ import org.adempiere.webui.util.BrowserToken;
 import org.adempiere.webui.util.UserPreference;
 import org.adempiere.webui.window.FDialog;
 import org.adempiere.webui.window.LoginWindow;
-import org.compiere.model.MClient;
-import org.compiere.model.MSysConfig;
-import org.compiere.model.MUser;
-import org.compiere.model.Query;
 import org.compiere.util.CLogger;
 import org.compiere.util.Env;
 import org.compiere.util.KeyNamePair;
@@ -71,6 +67,11 @@ import org.zkoss.zk.ui.util.Clients;
 import org.zkoss.zul.A;
 import org.zkoss.zul.Checkbox;
 import org.zkoss.zul.Comboitem;
+
+import eone.base.model.MClient;
+import eone.base.model.MSysConfig;
+import eone.base.model.MUser;
+import eone.base.model.Query;
 
 /**
  *

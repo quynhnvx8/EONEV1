@@ -25,13 +25,13 @@ import org.adempiere.webui.exception.ApplicationException;
 import org.adempiere.webui.part.WindowContainer;
 import org.adempiere.webui.session.SessionManager;
 import org.adempiere.webui.util.ZKUpdateUtil;
-import org.compiere.model.GridTab;
-import org.compiere.model.MForm;
 import org.compiere.util.CLogger;
 import org.compiere.util.Env;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.EventListener;
 
+import eone.base.model.GridTab;
+import eone.base.model.MForm;
 import eone.base.process.ProcessInfo;
 
 /**

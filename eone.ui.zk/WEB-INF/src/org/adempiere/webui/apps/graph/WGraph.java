@@ -29,11 +29,6 @@ import org.adempiere.webui.apps.graph.model.GoalModel;
 import org.adempiere.webui.editor.WTableDirEditor;
 import org.adempiere.webui.event.ValueChangeEvent;
 import org.adempiere.webui.event.ValueChangeListener;
-import org.compiere.model.MGoal;
-import org.compiere.model.MLookup;
-import org.compiere.model.MLookupFactory;
-import org.compiere.model.MLookupInfo;
-import org.compiere.model.MMeasure;
 import org.compiere.util.CLogger;
 import org.compiere.util.DB;
 import org.compiere.util.DisplayType;
@@ -57,6 +52,12 @@ import org.zkoss.zul.East;
 import org.zkoss.zul.Panel;
 import org.zkoss.zul.Panelchildren;
 import org.zkoss.zul.Toolbar;
+
+import eone.base.model.MGoal;
+import eone.base.model.MLookup;
+import eone.base.model.MLookupFactory;
+import eone.base.model.MLookupInfo;
+import eone.base.model.MMeasure;
 
 /**
  * Performance Graph

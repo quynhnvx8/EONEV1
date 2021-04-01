@@ -13,9 +13,10 @@
 package eone.base.process;
 
 import org.adempiere.exceptions.AdempiereException;
-import org.compiere.model.MTable;
 import org.compiere.util.DB;
 import org.compiere.util.Msg;
+
+import eone.base.model.MTable;
 
 public class DatabaseViewDrop extends SvrProcess {
 

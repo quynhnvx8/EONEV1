@@ -7,10 +7,6 @@ import org.adempiere.webui.component.Button;
 import org.adempiere.webui.editor.IEditorConfiguration;
 import org.adempiere.webui.editor.WEditor;
 import org.adempiere.webui.window.FDialog;
-import org.compiere.model.GridField;
-import org.compiere.model.MScheduler;
-import org.compiere.model.StateChangeEvent;
-import org.compiere.model.StateChangeListener;
 import org.compiere.server.AdempiereServerMgr;
 import org.compiere.server.IServerManager;
 import org.compiere.util.Callback;
@@ -21,6 +17,11 @@ import org.idempiere.server.cluster.ClusterServerMgr;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zk.ui.util.Clients;
+
+import eone.base.model.GridField;
+import eone.base.model.MScheduler;
+import eone.base.model.StateChangeEvent;
+import eone.base.model.StateChangeListener;
 
 /**
  * @author hengsin

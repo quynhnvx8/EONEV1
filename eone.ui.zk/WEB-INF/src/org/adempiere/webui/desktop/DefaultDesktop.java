@@ -17,7 +17,7 @@
 
 package org.adempiere.webui.desktop;
 
-import static org.compiere.model.SystemIDs.TREE_MENUPRIMARY;
+import static eone.base.model.SystemIDs.TREE_MENUPRIMARY;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -58,17 +58,6 @@ import org.adempiere.webui.theme.ThemeManager;
 import org.adempiere.webui.util.UserPreference;
 import org.adempiere.webui.util.ZKUpdateUtil;
 import org.adempiere.webui.window.AboutWindow;
-import org.compiere.model.GridField;
-import org.compiere.model.GridTab;
-import org.compiere.model.I_AD_Preference;
-import org.compiere.model.MBroadcastMessage;
-import org.compiere.model.MMenu;
-import org.compiere.model.MPreference;
-import org.compiere.model.MQuery;
-import org.compiere.model.MRole;
-import org.compiere.model.MTable;
-import org.compiere.model.MUser;
-import org.compiere.model.Query;
 import org.compiere.util.CLogger;
 import org.compiere.util.DB;
 import org.compiere.util.Env;
@@ -104,6 +93,18 @@ import org.zkoss.zul.Popup;
 import org.zkoss.zul.Space;
 import org.zkoss.zul.Vlayout;
 import org.zkoss.zul.West;
+
+import eone.base.model.GridField;
+import eone.base.model.GridTab;
+import eone.base.model.I_AD_Preference;
+import eone.base.model.MBroadcastMessage;
+import eone.base.model.MMenu;
+import eone.base.model.MPreference;
+import eone.base.model.MQuery;
+import eone.base.model.MRole;
+import eone.base.model.MTable;
+import eone.base.model.MUser;
+import eone.base.model.Query;
 
 /**
  *

@@ -13,7 +13,6 @@ import java.util.HashMap;
 
 import org.adempiere.exceptions.AdempiereException;
 import org.compiere.Adempiere;
-import org.compiere.model.MConfigSignReport;
 import org.compiere.print.CPaper;
 import org.compiere.print.MPrintFormat;
 import org.compiere.print.MPrintFormatItem;
@@ -42,6 +41,7 @@ import com.itextpdf.text.pdf.PdfPageEventHelper;
 import com.itextpdf.text.pdf.PdfTemplate;
 import com.itextpdf.text.pdf.PdfWriter;
 
+import eone.base.model.MConfigSignReport;
 import eone.base.process.ProcessInfo;
 import eone.base.process.ProcessInfoParameter;
 

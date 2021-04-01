@@ -41,9 +41,6 @@ import javax.xml.transform.stream.StreamResult;
 
 import org.adempiere.base.Core;
 import org.compiere.Adempiere;
-import org.compiere.model.MLanguage;
-import org.compiere.model.MTable;
-import org.compiere.model.PO;
 import org.compiere.util.CLogger;
 import org.compiere.util.DB;
 import org.compiere.util.Env;
@@ -55,6 +52,9 @@ import org.eclipse.equinox.app.IApplicationContext;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+import eone.base.model.MLanguage;
+import eone.base.model.MTable;
+import eone.base.model.PO;
 import eone.base.process.ProcessCall;
 import eone.base.process.ProcessInfo;
 

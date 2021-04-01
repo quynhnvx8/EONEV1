@@ -36,12 +36,6 @@ import org.adempiere.webui.panel.IFormController;
 import org.adempiere.webui.session.SessionManager;
 import org.adempiere.webui.util.ZKUpdateUtil;
 import org.adempiere.webui.window.FDialog;
-import org.compiere.model.MLookup;
-import org.compiere.model.MLookupFactory;
-import org.compiere.model.MPasswordHistory;
-import org.compiere.model.MPasswordRule;
-import org.compiere.model.MSysConfig;
-import org.compiere.model.MUser;
 import org.compiere.util.CLogger;
 import org.compiere.util.DisplayType;
 import org.compiere.util.Env;
@@ -55,6 +49,13 @@ import org.zkoss.zul.Borderlayout;
 import org.zkoss.zul.Center;
 import org.zkoss.zul.Columns;
 import org.zkoss.zul.South;
+
+import eone.base.model.MLookup;
+import eone.base.model.MLookupFactory;
+import eone.base.model.MPasswordHistory;
+import eone.base.model.MPasswordRule;
+import eone.base.model.MSysConfig;
+import eone.base.model.MUser;
 
 /**
  * Reset Password Form

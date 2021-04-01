@@ -24,9 +24,6 @@ import org.adempiere.webui.session.SessionManager;
 import org.adempiere.webui.theme.ITheme;
 import org.adempiere.webui.theme.ThemeManager;
 import org.adempiere.webui.window.FDialog;
-import org.compiere.model.MMenu;
-import org.compiere.model.MQuery;
-import org.compiere.model.MTreeNode;
 import org.compiere.util.Callback;
 import org.compiere.util.Env;
 import org.compiere.util.Msg;
@@ -49,6 +46,10 @@ import org.zkoss.zul.Toolbarbutton;
 import org.zkoss.zul.Treeitem;
 import org.zkoss.zul.Treerow;
 import org.zkoss.zul.Vlayout;
+
+import eone.base.model.MMenu;
+import eone.base.model.MQuery;
+import eone.base.model.MTreeNode;
 
 /**
  * Dashboard item: User favourites

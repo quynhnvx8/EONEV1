@@ -3,9 +3,9 @@ package org.adempiere.base;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 
-import org.compiere.model.I_C_InvoiceLine;
-import org.compiere.model.I_C_OrderLine;
-import org.compiere.model.I_C_ProjectLine;
+import eone.base.model.I_C_InvoiceLine;
+import eone.base.model.I_C_OrderLine;
+import eone.base.model.I_C_ProjectLine;
 
 public interface IProductPricing {
 

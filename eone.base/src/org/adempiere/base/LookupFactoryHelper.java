@@ -27,10 +27,11 @@ package org.adempiere.base;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.compiere.model.GridFieldVO;
-import org.compiere.model.Lookup;
 import org.compiere.util.CCache;
 import org.osgi.framework.Constants;
+
+import eone.base.model.GridFieldVO;
+import eone.base.model.Lookup;
 
 /**
  * Static helper methods for working with {@link ILookupFactory}

@@ -14,7 +14,7 @@
 
 package org.adempiere.webui.apps.form;
 
-import static org.compiere.model.SystemIDs.COLUMN_AD_FIELD_AD_FIELDGROUP_ID;
+import static eone.base.model.SystemIDs.COLUMN_AD_FIELD_AD_FIELDGROUP_ID;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -52,11 +52,6 @@ import org.adempiere.webui.panel.WTabEditorForm;
 import org.adempiere.webui.session.SessionManager;
 import org.adempiere.webui.util.ZKUpdateUtil;
 import org.compiere.apps.form.TabEditor;
-import org.compiere.model.GridField;
-import org.compiere.model.MField;
-import org.compiere.model.MLookup;
-import org.compiere.model.MLookupFactory;
-import org.compiere.model.X_AD_FieldGroup;
 import org.compiere.util.DisplayType;
 import org.compiere.util.Env;
 import org.compiere.util.KeyNamePair;
@@ -79,6 +74,12 @@ import org.zkoss.zul.Separator;
 import org.zkoss.zul.Space;
 import org.zkoss.zul.Vlayout;
 import org.zkoss.zul.West;
+
+import eone.base.model.GridField;
+import eone.base.model.MField;
+import eone.base.model.MLookup;
+import eone.base.model.MLookupFactory;
+import eone.base.model.X_AD_FieldGroup;
 
 /**
  *

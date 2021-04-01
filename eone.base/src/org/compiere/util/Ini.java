@@ -15,7 +15,7 @@ import java.util.Enumeration;
 import java.util.Properties;
 import java.util.logging.Level;
 
-import org.compiere.model.ModelValidationEngine;
+import eone.base.model.ModelValidationEngine;
 
 public final class Ini implements Serializable
 {

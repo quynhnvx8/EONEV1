@@ -15,11 +15,6 @@ import java.util.logging.Level;
 
 import org.compiere.db.CConnection;
 import org.compiere.interfaces.Server;
-import org.compiere.model.MClient;
-import org.compiere.model.MConfigSignReport;
-import org.compiere.model.MOrg;
-import org.compiere.model.MProcess;
-import org.compiere.model.MRule;
 import org.compiere.print.MPrintFormat;
 import org.compiere.print.MPrintFormatItem;
 import org.compiere.print.PrintDataItem;
@@ -32,6 +27,11 @@ import org.compiere.util.Msg;
 import org.compiere.util.ProcessUtil;
 import org.compiere.util.Trx;
 
+import eone.base.model.MClient;
+import eone.base.model.MConfigSignReport;
+import eone.base.model.MOrg;
+import eone.base.model.MProcess;
+import eone.base.model.MRule;
 import eone.base.process.ClientProcess;
 import eone.base.process.ProcessInfo;
 import eone.base.process.ProcessInfoParameter;

@@ -4,14 +4,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.logging.Level;
 
-import org.compiere.model.MColumn;
-import org.compiere.model.MField;
-import org.compiere.model.MTab;
-import org.compiere.model.MTable;
-import org.compiere.model.PO;
 import org.compiere.util.AdempiereSystemError;
 import org.compiere.util.DB;
 import org.compiere.util.DisplayType;
+
+import eone.base.model.MColumn;
+import eone.base.model.MField;
+import eone.base.model.MTab;
+import eone.base.model.MTable;
+import eone.base.model.PO;
 
 
 public class TabCreateFields extends SvrProcess

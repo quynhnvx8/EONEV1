@@ -19,7 +19,7 @@ package eone.base.process;
 import java.math.BigDecimal;
 import java.util.logging.Level;
 
-import org.compiere.model.MOrder;
+import eone.base.model.MOrder;
 
 /**
  *  Copy Order Lines

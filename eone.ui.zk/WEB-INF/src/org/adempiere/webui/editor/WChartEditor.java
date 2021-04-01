@@ -19,8 +19,6 @@ import java.util.List;
 import org.adempiere.webui.Extensions;
 import org.adempiere.webui.apps.graph.IChartRendererService;
 import org.adempiere.webui.apps.graph.model.ChartModel;
-import org.compiere.model.GridField;
-import org.compiere.model.MChart;
 import org.compiere.util.CLogger;
 import org.compiere.util.Env;
 import org.zkoss.zk.ui.event.AfterSizeEvent;
@@ -29,6 +27,9 @@ import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zul.Div;
 import org.zkoss.zul.Panel;
 import org.zkoss.zul.Panelchildren;
+
+import eone.base.model.GridField;
+import eone.base.model.MChart;
 
 /**
  * This class is based on org.compiere.grid.ed.WImageEditor and WGraph written by Low Heng Sin.

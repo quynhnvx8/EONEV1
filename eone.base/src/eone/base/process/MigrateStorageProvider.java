@@ -32,17 +32,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 
-import org.compiere.model.IArchiveStore;
-import org.compiere.model.IAttachmentStore;
-import org.compiere.model.IImageStore;
-import org.compiere.model.MArchive;
-import org.compiere.model.MAttachment;
-import org.compiere.model.MClient;
-import org.compiere.model.MClientInfo;
-import org.compiere.model.MImage;
-import org.compiere.model.MStorageProvider;
-import org.compiere.model.Query;
 import org.compiere.util.CacheMgt;
+
+import eone.base.model.IArchiveStore;
+import eone.base.model.IAttachmentStore;
+import eone.base.model.IImageStore;
+import eone.base.model.MArchive;
+import eone.base.model.MAttachment;
+import eone.base.model.MClient;
+import eone.base.model.MClientInfo;
+import eone.base.model.MImage;
+import eone.base.model.MStorageProvider;
+import eone.base.model.Query;
 
 /**
  *	IDEMPIERE-4191

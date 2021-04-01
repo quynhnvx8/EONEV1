@@ -22,10 +22,11 @@ package eone.base.process;
 import java.math.BigDecimal;
 
 import org.adempiere.exceptions.AdempiereException;
-import org.compiere.model.I_AD_Role_Included;
-import org.compiere.model.MRole;
 import org.compiere.util.DB;
 import org.compiere.util.Env;
+
+import eone.base.model.I_AD_Role_Included;
+import eone.base.model.MRole;
 
 
 /**

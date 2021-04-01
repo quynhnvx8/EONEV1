@@ -27,7 +27,6 @@ import org.adempiere.webui.ClientInfo;
 import org.adempiere.webui.LayoutUtils;
 import org.adempiere.webui.theme.ThemeManager;
 import org.adempiere.webui.util.ZKUpdateUtil;
-import org.compiere.model.MSysConfig;
 import org.compiere.util.DisplayType;
 import org.compiere.util.Env;
 import org.zkoss.zk.au.out.AuOuter;
@@ -42,6 +41,8 @@ import org.zkoss.zul.Div;
 import org.zkoss.zul.Hbox;
 import org.zkoss.zul.Popup;
 import org.zkoss.zul.Vbox;
+
+import eone.base.model.MSysConfig;
 
 /**
  *

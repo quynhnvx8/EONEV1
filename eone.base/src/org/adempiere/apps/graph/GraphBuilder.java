@@ -18,9 +18,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-import org.compiere.model.MGoal;
-import org.compiere.model.MMeasure;
-import org.compiere.model.X_PA_Goal;
 import org.compiere.util.CLogger;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;
@@ -29,6 +26,10 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.renderer.category.CategoryItemRenderer;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
+
+import eone.base.model.MGoal;
+import eone.base.model.MMeasure;
+import eone.base.model.X_PA_Goal;
 
 /**
  *

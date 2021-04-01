@@ -18,7 +18,6 @@ import java.util.logging.Level;
 import org.adempiere.exceptions.DBException;
 import org.compiere.util.CStatementVO;
 import org.compiere.util.Trx;
-import org.idempiere.db.util.AutoCommitConnectionBroker;
 
 /**
  * Dynamic proxy for the CCallableStatement

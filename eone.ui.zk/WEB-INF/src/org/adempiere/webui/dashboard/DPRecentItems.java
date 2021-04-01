@@ -24,11 +24,6 @@ import org.adempiere.webui.theme.ITheme;
 import org.adempiere.webui.theme.ThemeManager;
 import org.adempiere.webui.util.ServerPushTemplate;
 import org.adempiere.webui.util.ZKUpdateUtil;
-import org.compiere.model.MQuery;
-import org.compiere.model.MRecentItem;
-import org.compiere.model.MRole;
-import org.compiere.model.MSysConfig;
-import org.compiere.model.MTable;
 import org.compiere.util.Env;
 import org.compiere.util.Msg;
 import org.compiere.util.Util;
@@ -52,6 +47,12 @@ import org.zkoss.zul.Panel;
 import org.zkoss.zul.Panelchildren;
 import org.zkoss.zul.Toolbar;
 import org.zkoss.zul.Vbox;
+
+import eone.base.model.MQuery;
+import eone.base.model.MRecentItem;
+import eone.base.model.MRole;
+import eone.base.model.MSysConfig;
+import eone.base.model.MTable;
 
 /**
  * Dashboard item: Recent Items

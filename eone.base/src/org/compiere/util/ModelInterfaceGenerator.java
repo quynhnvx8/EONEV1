@@ -15,9 +15,10 @@ import java.util.logging.Level;
 
 import org.adempiere.exceptions.DBException;
 import org.compiere.Adempiere;
-import org.compiere.model.MEntityType;
-import org.compiere.model.MQuery;
-import org.compiere.model.MTable;
+
+import eone.base.model.MEntityType;
+import eone.base.model.MQuery;
+import eone.base.model.MTable;
 
 public class ModelInterfaceGenerator
 {
@@ -115,8 +116,8 @@ public class ModelInterfaceGenerator
 			.append("package ").append(packageName).append(";").append(NL)
 		;
 
-		if (!packageName.equals("org.compiere.model")) {
-			addImportClass("org.compiere.model.*");
+		if (!packageName.equals("eone.base.model")) {
+			addImportClass("eone.base.model.*");
 		}
 		addImportClass(java.math.BigDecimal.class);
 		addImportClass(org.compiere.util.KeyNamePair.class);
@@ -127,7 +128,7 @@ public class ModelInterfaceGenerator
 			 .append(" *  @author EOne (generated) \n")
 			 .append(" *  @version ").append(Adempiere.MAIN_VERSION).append(NL) //.append(" - ").append(s_run).append("\n")
 			 .append(" */\n");
-		if (!packageName.equals("org.compiere.model")) {
+		if (!packageName.equals("eone.base.model")) {
 			 start.append("@SuppressWarnings(\"all\")\n");
 		}
 		start.append("public interface ").append(className).append(" {").append("\n")
@@ -557,7 +558,7 @@ public class ModelInterfaceGenerator
 	public static String getModelPackage(String entityType)
 	{
 		if ("D".equals(entityType))
-			return "org.compiere.model";
+			return "eone.base.model";
 
 		MEntityType entity = MEntityType.get(Env.getCtx(), entityType);
 		if (entity != null)

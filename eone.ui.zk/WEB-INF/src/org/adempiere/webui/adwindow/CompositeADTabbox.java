@@ -12,11 +12,6 @@ import org.adempiere.webui.component.ADTabListModel;
 import org.adempiere.webui.component.ADTabListModel.ADTabLabel;
 import org.adempiere.webui.util.ZKUpdateUtil;
 import org.adempiere.webui.window.FDialog;
-import org.compiere.model.DataStatusEvent;
-import org.compiere.model.DataStatusListener;
-import org.compiere.model.GridField;
-import org.compiere.model.GridTab;
-import org.compiere.model.MTab;
 import org.compiere.util.CLogger;
 import org.compiere.util.Callback;
 import org.compiere.util.Env;
@@ -35,6 +30,12 @@ import org.zkoss.zul.Menuitem;
 import org.zkoss.zul.Row;
 import org.zkoss.zul.RowRenderer;
 import org.zkoss.zul.Vlayout;
+
+import eone.base.model.DataStatusEvent;
+import eone.base.model.DataStatusListener;
+import eone.base.model.GridField;
+import eone.base.model.GridTab;
+import eone.base.model.MTab;
 
 /**
  *

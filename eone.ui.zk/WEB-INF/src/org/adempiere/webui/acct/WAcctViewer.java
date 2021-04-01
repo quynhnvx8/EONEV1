@@ -38,11 +38,8 @@ import org.adempiere.webui.session.SessionManager;
 import org.adempiere.webui.theme.ThemeManager;
 import org.adempiere.webui.util.ZKUpdateUtil;
 import org.adempiere.webui.window.FDialog;
-import org.compiere.model.MColumn;
-import org.compiere.model.MLookup;
-import org.compiere.model.MLookupFactory;
-import org.compiere.report.core.RModel;
-import org.compiere.report.core.RModelExcelExporter;
+import org.compiere.report.RModel;
+import org.compiere.report.RModelExcelExporter;
 import org.compiere.tools.FileUtil;
 import org.compiere.util.CLogger;
 import org.compiere.util.DisplayType;
@@ -67,6 +64,10 @@ import org.zkoss.zul.Listheader;
 import org.zkoss.zul.North;
 import org.zkoss.zul.Paging;
 import org.zkoss.zul.South;
+
+import eone.base.model.MColumn;
+import eone.base.model.MLookup;
+import eone.base.model.MLookupFactory;
 
 /**
  * 14/08/2020

@@ -28,8 +28,9 @@ import java.util.logging.Level;
 
 import javax.print.attribute.standard.MediaSize;
 
-import org.compiere.model.MLanguage;
 import org.compiere.print.MPrintPaper;
+
+import eone.base.model.MLanguage;
 
 /**
  *  Language Management.

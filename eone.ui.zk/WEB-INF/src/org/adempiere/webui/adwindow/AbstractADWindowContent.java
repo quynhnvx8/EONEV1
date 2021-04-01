@@ -2,9 +2,9 @@
 
 package org.adempiere.webui.adwindow;
 
-import static org.compiere.model.MSysConfig.ZK_GRID_AFTER_FIND;
-import static org.compiere.model.SystemIDs.PROCESS_AD_CHANGELOG_REDO;
-import static org.compiere.model.SystemIDs.PROCESS_AD_CHANGELOG_UNDO;
+import static eone.base.model.MSysConfig.ZK_GRID_AFTER_FIND;
+import static eone.base.model.SystemIDs.PROCESS_AD_CHANGELOG_REDO;
+import static eone.base.model.SystemIDs.PROCESS_AD_CHANGELOG_UNDO;
 
 import java.text.MessageFormat;
 import java.util.ArrayList;
@@ -54,23 +54,6 @@ import org.adempiere.webui.window.CustomizeGridViewDialog;
 import org.adempiere.webui.window.FDialog;
 import org.adempiere.webui.window.FindWindow;
 import org.adempiere.webui.window.WPostIt;
-import org.compiere.model.DataStatusEvent;
-import org.compiere.model.DataStatusListener;
-import org.compiere.model.GridField;
-import org.compiere.model.GridTab;
-import org.compiere.model.GridTable;
-import org.compiere.model.GridWindow;
-import org.compiere.model.GridWindowVO;
-import org.compiere.model.I_M_Product;
-import org.compiere.model.MImage;
-import org.compiere.model.MQuery;
-import org.compiere.model.MRecentItem;
-import org.compiere.model.MRole;
-import org.compiere.model.MSysConfig;
-import org.compiere.model.MTable;
-import org.compiere.model.MUserPreference;
-import org.compiere.model.MWindow;
-import org.compiere.model.PO;
 import org.compiere.util.CLogger;
 import org.compiere.util.Callback;
 import org.compiere.util.DB;
@@ -92,6 +75,23 @@ import org.zkoss.zk.ui.util.Clients;
 import org.zkoss.zul.Div;
 import org.zkoss.zul.RowRenderer;
 
+import eone.base.model.DataStatusEvent;
+import eone.base.model.DataStatusListener;
+import eone.base.model.GridField;
+import eone.base.model.GridTab;
+import eone.base.model.GridTable;
+import eone.base.model.GridWindow;
+import eone.base.model.GridWindowVO;
+import eone.base.model.I_M_Product;
+import eone.base.model.MImage;
+import eone.base.model.MQuery;
+import eone.base.model.MRecentItem;
+import eone.base.model.MRole;
+import eone.base.model.MSysConfig;
+import eone.base.model.MTable;
+import eone.base.model.MUserPreference;
+import eone.base.model.MWindow;
+import eone.base.model.PO;
 import eone.base.process.DocAction;
 import eone.base.process.DocumentEngine;
 import eone.base.process.ProcessInfo;
@@ -3115,7 +3115,7 @@ public abstract class AbstractADWindowContent extends AbstractUIPart implements 
 	 *
 	 * @param field field
 	 * @return error message or ""
-	 * @see org.compiere.model.Callout
+	 * @see eone.base.model.Callout
 	 */
 	private String processButtonCallout (IProcessButton button)
 	{

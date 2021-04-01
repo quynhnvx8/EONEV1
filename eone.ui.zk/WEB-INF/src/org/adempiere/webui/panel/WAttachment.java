@@ -29,9 +29,6 @@ import org.adempiere.webui.theme.ITheme;
 import org.adempiere.webui.theme.ThemeManager;
 import org.adempiere.webui.util.ZKUpdateUtil;
 import org.adempiere.webui.window.FDialog;
-import org.compiere.model.MAttachment;
-import org.compiere.model.MAttachmentEntry;
-import org.compiere.model.MTable;
 import org.compiere.util.CLogger;
 import org.compiere.util.Callback;
 import org.compiere.util.Env;
@@ -54,6 +51,10 @@ import org.zkoss.zul.Iframe;
 import org.zkoss.zul.North;
 import org.zkoss.zul.South;
 import org.zkoss.zul.Vlayout;
+
+import eone.base.model.MAttachment;
+import eone.base.model.MAttachmentEntry;
+import eone.base.model.MTable;
 
 public class WAttachment extends Window implements EventListener<Event>
 {

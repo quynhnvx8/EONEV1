@@ -15,8 +15,8 @@ import java.util.GregorianCalendar;
 import java.util.Hashtable;
 import java.util.Properties;
 
-import org.compiere.model.GridTab;
-import org.compiere.model.PO;
+import eone.base.model.GridTab;
+import eone.base.model.PO;
 
 public class CalloutUtil 
 {

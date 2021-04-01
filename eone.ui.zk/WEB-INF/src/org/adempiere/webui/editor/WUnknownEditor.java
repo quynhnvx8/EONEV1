@@ -17,7 +17,7 @@
 
 package org.adempiere.webui.editor;
 
-import org.compiere.model.GridField;
+import eone.base.model.GridField;
 
 /**
  *

@@ -25,8 +25,6 @@ import org.adempiere.webui.component.Checkbox;
 import org.adempiere.webui.component.Label;
 import org.adempiere.webui.component.Window;
 import org.adempiere.webui.util.ZKUpdateUtil;
-import org.compiere.model.MBroadcastMessage;
-import org.compiere.model.MNote;
 import org.compiere.util.CLogger;
 import org.compiere.util.DB;
 import org.compiere.util.Env;
@@ -45,6 +43,9 @@ import org.zkoss.zul.Html;
 import org.zkoss.zul.North;
 import org.zkoss.zul.Separator;
 import org.zkoss.zul.South;
+
+import eone.base.model.MBroadcastMessage;
+import eone.base.model.MNote;
 
 /**
  * 

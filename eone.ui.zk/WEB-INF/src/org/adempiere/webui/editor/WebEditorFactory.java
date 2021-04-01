@@ -23,10 +23,11 @@ import java.util.List;
 import org.adempiere.base.IServiceReferenceHolder;
 import org.adempiere.base.Service;
 import org.adempiere.webui.factory.IEditorFactory;
-import org.compiere.model.GridField;
-import org.compiere.model.GridTab;
 import org.compiere.util.CCache;
 import org.osgi.framework.Constants;
+
+import eone.base.model.GridField;
+import eone.base.model.GridTab;
 
 /**
  *

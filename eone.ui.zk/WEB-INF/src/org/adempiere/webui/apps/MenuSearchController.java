@@ -27,7 +27,6 @@ import org.adempiere.webui.util.TreeItemAction;
 import org.adempiere.webui.util.TreeNodeAction;
 import org.adempiere.webui.util.TreeUtils;
 import org.adempiere.webui.util.ZKUpdateUtil;
-import org.compiere.model.MTreeNode;
 import org.compiere.util.Env;
 import org.compiere.util.Msg;
 import org.compiere.util.Util;
@@ -55,6 +54,8 @@ import org.zkoss.zul.Treeitem;
 import org.zkoss.zul.Vlayout;
 import org.zkoss.zul.impl.LabelElement;
 import org.zkoss.zul.impl.LabelImageElement;
+
+import eone.base.model.MTreeNode;
 
 /**
  * @author hengsin

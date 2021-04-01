@@ -30,8 +30,6 @@ import java.util.logging.Level;
 import org.adempiere.base.event.AbstractEventHandler;
 import org.adempiere.base.event.IEventManager;
 import org.adempiere.base.event.IEventTopics;
-import org.compiere.model.I_AD_Scheduler;
-import org.compiere.model.MScheduler;
 import org.compiere.server.AdempiereServerMgr;
 import org.compiere.server.IServerManager;
 import org.compiere.util.CLogger;
@@ -42,6 +40,9 @@ import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
 import org.osgi.service.component.annotations.ReferencePolicy;
 import org.osgi.service.event.Event;
+
+import eone.base.model.I_AD_Scheduler;
+import eone.base.model.MScheduler;
 
 /**
  * @author hengsin

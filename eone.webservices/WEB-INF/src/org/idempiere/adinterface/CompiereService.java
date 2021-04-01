@@ -23,8 +23,6 @@ import java.util.logging.Level;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.compiere.model.MSysConfig;
-import org.compiere.model.MUser;
 import org.compiere.util.CLogger;
 import org.compiere.util.DB;
 import org.compiere.util.DisplayType;
@@ -34,6 +32,9 @@ import org.compiere.util.Language;
 import org.compiere.util.Login;
 import org.compiere.util.ServerContext;
 import org.idempiere.adInterface.x10.ADLoginRequest;
+
+import eone.base.model.MSysConfig;
+import eone.base.model.MUser;
 
 /**
  * @author deepak

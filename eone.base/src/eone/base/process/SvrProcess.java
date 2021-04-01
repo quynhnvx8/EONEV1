@@ -14,13 +14,14 @@ import org.adempiere.base.event.EventManager;
 import org.adempiere.base.event.EventProperty;
 import org.adempiere.base.event.IEventManager;
 import org.adempiere.base.event.IEventTopics;
-import org.compiere.model.PO;
 import org.compiere.util.CLogger;
 import org.compiere.util.Env;
 import org.compiere.util.IProcessUI;
 import org.compiere.util.Msg;
 import org.compiere.util.Trx;
 import org.osgi.service.event.Event;
+
+import eone.base.model.PO;
 
 
 public abstract class SvrProcess implements ProcessCall

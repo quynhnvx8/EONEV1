@@ -19,7 +19,7 @@ package org.compiere.report;
 import java.sql.ResultSet;
 import java.util.Properties;
 
-import org.compiere.model.X_PA_ReportSource;
+import eone.base.model.X_PA_ReportSource;
 
 
 /**

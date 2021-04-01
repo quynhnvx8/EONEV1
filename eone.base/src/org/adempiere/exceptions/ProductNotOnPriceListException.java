@@ -16,9 +16,10 @@ package org.adempiere.exceptions;
 import java.text.DateFormat;
 
 import org.adempiere.base.IProductPricing;
-import org.compiere.model.MProduct;
 import org.compiere.util.DisplayType;
 import org.compiere.util.Env;
+
+import eone.base.model.MProduct;
 
 /**
  * Throw when product price is not found in price list

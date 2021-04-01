@@ -29,10 +29,11 @@ package eone.base.process;
 import java.util.List;
 import java.util.logging.Level;
 
-import org.compiere.model.MRole;
-import org.compiere.model.MUserRoles;
-import org.compiere.model.Query;
 import org.compiere.util.DB;
+
+import eone.base.model.MRole;
+import eone.base.model.MUserRoles;
+import eone.base.model.Query;
 
 /**
  * @author Carlos Ruiz - globalqss

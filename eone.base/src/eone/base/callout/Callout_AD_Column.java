@@ -18,16 +18,17 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 import org.adempiere.exceptions.DBException;
-import org.compiere.model.CalloutEngine;
-import org.compiere.model.GridField;
-import org.compiere.model.GridTab;
-import org.compiere.model.GridTabWrapper;
-import org.compiere.model.I_AD_Column;
-import org.compiere.model.MColumn;
-import org.compiere.model.M_Element;
-import org.compiere.model.PO;
 import org.compiere.util.DB;
 import org.compiere.util.DisplayType;
+
+import eone.base.model.CalloutEngine;
+import eone.base.model.GridField;
+import eone.base.model.GridTab;
+import eone.base.model.GridTabWrapper;
+import eone.base.model.I_AD_Column;
+import eone.base.model.MColumn;
+import eone.base.model.M_Element;
+import eone.base.model.PO;
 
 /**
  * @author teo_sarca

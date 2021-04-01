@@ -4,8 +4,9 @@ package eone.base.process;
 import java.util.Properties;
 
 import org.adempiere.exceptions.AdempiereException;
-import org.compiere.model.SystemIDs;
 import org.compiere.util.CLogger;
+
+import eone.base.model.SystemIDs;
 
 
 public interface DocAction

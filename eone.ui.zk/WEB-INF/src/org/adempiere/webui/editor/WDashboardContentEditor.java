@@ -7,8 +7,6 @@ import java.util.logging.Level;
 
 import org.adempiere.webui.dashboard.DashboardRunnable;
 import org.adempiere.webui.desktop.DashboardController;
-import org.compiere.model.GridField;
-import org.compiere.model.MDashboardContent;
 import org.compiere.util.CLogger;
 import org.compiere.util.Env;
 import org.compiere.util.Util;
@@ -18,6 +16,9 @@ import org.zkoss.zul.Caption;
 import org.zkoss.zul.Div;
 import org.zkoss.zul.Panel;
 import org.zkoss.zul.Panelchildren;
+
+import eone.base.model.GridField;
+import eone.base.model.MDashboardContent;
 
 /**
  * @author hengsin

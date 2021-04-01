@@ -19,8 +19,9 @@ import java.io.InputStream;
 import java.nio.charset.Charset;
 import java.util.List;
 
-import org.compiere.model.GridTab;
 import org.compiere.util.IProcessUI;
+
+import eone.base.model.GridTab;
 
 /**
  *

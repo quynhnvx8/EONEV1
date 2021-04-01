@@ -13,10 +13,11 @@
 package org.adempiere.webui.adwindow;
 
 import org.adempiere.webui.part.UIPart;
-import org.compiere.model.DataStatusEvent;
-import org.compiere.model.GridTab;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.EventListener;
+
+import eone.base.model.DataStatusEvent;
+import eone.base.model.GridTab;
 
 /**
  *

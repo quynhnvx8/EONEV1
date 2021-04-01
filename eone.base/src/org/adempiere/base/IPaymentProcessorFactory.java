@@ -13,7 +13,7 @@
  *****************************************************************************/
 package org.adempiere.base;
 
-import org.compiere.model.PaymentProcessor;
+import eone.base.model.PaymentProcessor;
 
 /**
  * 

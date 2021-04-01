@@ -19,11 +19,12 @@ package eone.base.process;
 import java.util.List;
 
 import org.adempiere.exceptions.AdempiereException;
-import org.compiere.model.MSysConfig;
-import org.compiere.model.MTable;
-import org.compiere.model.MUser;
-import org.compiere.model.SystemIDs;
 import org.compiere.util.CacheMgt;
+
+import eone.base.model.MSysConfig;
+import eone.base.model.MTable;
+import eone.base.model.MUser;
+import eone.base.model.SystemIDs;
 
 /**
  *	Hash existing passwords

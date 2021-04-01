@@ -42,10 +42,6 @@ import org.adempiere.webui.event.ValueChangeListener;
 import org.adempiere.webui.theme.ThemeManager;
 import org.adempiere.webui.util.ZKUpdateUtil;
 import org.adempiere.webui.window.WFieldRecordInfo;
-import org.compiere.model.GridField;
-import org.compiere.model.GridTab;
-import org.compiere.model.MRole;
-import org.compiere.model.MStyle;
 import org.compiere.util.DisplayType;
 import org.compiere.util.Env;
 import org.compiere.util.Evaluatee;
@@ -63,6 +59,11 @@ import org.zkoss.zul.Textbox;
 import org.zkoss.zul.Timebox;
 import org.zkoss.zul.impl.InputElement;
 import org.zkoss.zul.impl.XulElement;
+
+import eone.base.model.GridField;
+import eone.base.model.GridTab;
+import eone.base.model.MRole;
+import eone.base.model.MStyle;
 
 /**
  *
@@ -414,7 +415,7 @@ public abstract class WEditor implements EventListener<Event>, PropertyChangeLis
      */
     public void propertyChange(final PropertyChangeEvent evt)
     {
-        if (evt.getPropertyName().equals(org.compiere.model.GridField.PROPERTY))
+        if (evt.getPropertyName().equals(eone.base.model.GridField.PROPERTY))
         {
         	if (Executions.getCurrent() == null) {
         		Executions.schedule(this.getComponent().getDesktop(), new EventListener<Event>() {

@@ -13,7 +13,7 @@
  *****************************************************************************/
 package org.compiere.util;
 
-import org.compiere.model.MLookup;
+import eone.base.model.MLookup;
 
 
 
