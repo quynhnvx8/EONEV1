@@ -29,7 +29,6 @@ import java.util.regex.Pattern;
 import org.adempiere.install.DBConfigStatus;
 import org.adempiere.install.IDBConfigMonitor;
 import org.adempiere.install.IDatabaseConfig;
-import org.compiere.db.Database;
 import org.compiere.install.ConfigurationData;
 import org.compiere.util.CLogger;
 

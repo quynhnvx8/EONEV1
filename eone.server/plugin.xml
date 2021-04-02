@@ -2,7 +2,7 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension
-         id="org.adempiere.server.application"
+         id="eone.server.application"
          point="org.eclipse.core.runtime.applications">
       <application
             cardinality="singleton-global"
@@ -17,11 +17,11 @@
          id="server_product"
          point="org.eclipse.core.runtime.products">
       <product
-            application="org.adempiere.server.application"
-            name="iDempiere Server">
+            application="eone.server.application"
+            name="EONE Server">
          <property
                name="appName"
-               value="iDempiere Server">
+               value="EONE Server">
          </property>
       </product>
    </extension>

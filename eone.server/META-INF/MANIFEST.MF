@@ -32,6 +32,6 @@ Export-Package: org.adempiere.server,
 Bundle-ActivationPolicy: lazy
 Service-Component: OSGI-INF/*.xml
 Bundle-Activator: org.adempiere.server.AdempiereServerActivator
-Automatic-Module-Name: org.adempiere.server
+Automatic-Module-Name: eone.server
 Bundle-Vendor: EONE
 Bundle-RequiredExecutionEnvironment: JavaSE-11
