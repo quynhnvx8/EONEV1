@@ -27,7 +27,6 @@ public class MReport extends X_PA_Report
 		
 	}	//	MReport
 
-	private MReportColumn	m_column = null;
 	private MReportLine		m_line = null;
 	
 	public String getWhereClause()
@@ -70,11 +69,6 @@ public class MReport extends X_PA_Report
 		return sb.toString ();
 	}	//	toString
 
-
-	public MReportColumn	getColumn()
-	{
-		return m_column;
-	}
 
 
 	public MReportLine getLine()

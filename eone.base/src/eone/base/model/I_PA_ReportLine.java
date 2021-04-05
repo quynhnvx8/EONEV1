@@ -1,18 +1,6 @@
 /******************************************************************************
- * Product: iDempiere ERP & CRM Smart Business Solution                       *
- * Copyright (C) 1999-2012 ComPiere, Inc. All Rights Reserved.                *
- * This program is free software, you can redistribute it and/or modify it    *
- * under the terms version 2 of the GNU General Public License as published   *
- * by the Free Software Foundation. This program is distributed in the hope   *
- * that it will be useful, but WITHOUT ANY WARRANTY, without even the implied *
- * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.           *
- * See the GNU General Public License for more details.                       *
- * You should have received a copy of the GNU General Public License along    *
- * with this program, if not, write to the Free Software Foundation, Inc.,    *
- * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.                     *
- * For the text or an alternative of this public license, you may reach us    *
- * ComPiere, Inc., 2620 Augustine Dr. #245, Santa Clara, CA 95054, USA        *
- * or via info@compiere.org or http://www.compiere.org/license.html           *
+ * Product: EOoe ERP & CRM Smart Business Solution	                        *
+ * Copyright (C) 2020, Inc. All Rights Reserved.				                *
  *****************************************************************************/
 package eone.base.model;
 
@@ -21,7 +9,7 @@ import java.sql.Timestamp;
 import org.compiere.util.KeyNamePair;
 
 /** Generated Interface for PA_ReportLine
- *  @author iDempiere (generated) 
+ *  @author EOne (generated) 
  *  @version Version 1.0
  */
 public interface I_PA_ReportLine 
@@ -62,14 +50,18 @@ public interface I_PA_ReportLine
 	  */
 	public int getAD_Org_ID();
 
-    /** Column name CalculationType */
-    public static final String COLUMNNAME_CalculationType = "CalculationType";
+    /** Column name C_ElementValue_ID */
+    public static final String COLUMNNAME_C_ElementValue_ID = "C_ElementValue_ID";
 
-	/** Set Calculation	  */
-	public void setCalculationType (String CalculationType);
+	/** Set Account Element.
+	  * Account Element
+	  */
+	public void setC_ElementValue_ID (String C_ElementValue_ID);
 
-	/** Get Calculation	  */
-	public String getCalculationType();
+	/** Get Account Element.
+	  * Account Element
+	  */
+	public String getC_ElementValue_ID();
 
     /** Column name Created */
     public static final String COLUMNNAME_Created = "Created";
@@ -99,6 +91,15 @@ public interface I_PA_ReportLine
 	  * Optional short description of the record
 	  */
 	public String getDescription();
+
+    /** Column name FormulaSetup */
+    public static final String COLUMNNAME_FormulaSetup = "FormulaSetup";
+
+	/** Set FormulaSetup	  */
+	public void setFormulaSetup (String FormulaSetup);
+
+	/** Get FormulaSetup	  */
+	public String getFormulaSetup();
 
     /** Column name IsActive */
     public static final String COLUMNNAME_IsActive = "IsActive";
@@ -170,36 +171,6 @@ public interface I_PA_ReportLine
 	  */
 	public String getName();
 
-    /** Column name Oper_1_ID */
-    public static final String COLUMNNAME_Oper_1_ID = "Oper_1_ID";
-
-	/** Set Operand 1.
-	  * First operand for calculation
-	  */
-	public void setOper_1_ID (int Oper_1_ID);
-
-	/** Get Operand 1.
-	  * First operand for calculation
-	  */
-	public int getOper_1_ID();
-
-	public eone.base.model.I_PA_ReportColumn getOper_1() throws RuntimeException;
-
-    /** Column name Oper_2_ID */
-    public static final String COLUMNNAME_Oper_2_ID = "Oper_2_ID";
-
-	/** Set Operand 2.
-	  * Second operand for calculation
-	  */
-	public void setOper_2_ID (int Oper_2_ID);
-
-	/** Get Operand 2.
-	  * Second operand for calculation
-	  */
-	public int getOper_2_ID();
-
-	public eone.base.model.I_PA_ReportColumn getOper_2() throws RuntimeException;
-
     /** Column name OrderCalculate */
     public static final String COLUMNNAME_OrderCalculate = "OrderCalculate";
 
@@ -233,15 +204,6 @@ public interface I_PA_ReportLine
 	/** Get Report Line	  */
 	public int getPA_ReportLine_ID();
 
-    /** Column name PA_ReportLine_UU */
-    public static final String COLUMNNAME_PA_ReportLine_UU = "PA_ReportLine_UU";
-
-	/** Set PA_ReportLine_UU	  */
-	public void setPA_ReportLine_UU (String PA_ReportLine_UU);
-
-	/** Get PA_ReportLine_UU	  */
-	public String getPA_ReportLine_UU();
-
     /** Column name SeqNo */
     public static final String COLUMNNAME_SeqNo = "SeqNo";
 
@@ -256,6 +218,15 @@ public interface I_PA_ReportLine
  lowest number comes first
 	  */
 	public int getSeqNo();
+
+    /** Column name TypeAccount */
+    public static final String COLUMNNAME_TypeAccount = "TypeAccount";
+
+	/** Set TypeAccount	  */
+	public void setTypeAccount (String TypeAccount);
+
+	/** Get TypeAccount	  */
+	public String getTypeAccount();
 
     /** Column name Updated */
     public static final String COLUMNNAME_Updated = "Updated";

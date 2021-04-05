@@ -1,18 +1,6 @@
 /******************************************************************************
- * Product: iDempiere ERP & CRM Smart Business Solution                       *
- * Copyright (C) 1999-2012 ComPiere, Inc. All Rights Reserved.                *
- * This program is free software, you can redistribute it and/or modify it    *
- * under the terms version 2 of the GNU General Public License as published   *
- * by the Free Software Foundation. This program is distributed in the hope   *
- * that it will be useful, but WITHOUT ANY WARRANTY, without even the implied *
- * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.           *
- * See the GNU General Public License for more details.                       *
- * You should have received a copy of the GNU General Public License along    *
- * with this program, if not, write to the Free Software Foundation, Inc.,    *
- * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.                     *
- * For the text or an alternative of this public license, you may reach us    *
- * ComPiere, Inc., 2620 Augustine Dr. #245, Santa Clara, CA 95054, USA        *
- * or via info@compiere.org or http://www.compiere.org/license.html           *
+ * Product: EOoe ERP & CRM Smart Business Solution	                        *
+ * Copyright (C) 2020, Inc. All Rights Reserved.				                *
  *****************************************************************************/
 /** Generated Model - DO NOT CHANGE */
 package eone.base.model;
@@ -22,7 +10,7 @@ import java.util.Properties;
 import org.compiere.util.KeyNamePair;
 
 /** Generated Model for PA_ReportLine
- *  @author iDempiere (generated) 
+ *  @author EOne (generated) 
  *  @version Version 1.0 - $Id$ */
 public class X_PA_ReportLine extends PO implements I_PA_ReportLine, I_Persistent 
 {
@@ -30,7 +18,7 @@ public class X_PA_ReportLine extends PO implements I_PA_ReportLine, I_Persistent
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = 20200807L;
+	private static final long serialVersionUID = 20210402L;
 
     /** Standard Constructor */
     public X_PA_ReportLine (Properties ctx, int PA_ReportLine_ID, String trxName)
@@ -74,29 +62,22 @@ public class X_PA_ReportLine extends PO implements I_PA_ReportLine, I_Persistent
       return sb.toString();
     }
 
-	/** O1 Add O2 = O1+O2 */
-	public static final String CALCULATIONTYPE_O1AddO2 = "O1+O2";
-	/** O1 Sub O2 = O1-O2 */
-	public static final String CALCULATIONTYPE_O1SubO2 = "O1-O2";
-	/** O1 Muilti O2 = O1xO2 */
-	public static final String CALCULATIONTYPE_O1MuiltiO2 = "O1xO2";
-	/** O1 div O2 = O1:O2 */
-	public static final String CALCULATIONTYPE_O1DivO2 = "O1:O2";
-	/** O1 percent O2 = O1%O2 */
-	public static final String CALCULATIONTYPE_O1PercentO2 = "O1%O2";
-	/** Set Calculation.
-		@param CalculationType Calculation	  */
-	public void setCalculationType (String CalculationType)
+	/** Set Account Element.
+		@param C_ElementValue_ID 
+		Account Element
+	  */
+	public void setC_ElementValue_ID (String C_ElementValue_ID)
 	{
 
-		set_Value (COLUMNNAME_CalculationType, CalculationType);
+		set_Value (COLUMNNAME_C_ElementValue_ID, C_ElementValue_ID);
 	}
 
-	/** Get Calculation.
-		@return Calculation	  */
-	public String getCalculationType () 
+	/** Get Account Element.
+		@return Account Element
+	  */
+	public String getC_ElementValue_ID () 
 	{
-		return (String)get_Value(COLUMNNAME_CalculationType);
+		return (String)get_Value(COLUMNNAME_C_ElementValue_ID);
 	}
 
 	/** Set Description.
@@ -114,6 +95,20 @@ public class X_PA_ReportLine extends PO implements I_PA_ReportLine, I_Persistent
 	public String getDescription () 
 	{
 		return (String)get_Value(COLUMNNAME_Description);
+	}
+
+	/** Set FormulaSetup.
+		@param FormulaSetup FormulaSetup	  */
+	public void setFormulaSetup (String FormulaSetup)
+	{
+		set_Value (COLUMNNAME_FormulaSetup, FormulaSetup);
+	}
+
+	/** Get FormulaSetup.
+		@return FormulaSetup	  */
+	public String getFormulaSetup () 
+	{
+		return (String)get_Value(COLUMNNAME_FormulaSetup);
 	}
 
 	/** Set IsBold.
@@ -231,62 +226,6 @@ public class X_PA_ReportLine extends PO implements I_PA_ReportLine, I_Persistent
         return new KeyNamePair(get_ID(), getName());
     }
 
-	public eone.base.model.I_PA_ReportColumn getOper_1() throws RuntimeException
-    {
-		return (eone.base.model.I_PA_ReportColumn)MTable.get(getCtx(), eone.base.model.I_PA_ReportColumn.Table_Name)
-			.getPO(getOper_1_ID(), get_TrxName());	}
-
-	/** Set Operand 1.
-		@param Oper_1_ID 
-		First operand for calculation
-	  */
-	public void setOper_1_ID (int Oper_1_ID)
-	{
-		if (Oper_1_ID < 1) 
-			set_Value (COLUMNNAME_Oper_1_ID, null);
-		else 
-			set_Value (COLUMNNAME_Oper_1_ID, Integer.valueOf(Oper_1_ID));
-	}
-
-	/** Get Operand 1.
-		@return First operand for calculation
-	  */
-	public int getOper_1_ID () 
-	{
-		Integer ii = (Integer)get_Value(COLUMNNAME_Oper_1_ID);
-		if (ii == null)
-			 return 0;
-		return ii.intValue();
-	}
-
-	public eone.base.model.I_PA_ReportColumn getOper_2() throws RuntimeException
-    {
-		return (eone.base.model.I_PA_ReportColumn)MTable.get(getCtx(), eone.base.model.I_PA_ReportColumn.Table_Name)
-			.getPO(getOper_2_ID(), get_TrxName());	}
-
-	/** Set Operand 2.
-		@param Oper_2_ID 
-		Second operand for calculation
-	  */
-	public void setOper_2_ID (int Oper_2_ID)
-	{
-		if (Oper_2_ID < 1) 
-			set_Value (COLUMNNAME_Oper_2_ID, null);
-		else 
-			set_Value (COLUMNNAME_Oper_2_ID, Integer.valueOf(Oper_2_ID));
-	}
-
-	/** Get Operand 2.
-		@return Second operand for calculation
-	  */
-	public int getOper_2_ID () 
-	{
-		Integer ii = (Integer)get_Value(COLUMNNAME_Oper_2_ID);
-		if (ii == null)
-			 return 0;
-		return ii.intValue();
-	}
-
 	/** Set OrderCalculate.
 		@param OrderCalculate OrderCalculate	  */
 	public void setOrderCalculate (int OrderCalculate)
@@ -352,20 +291,6 @@ public class X_PA_ReportLine extends PO implements I_PA_ReportLine, I_Persistent
 		return ii.intValue();
 	}
 
-	/** Set PA_ReportLine_UU.
-		@param PA_ReportLine_UU PA_ReportLine_UU	  */
-	public void setPA_ReportLine_UU (String PA_ReportLine_UU)
-	{
-		set_Value (COLUMNNAME_PA_ReportLine_UU, PA_ReportLine_UU);
-	}
-
-	/** Get PA_ReportLine_UU.
-		@return PA_ReportLine_UU	  */
-	public String getPA_ReportLine_UU () 
-	{
-		return (String)get_Value(COLUMNNAME_PA_ReportLine_UU);
-	}
-
 	/** Set Sequence.
 		@param SeqNo 
 		Method of ordering records; lowest number comes first
@@ -384,6 +309,39 @@ public class X_PA_ReportLine extends PO implements I_PA_ReportLine, I_Persistent
 		if (ii == null)
 			 return 0;
 		return ii.intValue();
+	}
+
+	/** TypeAccount AD_Reference_ID=53280 */
+	public static final int TYPEACCOUNT_AD_Reference_ID=53280;
+	/** BalanceCreditAcct = BCR_ACCT */
+	public static final String TYPEACCOUNT_BalanceCreditAcct = "BCR_ACCT";
+	/** BalanceDebitAcct = BDR_ACCT */
+	public static final String TYPEACCOUNT_BalanceDebitAcct = "BDR_ACCT";
+	/** BalanceCreditAcctFinal = BCR_ACCT_F */
+	public static final String TYPEACCOUNT_BalanceCreditAcctFinal = "BCR_ACCT_F";
+	/** BalanceDebitAcctFinal = BDR_ACCT_F */
+	public static final String TYPEACCOUNT_BalanceDebitAcctFinal = "BDR_ACCT_F";
+	/** AccumulateDebitAcct = ACCDR_ACCT */
+	public static final String TYPEACCOUNT_AccumulateDebitAcct = "ACCDR_ACCT";
+	/** AccumulateCreditAcct = ACCCR_ACCT */
+	public static final String TYPEACCOUNT_AccumulateCreditAcct = "ACCCR_ACCT";
+	/** IncuredCreditAcct = INCCR_ACCT */
+	public static final String TYPEACCOUNT_IncuredCreditAcct = "INCCR_ACCT";
+	/** IncuredDebitAcct = INCDR_ACCT */
+	public static final String TYPEACCOUNT_IncuredDebitAcct = "INCDR_ACCT";
+	/** Set TypeAccount.
+		@param TypeAccount TypeAccount	  */
+	public void setTypeAccount (String TypeAccount)
+	{
+
+		set_Value (COLUMNNAME_TypeAccount, TypeAccount);
+	}
+
+	/** Get TypeAccount.
+		@return TypeAccount	  */
+	public String getTypeAccount () 
+	{
+		return (String)get_Value(COLUMNNAME_TypeAccount);
 	}
 
 	/** Set Code.

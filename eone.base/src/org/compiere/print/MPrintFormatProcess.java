@@ -10,6 +10,7 @@ import eone.base.process.SvrProcess;
 /**
  * 	@author 	Quynhnv.x8
  *  @date		21/10/2020
+ *  Dung de copy format print item tren chuc nang PrintFormatItem
  */
 public class MPrintFormatProcess extends SvrProcess
 {
