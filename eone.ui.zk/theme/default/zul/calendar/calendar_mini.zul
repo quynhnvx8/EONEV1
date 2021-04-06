@@ -2,7 +2,7 @@
 <?component name="divarrow" macro-uri="/theme/default/zul/calendar/divarrow.zul"?>
 <zk>
 <zscript><![CDATA[
-	var calendarIcon = org.adempiere.webui.theme.ThemeManager.getThemeResource("images/Calendar16.png");
+	var calendarIcon = eone.webui.theme.ThemeManager.getThemeResource("images/Calendar16.png");
 	import org.compiere.util.Msg;
 	import org.compiere.util.Env;
     import org.compiere.util.Util;

@@ -235,5 +235,5 @@ Copyright (C) 2007 Ashley G Ramdass.
 	]]>
 	</script>
     <include src="${themePreference}"/>
-	<window use="org.adempiere.webui.AdempiereWebUI"/>
+	<window use="eone.webui.AdempiereWebUI"/>
 </zk>

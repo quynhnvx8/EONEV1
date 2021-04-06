@@ -18,7 +18,7 @@
 </script>
 <zscript>
 <![CDATA[
-	import org.adempiere.webui.theme.ThemeManager;
+	import eone.webui.theme.ThemeManager;
 	self.setTitle(ThemeManager.getBrowserTitle());
 ]]>
 </zscript>

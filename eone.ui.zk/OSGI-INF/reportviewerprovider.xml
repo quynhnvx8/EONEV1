@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE scr:component>
-<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="org.adempiere.webui.window.ZkReportViewerProvider">
-   <implementation class="org.adempiere.webui.window.ZkReportViewerProvider"/>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="eone.webui.window.ZkReportViewerProvider">
+   <implementation class="eone.webui.window.ZkReportViewerProvider"/>
    <service>
       <provide interface="org.compiere.print.ReportViewerProvider"/>
    </service>

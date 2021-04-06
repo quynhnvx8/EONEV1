@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE scr:component>
-<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="org.adempiere.webui.factory.DefaultInfoFactory">
-   <implementation class="org.adempiere.webui.factory.DefaultInfoFactory"/>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="eone.webui.factory.DefaultInfoFactory">
+   <implementation class="eone.webui.factory.DefaultInfoFactory"/>
    <service>
-      <provide interface="org.adempiere.webui.factory.IInfoFactory"/>
+      <provide interface="eone.webui.factory.IInfoFactory"/>
    </service>
 </scr:component>

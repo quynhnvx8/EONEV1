@@ -6,7 +6,7 @@
 <![CDATA[
 	import org.compiere.util.Msg;
 	import org.compiere.util.Env;
-	import org.adempiere.webui.theme.ThemeManager;
+	import eone.webui.theme.ThemeManager;
 	self.setTitle(ThemeManager.getBrowserTitle());
 ]]>
 </zscript>

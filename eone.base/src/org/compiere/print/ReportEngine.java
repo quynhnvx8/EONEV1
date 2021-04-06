@@ -27,7 +27,6 @@ import javax.print.event.PrintServiceAttributeListener;
 
 import org.adempiere.exceptions.AdempiereException;
 import org.adempiere.pdf.WritePDF;
-//import org.adempiere.webui.window.ZkReportViewer.HTMLRendererRunnable.CSSInfo;
 import org.apache.ecs.XhtmlDocument;
 import org.apache.ecs.xhtml.a;
 import org.apache.ecs.xhtml.script;

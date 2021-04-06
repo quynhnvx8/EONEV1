@@ -82,7 +82,7 @@
 		</description>
 		<display-name>Update Session</display-name>
 		<listener-class>
-			org.adempiere.webui.LoggedSessionListener
+			eone.webui.LoggedSessionListener
 		</listener-class>
 	</listener>
 

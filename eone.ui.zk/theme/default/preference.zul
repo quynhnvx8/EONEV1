@@ -8,7 +8,7 @@
 <zscript>
 <![CDATA[
 	import org.compiere.util.Env;
-	import org.adempiere.webui.theme.ITheme;
+	import eone.webui.theme.ITheme;
 	import eone.base.model.MSysConfig;
 	
 	Env.setContext(Env.getCtx(), ITheme.ZK_TOOLBAR_BUTTON_SIZE, "24");	

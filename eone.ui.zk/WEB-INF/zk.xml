@@ -3,20 +3,16 @@
 <zk>
 	<listener>
 		<description>EONE WebUI</description>
-		<listener-class>org.adempiere.webui.session.SessionContextListener
+		<listener-class>eone.webui.session.SessionContextListener
 		</listener-class>
 	</listener>
 	
 	<listener>
-		<description>iDempiere Web app init for register handle change in table system configuration</description>
-    	<listener-class>org.adempiere.webui.DefaultWebAppInit</listener-class>
+		<description>EOne Web app init for register handle change in table system configuration</description>
+    	<listener-class>eone.webui.DefaultWebAppInit</listener-class>
 	</listener>
 
-	<!-- uncomment following to debug server event flow -->
-	<!-- listener>
-	    <listener-class>org.adempiere.webui.util.LogEventInterceptor</listener-class>
-	</listener -->
-
+	
 	<!--  false to use compress js which is much smaller. change to true if you need to debug -->
 	<client-config>
 		<processing-prompt-delay>500</processing-prompt-delay>
@@ -44,7 +40,7 @@
 
 	<!-- uncomment the following for selenium testing / see zk-selenium.xml for an easier way -->
 	<!--  system-config>
-		<id-generator-class>org.adempiere.webui.AdempiereIdGenerator</id-generator-class>
+		<id-generator-class>eone.webui.AdempiereIdGenerator</id-generator-class>
 	</system-config -->
 
 	<!--
@@ -53,8 +49,8 @@
 	-->
 	<!-- 
 	<system-config>
-		<ui-factory-class>org.adempiere.webui.RenewUiFactory</ui-factory-class>
-		<id-generator-class>org.adempiere.webui.AdempiereIdGenerator</id-generator-class>
+		<ui-factory-class>eone.webui.RenewUiFactory</ui-factory-class>
+		<id-generator-class>eone.webui.AdempiereIdGenerator</id-generator-class>
 	</system-config>	
 	 -->
 	<device-config>
@@ -63,7 +59,7 @@
 	</device-config>
 	<!--   device-config>
  		<device-type>ajax</device-type>
-      		<server-push-class>org.idempiere.ui.zk.websocket.WebSocketServerPush</server-push-class>
+      		<server-push-class>eone.ui.zk.websocket.WebSocketServerPush</server-push-class>
 	</device-config -->
 
 	<!-- true for better performance and lower resource usage -->
@@ -130,6 +126,6 @@
 	
 	<preference>
     	<name>org.zkoss.zk.ui.WebApp.name</name>
-    	<value>iDempiere</value>
+    	<value>EONE</value>
 	</preference>
 </zk>

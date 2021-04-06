@@ -12,11 +12,11 @@
 <zk>
 	<!-- id generator for selenium testing -->
 	<system-config>
-		<id-generator-class>org.adempiere.webui.AdempiereIdGenerator</id-generator-class>
+		<id-generator-class>eone.webui.AdempiereIdGenerator</id-generator-class>
 	</system-config>
 
 	<listener>
-    	<listener-class>org.adempiere.webui.UiLifeCycleListener</listener-class>
+    	<listener-class>eone.webui.UiLifeCycleListener</listener-class>
 	</listener>
 	
 	<library-property>
