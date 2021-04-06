@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.adempiere.webui.util;
+package eone.webui.util;
 
 import org.zkoss.zk.ui.Execution;
 import org.zkoss.zk.ui.Executions;
