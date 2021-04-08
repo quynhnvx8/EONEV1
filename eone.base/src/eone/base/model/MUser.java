@@ -182,11 +182,13 @@ public class MUser extends X_AD_User
 		if (email_login)
 			where.append("EMail=?");
 		else
-			where.append("COALESCE(LDAPUser,Name)=?");
+			where.append("Value=?");
 		where.append(" AND")
 				.append(" EXISTS (SELECT * FROM AD_User_Roles ur")
 				.append("         INNER JOIN AD_Role r ON (ur.AD_Role_ID=r.AD_Role_ID)")
-				.append("         WHERE ur.AD_User_ID=AD_User.AD_User_ID AND ur.IsActive='Y' AND r.IsActive='Y') AND ")
+				.append("         WHERE ur.AD_User_ID=AD_User.AD_User_ID AND ur.IsActive='Y' AND r.IsActive='Y'");
+		
+		where.append(") AND ")
 				.append(" EXISTS (SELECT * FROM AD_Client c")
 				.append("         WHERE c.AD_Client_ID=AD_User.AD_Client_ID")
 				.append("         AND c.IsActive='Y') AND ")
@@ -218,7 +220,7 @@ public class MUser extends X_AD_User
 			if (system.isLDAP() && ! Util.isEmpty(user.getLDAPUser())) {
 				valid = system.isLDAP(name, password);
 			} else if (hash_password) {
-				valid = user.authenticateHash(password);
+				valid = user.authenticateHash(password, name);
 			} else {
 				// password not hashed
 				valid = user.getPassword().equals(password);
