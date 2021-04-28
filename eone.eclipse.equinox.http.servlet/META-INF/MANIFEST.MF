@@ -6,8 +6,8 @@ Eclipse-LazyStart: true
 Eclipse-SourceReferences: scm:cvs:pserver:dev.eclipse.org:/cvsroot/rt:
  org.eclipse.equinox/compendium/bundles/org.eclipse.equinox.http.servl
  et;tag=v20100503
-Bundle-Activator: org.adempiere.eclipse.equinox.http.servlet.Activator
-Export-Package: org.adempiere.eclipse.equinox.http.servlet
+Bundle-Activator: eone.eclipse.equinox.http.servlet.Activator
+Export-Package: eone.eclipse.equinox.http.servlet
 Bundle-Version: 7.1.0.qualifier
 Bundle-ActivationPolicy: lazy
 Bundle-Vendor: %providerName

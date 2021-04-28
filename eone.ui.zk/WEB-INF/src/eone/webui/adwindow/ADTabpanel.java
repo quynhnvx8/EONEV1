@@ -93,6 +93,7 @@ import eone.webui.editor.WEditor;
 import eone.webui.editor.WEditorPopupMenu;
 import eone.webui.editor.WImageEditor;
 import eone.webui.editor.WPaymentEditor;
+import eone.webui.editor.WYesNoEditor;
 import eone.webui.editor.WebEditorFactory;
 import eone.webui.event.ContextMenuListener;
 import eone.webui.session.SessionManager;
@@ -379,6 +380,8 @@ DataStatusListener, IADTabpanel, IdSpace, IFieldEditorContainer
 			ZKUpdateUtil.setWidth(west, widthTreePanel());
 			//west.setCollapsible(true);
 			//west.setSplittable(true);
+			 //
+			
 			west.setAutoscroll(true);
 			layout.appendChild(west);
 			LayoutUtils.addSlideSclass(west);
@@ -677,25 +680,26 @@ DataStatusListener, IADTabpanel, IdSpace, IFieldEditorContainer
         				editor.getComponent().setWidgetListener("onFocus", "zWatch.fire('onFieldTooltip', this, null, this.fieldHeader(), this.fieldDescription(), this.fieldHelp());");
         	
         				editor.setGridTab(this.getGridTab());
-        				field.addPropertyChangeListener(editor);
+         				field.addPropertyChangeListener(editor);
         				editors.add(editor);
         				editorComps.add(editor.getComponent());
         			}
         			Div divs = new Div();
-        			//if (paintLabel) {
-        				Div div = new Div();
-        				div.setSclass("form-label");
-        				Label labeltext = editor.getLabel();
-        				
-        				div.appendChild(labeltext);
-        				if (labeltext.getDecorator() != null)
-        					div.appendChild(labeltext.getDecorator());
-        				//row.appendCellChild(div,1);
-        				//row.getLastCell().setStyle("position: relative; overflow: visible;");
-        				divs.appendChild(div);
-        			//}
-        			//Div 
-        			div = new Div();
+    				Div div = new Div();
+    				Label labeltext = editor.getLabel();    				
+    				div.appendChild(labeltext);
+    				
+    				if (editor instanceof WYesNoEditor && editor instanceof WButtonEditor) {
+    					div.appendChild(null);
+    				}else {
+    					div.appendChild(labeltext);
+    				}
+    				div.setSclass("form-label");
+    				if (labeltext.getDecorator() != null)
+    					div.appendChild(labeltext.getDecorator());
+    				divs.appendChild(div);
+
+    				div = new Div();
     				div.appendChild(editor.getComponent());
     				divs.setSclass("z-grid-form");
     				divs.appendChild(div);
@@ -1519,6 +1523,7 @@ DataStatusListener, IADTabpanel, IdSpace, IFieldEditorContainer
             		}   
     				else
     				{
+    					/*
     					AD_Tree_ID = MTree.getDefaultAD_Tree_ID (Env.getAD_Client_ID(Env.getCtx()), gridTab.getKeyColumnName());
         				treePanel.prepareForRefresh();
             			int linkColId = MTree.get(Env.getCtx(), AD_Tree_ID, null).getParent_Column_ID();
@@ -1528,10 +1533,12 @@ DataStatusListener, IADTabpanel, IdSpace, IFieldEditorContainer
             				linkColName = MColumn.getColumnName(Env.getCtx(), linkColId);
             				linkID = Env.getContextAsInt(Env.getCtx(), windowNo, linkColName, true);
             			}
+            			/* TODO SAO PHAI LOAD 2 LAN
             			if (treePanel.initTree(AD_Tree_ID, windowNo, linkColName, linkID))
             				echoDeferSetSelectedNodeEvent();
             			else
-            				setSelectedNode(gridTab.getRecord_ID());
+            			*/	
+            			setSelectedNode(gridTab.getRecord_ID());
     				}
 					
 				}    

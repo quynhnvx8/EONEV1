@@ -11,6 +11,23 @@
 	padding: 0px 3px;
 }
 
+.z-toolbarbutton {
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    cursor: pointer;
+    border-radius: 3px;
+    overflow: hidden;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 18px;
+    font-weight: normal;
+    font-style: normal;
+    color: rgba(0,0,0,0.57);
+    border: 2px solid transparent;
+    background-color: transparent;
+    padding: 1px 2px;
+}
+
 .toolbar-button {
 	background-color: transparent; 	
 	margin-left: 1px; 
@@ -65,6 +82,7 @@
 .z-toolbarbutton, .z-toolbarbutton .z-toolbarbutton-content {
 	display:inline-flex;
 	align-items: center;
+	padding: 0px;
 }
 .z-toolbar-content {
 	display:flex;
@@ -82,9 +100,6 @@
     border-width: 0 0 1px;
     padding: 1px 4px 3px;
     background: #F5F5F5;
-    background: -moz-linear-gradient(top, #FEFEFE 0%, #EEEEEE 100%);
-    background: -o-linear-gradient(top, #FEFEFE 0%, #EEEEEE 100%);
-    background: -ms-linear-gradient(top, #FEFEFE 0%, #EEEEEE 100%);
     position: relative;
 }
 

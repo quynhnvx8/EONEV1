@@ -36,8 +36,8 @@
 	width: 800px;
 	border-radius: 2px;
 	border: 1px solid #d5d5d5;
-	border-right: 2px solid #d5d5d5;
-	border-bottom-width: 2px;
+	border-right: 1px solid #d5d5d5;
+	border-bottom-width: 1px;
 	right: 1px;
 }
 
@@ -79,25 +79,54 @@
 
 .desktop-tabbox .z-tab {
 	height: 24px;
+	#backgroup: #0093F9;
 }
+
+.z-tabs-content {
+    display: table;
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-bottom: 1px solid #CFCFCF;
+    margin: 0;
+    padding-left: 0;
+    padding-top: 0;
+    list-style-image: none;
+    list-style-position: outside;
+    list-style-type: none;
+    zoom: 1;
+    clear: both;
+    min-height: 25px;
+}
+
 .z-tab {
 	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     font-size: 12px;
     display: block;
+    font-color: #FFFFFF;
     border: 1px solid #CFCFCF;
-    border-width: 1px 1px 0px 1px;
+    border-width: 0px 1px 0px 1px;
     margin: 0;
     padding-top: 1px;
     line-height: 30px;
-    background: #F3F3F3;
+    #background: #0093F9;
+    <!--F3F3F3-->
     text-align: center;
     position: relative;
     cursor: pointer;
     float: left;
+    border-radius: 0px;
 }
 .z-tab:hover {
-	background: #FFFFFF;    
+	background: #7AC8FF;
+	border-radius: 3px;    
 }
+
+.z-tabbox-top > .z-tabs .z-tabs-content {
+    white-space: nowrap;
+    #background: #0093F9;
+}
+
 .z-tab-unselected {
 	border-top-left-radius: 0px 0px;
 	border-top-right-radius: 0px 0px;
@@ -110,12 +139,8 @@
 
 .desktop-tabbox .z-tab-selected {
 	height: 25px;
-}
-
-.desktop-tabbox .z-tab-selected {
-	/*border-top: 2px solid #666;*/ 
-	border-top-left-radius: 0px 0px;
-	border-top-right-radius: 0px 0px;
+	border-radius: 3px;
+	background: #7AC8FF;
 }
 
 .desktop-tabbox .z-tab .z-tab-text {
@@ -128,7 +153,7 @@
 }
 
 .z-tabpanel {
-    border: 1px solid #CFCFCF;
+    border: 0px solid #CFCFCF;
     border-top: 0px;
     padding: 5px;
     zoom: 1;
@@ -140,7 +165,7 @@
 
 .desktop-center {
 	padding-top: 1px;
-	background-color: #FFFFFF;
+	#background-color: #0093F9;
 }
 
 .desktop-tabpanel {
@@ -152,24 +177,23 @@
 }
 
 .desktop-left-column {
-	/*width: 20%;*/
 	border: none;
 	border-right: 0px solid #C5C5C5;
-	/*background-color: #0162BB;*/
 	padding-top: 2px; 
 }
 
 .desktop-right-column {
-	width: 200px;
+	width: 220px;
 	border: none;
 	border-left: 1px solid #C5C5C5;
 	background-color: #FFFFFF;
 	padding-top: 2px; 
 }
 
-.desktop-left-column + .z-west-splitter,  .desktop-left-column.z-west {
+.desktop-left-column + .z-west-splitter {
 	border-top: none; 
 	border-right: 0px solid #c5c5c5;
+	#background: #0093F9;
 }
 
 .desktop-right-column + .z-east-splitter,  .desktop-right-column.z-east {
@@ -199,8 +223,7 @@
 
 .desktop-hometab {
 	margin-left: 0px !important;
-	border-top-left-radius: 0px 0px;
-	border-top-right-radius: 0px 0px;
+	border-radius: 3px;
 }
 
 .desktop-tabbox .z-toolbar-tabs-body {
@@ -238,7 +261,7 @@
 	padding: 0px !important;
 	background-image: none !important;
 	background-color:#F9F9F9 !important;
-	
+	min-height: 25px;	
 }
 
 .desktop-menu-popup {
@@ -308,3 +331,15 @@
 	padding: 8px;
 }
 
+.z-panelchildren {
+    position: relative;
+    padding: 1px;
+    overflow: hidden;
+    zoom: 1;
+}
+
+.z-north-body, .z-south-body, .z-west-body, .z-center-body, .z-east-body {
+    line-height: 16px;
+    padding: 10px;
+    color: rgba(0,0,0,0.9);
+}

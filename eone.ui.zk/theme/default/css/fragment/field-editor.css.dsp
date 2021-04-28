@@ -104,12 +104,10 @@ span.grid-combobox-editor {
 .grid-combobox-editor input {
     width: 100% !important;
     padding-right: 20px;
-    border-radius: 0px;
     border: 1px solid #cfcfcf;
 }
 
 .grid-combobox-editor.z-combobox-disabled input {
-	border-radius: 0px;
 	border-right: 1px solid #cfcfcf;
 	padding-right: 5px;
 }
@@ -118,7 +116,6 @@ span.grid-combobox-editor {
 	position: absolute;
 	right: 1px;
 	top: 1px;
-	border-radius: 0px;
 }
 
 
@@ -148,8 +145,6 @@ span.grid-combobox-editor {
 	padding-right: 44px; 
 	width: 100%;
 	height: 24px;
-	border-bottom-right-radius: 6px;
-	border-top-right-radius: 6px;
 	border-right: 0px;
 }
 .payment-rule-editor .z-combobox-input:focus {
@@ -168,7 +163,6 @@ span.grid-combobox-editor {
 	background-position: 0px 0px;
 }
 .payment-rule-editor .editor-button {
-	border-radius: 0px;
 	right: 24px;
 }
 
@@ -265,7 +259,6 @@ span.grid-combobox-editor {
     width: 100%;
     height: 24px;
     border: 1px solid #CFCFCF;
-    border-radius: 0px;
     margin: 0;
     padding: 4px 5px;
     padding-right: 29px;
@@ -283,7 +276,6 @@ span.grid-combobox-editor {
     width: 100%;
     height: 24px;
     border: 1px solid #CFCFCF;
-    border-radius: 0px;
     margin: 0;
     padding: 4px 5px;
     line-height: 14px;
@@ -298,11 +290,11 @@ span.grid-combobox-editor {
     color: #000000;
     min-height: 24px;
     border: 1px solid #CFCFCF;
-    border-radius: 0px;
     margin: 0;
     padding: 4px 5px 3px;
     line-height: 14px;
     background: #FFFFFF;
+    height: 24px;
 }
 
 .z-decimalbox, 
@@ -316,7 +308,6 @@ span.grid-combobox-editor {
     color: #000000;
     min-height: 24px;
     border: 1px solid #CFCFCF;
-    border-radius: 0px;
     margin: 0;
     padding: 4px 5px 3px;
     padding-right: 20px;

@@ -2,9 +2,6 @@
 package eone.webui.adwindow;
 
 
-import org.compiere.util.Env;
-import org.compiere.util.Msg;
-import org.compiere.util.Util;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zk.ui.event.Events;
@@ -68,9 +65,6 @@ public class ADTreePanel extends Panel implements EventListener<Event>
     	{
 	    	this.AD_Tree_ID = AD_Tree_ID;
 	    	SimpleTreeModel.initADTree(tree, AD_Tree_ID, windowNo, linkColName, linkID);
-	    	//MTree tb = MTree.get(Env.getCtx(), AD_Tree_ID, null);
-	    	//if (tb.isLoadAllNodesImmediately())
-	    	//	TreeUtils.collapseTree(tree, true);
 	    	pnlSearch.initialise();
 	    	return true;
     	}
@@ -90,7 +84,6 @@ public class ADTreePanel extends Panel implements EventListener<Event>
         tree.setPageSize(-1); // Due to bug in the new paging functionality
         
         tree.setStyle("border: none");
-        
         pnlSearch = new TreeSearchPanel(tree, Events.ON_SELECT, m_windowno, m_tabno);
         
         Toolbar toolbar = new Toolbar();
@@ -102,17 +95,6 @@ public class ADTreePanel extends Panel implements EventListener<Event>
         this.appendChild(pc);
         pc.appendChild(tree);  
         
-        // Elaine 2009/02/27 - expand tree
-        toolbar = new Toolbar();
-        toolbar.setMold("panel");
-        expandToggle = new ToolBarButton();
-        expandToggle.setMode("toggle");
-        expandToggle.setLabel(Util.cleanAmp(Msg.getMsg(Env.getCtx(), "ExpandTree")));
-        expandToggle.addEventListener(Events.ON_CHECK, this);
-        toolbar.appendChild(expandToggle);
-        this.appendChild(toolbar);
-        
-        this.addEventListener(ON_EXPAND_MENU_EVENT, this);
     }
     
     /**

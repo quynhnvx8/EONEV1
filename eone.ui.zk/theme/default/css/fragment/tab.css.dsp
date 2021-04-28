@@ -11,12 +11,20 @@
 	font-family: Helvetica,Arial,sans-serif;
 }
 
+.z-tabbox {
+    position: relative;
+    overflow: hidden;
+    background: #FFFFFF;
+    border: 1px solid #D9D9D9;
+    border-radius: 3px;
+}
+
 .z-tab-button :hover {
 	color: blue;
 }
 .z-tabbox-icon.z-tabbox-left-scroll, .z-tabbox-icon.z-tabbox-right-scroll {
 	padding: 0px;
-    border-radius: 0px;
+    border-radius: 3px;
     background-color: transparent;
     background: none;
 }
@@ -25,5 +33,5 @@
 	opacity: 1;
 }
 .z-tab-button > .z-icon-times.z-tab-icon {
-	margin-top: -9px;
+	margin-top: 0px;
 }

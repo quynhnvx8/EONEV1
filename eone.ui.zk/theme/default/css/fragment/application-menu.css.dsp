@@ -86,7 +86,6 @@
 .menu-search-toggle-off {
 	margin:0px; 
 	padding: 1px 4px 1px 4px;
-	border-radius: 0px;
 }
 
 .menu-search-toggle-on {
@@ -95,7 +94,6 @@
 	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3) inset !important;
 	margin:0px !important;
 	padding: 1px 4px 1px 4px !important;
-	border-radius: 0px;
 }
 
 .menu-search-toggle-on img, .menu-search-toggle-off img {
@@ -111,14 +109,14 @@
 	width: 24px;
 }
 .global-search-tabpanel {
-	width: 600px;
+	width: 240px;
 }
 @media screen and (max-width: 649px) {
 	.global-search-box.z-bandbox-popup {
-		width: 90% !important;
+		width: 200px !important;
 	}
 	.global-search-tabpanel {
-		width: 100%;
+		width: 200px;
 	}
 }
 .global-search-box.z-bandbox {
@@ -129,26 +127,26 @@
 }
 @media screen and (min-width: 500px) {
 	.global-search-box.z-bandbox {
-		width: 200px;
+		width: 140px;
 	}
 	.global-search-box.z-bandbox > input.z-bandbox-input {
-		width: 200px;
+		width: 140px;
 	}
 }
 @media screen and (min-width: 768px) {
 	.global-search-box.z-bandbox {
-		width: 250px;
+		width: 170px;
 	}
 	.global-search-box.z-bandbox > input.z-bandbox-input {
-		width: 250px;
+		width: 170px;
 	}
 }
 @media screen and (min-width: 1024px) {
 	.global-search-box.z-bandbox {
-		width: 300px;
+		width: 200px;
 	}
 	.global-search-box.z-bandbox > input.z-bandbox-input {
-		width: 300px;
+		width: 200px;
 	}
 }
 

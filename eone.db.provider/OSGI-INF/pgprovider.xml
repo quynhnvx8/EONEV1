@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="org.compiere.db.DB_PostgreSQL">
-   <implementation class="org.compiere.db.DB_PostgreSQL"/>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="eone.base.db.DB_PostgreSQL">
+   <implementation class="eone.base.db.DB_PostgreSQL"/>
    <service>
       <provide interface="org.compiere.db.AdempiereDatabase"/>
    </service>

@@ -93,6 +93,7 @@ public class SimpleTreeModel extends org.zkoss.zul.DefaultTreeModel<Object> impl
 		try {
 			tree.setItemRenderer(treeModel);
 			tree.setModel(treeModel);
+			
 		} catch (Exception e) {
 			logger.log(Level.SEVERE, "Failed to setup tree");
 		}

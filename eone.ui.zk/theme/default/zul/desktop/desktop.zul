@@ -6,6 +6,7 @@
 			<include src="/theme/default/zul/desktop/header.zul" id="northBody"/>
 		</north>
 		<west id="desktop-left-column" sclass="desktop-left-column" collapsible="false" splittable="false"	hflex="1">
+			
 		</west>
 		<center sclass="desktop-center" id="windowArea">
 		</center>

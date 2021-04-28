@@ -1,21 +1,5 @@
-/******************************************************************************
- * Copyright (C) 2014 Low Heng Sin                                            *
- * Copyright (C) 2014 Trek Global                                             *
- * This program is free software; you can redistribute it and/or modify it    *
- * under the terms version 2 of the GNU General Public License as published   *
- * by the Free Software Foundation. This program is distributed in the hope   *
- * that it will be useful, but WITHOUT ANY WARRANTY; without even the implied *
- * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.           *
- * See the GNU General Public License for more details.                       *
- * You should have received a copy of the GNU General Public License along    *
- * with this program; if not, write to the Free Software Foundation, Inc.,    *
- * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.                     *
- *****************************************************************************/
 package eone.webui.apps;
 
-import org.compiere.util.Env;
-import org.compiere.util.Msg;
-import org.compiere.util.Util;
 import org.zkoss.zk.ui.Page;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.EventListener;
@@ -25,20 +9,15 @@ import org.zkoss.zk.ui.event.KeyEvent;
 import org.zkoss.zk.ui.util.Clients;
 import org.zkoss.zul.Bandpopup;
 import org.zkoss.zul.Div;
+import org.zkoss.zul.Vbox;
 
 import eone.webui.ClientInfo;
-import eone.webui.apps.DocumentSearchController.SearchResult;
 import eone.webui.component.Bandbox;
-import eone.webui.component.Tab;
-import eone.webui.component.Tabbox;
-import eone.webui.component.Tabpanel;
-import eone.webui.component.Tabpanels;
-import eone.webui.component.Tabs;
 import eone.webui.util.DocumentSearch;
 import eone.webui.util.ZKUpdateUtil;
 
 /**
- * @author hengsin
+ * @author Admin
  *
  */
 public class GlobalSearch extends Div implements EventListener<Event> {
@@ -61,16 +40,16 @@ public class GlobalSearch extends Div implements EventListener<Event> {
 	private Bandbox bandbox;
 	
 	private MenuSearchController menuController;
-	private DocumentSearchController docController;
+	//private DocumentSearchController docController;
 
-	private Tabbox tabbox;
+	private Vbox tabbox;
 
 	/**
 	 * 
 	 */
 	public GlobalSearch(MenuSearchController menuController) {
 		this.menuController = menuController;
-		docController = new DocumentSearchController();
+		//docController = new DocumentSearchController();
 		init();
 	}
 
@@ -78,7 +57,7 @@ public class GlobalSearch extends Div implements EventListener<Event> {
 		bandbox = new Bandbox();
 		bandbox.setSclass("global-search-box");
 		appendChild(bandbox);
-//		ZKUpdateUtil.setWidth(bandbox, "100%");
+		//ZKUpdateUtil.setWidth(bandbox, "100%");
 		bandbox.setAutodrop(true);
 		bandbox.addEventListener(Events.ON_CHANGING, this);
 		bandbox.addEventListener(Events.ON_CHANGE, this);
@@ -86,33 +65,15 @@ public class GlobalSearch extends Div implements EventListener<Event> {
 		bandbox.addEventListener(Events.ON_CTRL_KEY, this);
 		
 		Bandpopup popup = new Bandpopup();
-		ZKUpdateUtil.setWindowHeightX(popup, ClientInfo.get().desktopHeight-50);
+		ZKUpdateUtil.setWindowHeightX(popup, ClientInfo.get().desktopHeight-400);
+		ZKUpdateUtil.setWindowWidthX(popup, ClientInfo.get().desktopWidth-1200);
 		bandbox.appendChild(popup);		
 		
-		tabbox = new Tabbox();
+		tabbox = new Vbox();
 		ZKUpdateUtil.setVflex(tabbox, "true");
 		tabbox.addEventListener(Events.ON_SELECT, this);
-		Tabs tabs = new Tabs();
-		tabbox.appendChild(tabs);
-		Tab tab = new Tab();
-		tab.setLabel(Util.cleanAmp(Msg.getMsg(Env.getCtx(),"Menu")));
-		tabs.appendChild(tab);		
-		Tabpanels tabPanels = new Tabpanels();
-		tabbox.appendChild(tabPanels);
-		Tabpanel tabPanel = new Tabpanel();
-		ZKUpdateUtil.setVflex(tabPanel, "true");
-		tabPanel.setSclass("global-search-tabpanel");
-		tabPanels.appendChild(tabPanel);
 		popup.appendChild(tabbox);
-		menuController.create(tabPanel);
-		
-		tab = new Tab();
-		tab.setLabel(Util.cleanAmp(Msg.getMsg(Env.getCtx(),"search")));
-		tabs.appendChild(tab);
-		tabPanel = new Tabpanel();
-		tabPanel.setSclass("global-search-tabpanel");
-		tabPanels.appendChild(tabPanel);
-		docController.create(tabPanel);
+		menuController.create(tabbox);
 		
 		addEventListener(ON_SEARCH, this);
 		addEventListener(ON_CREATE_ECHO, this);
@@ -133,40 +94,24 @@ public class GlobalSearch extends Div implements EventListener<Event> {
         	KeyEvent ke = (KeyEvent) event;
         	if (ke.getKeyCode() == KeyEvent.UP) {
         		if (bandbox.getFirstChild().isVisible()) {
-        			if (tabbox.getSelectedIndex()==0) {
-	        			MenuItem selected = menuController.selectPrior();
-	        			if (selected != null) {
-	        				bandbox.setText(selected.getLabel());
-	        			}
-        			} else {
-        				SearchResult selected = docController.selectPrior();
-        				if (selected != null) {
-        					bandbox.setText(selected.getLabel());
-        				}
+        			MenuItem selected = menuController.selectPrior();
+        			if (selected != null) {
+        				bandbox.setText(selected.getLabel());
         			}
         		}
         	} else if (ke.getKeyCode() == KeyEvent.DOWN) {
         		if (bandbox.getFirstChild().isVisible()) {
-        			if (tabbox.getSelectedIndex()==0) {
-	        			MenuItem selected = menuController.selectNext();
-	        			if (selected != null && !"...".equals(selected.getType())) {
-	        				bandbox.setText(selected.getLabel());
-	        			}
-        			} else {
-        				SearchResult selected = docController.selectNext();
-        				if (selected != null) {
-        					bandbox.setText(selected.getLabel());
-        				}
+        			MenuItem selected = menuController.selectNext();
+        			if (selected != null && !"...".equals(selected.getType())) {
+        				bandbox.setText(selected.getLabel());
         			}
         		}
         	}
         } else if (event.getName().equals(ON_SEARCH)) {
         	String value = (String) event.getData();
-        	if (tabbox.getSelectedIndex()==0)
-        		menuController.search(value);
-        	else
-        		docController.search(value);
-			bandbox.focus();
+        	menuController.search(value);
+        	//docController.search(value);
+        	bandbox.focus();
         } else if (event.getName().equals(ON_CREATE_ECHO)) {
     		StringBuilder script = new StringBuilder("jq('#")
     			.append(bandbox.getUuid())
@@ -182,17 +127,12 @@ public class GlobalSearch extends Div implements EventListener<Event> {
         	Clients.showBusy(bandbox, null);
         	Events.echoEvent(ON_POST_ENTER_KEY, this, null);        	
         } else if (event.getName().equals(ON_POST_ENTER_KEY)) {
-        	Clients.clearBusy(bandbox);
         	if (bandbox.getValue() != null && bandbox.getValue().startsWith(PREFIX_DOCUMENT_SEARCH)) {
         		DocumentSearch search = new DocumentSearch();
             	if (search.openDocumentsByDocumentNo(bandbox.getValue().substring(1)))
     				bandbox.setText(null);
         	} else {        	
-	        	if (tabbox.getSelectedIndex()==0) {
-	        		menuController.onOk(bandbox);
-	        	} else {
-	        		docController.onOk(bandbox);
-	        	}
+        		menuController.onOk(bandbox);
         	}
         } else if (event.getName().equals(Events.ON_SELECT)) {
         	String value = (String) bandbox.getAttribute("last.onchanging");

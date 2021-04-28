@@ -210,7 +210,7 @@
 
 .adwindow-gridview-detail .z-south-body {
 	padding-top: 1px;
-	background-color: #D3D3D3;
+	background-color: #F9F9F9;
 }
 
 .adwindow-gridview-borderlayout {
@@ -312,12 +312,6 @@
 }
 
 .activity-card {
-	border: 1px solid #d0cdc8;
-	border-top-left-radius: 2px;
-	border-top-right-radius: 2px;
-	border-bottom: 2px solid #d0cdc8;
-	border-bottom-left-radius: 4px;
-	border-bottom-right-radius: 4px;
 	margin-left: 3px;
 	margin-right: 3px;
 }

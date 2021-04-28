@@ -2,30 +2,30 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension
-         id="org.compiere.db.ConfigOracle"
+         id="eone.base.db.ConfigOracle"
          name="Oracle Database Configuration"
-         point="org.adempiere.install.IDatabaseConfig">
+         point="eone.install.IDatabaseConfig">
       <database
-            class="org.compiere.db.ConfigOracle"
+            class="eone.base.db.ConfigOracle"
             id="Oracle">
       </database>
    </extension>
 	<extension
-         id="org.compiere.db.ConfigPostgreSQL"
+         id="eone.base.db.ConfigPostgreSQL"
          name="PostgreSQL Database Configuration"
-         point="org.adempiere.install.IDatabaseConfig">
+         point="eone.install.IDatabaseConfig">
       <database
-            class="org.compiere.db.ConfigPostgreSQL"
+            class="eone.base.db.ConfigPostgreSQL"
             id="PostgreSQL">
       </database>
    </extension>
    
 	<extension
-         id="org.compiere.db.ConfigMSSQL"
+         id="eone.base.db.ConfigMSSQL"
          name="SQL Server Database Configuration"
-         point="org.adempiere.install.IDatabaseConfig">
+         point="eone.install.IDatabaseConfig">
       <database
-            class="org.compiere.db.ConfigMSSQL"
+            class="eone.base.db.ConfigMSSQL"
             id="MSSQL">
       </database>
    </extension>

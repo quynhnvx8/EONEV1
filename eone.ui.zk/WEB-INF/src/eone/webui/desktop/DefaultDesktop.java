@@ -1,19 +1,3 @@
-/******************************************************************************
- * Product: Posterita Ajax UI 												  *
- * Copyright (C) 2007 Posterita Ltd.  All Rights Reserved.                    *
- * This program is free software; you can redistribute it and/or modify it    *
- * under the terms version 2 of the GNU General Public License as published   *
- * by the Free Software Foundation. This program is distributed in the hope   *
- * that it will be useful, but WITHOUT ANY WARRANTY; without even the implied *
- * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.           *
- * See the GNU General Public License for more details.                       *
- * You should have received a copy of the GNU General Public License along    *
- * with this program; if not, write to the Free Software Foundation, Inc.,    *
- * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.                     *
- * For the text or an alternative of this public license, you may reach us    *
- * Posterita Ltd., 3, Draper Avenue, Quatre Bornes, Mauritius                 *
- * or via info@posterita.org or http://www.posterita.org/                     *
- *****************************************************************************/
 
 package eone.webui.desktop;
 
@@ -60,6 +44,7 @@ import org.zkoss.zul.Anchorchildren;
 import org.zkoss.zul.Anchorlayout;
 import org.zkoss.zul.Borderlayout;
 import org.zkoss.zul.Center;
+import org.zkoss.zul.Div;
 import org.zkoss.zul.Image;
 import org.zkoss.zul.Menuitem;
 import org.zkoss.zul.Popup;
@@ -83,6 +68,8 @@ import eone.webui.LayoutUtils;
 import eone.webui.adwindow.ADWindow;
 import eone.webui.apps.AEnv;
 import eone.webui.apps.BusyDialog;
+import eone.webui.apps.GlobalSearch;
+import eone.webui.apps.MenuSearchController;
 import eone.webui.apps.ProcessDialog;
 import eone.webui.component.Label;
 import eone.webui.component.Menupopup;
@@ -108,12 +95,7 @@ import eone.webui.window.AboutWindow;
 
 /**
  *
- * Default desktop implementation.
- * @author <a href="mailto:agramdass@gmail.com">Ashley G Ramdass</a>
- * @author <a href="mailto:hengsin@gmail.com">Low Heng Sin</a>
- * @date Mar 2, 2007
- * @version $Revision: 0.10 $
- * @author Deepak Pansheriya/Vivek - Adding support for message broadcasting
+ * @author Admin
  */
 public class DefaultDesktop extends TabbedDesktop implements MenuListener, Serializable, EventListener<Event>, EventHandler, DesktopCleanup
 {
@@ -146,7 +128,6 @@ public class DefaultDesktop extends TabbedDesktop implements MenuListener, Seria
 	
 	private Desktop m_desktop = null;
 	
-
 	private ToolBarButton max;
 	
 	private ToolBarButton showHeader;
@@ -155,9 +136,9 @@ public class DefaultDesktop extends TabbedDesktop implements MenuListener, Seria
 
 	private Window headerPopup;
 
-	private Image logo;
+	private Image logoMobile;
 	private Image logoDesktop;
-
+	private Div menuLookupL;
 	
     public DefaultDesktop()
     {
@@ -192,7 +173,6 @@ public class DefaultDesktop extends TabbedDesktop implements MenuListener, Seria
         
         West w = layout.getWest();
         //w.setTitle("Main Menu");//Main Menu trai
-        
         w.setOpen(true);
         ZKUpdateUtil.setWidth(w, "20%");
         Style style = new Style();
@@ -201,7 +181,6 @@ public class DefaultDesktop extends TabbedDesktop implements MenuListener, Seria
        
 		if( !ClientInfo.isMobile())
     	{
-			
 			Anchorlayout anchorlayout = new Anchorlayout();	        
 	        anchorlayout.setSclass("dashboard-layout slimScroll");
 	        anchorlayout.setVflex("1");
@@ -211,7 +190,7 @@ public class DefaultDesktop extends TabbedDesktop implements MenuListener, Seria
 	        
 	        //Logo
 	        Anchorchildren headerLogo = new Anchorchildren();
-	        headerLogo.setWidth("20%");
+	        //headerLogo.setWidth("35px");
 	        anchorlayout.appendChild(headerLogo);
 	        
 	        logoDesktop = new Image();
@@ -221,6 +200,25 @@ public class DefaultDesktop extends TabbedDesktop implements MenuListener, Seria
 	        logoDesktop.setSclass("img-logo-desktop");
 	        headerLogo.appendChild(logoDesktop);
 	        
+	        
+	    	
+	    	//Menu search
+	        Anchorchildren searchMenu = new Anchorchildren();
+	        anchorlayout.appendChild(searchMenu);
+	        
+	        MenuTreePanel menuTreePanel = new MenuTreePanel(searchMenu);
+	        menuLookupL = new Div();
+	        menuLookupL.setId("menuLookupL");
+	        menuLookupL.addEventListener(Events.ON_CTRL_KEY, this);
+	        
+	        searchMenu.appendChild(menuLookupL);
+	        
+	        GlobalSearch globalSearch = new GlobalSearch(new MenuSearchController(menuTreePanel.getMenuTree()));
+	        menuLookupL.getParent().insertBefore(globalSearch, menuLookupL);
+	        menuLookupL.detach();	
+	        //ZKUpdateUtil.setWidth(searchMenu, "90%");
+	        
+	        //Info logout
 	        Anchorchildren infologout = new Anchorchildren();
 	        anchorlayout.appendChild(infologout);
 	        infologout.setSclass("img-logout-desktop");
@@ -238,22 +236,10 @@ public class DefaultDesktop extends TabbedDesktop implements MenuListener, Seria
 	    	mi.addEventListener(Events.ON_CLICK, this);
 	    	menuLogout.appendChild(mi);
 	    	infologout.appendChild(menuLogout);
-	        
-	        Anchorchildren searchMenu = new Anchorchildren();
-	        anchorlayout.appendChild(searchMenu);
-	        
-	        HeaderPanel searchPanel = new HeaderPanel();
-	        MenuTreePanel menuTreePanel = new MenuTreePanel(null);
-	        
-	        searchPanel.setWidth("98%");
-	        searchPanel.createSearchPanel(menuTreePanel, false);
-	        searchPanel.setId(UUID.randomUUID().toString());
-	        searchPanel.setVisible(true);
-	        searchMenu.appendChild(searchPanel);
-	        
+	    	//End Logout
 	        
 	        Anchorchildren menuTree = new Anchorchildren();
-	        menuTree.setAnchor("100% 96%");
+	        menuTree.setAnchor("100% 95%");
 	        anchorlayout.appendChild(menuTree);
 	        menuTreePanel.setBorder(true);   
 	        menuTree.appendChild(menuTreePanel);
@@ -393,12 +379,12 @@ public class DefaultDesktop extends TabbedDesktop implements MenuListener, Seria
 			w.setVisible(false);
 		}
 		
-		logo = pnlHead.getLogo();
+		logoMobile = pnlHead.getLogo();
 		//side = logo;
-		if (ClientInfo.isMobile() && logo != null)
+		if (ClientInfo.isMobile() && logoMobile != null)
 		{
 			Anchorchildren ac = new Anchorchildren();
-			ac.appendChild(logo);
+			ac.appendChild(logoMobile);
 			ac.setStyle("padding: 4px;");
 			Anchorlayout layout = new Anchorlayout(); //(Anchorlayout) side.getFirstChild();
 			layout.insertBefore(ac, layout.getFirstChild());

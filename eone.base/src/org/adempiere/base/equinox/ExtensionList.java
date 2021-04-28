@@ -112,7 +112,6 @@ public class ExtensionList<T> implements Iterable<T>{
 	public ExtensionList(Class<T> clazz, String extensionPointId) {
 		if (extensionPointId == null)
 			extensionPointId = clazz.getName();
-		
 		try {
 			elements = Platform.getExtensionRegistry().getConfigurationElementsFor(extensionPointId);
 			if (elements != null && elements.length > 1) {

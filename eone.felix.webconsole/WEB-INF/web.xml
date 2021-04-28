@@ -7,7 +7,7 @@
 	<description></description>
 	<filter id="bridge">
 		<filter-name>equinoxBridgeFilter</filter-name>
-		<filter-class>org.adempiere.eclipse.equinox.http.servlet.BridgeFilter</filter-class>
+		<filter-class>eone.eclipse.equinox.http.servlet.BridgeFilter</filter-class>
 		<init-param>
 			<param-name>HttpContext.ClassName</param-name>
 			<param-value>org.apache.felix.webconsole.internal.servlet.OsgiManagerHttpContext</param-value>

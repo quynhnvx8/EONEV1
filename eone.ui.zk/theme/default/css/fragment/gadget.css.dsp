@@ -12,9 +12,14 @@
 	padding: 0px;
 }
 
+.z-panel-noheader
+.z-panel-noframe {
+    border-top: 1px solid #CFCFCF;
+}
+
 .z-panel {
-	border-radius: 0px;
-	border: 1px solid #d8d8d8;
+	border-radius: 3px;
+	border: 1px solid #0093F9;
 	border-bottom-width: 1px;
 }
 

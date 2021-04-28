@@ -68,7 +68,11 @@ div.z-column-cnt, div.z-grid-header div.z-auxheader-cnt {
 }
 
 .z-column-content, .z-listheader-content, .z-listcell-content {
-	padding: 0px 0px 0px;
+	padding: 2px 2px;
+}
+
+.z-column-content {
+    color: #101D52;
 }
 
 .z-grid-body .z-cell {
@@ -83,6 +87,24 @@ div.z-column-cnt, div.z-grid-header div.z-auxheader-cnt {
 	border-left: 1px solid #cfcfcf;
 	border-bottom: 1px solid #cfcfcf;
 	padding: 0px 10px 10px 40px;
+}
+
+
+.z-frozen-body {
+    overflow: hidden;
+    float: left;
+    background: #F5F5F5;
+}
+
+.z-frozen-inner {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    background: #F5F5F5;
+}
+.z-frozen-inner:hover {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    background: #F5F5F5;
 }
 
 .z-row, .z-listitem .z-listcell, .z-listitem.z-listitem-selected>.z-listcell {

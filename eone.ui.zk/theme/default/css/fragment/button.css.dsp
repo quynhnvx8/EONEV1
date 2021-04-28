@@ -3,13 +3,19 @@
   margin: 0px;
   padding: 0px 10px;
   font-size: 12px;
+  color: #FFFFFF;
   line-height: 20px;
   text-align: center;
   vertical-align: middle;
   cursor: pointer;
-  background-color: #f5f5f5;
   border: 1px solid #cccccc;
-  
+  margin: 0px !important;
+  background: #0093F9;
+}
+
+.z-button:hover {
+    border-color: #8FB9D0;
+    background: #7AC8FF;
 }
 
 .z-paging-button {
@@ -22,18 +28,10 @@
     min-width: 24px;
     height: 24px;
     border: 1px solid #CFCFCF;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    -o-border-radius: 3px;
-    -ms-border-radius: 3px;
-    border-radius: 3px;
     margin-right: 6px;
     padding: 4px 0px;
     line-height: 14px;
     background: #F9F9F9;
-    background: -moz-linear-gradient(top, #FEFEFE 0%, #EEEEEE 100%);
-    background: -o-linear-gradient(top, #FEFEFE 0%, #EEEEEE 100%);
-    background: -ms-linear-gradient(top, #FEFEFE 0%, #EEEEEE 100%);
     text-align: center;
     vertical-align: top;
     cursor: pointer;
@@ -41,33 +39,25 @@
     white-space: nowrap;
 }
 
-.z-button {
-	margin: 0px !important;
-	background: #F9F9F9;
-}
 
-.z-button-hover,
 .z-button-focus,
 .z-button-click,
 .z-button-disabled {
-  background: #e6e6e6;
+  background: #7AC8FF;
 }
 
 .z-button-click {
   background-color: #cccccc;
 }
 
-.z-button-hover,
 .z-button-focus {
-  color: #333333;
+  color: #F0F0F0;
   text-decoration: none;
   
   
 }
 
-.z-button-focus {
-  outline: 5px auto -webkit-focus-ring-color;
-}
+
 
 .z-button-click {
   background-image: none;
@@ -75,16 +65,6 @@
   -webkit-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
      -moz-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
           box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
-}
-
-.z-button-disabled {
-  cursor: default;
-  background-image: none;
-  opacity: 0.65;
-  filter: alpha(opacity=65);
-  -webkit-box-shadow: none;
-     -moz-box-shadow: none;
-          box-shadow: none;
 }
 
 .z-button.btn-small {

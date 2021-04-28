@@ -33,7 +33,8 @@ div.wc-modal, div.wc-modal-none, div.wc-highlighted, div.wc-highlighted-none {
 	border-top-right-radius: 3px;
 	background-color: #DCDCDC;
 	border-color: #DCDCDC;
-	background: #A5A5A5;
+	#background: #0093F9;;
+	<!-- #A5A5A5;-->
 	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     font-size: 12px;
     font-weight: bold;
@@ -42,11 +43,11 @@ div.wc-modal, div.wc-modal-none, div.wc-highlighted, div.wc-highlighted-none {
 }
 .z-window-content {
 	background-image: none !important;
-	background: #F0F0F0;	
+	background: #F9F9F9;	
 }
 
 .z-window-embedded > .z-window-header {
-	border-radius: 0px;
+	border-radius: 3px;
 	background-color: transparent;
 }
 
@@ -114,7 +115,8 @@ div.wc-modal, div.wc-modal-none, div.wc-highlighted, div.wc-highlighted-none {
 }
 
 .btn-ok {
-	font-weight: bold;
+	font-weight: nomal;
+	color: #FFFFFF;
 }
 
 <%-- notification message --%>
@@ -166,7 +168,7 @@ input[type="checkbox"]:focus
     display: block;
     width: 28px;
     height: 24px;
-    border-radius: 4px;
+    border-radius: 3px;
     margin: 2px 5px;
     line-height: 24px;
     background: transparent;

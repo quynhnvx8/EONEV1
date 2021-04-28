@@ -117,7 +117,7 @@
     </library-property>
     <library-property>
         <name>org.zkoss.theme.preferred</name>
-        <value>breeze</value><!--breeze or silvertail, atlantic, iceblue, iceblue-compact. -->
+        <value>iceblue-compact</value><!--breeze or silvertail, atlantic, iceblue, iceblue-compact. -->
     </library-property>
    <library-property>
 		<name>org.zkoss.zk.WPD.cache</name>

@@ -10,6 +10,10 @@
 	height: 24px;
 }
 
+.z-west-body {
+	#background: #0093F9;
+}
+
 .z-south-collapsed:hover, .z-east-collapsed:hover, .z-west-collapsed:hover, .z-north-collapsed:hover {
 	box-shadow:inset 0 0 8px rgba(197,197,197,0.5);
 }

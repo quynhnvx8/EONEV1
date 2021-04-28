@@ -1,0 +1,128 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="eone.install" xmlns="http://www.w3.org/2001/XMLSchema">
+<annotation>
+      <appinfo>
+         <meta.schema plugin="eone.install" id="IDatabaseConfig" name="Database configuration extension"/>
+      </appinfo>
+      <documentation>
+         Extension point to provide database configuration support. To add database support to adempiere, you must provide extension for this extension point and the org.compiere.db.AdempiereDatabase extension point. The id attribute of the 2 extension must match ( case sensitive ).
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <annotation>
+         <appinfo>
+            <meta.element />
+         </appinfo>
+      </annotation>
+      <complexType>
+         <choice>
+            <element ref="database"/>
+         </choice>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute translatable="true"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="database">
+      <complexType>
+         <attribute name="id" type="string" use="required">
+            <annotation>
+               <documentation>
+                  PostgreSQL or Oracle
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="class" type="string" use="required">
+            <annotation>
+               <documentation>
+                  Implementation class name for the org.adempiere.install.IDatabaseConfig interface
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn=":eone.install.IDatabaseConfig"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="since"/>
+      </appinfo>
+      <documentation>
+         1.0.0
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="examples"/>
+      </appinfo>
+      <documentation>
+         &lt;pre&gt;
+&lt;extension
+         id=&quot;eone.base.db.ConfigPostgreSQL&quot;
+         name=&quot;PostgreSQL Database Configuration&quot;
+         point=&quot;org.adempiere.install.IDatabaseConfig&quot;&gt;
+      &lt;database
+            class=&quot;eone.base.db.ConfigPostgreSQL&quot;
+            id=&quot;PostgreSQL&quot;&gt;
+      &lt;/database&gt;
+&lt;/extension&gt;
+&lt;/pre&gt;
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="apiinfo"/>
+      </appinfo>
+      <documentation>
+         The class attribute must represent an implementor of org.adempiere.install.IDatabaseConfig
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="implementation"/>
+      </appinfo>
+      <documentation>
+         eone.base.db.provider bundle
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="copyright"/>
+      </appinfo>
+      <documentation>
+          This file is part of EONE
+                                                                           
+      </documentation>
+   </annotation>
+
+</schema>
