@@ -26,11 +26,11 @@
 }
 
 .z-grid tbody tr.highlight td.row-indicator-selected {
-	background-color: #FFFFCC !important;
+	#background-color: #FFFFCC !important;
 	background-image: url(${c:encodeURL('/theme/default/images/EditRecord16.png')}) !important;
 	background-position: center;
 	background-repeat: no-repeat;
-	background-size: 16px 16px;  
+	background-size: 14px 14px;  
 	cursor: pointer;
 }
 
@@ -76,7 +76,7 @@ div.z-column-cnt, div.z-grid-header div.z-auxheader-cnt {
 }
 
 .z-grid-body .z-cell {
-	padding: 0px 0px;
+	padding: 0px 10px 5px 10px;
 }
 
 .z-grid-form {
@@ -84,11 +84,16 @@ div.z-column-cnt, div.z-grid-header div.z-auxheader-cnt {
 }
 
 .z-cell {
-	border-left: 1px solid #cfcfcf;
-	border-bottom: 1px solid #cfcfcf;
-	padding: 0px 10px 10px 40px;
+	border-left: 1px solid #F0F0F0;
 }
 
+.z-row:hover {
+    background: #E0F2FF;
+}
+
+.z-frozen{
+	background: #F5F5F5;
+}
 
 .z-frozen-body {
     overflow: hidden;
@@ -108,7 +113,6 @@ div.z-column-cnt, div.z-grid-header div.z-auxheader-cnt {
 }
 
 .z-row, .z-listitem .z-listcell, .z-listitem.z-listitem-selected>.z-listcell {
-	border-right: 1px solid #cfcfcf;
 	
 }
 
@@ -173,22 +177,15 @@ div.z-listbox-body .z-listcell {
 }
 
 .z-columns-bar {
-    background: #FEFEFE;
-    background: #F0F0F0;
-    /*border-left: 1px solid #CFCFCF;*/
-    /*border-bottom: 1px solid #CFCFCF;*/
+    background: #F0F0F0;    
+    border: none;
 }
 
-z-textbox, .z-decimalbox, .z-intbox, .z-longbox, .z-doublebox {
-    font-family: Arial,Sans-serif;
-    font-size: 12px;
-    font-weight: normal;
-    font-style: normal;
-    color: #000000;
+.z-textbox, .z-decimalbox, .z-intbox, .z-longbox, .z-doublebox {
     min-height: 24px;
    
-    border-radius: 0px;
-    margin: 0;
+    border-radius: 3px;
+    margin: 0px;
     padding: 4px 5px 3px;
     line-height: 14px;
     background: #FFFFFF;

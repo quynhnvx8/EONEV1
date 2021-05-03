@@ -152,7 +152,8 @@
 	display: inline-block;
 	padding: 0px;
 	padding-left: 1px;
-	width: 20px;
+	width: 24px;
+	height: 24px;
 }
 
 .adwindow-detailpane-toolbar .z-toolbarbutton img {

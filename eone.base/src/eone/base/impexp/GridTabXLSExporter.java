@@ -1,7 +1,5 @@
 package eone.base.impexp;
 
-import static eone.base.model.SystemIDs.REFERENCE_PAYMENTRULE;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -165,10 +163,6 @@ public class GridTabXLSExporter implements IGridTabExporter
 				 gridFields = getFields(detail);
 				 for(GridField field : gridFields){
 					 MColumn columnDetail  = MColumn.get(Env.getCtx(), field.getAD_Column_ID());
-					 if(DisplayType.Location == field.getDisplayType()){
-						specialDetDispayType = DisplayType.Location;
-						continue;
-					 }
 					 
 					 String  headNameDetail= detail.getTableName();
 					 String resolveCol = resolveColumnName(tableDetail, columnDetail, field);
@@ -226,11 +220,7 @@ public class GridTabXLSExporter implements IGridTabExporter
 					
 					
 					String headName = header[idxfld];
-					if (DisplayType.Payment == field.getDisplayType()){
-					   value = MRefList.getListName(Env.getCtx(),REFERENCE_PAYMENTRULE, gridTab.getValue(idxrow, header[idxfld]).toString()); 		 
-					}else{	
-					   value = resolveValue(gridTab, table, column, idxrow, headName);
-					}
+					value = resolveValue(gridTab, table, column, idxrow, headName);
 					//Ignore row 
 					if("IsActive".equals(headName) && value!=null && Boolean.valueOf((Boolean)value)==false){
 						isActiveRow=false;	
@@ -371,25 +361,28 @@ public class GridTabXLSExporter implements IGridTabExporter
 				keyColumnName = keyColumnParent;
 			} else {
 				GridTab parent = childTab.getParentTab();
-				keyColumnName = parent.getKeyColumnName();
-				RowIndex rowIndx = mapIdxRow.get(parent);
-				if (rowIndx == null)
-					continue;
-				String whereCla = rowIndx.getWhereClause();
-				
-				if (whereCla == null || whereCla.length() ==0) 
-					continue;
-				parent.getTableModel().dataRequery(whereCla, false, 0);
-				Object idO = parent.getValue(rowIndx.m_key, keyColumnName);
-				if (idO == null) 
-					continue;
-				
-				r_Id = Integer.parseInt(idO.toString());
-				keyColumnName = parent.getKeyColumnName();
-				RowIndex rowIndxChild = mapIdxRow.get(childTab);
-				if (rowIndxChild != null) {
-					rowIndxChild.setParent(rowIndx);
+				if (parent != null) {
+					keyColumnName = parent.getKeyColumnName();
+					RowIndex rowIndx = mapIdxRow.get(parent);
+					if (rowIndx == null)
+						continue;
+					String whereCla = rowIndx.getWhereClause();
+					
+					if (whereCla == null || whereCla.length() ==0) 
+						continue;
+					parent.getTableModel().dataRequery(whereCla, false, 0);
+					Object idO = parent.getValue(rowIndx.m_key, keyColumnName);
+					if (idO == null) 
+						continue;
+					
+					r_Id = Integer.parseInt(idO.toString());
+					keyColumnName = parent.getKeyColumnName();
+					RowIndex rowIndxChild = mapIdxRow.get(childTab);
+					if (rowIndxChild != null) {
+						rowIndxChild.setParent(rowIndx);
+					}
 				}
+				
 			}
 			
 		    String  whereCla = getWhereClause (childTab ,r_Id ,keyColumnName);
@@ -415,14 +408,7 @@ public class GridTabXLSExporter implements IGridTabExporter
 			    }
 		    	for(GridField field : childTabDetail.getValue()){
 				    MColumn column = MColumn.get(Env.getCtx(), field.getAD_Column_ID());
-					if(DisplayType.Location == column.getAD_Reference_ID()){
-					   specialDetDispayType = DisplayType.Location;
-					   Object fResolved = resolveValue(childTab, MTable.get(Env.getCtx(),childTab.getTableName()), column, rowIndex.getKey(),column.getColumnName());
-					   if(fResolved!=null)
-					      specialRecordId = Integer.parseInt(fResolved.toString());
-				       
-					   continue;
-				    }
+					
 				    MTable tableDetail = MTable.get(Env.getCtx(), childTab.getTableName());
 				    String resolveCol = resolveColumnName(tableDetail,column,field);
 				    
@@ -433,9 +419,7 @@ public class GridTabXLSExporter implements IGridTabExporter
 				    String headName = headArray.get(headArray.indexOf(childTab.getTableName()+">" + resolveCol)); 
 				    value = resolveValue(childTab, MTable.get(Env.getCtx(),childTab.getTableName()), column, rowIndex.getKey(), headName.substring(headName.indexOf(">")+ 1,headName.length()));
 				    
-				    if(DisplayType.Payment == field.getDisplayType())
-					   value = MRefList.getListName(Env.getCtx(),REFERENCE_PAYMENTRULE, value.toString()); 
-					   
+				     
 				    row.put(headName,value);
 				    if(value!=null)
 				       hasDetails = true;
@@ -479,7 +463,7 @@ public class GridTabXLSExporter implements IGridTabExporter
 	public String getWhereClause (GridTab childTab, int record_Id , String keyColumnParent){
 		String whereClau = null; 
 		String linkColumn = childTab.getLinkColumnName();
-		if (keyColumnParent.equals(linkColumn)){
+		if (keyColumnParent.equals(linkColumn) && !keyColumnParent.isEmpty()){
 	    	 whereClau= linkColumn+MQuery.EQUAL+record_Id;
 		}
 	    return whereClau; 

@@ -93,7 +93,6 @@ import eone.webui.editor.WEditor;
 import eone.webui.editor.WEditorPopupMenu;
 import eone.webui.editor.WImageEditor;
 import eone.webui.editor.WPaymentEditor;
-import eone.webui.editor.WYesNoEditor;
 import eone.webui.editor.WebEditorFactory;
 import eone.webui.event.ContextMenuListener;
 import eone.webui.session.SessionManager;
@@ -687,13 +686,9 @@ DataStatusListener, IADTabpanel, IdSpace, IFieldEditorContainer
         			Div divs = new Div();
     				Div div = new Div();
     				Label labeltext = editor.getLabel();    				
+    				
     				div.appendChild(labeltext);
     				
-    				if (editor instanceof WYesNoEditor && editor instanceof WButtonEditor) {
-    					div.appendChild(null);
-    				}else {
-    					div.appendChild(labeltext);
-    				}
     				div.setSclass("form-label");
     				if (labeltext.getDecorator() != null)
     					div.appendChild(labeltext.getDecorator());

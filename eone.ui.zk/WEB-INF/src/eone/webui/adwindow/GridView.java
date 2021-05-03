@@ -527,12 +527,13 @@ public class GridView extends Vlayout implements EventListener<Event>, IdSpace, 
 		
 		org.zkoss.zul.Column selection = new Column();
 		selection.setHeight("2em");
-		ZKUpdateUtil.setWidth(selection, "22px");
+		ZKUpdateUtil.setWidth(selection, "40px");
 		try{
 			selection.setSort("none");
 		} catch (Exception e) {}
 		//selection.setStyle("border-right: none");
-		selection.setClass(".z-cell");
+		//selection.setClass(".z-cell");
+		selection.setStyle("padding: 0px 0px 0px 2px;");
 		selectAll = new Checkbox();
 		selection.appendChild(selectAll);
 		selectAll.setId("selectAll");

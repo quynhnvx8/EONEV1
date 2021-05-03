@@ -104,11 +104,11 @@
 	margin: -3px;
 }
 .arrows .cnt {
-	background: #CCE5F4;
+	background: #F5F5F5;
 	zoom: 1;
 }
 .arrow-left {
-	border-color: #CCE5F4 #7EAAC6 #CCE5F4 #CCE5F4;
+	border-color: #F5F5F5 #7EAAC6 #F5F5F5 #F5F5F5;
 	border-style: solid;
 	border-width: 5px;
 	height: 0;
@@ -119,7 +119,7 @@
 	line-height: 0;
 }
 .arrow-right {
-	border-color: #CCE5F4 #CCE5F4 #CCE5F4 #7EAAC6;
+	border-color: #F5F5F5 #F5F5F5 #F5F5F5 #7EAAC6;
 	border-style: solid;
 	border-width: 5px;
 	height: 0;

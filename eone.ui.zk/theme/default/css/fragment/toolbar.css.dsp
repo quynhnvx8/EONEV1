@@ -18,12 +18,7 @@
     cursor: pointer;
     border-radius: 3px;
     overflow: hidden;
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-    font-size: 18px;
-    font-weight: normal;
-    font-style: normal;
-    color: rgba(0,0,0,0.57);
-    border: 2px solid transparent;
+    border: 1px solid transparent;
     background-color: transparent;
     padding: 1px 2px;
 }
@@ -83,6 +78,7 @@
 	display:inline-flex;
 	align-items: center;
 	padding: 0px;
+	margin: 3px 1px;
 }
 .z-toolbar-content {
 	display:flex;
@@ -96,7 +92,6 @@
 .z-toolbar {
     display: block;
     border-color: #CFCFCF;
-    /* border-style: solid; */
     border-width: 0 0 1px;
     padding: 1px 4px 3px;
     background: #F5F5F5;

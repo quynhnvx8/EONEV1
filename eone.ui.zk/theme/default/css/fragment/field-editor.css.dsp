@@ -28,7 +28,7 @@
 }
 
 .editor-input-disd {
-	padding-right: 0px !important;
+	padding-right: 5px !important;
 }
 	
 .editor-button {
@@ -94,6 +94,7 @@
     white-space: nowrap;
     position: relative;
     width: 100%;
+    height:24px;
 }
 
 span.grid-combobox-editor {
@@ -223,8 +224,6 @@ span.grid-combobox-editor {
 
 .z-combobox-button, 
 .z-bandbox-button, 
-.z-datebox-button, 
-.z-timebox-button, 
 .z-spinner-button, 
 .z-doublespinner-button {
     font-size: 14px;
@@ -245,10 +244,35 @@ span.grid-combobox-editor {
     cursor: pointer;
     padding-left: 7px;
     padding-top: 5px;
+    margin: 5px 0px;
+}
+
+.z-datebox-button, 
+.z-timebox-button
+ {
+    font-size: 14px;
+    color: #636363;
+    border: 0px solid #CFCFCF;
+    display: inline-block;
+    position: absolute;
+    top: 1px;
+    right: 1px;
+    min-width: 20px;
+    min-height: 20px;
+    height: 20px;
+    border-radius: 0 3px 3px 0;
+    background: #FFFFFF;
+    text-align: left;
+    vertical-align: middle;
+    overflow: hidden;
+    cursor: pointer;
+    padding-left: 7px;
+    padding-top: 5px;
+    margin: 1px 0px;
 }
 
 .z-combobox-input, 
-.z-bandbox-input, 
+ 
 .z-spinner-input, 
 .z-doublespinner-input {
     font-family: Arial,Sans-serif;
@@ -259,7 +283,23 @@ span.grid-combobox-editor {
     width: 100%;
     height: 24px;
     border: 1px solid #CFCFCF;
-    margin: 0;
+    margin: 5px 0px;;
+    padding: 4px 5px;
+    padding-right: 29px;
+    line-height: 14px;
+    background: #FFFFFF;
+}
+
+.z-bandbox-input {
+    font-family: Arial,Sans-serif;
+    font-size: 12px;
+    font-weight: normal;
+    font-style: normal;
+    color: #000000;
+    width: 100%;
+    height: 24px;
+    border: 1px solid #CFCFCF;
+    margin: 5px 3px;;
     padding: 4px 5px;
     padding-right: 29px;
     line-height: 14px;

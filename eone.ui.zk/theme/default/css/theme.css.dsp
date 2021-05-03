@@ -127,3 +127,5 @@ table.z-vbox > tbody > tr > td > table {
 <c:include page="fragment/window-size.css.dsp" />
 
 <c:include page="fragment/font-icons.css.dsp" />
+
+<c:include page="fragment/calendar.css.dsp" />

@@ -183,3 +183,16 @@ input[type="checkbox"]:focus
     font-size: 14px;
     line-height: 23px;
 }
+
+.z-paging-input {
+    width: 50px;
+    height: 25px;
+    border: 1px solid #D9D9D9;
+    border-radius: 4px;
+    background: #FFFFFF;
+    margin-left: 6px;
+    padding: 0 8px;
+    line-height: 16px;
+    vertical-align: baseline;
+    margin-top: 6px;
+}

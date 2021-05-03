@@ -35,3 +35,4 @@
 .z-tab-button > .z-icon-times.z-tab-icon {
 	margin-top: 0px;
 }
+

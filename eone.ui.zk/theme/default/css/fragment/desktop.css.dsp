@@ -34,7 +34,7 @@
 
 .desktop-header-popup {
 	width: 800px;
-	border-radius: 2px;
+	border-radius: 3px;
 	border: 1px solid #d5d5d5;
 	border-right: 1px solid #d5d5d5;
 	border-bottom-width: 1px;
@@ -115,11 +115,13 @@
     position: relative;
     cursor: pointer;
     float: left;
-    border-radius: 0px;
+    border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
 }
 .z-tab:hover {
 	background: #7AC8FF;
-	border-radius: 3px;    
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;  
 }
 
 .z-tabbox-top > .z-tabs .z-tabs-content {
@@ -128,8 +130,8 @@
 }
 
 .z-tab-unselected {
-	border-top-left-radius: 0px 0px;
-	border-top-right-radius: 0px 0px;
+	border-top-left-radius: 3px 3px;
+	border-top-right-radius: 3px 3px;
 }
 @media screen and (max-width: 360px) {
 	.desktop-tabbox .z-tab {
@@ -139,7 +141,8 @@
 
 .desktop-tabbox .z-tab-selected {
 	height: 25px;
-	border-radius: 3px;
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
 	background: #7AC8FF;
 }
 
@@ -223,7 +226,8 @@
 
 .desktop-hometab {
 	margin-left: 0px !important;
-	border-radius: 3px;
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
 }
 
 .desktop-tabbox .z-toolbar-tabs-body {
@@ -320,6 +324,16 @@
 	align-items: center;
 	justify-content: center; 
 	border-bottom: 0px; 
+}
+
+.z-toolbar.z-toolbar-tabs {
+    background-color: #F9F9F9;
+    position: absolute;
+    right: 0;
+    top: 0;
+    overflow: hidden;
+    z-index: 1;
+    min-height: 48px;
 }
 
 .user-panel-popup .z-popup-content {
