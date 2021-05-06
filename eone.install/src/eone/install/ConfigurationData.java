@@ -635,7 +635,9 @@ public class ConfigurationData
 		//org.eclipse.jetty.osgi.annotations.TraceLevel=SEVERE
 		//org.eclipse.jetty.annotations.TraceLevel=SEVERE
 		Ini.setProperty("org.eclipse.jetty.osgi.annotations.TraceLevel", "SEVERE");
-		Ini.setProperty("org.eclipse.jetty.annotations.TraceLevel", "SEVERE");
+		//Ini.setProperty("org.eclipse.jetty.annotations.TraceLevel", "SEVERE");
+		//org.eclipse.jetty.LEVEL", "OFF"
+		Ini.setProperty("org.eclipse.jetty.LEVEL", "OFF");
 		Ini.saveProperties(false);
 		return true;
 	}	//	saveIni

@@ -143,10 +143,22 @@ public abstract class TabbedDesktop extends AbstractDesktop {
 		tabPanel.setId(id+"_"+adWindow.getADWindowContent().getWindowNo());
 		final Tab tab = windowContainer.addWindow(tabPanel, adWindow.getTitle(), true, DecorateInfo.get(adWindow));
 		
-		tab.setClosable(false);		
+		tab.setClosable(false);	
+		
+		if (adWindow.createPart(tabPanel) != null ) {
+			tab.setClosable(true);
+			if (callback != null) {
+				callback.onCallback(adWindow);
+			}
+		} else {
+			tab.onClose();
+		}
+		
+		/* TODO fixme 06/05/2021. Thu bo di xem khi mo form no con quay nua khong
 		final OpenWindowRunnable runnable = new OpenWindowRunnable(adWindow, tab, tabPanel, callback);
 		preOpenNewTab();
 		runnable.run();
+		*/
 	}
 
 	/**

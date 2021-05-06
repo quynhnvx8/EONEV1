@@ -90,7 +90,7 @@ public class MTree extends X_AD_Tree
 	/**	Cache						*/
 	private static CCache<String,Integer> tree_cache	= new CCache<String,Integer>("AD_Tree_ID", 5);
 	
-	private static CCache<String,Integer> menu_cache	= new CCache<String,Integer>("AD_Tree_ID", 5);
+	//private static CCache<String,Integer> menu_cache	= new CCache<String,Integer>("AD_Tree_ID", 5);
 	
 	/**************************************************************************
 	 *  Get default (oldest) complete AD_Tree_ID for KeyColumn.
