@@ -3,20 +3,17 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
 	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
-	<artifactId>org.idempiere.maven.to.p2.master</artifactId>
+	<artifactId>eone.maven.to.p2.master</artifactId>
 	<packaging>pom</packaging>
 	<parent>
-		<groupId>org.idempiere</groupId>
-		<artifactId>org.idempiere.parent</artifactId>
+		<groupId>eone</groupId>
+		<artifactId>eone.parent</artifactId>
 		<version>7.1.0-SNAPSHOT</version>
-		<relativePath>../org.idempiere.parent/pom.xml</relativePath>
+		<relativePath>../eone.parent/pom.xml</relativePath>
 	</parent>
-	<properties>
-		<tycho.version>1.7.0</tycho.version>
-	</properties>
 	<modules>
-		<module>org.idempiere.maven.to.p2</module>
-		<module>org.idempiere.webservice.client</module>
+		<module>eone.maven.to.p2</module>
+		<module>eone.webservice.client</module>
 	</modules>
 
 </project>
