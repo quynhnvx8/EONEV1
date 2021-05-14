@@ -1,23 +1,6 @@
-/******************************************************************************
- * Product: Posterita Ajax UI 												  *
- * Copyright (C) 2007 Posterita Ltd.  All Rights Reserved.                    *
- * This program is free software; you can redistribute it and/or modify it    *
- * under the terms version 2 of the GNU General Public License as published   *
- * by the Free Software Foundation. This program is distributed in the hope   *
- * that it will be useful, but WITHOUT ANY WARRANTY; without even the implied *
- * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.           *
- * See the GNU General Public License for more details.                       *
- * You should have received a copy of the GNU General Public License along    *
- * with this program; if not, write to the Free Software Foundation, Inc.,    *
- * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.                     *
- * For the text or an alternative of this public license, you may reach us    *
- * Posterita Ltd., 3, Draper Avenue, Quatre Bornes, Mauritius                 *
- * or via info@posterita.org or http://www.posterita.org/                     *
- *****************************************************************************/
 
 package eone.webui.component;
 
-import java.sql.Timestamp;
 import java.util.Properties;
 
 import org.compiere.util.Callback;
@@ -30,6 +13,7 @@ import org.zkoss.zk.ui.Page;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zk.ui.event.Events;
+import org.zkoss.zk.ui.select.annotation.Listen;
 import org.zkoss.zul.Hbox;
 import org.zkoss.zul.Image;
 import org.zkoss.zul.Vbox;
@@ -44,20 +28,13 @@ import eone.webui.session.SessionManager;
 import eone.webui.theme.ThemeManager;
 import eone.webui.util.ZKUpdateUtil;
 
-/**
-* Messagebox : Replaces ZK's Messagebox
-*
-* @author  Niraj Sohun
-* @date    Jul 31, 2007
-*/
-
 public class Messagebox extends Window implements EventListener<Event>
 {	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 8928526331932742124L;
-
+	
 	private static final String MESSAGE_PANEL_STYLE = "text-align:left; word-break: break-all; overflow: auto; max-height: 350pt; min-width: 230pt; max-width: 450pt;";	
 	private static final String SMALLER_MESSAGE_PANEL_STYLE = "text-align:left; word-break: break-all; overflow: auto; max-height: 350pt; min-width: 180pt; ";
 	private String msg = new String("");
@@ -109,7 +86,7 @@ public class Messagebox extends Window implements EventListener<Event>
 	public static final String QUESTION = "~./zul/img/msgbox/question-btn.png";
 
 	/** A symbol consisting of an exclamation point in a triangle with a yellow background. */
-	public static final String EXCLAMATION  = "~./zul/img/msgbox/warning-btn.png";
+	public static final String EXCLAMATION = "~./zul/img/msgbox/warning-btn.png";
 
 	/** A symbol of a lowercase letter i in a circle. */
 	public static final String INFORMATION = "~./zul/img/msgbox/info-btn.png";
@@ -355,6 +332,15 @@ public class Messagebox extends Window implements EventListener<Event>
 		Messagebox msg = new Messagebox();
 		return msg.show(message, title, buttons, icon, editor, callback, modal);
 	}
+	
+    // Andreas Sumerauer IDEMPIERE 4702
+	@Listen("onCancel")
+    public void onCancel() throws Exception
+    {
+    	returnValue = CANCEL;
+    	close();
+    }
+
 
 	public void onEvent(Event event) throws Exception
 	{
@@ -389,15 +375,18 @@ public class Messagebox extends Window implements EventListener<Event>
 		{
 			returnValue = IGNORE;
 		}
-
+		close();
+	}
+	
+	private void close() {
 		try {
 			this.detach();
 		} catch (NullPointerException npe) {
 			if (! (SessionManager.getSessionApplication() == null)) // IDEMPIERE-1937 - ignore when session was closed
 				throw npe;
-		}
+		}		
 	}
-
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public void onPageDetached(Page page) {
@@ -409,50 +398,4 @@ public class Messagebox extends Window implements EventListener<Event>
 			callback.onCallback(inputField.getValue());
 		}
 	}
-	
-	 private Panel       contentPanel = new Panel();
-	    
-	 private Datebox     dateAcctBox = new Datebox();
-	 private Textbox     documentNoBox = new Textbox();
-	
-	public int showPostConfirm(String message, String title, String documentNo,
-	        String documentRecord, Timestamp dateAcct, Callback<Integer> callback) throws InterruptedException
-    {
-	    this.callback = callback;
-        dateAcctBox.setValue(dateAcct);
-        documentNoBox.setValue(documentNo);
-        
-        Grid gridLayout = new Grid();
-        gridLayout.appendChild(new Rows());
-		int width = SessionManager.getAppDesktop().getClientInfo().desktopWidth * 50 / 100;
-		setWidth(width + "px");
-        contentPanel.appendChild(gridLayout);
-        
-        Row rowDocumentNo = new Row();
-        gridLayout.getRows().appendChild(rowDocumentNo);
-        rowDocumentNo.appendChild(new Label(Msg.translate(Env.getCtx(), "DocumentNo")));
-        rowDocumentNo.appendChild(documentNoBox);
-        
-        Row rowDocumentRecord = new Row();
-        gridLayout.getRows().appendChild(rowDocumentRecord);
-        rowDocumentRecord.appendChild(new Label(Msg.translate(Env.getCtx(), "DocRecord")));
-        
-        Row rowDateAcct = new Row();
-        gridLayout.getRows().appendChild(rowDateAcct);
-        rowDateAcct.appendChild(new Label(Msg.translate(Env.getCtx(), "DateAcct")));
-        rowDateAcct.appendChild(dateAcctBox);
-        
-        return show(message, title, Messagebox.OK | Messagebox.CANCEL,
-                Messagebox.QUESTION, callback);
-    }
-	
-	public String getDocumentNo()
-    {
-        return documentNoBox.getValue();
-    }
-    
-    public Timestamp getDateAcct()
-    {
-        return new Timestamp(dateAcctBox.getValue().getTime());
-    }
 }

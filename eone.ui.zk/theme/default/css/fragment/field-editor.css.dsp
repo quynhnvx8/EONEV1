@@ -54,8 +54,8 @@
 .editor-button img {
 	vertical-align: middle;
 	text-align: left;
-	width: 14px;
-	height: 14px;
+	width: 18px;
+	height: 18px;
 	padding: 1px 1px;
 }
 
@@ -222,12 +222,11 @@ span.grid-combobox-editor {
     text-decoration: underline;
 }
 
-.z-bandbox-button,
 .z-combobox-button, 
+.z-bandbox-button, 
 .z-spinner-button, 
-.z-datebox-button, 
-.z-timebox-button,
 .z-doublespinner-button {
+    font-size: 14px;
     color: #636363;
     border: 0px solid #CFCFCF;
     display: inline-block;
@@ -236,7 +235,7 @@ span.grid-combobox-editor {
     right: 1px;
     min-width: 20px;
     min-height: 20px;
-    height: 18px;
+    height: 20px;
     border-radius: 0 3px 3px 0;
     background: #FFFFFF;
     text-align: left;
@@ -244,36 +243,47 @@ span.grid-combobox-editor {
     overflow: hidden;
     cursor: pointer;
     padding-left: 7px;
-}
-
-
-.z-bandbox-button 
- {
-    padding-top: 0px;
+    padding-top: 5px;
     margin: 5px 0px;
-}
-
-.z-combobox-button, 
-.z-spinner-button, 
-.z-doublespinner-button {
-    padding-top: 0px;
-    margin: 3px 0px;
 }
 
 .z-datebox-button, 
 .z-timebox-button
  {
+    font-size: 14px;
+    color: #636363;
+    border: 0px solid #CFCFCF;
+    display: inline-block;
+    position: absolute;
+    top: 1px;
+    right: 1px;
+    min-width: 20px;
+    min-height: 20px;
+    height: 20px;
+    border-radius: 0 3px 3px 0;
+    background: #FFFFFF;
+    text-align: left;
+    vertical-align: middle;
+    overflow: hidden;
+    cursor: pointer;
+    padding-left: 7px;
     padding-top: 5px;
     margin: 1px 0px;
 }
 
 .z-combobox-input, 
+ 
 .z-spinner-input, 
 .z-doublespinner-input {
+    font-family: Arial,Sans-serif;
+    font-size: 12px;
+    font-weight: normal;
+    font-style: normal;
+    color: #000000;
     width: 100%;
     height: 24px;
     border: 1px solid #CFCFCF;
-    margin: 2px 0px;;
+    margin: 5px 0px;;
     padding: 4px 5px;
     padding-right: 29px;
     line-height: 14px;
@@ -281,6 +291,11 @@ span.grid-combobox-editor {
 }
 
 .z-bandbox-input {
+    font-family: Arial,Sans-serif;
+    font-size: 12px;
+    font-weight: normal;
+    font-style: normal;
+    color: #000000;
     width: 100%;
     height: 24px;
     border: 1px solid #CFCFCF;
@@ -293,6 +308,11 @@ span.grid-combobox-editor {
 
 .z-datebox-input, 
 .z-timebox-input{
+    font-family: Arial,Sans-serif;
+    font-size: 12px;
+    font-weight: normal;
+    font-style: normal;
+    color: #000000;
     width: 100%;
     height: 24px;
     border: 1px solid #CFCFCF;
@@ -303,6 +323,17 @@ span.grid-combobox-editor {
 }
 
 .z-textbox {
+    font-family: Arial,Sans-serif;
+    font-size: 12px;
+    font-weight: normal;
+    font-style: normal;
+    color: #000000;
+    min-height: 24px;
+    border: 1px solid #CFCFCF;
+    margin: 0;
+    padding: 4px 5px 3px;
+    line-height: 14px;
+    background: #FFFFFF;
     height: 24px;
 }
 
@@ -310,17 +341,16 @@ span.grid-combobox-editor {
 .z-intbox, 
 .z-longbox, 
 .z-doublebox {
-    padding-right: 20px;    
-}
-.z-decimalbox, 
-.z-intbox, 
-.z-longbox, 
-.z-textbox,
-.z-doublebox {
+    font-family: Arial,Sans-serif;
+    font-size: 12px;
+    font-weight: normal;
+    font-style: normal;
+    color: #000000;
     min-height: 24px;
     border: 1px solid #CFCFCF;
     margin: 0;
     padding: 4px 5px 3px;
+    padding-right: 20px;
     line-height: 14px;
     background: #FFFFFF;
 }
