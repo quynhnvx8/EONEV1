@@ -20,7 +20,6 @@ import org.compiere.util.Env;
 import org.compiere.util.KeyNamePair;
 import org.compiere.util.Msg;
 import org.compiere.util.Util;
-import org.zkoss.zk.ui.Page;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zk.ui.event.Events;
@@ -142,7 +141,6 @@ public class WAcctViewer extends Window implements IFormController, EventListene
 	
 	private static final CLogger log = CLogger.getCLogger(WAcctViewer.class);
 
-	
 
 	public WAcctViewer()
 	{
@@ -392,29 +390,8 @@ public class WAcctViewer extends Window implements IFormController, EventListene
 		resultPanel.setStyle("position: absolute");
 		ZKUpdateUtil.setWidth(resultPanel, "99%");
 		ZKUpdateUtil.setHeight(resultPanel, "99%");
-
-		Center resultCenter = new Center();
-		resultPanel.appendChild(resultCenter);
-		ZKUpdateUtil.setHflex(table, "1");
-		ZKUpdateUtil.setVflex(table, true);
-		resultCenter.appendChild(table);
-		ZKUpdateUtil.setHflex(table, "1");
-		table.addEventListener(Events.ON_DOUBLE_CLICK, this);
-		table.addEventListener(Events.ON_CLICK, this);
-		if (ClientInfo.isMobile())
-			table.setSizedByContent(true);
-
-		pagingPanel = new South();
-		resultPanel.appendChild(pagingPanel);
-		pagingPanel.appendChild(paging);
-
-		ZKUpdateUtil.setHflex(resultPanel, "1");
-		resultPanel.setStyle("position: relative");
-
-		paging.addEventListener("onPaging", this);
-		paging.setAutohide(true);
-		paging.setDetailed(true);
-
+		
+		createGrid();
 		
 		ZKUpdateUtil.setHflex(resultPanel, "1");
 		Center center = new Center();
@@ -434,6 +411,7 @@ public class WAcctViewer extends Window implements IFormController, EventListene
 		if (zoomLogic != "") {
 			north.setOpen(false);
 		}
+		north.setCtrlKeys(ctrlKeys);
 		north.addEventListener(Events.ON_CTRL_KEY, this);
 		north.addEventListener(Events.ON_CLICK, this);
 		
@@ -456,6 +434,38 @@ public class WAcctViewer extends Window implements IFormController, EventListene
 		this.setStyle("position: absolute; width: 100%; height: 100%;");
 		this.setSizable(true);
 		this.setMaximizable(true);
+	}
+	
+	String ctrlKeys = "#f6#f7#f12"                	// Fn
+            + "^g^l^r"                                // Ctrl+ 
+            +	"^2^4^6^8"								// Ctrl+ 
+            + "#left#right#up#down";
+	private void createGrid() {
+		Center resultCenter = new Center();
+		resultPanel.appendChild(resultCenter);
+		ZKUpdateUtil.setHflex(table, "1");
+		ZKUpdateUtil.setVflex(table, true);
+		resultCenter.appendChild(table);
+		ZKUpdateUtil.setHflex(table, "1");
+		table.addEventListener(Events.ON_DOUBLE_CLICK, this);
+		table.addEventListener(Events.ON_CLICK, this);
+		table.addEventListener(Events.ON_SELECT, this);
+		table.setCtrlKeys(ctrlKeys);
+		table.addEventListener(Events.ON_CTRL_KEY, this);
+		if (ClientInfo.isMobile())
+			table.setSizedByContent(true);
+
+		pagingPanel = new South();
+		resultPanel.appendChild(pagingPanel);
+		pagingPanel.appendChild(paging);
+
+		ZKUpdateUtil.setHflex(resultPanel, "1");
+		resultPanel.setStyle("position: relative");
+
+		paging.addEventListener("onPaging", this);
+		paging.setAutohide(true);
+		paging.setDetailed(true);
+
 	}
 	
 	private void dynInit (int AD_Table_ID, int Record_ID, String zoomLogic)
@@ -558,7 +568,7 @@ public class WAcctViewer extends Window implements IFormController, EventListene
 				actionZoom();
 			else 
 				doFilter();//Mo ban ghi khi Ctrl + G
-		}else if (Events.ON_CTRL_KEY.equals(e.getName())) {
+		}else if (Events.ON_CTRL_KEY.equals(e.getName()) && source instanceof Listbox && source == table) {
 			if (e instanceof KeyEvent) {
 				doOnKey(e);
 			} 
@@ -1060,22 +1070,6 @@ public class WAcctViewer extends Window implements IFormController, EventListene
 			AEnv.zoom(AD_Table_ID, Record_ID, AD_Window_ID);
 		}
 	}
-
-	@Override
-	public void onPageAttached(Page newpage, Page oldpage) {
-		super.onPageAttached(newpage, oldpage);
-		if (newpage != null) {
-			String ctrlKeys = "#f6#f7#f12"                	// Fn
-                  + "^g^l^r^n^p"                                // Ctrl+ 
-                  +	"^2^4^6^8"								// Ctrl+ 
-                  //+ "$#left$#right"							// Shift+ 
-                  //+ "^#left^#right^#up^#down"               // Ctrl+ 
-                  + "^#left^#right^#up^#down" ;             // Alt+ 
-			SessionManager.getSessionApplication().getKeylistener().setCtrlKeys(ctrlKeys);
-			SessionManager.getSessionApplication().getKeylistener().addEventListener(Events.ON_CTRL_KEY, this);
-		}
-	}
-
 
 	private CustomForm form;
 	@Override

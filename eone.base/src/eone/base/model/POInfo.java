@@ -1,19 +1,4 @@
-/******************************************************************************
- * Product: Adempiere ERP & CRM Smart Business Solution                       *
- * Copyright (C) 1999-2006 ComPiere, Inc. All Rights Reserved.                *
- * This program is free software; you can redistribute it and/or modify it    *
- * under the terms version 2 of the GNU General Public License as published   *
- * by the Free Software Foundation. This program is distributed in the hope   *
- * that it will be useful, but WITHOUT ANY WARRANTY; without even the implied *
- * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.           *
- * See the GNU General Public License for more details.                       *
- * You should have received a copy of the GNU General Public License along    *
- * with this program; if not, write to the Free Software Foundation, Inc.,    *
- * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.                     *
- * For the text or an alternative of this public license, you may reach us    *
- * ComPiere, Inc., 2620 Augustine Dr. #245, Santa Clara, CA 95054, USA        *
- * or via info@compiere.org or http://www.compiere.org/license.html           *
- *****************************************************************************/
+
 package eone.base.model;
 
 import java.io.Serializable;
@@ -33,16 +18,6 @@ import org.compiere.util.DB;
 import org.compiere.util.DisplayType;
 import org.compiere.util.Env;
 
-/**
- *  Persistent Object Info.
- *  Provides structural information
- *
- *  @author Jorg Janke
- *  @version $Id: POInfo.java,v 1.2 2006/07/30 00:58:37 jjanke Exp $
- *  @author Victor Perez, e-Evolution SC
- *			<li>[ 2195894 ] Improve performance in PO engine
- *			<li>http://sourceforge.net/tracker/index.php?func=detail&aid=2195894&group_id=176962&atid=879335
- */
 public class POInfo implements Serializable
 {
 	/**
@@ -152,7 +127,7 @@ public class POInfo implements Serializable
 			+ "c.AD_Reference_Value_ID, vr.Code, "							//	12..13
 			+ "c.FieldLength, c.ValueMin, c.ValueMax, c.IsTranslated, "		//	14..17
 			+ "t.AccessLevel, c.ColumnSQL, c.IsEncrypted, "					// 18..20
-			+ "c.IsAllowLogging,c.IsAllowCopy,t.IsChangeLog, c.IsCheckDoubleCode ");											// 21..24
+			+ "c.IsAllowLogging,c.IsAllowCopy,t.IsChangeLog, c.IsSetContext ");											// 21..24
 		sql.append("FROM AD_Table t"
 			+ " INNER JOIN AD_Column c ON (t.AD_Table_ID=c.AD_Table_ID)"
 			+ " LEFT OUTER JOIN AD_Val_Rule vr ON (c.AD_Val_Rule_ID=vr.AD_Val_Rule_ID)"
@@ -208,12 +183,12 @@ public class POInfo implements Serializable
 				boolean IsAllowLogging = "Y".equals(rs.getString(21));
 				boolean IsAllowCopy = "Y".equals(rs.getString(22));
 				m_IsChangeLog="Y".equals(rs.getString(23));
-				boolean IsCheckDoubleCode = "Y".equals(rs.getString(24));
+				boolean IsSetContext = "Y".equals(rs.getString(24));
 				
 				
 				POInfoColumn col = new POInfoColumn (
 					AD_Column_ID, ColumnName, ColumnSQL, AD_Reference_ID,
-					IsMandatory, IsCheckDoubleCode, IsUpdateable,
+					IsMandatory, IsSetContext, IsUpdateable,
 					DefaultLogic, Name, Description,
 					IsKey, IsParent,
 					AD_Reference_Value_ID, ValidationCode,
@@ -519,11 +494,11 @@ public class POInfo implements Serializable
 	}   //  isMandatory
 	
 	
-	public boolean isCheckDoubleCode (int index)
+	public boolean isSetContext (int index)
 	{
 		if (index < 0 || index >= m_columns.length)
 			return false;
-		return m_columns[index].IsCheckDoubleCode;
+		return m_columns[index].IsSetContext;
 	}
 	
 	/**

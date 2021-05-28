@@ -354,6 +354,6 @@
 
 .z-north-body, .z-south-body, .z-west-body, .z-center-body, .z-east-body {
     line-height: 16px;
-    padding: 10px;
+    padding: 0px;
     color: rgba(0,0,0,0.9);
 }

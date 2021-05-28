@@ -191,8 +191,11 @@ public class GridView extends Vlayout implements EventListener<Event>, IdSpace, 
 		addEventListener("onCustomizeGrid", this);
 	}
 
+	String ctrlKeys = "^e";
 	protected void createListbox() {
-		listbox = new Grid();		
+		listbox = new Grid();	
+		listbox.setCtrlKeys(ctrlKeys);
+		listbox.addEventListener(Events.ON_CTRL_KEY, this);
 		listbox.setSizedByContent(false);				
 		ZKUpdateUtil.setVflex(listbox, "1");
 		ZKUpdateUtil.setHflex(listbox, "1");
@@ -663,7 +666,7 @@ public class GridView extends Vlayout implements EventListener<Event>, IdSpace, 
 		updateEmptyMessage();
 		
 		listbox.addEventListener(Events.ON_CLICK, this);
-
+		listbox.addEventListener(Events.ON_CTRL_KEY, this);
 		updateModel();
 
 		if (pageSize > 0)
@@ -733,6 +736,13 @@ public class GridView extends Vlayout implements EventListener<Event>, IdSpace, 
 		
 		if (event == null)
 			return;
+		else if (event.getTarget() == listbox && Events.ON_CTRL_KEY.equals(event.getName())) {
+			KeyEvent keyEvent = (KeyEvent) event;
+			//int keyCode = keyEvent.getKeyCode();
+			if (keyEvent.getKeyCode() == 69) {//Ctrl + E
+				System.out.println("Vao day");
+			}
+		}
 		else if (event.getTarget() == listbox && Events.ON_CLICK.equals(event.getName()))
 		{
 			Object data = event.getData();
@@ -777,12 +787,7 @@ public class GridView extends Vlayout implements EventListener<Event>, IdSpace, 
 			}
 			event.stopPropagation();
         }
-		if (event.getName().equals(Events.ON_CTRL_KEY)) {
-			KeyEvent keyEvent = (KeyEvent) event;
-			if (keyEvent.getKeyCode() == KeyEvent.DOWN) {
-				System.out.println("Vao day");
-			}
-		}
+		
 		else if (event.getTarget() == paging)
 		{
 			int pgNo = paging.getActivePage();

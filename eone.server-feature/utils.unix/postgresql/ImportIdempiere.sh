@@ -40,10 +40,10 @@ echo Recreate user and database
 echo -------------------------------------
 if [ $ISAMAZONRDS = Y ]
 then
-    # modified for amazon RDS - doesn't allow SUPERUSER
-    ROOT_ROLE="CREATEDB IN ROLE rds_superuser"
+    # modified for amazon RDS - doesn't allow SYSTEM
+    ROOT_ROLE="CREATEDB IN ROLE rds_system"
 else
-    ROOT_ROLE="SUPERUSER"
+    ROOT_ROLE="SYSTEM"
 fi
 ADEMPIERE_CREATE_ROLE_SQL="CREATE ROLE $2 $ROOT_ROLE LOGIN PASSWORD '$3'"
 if [ $LOCALPG = "true" ]

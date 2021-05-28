@@ -24,6 +24,7 @@ public class MPromotion extends X_M_Promotion implements DocAction
 	public MPromotion (Properties ctx, int M_Promotion_ID, String trxName)
 	{
 		super (ctx, M_Promotion_ID, trxName);
+		setContextPromotionType ();
 		
 	}	//	MAssetUse
 
@@ -33,6 +34,15 @@ public class MPromotion extends X_M_Promotion implements DocAction
 		return get(ctx,M_Promotion_ID,null);
 	}
 	
+	protected void setContextPromotionType () {
+		MPromotionType promotionType = MPromotionType.getById(getCtx(), getM_PromotionType_ID(), null);
+		Env.setContext(getCtx(), "#REQUIED_AMT", promotionType.isRequied_Amt());
+		Env.setContext(getCtx(), "#REQUIED_QTY", promotionType.isRequied_Qty());
+		Env.setContext(getCtx(), "#REQUIED_GIF", promotionType.isRequied_Gif());
+		Env.setContext(getCtx(), "#REQUIED_PER", promotionType.isRequied_Per());
+		Env.setContext(getCtx(), "#REQUIED_DIS", promotionType.isRequied_Dis());
+		Env.setContext(getCtx(), "#REQUIED_GROUP", promotionType.isRequied_Group());
+	}
 	
 
 	public static MPromotion get (Properties ctx, int M_Promotion_ID, String trxName)
@@ -61,24 +71,91 @@ public class MPromotion extends X_M_Promotion implements DocAction
 
 	@Override
 	protected boolean beforeSave(boolean newRecord) {
-		if (newRecord || is_ValueChanged(COLUMNNAME_Value) || is_ValueChanged(COLUMNNAME_ValidFrom) || is_ValueChanged(COLUMNNAME_AD_Department_ID)) {
+		
+		if (newRecord || is_ValueChanged(COLUMNNAME_ValidFrom) ) {
 			Map<String, Object> dataColumn = new HashMap<String, Object>();
-			dataColumn.put(COLUMNNAME_Value, getValue());
-			dataColumn.put(COLUMNNAME_AD_Department_ID, getAD_Department_ID());
 			dataColumn.put(COLUMNNAME_ValidFrom, getValidFrom());
 			boolean check = isCheckDoubleValue(Table_Name, dataColumn, COLUMNNAME_M_Promotion_ID, getM_Promotion_ID());
 			if (!check) {
-				log.saveError("Error", Msg.getMsg(Env.getLanguage(getCtx()), "ValueExists") + ": " + COLUMNNAME_Value);
+				log.saveError("Error", Msg.getMsg(Env.getLanguage(getCtx()), "ValueExists") + " ");
 				return false;
 			}
 			
 		}
 		
+		if (is_ValueChanged(COLUMNNAME_M_PromotionType_ID)) {
+			setContextPromotionType ();
+			resetForPromotionType();
+		}
+		
 		return true;
+	}
+	
+	protected void resetForPromotionType() {
+		MPromotionType proType = MPromotionType.getById(getCtx(), getM_PromotionType_ID(), null);
+		boolean requiredAmt = false;
+		boolean requiredQty = false;
+		boolean requiredGif = false;
+		boolean requiredPer = false;
+		boolean requiredDis = false;
+		boolean requiredGro = false;
+		int i = 0;
+		if (proType.isRequied_Amt()) {
+			requiredAmt = true;
+			i++;
+		}
+		if (proType.isRequied_Qty()) {
+			requiredQty = true;
+			i++;
+		}
+		if (proType.isRequied_Gif()) {
+			requiredGif = true;
+			i++;
+		}
+		if (proType.isRequied_Per()) {
+			requiredPer = true;
+			i++;
+		}
+		if (proType.isRequied_Dis()) {
+			requiredDis = true;
+			i++;
+		}
+		if (proType.isRequied_Group()) {
+			requiredGro = true;
+			i++;
+		}
+		String sql = "";
+		if (i > 0) {
+			sql = "Update M_PromotionLine set M_Product_ID = M_Product_ID";
+			if (!requiredAmt) {
+				sql = sql + ", Amount = 0";
+			}
+			if (!requiredQty) {
+				sql = sql + ", Qty = 0";
+			}
+			if (!requiredGif) {
+				sql = sql + ", M_Product_Free_ID = null, QtyFree = 0, C_UOM_Free_ID = null";
+			}
+			if (!requiredPer) {
+				sql = sql + ", DiscountPercent = 0";
+			}
+			if (!requiredDis) {
+				sql = sql + ", DiscountAmt = 0";
+			}
+			if (!requiredGro) {
+				sql = sql + ", IsRequiredProduct = 'N'";
+			}
+			sql = sql + " Where M_Promotion_ID = ?";
+			DB.executeUpdate(sql, getM_Promotion_ID(), get_TrxName());
+		}
 	}
 
 	protected void updateProcessed(boolean status) {
 		String sql = "Update M_PromotionLine set Processed = ? Where M_Promotion_ID = ?";
+		DB.executeUpdate(sql, new Object [] {status, getM_Promotion_ID()}, true, get_TrxName());
+		sql = "Update M_PromotionShop set Processed = ? Where M_Promotion_ID = ?";
+		DB.executeUpdate(sql, new Object [] {status, getM_Promotion_ID()}, true, get_TrxName());
+		sql = "Update M_PromotionCus set Processed = ? Where M_Promotion_ID = ?";
 		DB.executeUpdate(sql, new Object [] {status, getM_Promotion_ID()}, true, get_TrxName());
 	}
 

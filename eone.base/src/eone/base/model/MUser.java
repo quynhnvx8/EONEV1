@@ -446,6 +446,7 @@ public class MUser extends X_AD_User
 	//Check theo ma hoa pass moi
 	public boolean authenticateHash (String password, String account)  {
 		String text = AesBase64Wrapper.encryptAndEncode(password + account);
+		//System.out.println(text);
 		return getPassword().equals(text);
 	}
 	

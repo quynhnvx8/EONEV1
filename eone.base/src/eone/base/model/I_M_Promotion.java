@@ -1,18 +1,6 @@
 /******************************************************************************
- * Product: iDempiere ERP & CRM Smart Business Solution                       *
- * Copyright (C) 1999-2012 ComPiere, Inc. All Rights Reserved.                *
- * This program is free software, you can redistribute it and/or modify it    *
- * under the terms version 2 of the GNU General Public License as published   *
- * by the Free Software Foundation. This program is distributed in the hope   *
- * that it will be useful, but WITHOUT ANY WARRANTY, without even the implied *
- * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.           *
- * See the GNU General Public License for more details.                       *
- * You should have received a copy of the GNU General Public License along    *
- * with this program, if not, write to the Free Software Foundation, Inc.,    *
- * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.                     *
- * For the text or an alternative of this public license, you may reach us    *
- * ComPiere, Inc., 2620 Augustine Dr. #245, Santa Clara, CA 95054, USA        *
- * or via info@compiere.org or http://www.compiere.org/license.html           *
+ * Product: EOoe ERP & CRM Smart Business Solution	                        *
+ * Copyright (C) 2020, Inc. All Rights Reserved.				                *
  *****************************************************************************/
 package eone.base.model;
 
@@ -21,7 +9,7 @@ import java.sql.Timestamp;
 import org.compiere.util.KeyNamePair;
 
 /** Generated Interface for M_Promotion
- *  @author iDempiere (generated) 
+ *  @author EOne (generated) 
  *  @version Version 1.0
  */
 public interface I_M_Promotion 
@@ -48,17 +36,6 @@ public interface I_M_Promotion
 	  * Client/Tenant for this installation.
 	  */
 	public int getAD_Client_ID();
-
-    /** Column name AD_Department_ID */
-    public static final String COLUMNNAME_AD_Department_ID = "AD_Department_ID";
-
-	/** Set Department	  */
-	public void setAD_Department_ID (int AD_Department_ID);
-
-	/** Get Department	  */
-	public int getAD_Department_ID();
-
-	public I_AD_Department getAD_Department() throws RuntimeException;
 
     /** Column name AD_Org_ID */
     public static final String COLUMNNAME_AD_Org_ID = "AD_Org_ID";
@@ -155,6 +132,15 @@ public interface I_M_Promotion
 	/** Get IsMultiple	  */
 	public boolean isMultiple();
 
+    /** Column name IsPending */
+    public static final String COLUMNNAME_IsPending = "IsPending";
+
+	/** Set Pending	  */
+	public void setIsPending (boolean IsPending);
+
+	/** Get Pending	  */
+	public boolean isPending();
+
     /** Column name IsRecursive */
     public static final String COLUMNNAME_IsRecursive = "IsRecursive";
 
@@ -173,18 +159,16 @@ public interface I_M_Promotion
 	/** Get Promotion	  */
 	public int getM_Promotion_ID();
 
-    /** Column name Name */
-    public static final String COLUMNNAME_Name = "Name";
+    /** Column name M_PromotionType_ID */
+    public static final String COLUMNNAME_M_PromotionType_ID = "M_PromotionType_ID";
 
-	/** Set Name.
-	  * Alphanumeric identifier of the entity
-	  */
-	public void setName (String Name);
+	/** Set Promtion Type	  */
+	public void setM_PromotionType_ID (int M_PromotionType_ID);
 
-	/** Get Name.
-	  * Alphanumeric identifier of the entity
-	  */
-	public String getName();
+	/** Get Promtion Type	  */
+	public int getM_PromotionType_ID();
+
+	public I_M_PromotionType getM_PromotionType() throws RuntimeException;
 
     /** Column name Processed */
     public static final String COLUMNNAME_Processed = "Processed";
@@ -240,17 +224,4 @@ public interface I_M_Promotion
 	  * Valid to including this date (last day)
 	  */
 	public Timestamp getValidTo();
-
-    /** Column name Value */
-    public static final String COLUMNNAME_Value = "Value";
-
-	/** Set Code.
-	  * Code
-	  */
-	public void setValue (String Value);
-
-	/** Get Code.
-	  * Code
-	  */
-	public String getValue();
 }

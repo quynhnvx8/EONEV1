@@ -50,6 +50,16 @@ public class GridFieldVO implements Serializable
 	}   //  getSQL
 
 
+	public static String getSQLReference (Properties ctx, String ColumnName)
+	{
+		if (ColumnName.toUpperCase().contains("_ID")) {
+			
+		}
+		StringBuilder sql = new StringBuilder();
+		
+		return sql.toString();
+	}
+	
 	/**
 	 *  Create Field Value Object
 	 *  @param ctx context
@@ -142,6 +152,8 @@ public class GridFieldVO implements Serializable
 					vo.FieldGroupType = rs.getString (i);
 				else if (columnName.equalsIgnoreCase("IsKey"))
 					vo.IsKey = "Y".equals(rs.getString (i));
+				else if (columnName.equalsIgnoreCase("IsSetContext"))
+					vo.IsSetContext = "Y".equals(rs.getString (i));
 				else if (columnName.equalsIgnoreCase("IsParent"))
 					vo.IsParent = "Y".equals(rs.getString (i));
 				else if (columnName.equalsIgnoreCase("Description"))
@@ -529,6 +541,8 @@ public class GridFieldVO implements Serializable
 	public String       FieldGroupType = "";
 	/**	PK				*/
 	public boolean      IsKey = false;
+	
+	public boolean      IsSetContext = false;
 	/**	FK				*/
 	public boolean      IsParent = false;
 	/**	Callout			*/
@@ -725,6 +739,7 @@ public class GridFieldVO implements Serializable
 			clone.FieldGroup = FieldGroup;
 			clone.FieldGroupType = FieldGroupType;
 			clone.IsKey = IsKey;
+			clone.IsSetContext = IsSetContext;
 			clone.IsParent = IsParent;
 			clone.Callout = Callout;
 			clone.AD_Process_ID = AD_Process_ID;

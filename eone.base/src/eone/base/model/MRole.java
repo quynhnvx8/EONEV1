@@ -1,7 +1,7 @@
 
 package eone.base.model;
 
-import static eone.base.model.SystemIDs.USER_SUPERUSER;
+import static eone.base.model.SystemIDs.USER_SYS;
 import static eone.base.model.SystemIDs.USER_SYSTEM;
 
 import java.io.Serializable;
@@ -196,10 +196,10 @@ public final class MRole extends X_AD_Role
 	/**	Access SQL Not Fully Qualified	*/
 	public static final boolean		SQL_NOTQUALIFIED = false;
 
-	/**	The AD_User_ID of the SuperUser				*/
-	public static final int			SUPERUSER_USER_ID = USER_SUPERUSER;
-	/**	The AD_User_ID of the System Administrator	*/
+	/**	The AD_User_ID of the System				*/
 	public static final int			SYSTEM_USER_ID = USER_SYSTEM;
+	/**	The AD_User_ID of the System Administrator	*/
+	public static final int			SYS_USER_ID = USER_SYS;
 	
 	private static final String ROLE_KEY = "eone.base.model.DefaultRole";
 	
@@ -308,10 +308,10 @@ public final class MRole extends X_AD_Role
 		if (newRecord && success)
 		{
 			//	Add Role to SuperUser
-			MUserRoles su = new MUserRoles(getCtx(), SUPERUSER_USER_ID, getAD_Role_ID(), get_TrxName());
+			MUserRoles su = new MUserRoles(getCtx(), SYSTEM_USER_ID, getAD_Role_ID(), get_TrxName());
 			su.saveEx();
 			//	Add Role to User
-			if (getCreatedBy() != SUPERUSER_USER_ID && MSysConfig.getBooleanValue(MSysConfig.AUTO_ASSIGN_ROLE_TO_CREATOR_USER, false, getAD_Client_ID()))
+			if (getCreatedBy() != SYSTEM_USER_ID && MSysConfig.getBooleanValue(MSysConfig.AUTO_ASSIGN_ROLE_TO_CREATOR_USER, false, getAD_Client_ID()))
 			{
 				MUserRoles ur = new MUserRoles(getCtx(), getCreatedBy(), getAD_Role_ID(), get_TrxName());
 				ur.saveEx();

@@ -79,18 +79,7 @@ public abstract class PO
 	/** default timeout, 300 seconds **/
 	private static final int QUERY_TIME_OUT = 300;
 
-	/**
-	 * 	Set Document Value Workflow Manager
-	 *	@param docWFMgr mgr
-	 */
-	public static void setDocWorkflowMgr (DocWorkflowMgr docWFMgr)
-	{
-		s_docWFMgr = docWFMgr;
-		s_log.config (s_docWFMgr.toString());
-	}	//	setDocWorkflowMgr
-
-	/** Document Value Workflow Manager		*/
-	private static DocWorkflowMgr		s_docWFMgr = null;
+	
 
 	/** User Maintained Entity Type				*/
 	static public final String ENTITYTYPE_UserMaintained = "U";
@@ -879,43 +868,9 @@ public abstract class PO
 		}
 		set_Keys (ColumnName, m_newValues[index]);
 
-		// FR 2962094 Fill ProcessedOn when the Processed column is changing from N to Y
-		setProcessedOn(ColumnName, value, m_oldValues[index]);
-
 		return true;
 	}   //  setValue
 
-	/* FR 2962094 - Finish implementation of weighted average costing
-	   Fill the column ProcessedOn (if it exists) with a bigdecimal representation of current timestamp (with nanoseconds)
-	*/
-	public void setProcessedOn(String ColumnName, Object value, Object oldValue) {
-		if ("Processed".equals(ColumnName)
-				&& value instanceof Boolean
-				&& ((Boolean)value).booleanValue() == true
-				&& (oldValue == null
-				    || (oldValue instanceof Boolean
-				        && ((Boolean)oldValue).booleanValue() == false))) {
-			if (get_ColumnIndex("ProcessedOn") > 0) {
-				// fill processed on column
-				//get current time from db
-				Timestamp ts = DB.getSQLValueTS(null, "SELECT CURRENT_TIMESTAMP FROM DUAL");
-				long mili = ts.getTime();
-				int nano = ts.getNanos();
-				double doublets = Double.parseDouble(Long.toString(mili) + "." + Integer.toString(nano));
-				BigDecimal bdtimestamp = BigDecimal.valueOf(doublets);
-				set_Value("ProcessedOn", bdtimestamp);
-			}
-		}
-	}
-
-	/**
-	 *  Set Value w/o check (update, r/o, ..).
-	 * 	Used when Column is R/O
-	 *  Required for key and parent values
-	 *  @param ColumnName column name
-	 *  @param value value
-	 *  @return true if value set
-	 */
 	public final boolean set_ValueNoCheck (String ColumnName, Object value)
 	{
 		return set_Value(ColumnName, value, false);
@@ -2283,36 +2238,13 @@ public abstract class PO
 	 */
 	private boolean saveFinish (boolean newRecord, boolean success)
 	{
-		//	Translations
-		/* Bo vi khogn dung duoc. Cho suy nghi them
-		for(int i = 0; i < p_info.getColumnCount(); i ++) {
-			if (p_info.isCheckDoubleCode(i)) {
-				//System.out.println("Table: "+ p_info.getTableName() + ", Column: "+ p_info.getColumnName(i) + " = "+ m_newValues[i]);
-				log.saveError("Error", Msg.getMsg(getCtx(), "DoubleValue") + ": " + p_info.getColumnName(i));
-				success = false;
-				//System.out.println(Pattern.matches("[a-zA-Z0-9]", m_newValues[i].toString()));
-				
-			}
-			
-		}
-		*/
+		
 		if (success)
 		{
 			if (newRecord)
 				insertTranslations();
 			else
 				updateTranslations();
-
-			// table with potential tree
-			/*
-			if (get_ColumnIndex("IsSummary") >= 0) {
-				if (newRecord)
-					insert_Tree(MTree.TREETYPE_CustomTable);
-				int idxValue = get_ColumnIndex("Value");
-				if (newRecord || (idxValue >= 0 && is_ValueChanged(idxValue)))
-					update_Tree(MTree.TREETYPE_CustomTable);
-			}
-			*/
 		}
 		//
 		try
@@ -3831,12 +3763,6 @@ public abstract class PO
 	}	//	deleteTranslations
 
 	
-	@Deprecated // see IDEMPIERE-2088
-	protected boolean delete_Accounting(String acctTable)
-	{
-		return true;
-	}	//	delete_Accounting
-
 
 	/**
 	 * 	Insert id data into Tree

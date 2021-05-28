@@ -59,12 +59,6 @@ import eone.webui.util.GridTabDataBinder;
 import eone.webui.util.ZKUpdateUtil;
 
 /**
- * Row renderer for GridTab grid.
- * @author hengsin
- * 
- * @author Teo Sarca, teo.sarca@gmail.com
- * 		<li>BF [ 2996608 ] GridPanel is not displaying time
- * 			https://sourceforge.net/tracker/?func=detail&aid=2996608&group_id=176962&atid=955896
  */
 public class GridTabRowRenderer implements RowRenderer<Object[]>, RowRendererExt, RendererCtrl, EventListener<Event> {
 
@@ -771,7 +765,7 @@ public class GridTabRowRenderer implements RowRenderer<Object[]>, RowRendererExt
 
 			GridTableListModel model = (GridTableListModel) grid.getModel();
 			model.setEditing(true);
-
+			
 		}
 	}
 	
@@ -935,6 +929,9 @@ public class GridTabRowRenderer implements RowRenderer<Object[]>, RowRendererExt
 			else if (Events.ON_OK.equals(event.getName())) {
 				Event evt = new Event(Events.ON_OK, _grid, _grid);
 				Events.sendEvent(_grid, evt);
+			}
+			else if (Events.ON_CTRL_KEY.equals(event.getName())) {
+				System.out.println("vao day");
 			}
 		}
 	}

@@ -1,18 +1,6 @@
 /******************************************************************************
- * Product: iDempiere ERP & CRM Smart Business Solution                       *
- * Copyright (C) 1999-2012 ComPiere, Inc. All Rights Reserved.                *
- * This program is free software, you can redistribute it and/or modify it    *
- * under the terms version 2 of the GNU General Public License as published   *
- * by the Free Software Foundation. This program is distributed in the hope   *
- * that it will be useful, but WITHOUT ANY WARRANTY, without even the implied *
- * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.           *
- * See the GNU General Public License for more details.                       *
- * You should have received a copy of the GNU General Public License along    *
- * with this program, if not, write to the Free Software Foundation, Inc.,    *
- * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.                     *
- * For the text or an alternative of this public license, you may reach us    *
- * ComPiere, Inc., 2620 Augustine Dr. #245, Santa Clara, CA 95054, USA        *
- * or via info@compiere.org or http://www.compiere.org/license.html           *
+ * Product: EOoe ERP & CRM Smart Business Solution	                        *
+ * Copyright (C) 2020, Inc. All Rights Reserved.				                *
  *****************************************************************************/
 /** Generated Model - DO NOT CHANGE */
 package eone.base.model;
@@ -22,7 +10,7 @@ import java.sql.Timestamp;
 import java.util.Properties;
 
 /** Generated Model for M_Promotion
- *  @author iDempiere (generated) 
+ *  @author EOne (generated) 
  *  @version Version 1.0 - $Id$ */
 public class X_M_Promotion extends PO implements I_M_Promotion, I_Persistent 
 {
@@ -30,7 +18,7 @@ public class X_M_Promotion extends PO implements I_M_Promotion, I_Persistent
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = 20201226L;
+	private static final long serialVersionUID = 20210524L;
 
     /** Standard Constructor */
     public X_M_Promotion (Properties ctx, int M_Promotion_ID, String trxName)
@@ -65,34 +53,9 @@ public class X_M_Promotion extends PO implements I_M_Promotion, I_Persistent
     public String toString()
     {
       StringBuilder sb = new StringBuilder ("X_M_Promotion[")
-        .append(get_ID()).append(",Name=").append(getName()).append("]");
+        .append(get_ID()).append("]");
       return sb.toString();
     }
-
-	public I_AD_Department getAD_Department() throws RuntimeException
-    {
-		return (I_AD_Department)MTable.get(getCtx(), I_AD_Department.Table_Name)
-			.getPO(getAD_Department_ID(), get_TrxName());	}
-
-	/** Set Department.
-		@param AD_Department_ID Department	  */
-	public void setAD_Department_ID (int AD_Department_ID)
-	{
-		if (AD_Department_ID < 1) 
-			set_ValueNoCheck (COLUMNNAME_AD_Department_ID, null);
-		else 
-			set_ValueNoCheck (COLUMNNAME_AD_Department_ID, Integer.valueOf(AD_Department_ID));
-	}
-
-	/** Get Department.
-		@return Department	  */
-	public int getAD_Department_ID () 
-	{
-		Integer ii = (Integer)get_Value(COLUMNNAME_AD_Department_ID);
-		if (ii == null)
-			 return 0;
-		return ii.intValue();
-	}
 
 	/** Set Approved.
 		@param Approved Approved	  */
@@ -188,6 +151,27 @@ public class X_M_Promotion extends PO implements I_M_Promotion, I_Persistent
 		return false;
 	}
 
+	/** Set Pending.
+		@param IsPending Pending	  */
+	public void setIsPending (boolean IsPending)
+	{
+		set_Value (COLUMNNAME_IsPending, Boolean.valueOf(IsPending));
+	}
+
+	/** Get Pending.
+		@return Pending	  */
+	public boolean isPending () 
+	{
+		Object oo = get_Value(COLUMNNAME_IsPending);
+		if (oo != null) 
+		{
+			 if (oo instanceof Boolean) 
+				 return ((Boolean)oo).booleanValue(); 
+			return "Y".equals(oo);
+		}
+		return false;
+	}
+
 	/** Set IsRecursive.
 		@param IsRecursive IsRecursive	  */
 	public void setIsRecursive (boolean IsRecursive)
@@ -229,21 +213,29 @@ public class X_M_Promotion extends PO implements I_M_Promotion, I_Persistent
 		return ii.intValue();
 	}
 
-	/** Set Name.
-		@param Name 
-		Alphanumeric identifier of the entity
-	  */
-	public void setName (String Name)
+	public I_M_PromotionType getM_PromotionType() throws RuntimeException
+    {
+		return (I_M_PromotionType)MTable.get(getCtx(), I_M_PromotionType.Table_Name)
+			.getPO(getM_PromotionType_ID(), get_TrxName());	}
+
+	/** Set Promtion Type.
+		@param M_PromotionType_ID Promtion Type	  */
+	public void setM_PromotionType_ID (int M_PromotionType_ID)
 	{
-		set_Value (COLUMNNAME_Name, Name);
+		if (M_PromotionType_ID < 1) 
+			set_Value (COLUMNNAME_M_PromotionType_ID, null);
+		else 
+			set_Value (COLUMNNAME_M_PromotionType_ID, Integer.valueOf(M_PromotionType_ID));
 	}
 
-	/** Get Name.
-		@return Alphanumeric identifier of the entity
-	  */
-	public String getName () 
+	/** Get Promtion Type.
+		@return Promtion Type	  */
+	public int getM_PromotionType_ID () 
 	{
-		return (String)get_Value(COLUMNNAME_Name);
+		Integer ii = (Integer)get_Value(COLUMNNAME_M_PromotionType_ID);
+		if (ii == null)
+			 return 0;
+		return ii.intValue();
 	}
 
 	/** Set Processed.
@@ -302,22 +294,5 @@ public class X_M_Promotion extends PO implements I_M_Promotion, I_Persistent
 	public Timestamp getValidTo () 
 	{
 		return (Timestamp)get_Value(COLUMNNAME_ValidTo);
-	}
-
-	/** Set Code.
-		@param Value 
-		Code
-	  */
-	public void setValue (String Value)
-	{
-		set_Value (COLUMNNAME_Value, Value);
-	}
-
-	/** Get Code.
-		@return Code
-	  */
-	public String getValue () 
-	{
-		return (String)get_Value(COLUMNNAME_Value);
 	}
 }

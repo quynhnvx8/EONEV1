@@ -53,8 +53,8 @@ public class PostgresConvertTest
 		CLogMgt.setLoggerLevel(Level.INFO, null);
 		CLogMgt.setLevel(Level.INFO);
 		//
-		Ini.setProperty(Ini.P_UID,"SuperUser");
-		Ini.setProperty(Ini.P_PWD,"System");
+		Ini.setProperty(Ini.P_UID,"System");
+		Ini.setProperty(Ini.P_PWD,"Sys");
 		Ini.setProperty(Ini.P_ROLE,"GardenWorld Admin");
 		Ini.setProperty(Ini.P_CLIENT, "GardenWorld");
 		Ini.setProperty(Ini.P_ORG,"HQ");

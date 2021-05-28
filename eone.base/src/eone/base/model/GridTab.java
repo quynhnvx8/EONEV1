@@ -1,21 +1,4 @@
-/******************************************************************************
- * Product: Adempiere ERP & CRM Smart Business Solution                       *
- * Copyright (C) 1999-2006 ComPiere, Inc. All Rights Reserved.                *
- * This program is free software; you can redistribute it and/or modify it    *
- * under the terms version 2 of the GNU General Public License as published   *
- * by the Free Software Foundation. This program is distributed in the hope   *
- * that it will be useful, but WITHOUT ANY WARRANTY; without even the implied *
- * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.           *
- * See the GNU General Public License for more details.                       *
- * You should have received a copy of the GNU General Public License along    *
- * with this program; if not, write to the Free Software Foundation, Inc.,    *
- * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.                     *
- * For the text or an alternative of this public license, you may reach us    *
- * ComPiere, Inc., 2620 Augustine Dr. #245, Santa Clara, CA 95054, USA        *
- * or via info@compiere.org or http://www.compiere.org/license.html           *
- * @contributor Victor Perez , e-Evolution.SC FR [ 1757088 ]                  *
- *              Teo Sarca, www.arhipac.ro                                     *
- *****************************************************************************/
+
 package eone.base.model;
 
 import java.beans.PropertyChangeListener;
@@ -63,28 +46,13 @@ public class GridTab implements DataStatusListener, Evaluatee, Serializable
 
 	public static final String DEFAULT_STATUS_MESSAGE = "NavigateOrUpdate";
 
-	/**
-	 *	Create Tab (Model) from Value Object.
-	 *  <p>
-	 *  MTab provides a property listener for changed rows and a
-	 *  DataStatusListener for communicating changes of the underlying data
-	 *  @param vo Value Object
-	 *  @param w
-	 */
+	
 	public GridTab(GridTabVO vo, GridWindow w)
 	{
 		this(vo, w, false);
 	}
 
-	/**
-	 *	Create Tab (Model) from Value Object.
-	 *  <p>
-	 *  MTab provides a property listener for changed rows and a
-	 *  DataStatusListener for communicating changes of the underlying data
-	 *  @param vo Value Object
-	 *  @param w
-	 *  @param virtual
-	 */
+	
 	public GridTab(GridTabVO vo, GridWindow w, boolean virtual)
 	{
 		m_window = w;
@@ -320,11 +288,7 @@ public class GridTab implements DataStatusListener, Evaluatee, Serializable
 				GridField field = new GridField (voF);
 				field.setGridTab(this);
 				String columnName = field.getColumnName();
-				//FR [ 1757088 ] - this create Bug [ 1866793 ]
-				/*
-				if(this.isReadOnly()) {
-				   voF.IsReadOnly = true;
-				}*/
+				
 				//	Record Info
 				if (field.isKey()) {
 					setKeyColumnName(columnName);
@@ -362,9 +326,7 @@ public class GridTab implements DataStatusListener, Evaluatee, Serializable
 				for (int i = 0; i < list.size(); i++)
 					m_depOnField.put(list.get(i), field);   //  ColumnName, Field
 				//  Add fields all fields are dependent on
-				if (columnName.equals("IsActive")
-					|| columnName.equals("Processed")
-					|| columnName.equals("Processing"))
+				if (columnName.equals("IsActive") || columnName.equals("Processed"))
 					m_depOnField.put(columnName, null);
 			}
 		}   //  for all fields
@@ -2137,7 +2099,7 @@ public class GridTab implements DataStatusListener, Evaluatee, Serializable
 	private void fireDataStatusChanged (DataStatusEvent e)
 	{
 		if (e == null) {
-			log.warning("IDEMPIERE-2449 - event must not arrive null here -> " + Thread.currentThread().getStackTrace());
+			log.warning("event must not arrive null here -> " + Thread.currentThread().getStackTrace());
 			return;  // avoid NPE below
 		}
 		DataStatusListener[] listeners = m_listenerList.getListeners(DataStatusListener.class);
@@ -2150,10 +2112,8 @@ public class GridTab implements DataStatusListener, Evaluatee, Serializable
 			updateDataStatusEventProperties(e);
 		}
 		e.setInserting(m_mTable.isInserting());
-		//  Distribute/fire it
         for (int i = 0; i < listeners.length; i++)
         	listeners[i].dataStatusChanged(e);
-	//	log.fine("fini - " + e.toString());
 	}	//	fireDataStatusChanged
 
 	private void updateDataStatusEventProperties(DataStatusEvent e) {
@@ -2343,6 +2303,7 @@ public class GridTab implements DataStatusListener, Evaluatee, Serializable
 		for (int i = 0; i < size; i++)
 		{
 			GridField mField = m_mTable.getField(i);
+			
 			//  get Value from Table
 			if (m_currentRow >= 0)
 			{
@@ -2353,15 +2314,6 @@ public class GridTab implements DataStatusListener, Evaluatee, Serializable
 			}
 			else
 			{   //  no rows - set to a reasonable value - not updateable
-//				Object value = null;
-//				if (mField.isKey() || mField.isParent() || mField.getColumnName().equals(m_linkColumnName))
-//					value = mField.getDefault();
-
-				// CarlosRuiz - globalqss [ 1881480 ] Navigation problem between tabs
-				// the implementation of linking with window context variables is very weak
-				// you must be careful when defining a column in a detail tab with a field
-				// with the same column name as some of the links of the tabs above
-				// this can cause bad behavior of linking
 				if (mField.isKey())
 					mField.setValueAndUpdateContext();
 				else

@@ -153,8 +153,8 @@ public class SystemIDs
 
 	public final static int TREE_MENUPRIMARY = 10;
 
-	public final static int USER_SUPERUSER = 100;
-	public final static int USER_SYSTEM = 0;
+	public final static int USER_SYSTEM = 100;
+	public final static int USER_SYS = 0;
 
 	public final static int WINDOW_ACCOUNTCOMBINATION = 153;
 	public final static int WINDOW_CUSTOMERRETURN = 53097;

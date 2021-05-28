@@ -6,6 +6,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
@@ -36,20 +37,11 @@ import org.compiere.util.Util;
 public class GridField 
 	implements Serializable, Evaluatee, Cloneable
 {
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -632698704437797186L;
 
-	/**
-	 *  Field Constructor.
-	 *  requires initField for complete instantiation	
-	 *  @param vo ValueObjecy
-	 */
 	public GridField (GridFieldVO vo)
 	{
 		m_vo = vo;
-		//  Set Attributes
 		loadLookup();
 		setError(false);
 	}   //  GridField
@@ -61,10 +53,6 @@ public class GridField
 	
 	private GridTab m_gridTab;
 	
-	/** 
-	 * Use by lookup editor to indicate setting of new value is in progress.
-	 * GridTab.processDependentFields will check this flag to avoid clearing of lookup field value that just have been set.
-	 **/ 
 	private boolean m_lookupEditorSettingValue = false;
 	private boolean m_lockedRecord = false;
 	
@@ -353,31 +341,17 @@ public class GridField
 		return isDisplayed (checkContext);
 	}
 	
-	/**
-	 *	Is it Editable - checks IsActive, IsUpdateable, and isDisplayed
-	 *  @param checkContext if true checks Context for Active, IsProcessed, LinkColumn
-	 *  @return true, if editable
-	 */
+	
 	public boolean isEditable (boolean checkContext)
 	{
 		return isEditable(m_vo.ctx, checkContext,false);
 	}
 	
-	/**
-	 *	Is it Editable in Grid- checks IsActive, IsUpdateable, and isDisplayedGrid
-	 *  @param checkContext if true checks Context for Active, IsProcessed, LinkColumn
-	 *  @return true, if editable
-	 */
 	public boolean isEditableGrid (boolean checkContext)
 	{
 		return isEditable(m_vo.ctx, checkContext,true);
 	}
 	
-	/**
-	 *	Is it Editable - checks IsActive, IsUpdateable, and isDisplayed
-	 *  @param checkContext if true checks Context for Active, IsProcessed, LinkColumn
-	 *  @return true, if editable
-	 */
 	public boolean isEditable (Properties ctx, boolean checkContext,boolean isGrid)
 	{
 		if (isVirtualColumn())
@@ -465,11 +439,7 @@ public class GridField
 		
 		//BF [ 2910368 ]
 		//  Always editable if Active
-		if (checkContext && "Y".equals(Env.getContext(ctx, m_vo.WindowNo, m_vo.TabNo, "IsActive"))
-				&& (   m_vo.ColumnName.equals("Processing")
-					|| m_vo.ColumnName.equals("PaymentRule")
-					|| m_vo.ColumnName.equals("DocAction") 
-					|| m_vo.ColumnName.equals("GenerateTo")))
+		if (checkContext && "Y".equals(Env.getContext(ctx, m_vo.WindowNo, m_vo.TabNo, "IsActive")))
 			return true;
 
 		//  Record is Processed	***	
@@ -490,39 +460,14 @@ public class GridField
 		return isDisplayed (ctx, checkContext);
 	}	//	isEditable
 
-	/**
-	 *  Set Inserting (allows to enter not updateable fields).
-	 *  Reset when setting the Field Value
-	 *  @param inserting true if inserting
-	 */
 	public void setInserting (boolean inserting)
 	{
 		m_inserting = inserting;
 	}   //  setInserting
 
 	
-	/**************************************************************************
-	 *	Create default value.
-	 *  <pre>
-	 *		(a) Key/Parent/IsActive/SystemAccess
-	 *      (b) SQL Default
-	 *		(c) Column Default		//	system integrity
-	 *      (d) User Preference
-	 *		(e) System Preference
-	 *		(f) DataType Defaults
-	 *
-	 *  Don't default from Context => use explicit defaultValue
-	 *  (would otherwise copy previous record)
-	 *  </pre>
-	 *  this method code in mind GirdField lie at standard window, and default is receive when new record.
-	 *  maybe it will don't suitable for use at other place as info panel parameter,...
-	 *  @return default value or null
-	 */
 	public Object getDefault()
 	{
-		/**
-		 *  (a) Key/Parent/IsActive/SystemAccess
-		 */
 		if (isIgnoreDefault())
 			return null;
 		
@@ -534,28 +479,15 @@ public class GridField
 			return defaultValue;
 		}
 		
-		/**
-		 *  No resolution
-		 */
 		if (log.isLoggable(Level.FINE)) log.fine("[NONE] " + m_vo.ColumnName);
 		return null;
 	}	//	getDefault
 	
-	/**
-	 * get default of field when field don't lie down at standard window
-	 * @return
-	 */
 	public Object getDefaultForPanel (){
-		//default is preference for field > special case > default logic > sql default > data-type default
 		String defaultSeq = "623";
 		return getDefault (MSysConfig.getValue(MSysConfig.ZK_SEQ_DEFAULT_VALUE_PANEL, defaultSeq, Env.getAD_Client_ID(m_vo.ctx)));
 	}
 	
-	/**
-	 * Get default value with priority define by seqGetDefaultValueStr
-	 * @param seqGetDefaultValueStr
-	 * @return
-	 */
 	public Object getDefault(String seqGetDefaultValueStr){
 		ParseSeq seqGetDefaultValue = ParseSeq.getNumberOrder(seqGetDefaultValueStr);
 		
@@ -565,11 +497,6 @@ public class GridField
 		return getDefault (seqGetDefaultValue);
 	}
 	
-	/**
-	 * Get default value with priority define by seqGetDefaultValue
-	 * @param seqGetDefaultValue
-	 * @return
-	 */
 	public Object getDefault(ParseSeq seqGetDefaultValue){
 		Object defaultValue = null;
 		for (Character seqType : seqGetDefaultValue){
@@ -692,15 +619,10 @@ public class GridField
 	}
 	
 	protected Object defaultFromSQLExpression () {
-		/**
-		 *  (b) SQL Statement (for data integity & consistency)
-		 */
 		String	defStr = "";
 		if (m_vo.DefaultValue != null && m_vo.DefaultValue.startsWith("@SQL="))
 		{
 			String sql = m_vo.DefaultValue.substring(5);			//	w/o tag
-			//sql = Env.parseContext(m_vo.ctx, m_vo.WindowNo, sql, false, true);	//	replace variables
-			//hengsin, capture unparseable error to avoid subsequent sql exception
 			sql = Env.parseContext(m_vo.ctx, m_vo.WindowNo, sql, false, false);	//	replace variables
 			if (sql.equals(""))
 			{
@@ -747,9 +669,6 @@ public class GridField
 	}
 	
 	protected Object defaultFromExpression (){
-		/**
-		 * 	(c) Field DefaultValue		=== similar code in AStartRPDialog.getDefault ===
-		 */
 		if (m_vo.DefaultValue != null && !m_vo.DefaultValue.equals("") && !m_vo.DefaultValue.startsWith("@SQL="))
 		{
 			String defStr = "";		//	problem is with texts like 'sss;sss'
@@ -1508,10 +1427,6 @@ public class GridField
 	 *	@return true if allow copy
 	 */
 	public boolean isAllowCopy() {
-		/* IDEMPIERE-67
-		 * Extending MColumn.isStandardColumn
-		 * Force some additional columns to forbid copy from the UI
-		 */
 		String colname = getColumnName();
 		if (   colname.equals("C_CashLine_ID")
 			|| colname.equals("C_Location_ID")
@@ -1698,6 +1613,10 @@ public class GridField
 	{
 		return m_vo.IsKey;
 	}
+	
+	public boolean isSetContext () {
+		return m_vo.IsSetContext;
+	}
 	/**
 	 * 	UUID
 	 *	@return is UUID
@@ -1813,13 +1732,7 @@ public class GridField
 	 */
 	public boolean isLongField()
 	{
-	//	if (m_vo.displayType == DisplayType.String 
-	//		|| m_vo.displayType == DisplayType.Text 
-	//		|| m_vo.displayType == DisplayType.Memo
-	//		|| m_vo.displayType == DisplayType.TextLong
-	//		|| m_vo.displayType == DisplayType.Image)
 		return (m_vo.DisplayLength >= MAXDISPLAY_LENGTH/2);
-	//	return false;
 	}   //  isLongField
 	
 	/**
@@ -1859,29 +1772,51 @@ public class GridField
 	 */
 	public void setValueAndUpdateContext ()
 	{
-	//	log.fine(ColumnName + "=" + newValue);
 		if (m_valueNoFire)      //  set the old value
 			m_oldValue = m_value;
 		m_value = null;
 		m_inserting = false;
 		m_error = false;        //  reset error
-
-		// [ 1881480 ] Navigation problem between tabs
 		Env.setContext(m_vo.ctx, m_vo.WindowNo, m_vo.ColumnName, (String) m_value);
-
-		//  Does not fire, if same value
 		m_propertyChangeListeners.firePropertyChange(PROPERTY, m_oldValue, m_value);
-	//	m_propertyChangeListeners.firePropertyChange(PROPERTY, s_oldValue, null);
 	}   //  setValue
 
-	/**
-	 *  Set Value.
-	 *  <p>
-	 *  Update context, if not text or RowID;
-	 *  Send Bean PropertyChange if there is a change
-	 *  @param newValue new value
-	 *  @param inserting true if inserting
-	 */
+
+	//Quynhnv.x8: add 28/05/2021 add setcontext reference
+	//Xu ly luc mo form chuc nang co cau hinh set context den reference khac thi load len ban dau theo cau hinh.
+	//Phan nay rat quan trong, co the ap dung cho viec chon tai khoan...
+	public void setContextReference(Object value) {
+		String tableName = "";
+		if (m_vo.displayType == DisplayType.TableDir) {
+			tableName = m_vo.ColumnName.substring(0, m_vo.ColumnName.indexOf("_ID"));
+		}
+		if (m_vo.displayType == DisplayType.Search || m_vo.displayType == DisplayType.Table) {
+			MRefTable reftable = MRefTable.get(Env.getCtx(), m_vo.AD_Reference_Value_ID);
+			MTable table = MTable.get(Env.getCtx(), reftable.getAD_Table_ID());
+			tableName = table.getTableName();
+		}
+		String sql = "Select * From " + tableName + " where " + tableName + "_ID = " + value;
+		PreparedStatement ps = DB.prepareCall(sql);
+		
+		ResultSet rs = null;
+		try {
+			rs = ps.executeQuery();
+			ResultSetMetaData col = rs.getMetaData();
+			
+			while (rs.next()) {
+				for(int i = 1; i <=  col.getColumnCount(); i++) {
+					Env.setContext(Env.getCtx(), "#"+ col.getColumnName(i).toUpperCase() + "", rs.getString(col.getColumnName(i)));
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DB.close(rs, ps);
+			rs = null;
+			ps = null;
+		}
+	}
+	
 	public void setValue (Object newValue, boolean inserting)
 	{
 	//	log.fine(ColumnName + "=" + newValue);
@@ -1890,7 +1825,11 @@ public class GridField
 		m_value = newValue;
 		m_inserting = inserting;
 		m_error = false;        //  reset error
-
+		
+		//Bo sung setcontext o day
+		if (isSetContext()) {
+			setContextReference(newValue);
+		}
 		updateContext();
 
 		//  Does not fire, if same value
@@ -1984,7 +1923,6 @@ public class GridField
 						{
 							if (key == null || key.length() <= 0)
 								continue;
-							//Dungnv40: luu cac truong auto load vao cache
 							ArrayList<String> lst = null;
 							if(s_cacheAutoLoad.containsKey(m_vo.AD_Field_ID)) {
 								lst = s_cacheAutoLoad.get(m_vo.AD_Field_ID);

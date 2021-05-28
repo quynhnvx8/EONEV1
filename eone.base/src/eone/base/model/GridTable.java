@@ -1,23 +1,8 @@
-/******************************************************************************
- * Product: Adempiere ERP & CRM Smart Business Solution                       *
- * Copyright (C) 1999-2006 ComPiere, Inc. All Rights Reserved.                *
- * This program is free software; you can redistribute it and/or modify it    *
- * under the terms version 2 of the GNU General Public License as published   *
- * by the Free Software Foundation. This program is distributed in the hope   *
- * that it will be useful, but WITHOUT ANY WARRANTY; without even the implied *
- * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.           *
- * See the GNU General Public License for more details.                       *
- * You should have received a copy of the GNU General Public License along    *
- * with this program; if not, write to the Free Software Foundation, Inc.,    *
- * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.                     *
- * For the text or an alternative of this public license, you may reach us    *
- * ComPiere, Inc., 2620 Augustine Dr. #245, Santa Clara, CA 95054, USA        *
- * or via info@compiere.org or http://www.compiere.org/license.html           *
- *****************************************************************************/
+
 package eone.base.model;
 
-import static eone.base.model.SystemIDs.USER_SUPERUSER;
 import static eone.base.model.SystemIDs.USER_SYSTEM;
+import static eone.base.model.SystemIDs.USER_SYS;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyVetoException;
@@ -66,38 +51,7 @@ import org.compiere.util.Trx;
 import org.compiere.util.Util;
 import org.compiere.util.ValueNamePair;
 
-/**
- *	Grid Table Model for JDBC access including buffering.
- *  <pre>
- *		The following data types are handled
- *			Integer		for all IDs
- *			BigDecimal	for all Numbers
- *			Timestamp	for all Dates
- *			String		for all others
- *  The data is read via r/o resultset and cached in m_buffer. Writes/updates
- *  are via dynamically constructed SQL INSERT/UPDATE statements. The record
- *  is re-read via the resultset to get results of triggers.
- *
- *  </pre>
- *  The model maintains and fires the requires TableModelEvent changes,
- *  the DataChanged events (loading, changed, etc.)
- *  as well as Vetoable Change event "RowChange"
- *  (for row changes initiated by moving the row in the table grid).
- *
- * 	@author 	Jorg Janke
- * 	@version 	$Id: GridTable.java,v 1.9 2006/08/09 16:38:25 jjanke Exp $
- * 
- * @author Teo Sarca, SC ARHIPAC SERVICE SRL
- * 			<li>BF [ 1901192 ] LogMigrationScripts: GridTable.dataSave: manual update
- *			<li>BF [ 1943682 ] Copy Record should not copy IsApproved and IsGenerated
- *			<li>BF [ 1949543 ] Window freeze if there is a severe exception
- *			<li>BF [ 1984310 ] GridTable.getClientOrg() doesn't work for AD_Client/AD_Org
- *  @author victor.perez@e-evolution.com,www.e-evolution.com
- *  		<li>BF [ 2910358 ] Error in context when a field is found in different tabs.
- *  			https://sourceforge.net/tracker/?func=detail&aid=2910358&group_id=176962&atid=879332
- *     		<li>BF [ 2910368 ] Error in context when IsActive field is found in different
- *  			https://sourceforge.net/tracker/?func=detail&aid=2910368&group_id=176962&atid=879332
- */
+
 public class GridTable extends AbstractTableModel
 	implements Serializable
 {
@@ -1543,7 +1497,7 @@ public class GridTable extends AbstractTableModel
 		boolean specialZeroUpdate = false;
 		if (!m_inserting // not inserting, updating a record 
 			&& manualCmd   // in a manual way (pushing the save button)
-			&& (Env.getAD_User_ID(m_ctx) == USER_SYSTEM || Env.getAD_User_ID(m_ctx) == USER_SUPERUSER)  // user must know what is doing -> just allowed to System or SuperUser (Hardcoded)
+			&& (Env.getAD_User_ID(m_ctx) == USER_SYSTEM || Env.getAD_User_ID(m_ctx) == USER_SYS)  // user must know what is doing -> just allowed to System or SuperUser (Hardcoded)
 			&& getKeyID(m_rowChanged) == 0) { // the record being changed has ID = 0
 			String tablename = getTableName(); // just the allowed tables (HardCoded)
 			if (MTable.isZeroIDTable(tablename))

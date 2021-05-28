@@ -90,18 +90,7 @@ import eone.webui.part.WindowContainer;
 import eone.webui.session.SessionManager;
 import eone.webui.util.ZKUpdateUtil;
 
-/**
- *	Search Information and return selection - Base Class.
- *  Based on Info written by Jorg Janke
- *
- *  @author Sendy Yagambrum
- *
- * Zk Port 
- * @author Elaine
- * @version	Info.java Adempiere Swing UI 3.4.1
- * 
- * @contributor red1 IDEMPIERE-1711 with final review by HengSin 
- */
+
 public abstract class InfoPanel extends Window implements EventListener<Event>, WTableModelListener, Sortable<Object>, IHelpContext
 {
 	/**
@@ -125,39 +114,19 @@ public abstract class InfoPanel extends Window implements EventListener<Event>, 
 	protected int numPagePreLoad = MSysConfig.getIntValue(MSysConfig.ZK_INFO_NUM_PAGE_PRELOAD, DEFAULT_PAGE_PRELOAD);
 	// max end index is integer.max_value - 1, not integer.max_value.
 	protected int extra_max_row = 1;
-	/**
-	 * MInfoColumn has isKey = true, play as key column in case non column has
-	 * isKey = true, this column is null and we use {@link #p_keyColumn}
-	 */
+	
 	protected MInfoColumn keyColumnOfView = null;
 	
-	/**
-	 * index of {@link #keyColumnOfView} in data model, set when prepare listbox
-	 */
+	
 	protected int indexKeyOfView = -1;
 	
 	protected boolean isIDColumnKeyOfView = false;
 	protected boolean hasRightQuickEntry = true;
 	protected boolean isHasNextPage = false;
-	/**
-	 * store selected record info
-	 * key of map is value of column play as keyView
-	 * in case has no key coloumn of view, use value of {@link #p_keyColumn}
-	 * zk6.x listview don't provide event when click to checkbox select all, 
-	 * so we can't manage selectedRecord time by time. 
-	 * each time change page we will update this list with current
-	 * selected record of this page by call function
-	 * {@link #updateListSelected()} when move to zk7, just enough handle
-	 * onclick. because don't direct use recordSelectedData, call
-	 * {@link #getSelectedRowInfo()}
-	 */
+	
 	protected Map<Integer, List<Object>> recordSelectedData = new HashMap<Integer, List<Object>>();
 	
-	/**
-	 * when requery but don't clear selected record (example after run process)
-	 * set flag to true to run sync selected record, also
-	 * {@link #syncSelectedAfterRequery()}
-	*/
+	
 	protected boolean isRequeryByRunSuccessProcess = false;
 	
 	
@@ -168,10 +137,6 @@ public abstract class InfoPanel extends Window implements EventListener<Event>, 
         return InfoManager.create(WindowNo, tableName, keyColumn, value, multiSelection, whereClause, true);
     }
 
-	/**
-	 * Show panel based on tablename (non modal)
-	 * @param tableName
-	 */
     public static void showPanel (String tableName)
 	{
 		InfoPanel info = InfoManager.create(0, tableName, tableName + "_ID", "", false, "", false);
@@ -184,13 +149,7 @@ public abstract class InfoPanel extends Window implements EventListener<Event>, 
 	protected boolean m_lookup;
 	protected int m_infoWindowID;
 	
-	/**************************************************
-     *  Detail Constructor
-     * @param WindowNo  WindowNo
-     * @param tableName tableName
-     * @param keyColumn keyColumn
-     * @param whereClause   whereClause
-	 */
+	
 	protected InfoPanel (int WindowNo,
 		String tableName, String keyColumn,boolean multipleSelection,
 		 String whereClause)
