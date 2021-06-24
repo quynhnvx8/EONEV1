@@ -249,7 +249,7 @@ public class M_Element extends X_AD_Element
 					.append(", AD_Element_ID=").append(get_ID())
 					.append(" WHERE UPPER(ColumnName)=")
 					.append(DB.TO_STRING(getColumnName().toUpperCase()))
-					.append(" AND IsCentrallyMaintained='Y' AND AD_Element_ID IS NULL");
+					.append(" AND AD_Element_ID IS NULL");
 				no = DB.executeUpdate(sql.toString(), get_TrxName());
 				
 				sql = new StringBuilder("UPDATE AD_Process_Para SET ColumnName=")
@@ -259,7 +259,7 @@ public class M_Element extends X_AD_Element
 					.append(", Help=").append(DB.TO_STRING(getHelp()))
 					.append(", Placeholder=").append(DB.TO_STRING(getPlaceholder()))
 					.append(" WHERE AD_Element_ID=").append(get_ID())
-					.append(" AND IsCentrallyMaintained='Y'");
+					.append(" ");
 				no += DB.executeUpdate(sql.toString(), get_TrxName());
 				if (log.isLoggable(Level.FINE)) log.fine("Parameters updated #" + no);
 				
@@ -271,7 +271,7 @@ public class M_Element extends X_AD_Element
 					.append(", Help=").append(DB.TO_STRING(getHelp()))
 					.append(", Placeholder=").append(DB.TO_STRING(getPlaceholder()))
 					.append(" WHERE AD_Element_ID=").append(get_ID())
-					.append(" AND IsCentrallyMaintained='Y'");
+					.append(" ");
 				no += DB.executeUpdate(sql.toString(), get_TrxName());
 				if (log.isLoggable(Level.FINE)) log.fine("Info Column updated #" + no);
 			}
@@ -289,13 +289,10 @@ public class M_Element extends X_AD_Element
 					.append(", Placeholder=").append(DB.TO_STRING(getPlaceholder()))
 					.append(" WHERE AD_Column_ID IN (SELECT AD_Column_ID FROM AD_Column WHERE AD_Element_ID=")
 					.append(get_ID())
-					.append(") AND IsCentrallyMaintained='Y'");
+					.append(") ");
 				no = DB.executeUpdate(sql.toString(), get_TrxName());
 				if (log.isLoggable(Level.FINE)) log.fine("Fields updated #" + no);
 				
-				// Info Column - update Name, Description, Help - doesn't have IsCentrallyMaintained currently
-				// no = DB.executeUpdate(sql.toString(), get_TrxName());
-				// log.fine("InfoColumn updated #" + no);
 			}
 			
 		}

@@ -476,28 +476,6 @@ public class MColumn extends X_AD_Column
 		if (!success)
 			return success;
 
-		/* Fields must inherit translation from element, not from column
-		 * changing it here is useless as SynchronizeTerminology get trl from column */
-		/*
-		//	Update Fields
-		if (!newRecord)
-		{
-			if (   is_ValueChanged(MColumn.COLUMNNAME_Name)
-				|| is_ValueChanged(MColumn.COLUMNNAME_Description)
-				|| is_ValueChanged(MColumn.COLUMNNAME_Help)
-				) {
-				StringBuilder sql = new StringBuilder("UPDATE AD_Field SET Name=")
-					.append(DB.TO_STRING(getName()))
-					.append(", Description=").append(DB.TO_STRING(getDescription()))
-					.append(", Help=").append(DB.TO_STRING(getHelp()))
-					.append(" WHERE AD_Column_ID=").append(get_ID())
-					.append(" AND IsCentrallyMaintained='Y'");
-				int no = DB.executeUpdate(sql.toString(), get_TrxName());
-				if (log.isLoggable(Level.FINE)) log.fine("afterSave - Fields updated #" + no);
-			}
-		}
-		*/
-
 		return success;
 	}	//	afterSave
 	

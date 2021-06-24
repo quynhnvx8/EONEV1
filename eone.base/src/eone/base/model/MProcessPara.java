@@ -79,8 +79,6 @@ public class MProcessPara extends X_AD_Process_Para
 			
 			setFieldLength (0);
 			setSeqNo (0);
-		//	setAD_Reference_ID (0);
-			setIsCentrallyMaintained (true);
 			setIsRange (false);
 			setIsMandatory (false);
 			setEntityType (ENTITYTYPE_UserMaintained);
@@ -230,7 +228,6 @@ public class MProcessPara extends X_AD_Process_Para
 		setFieldLength(source.getFieldLength());
 		setHelp(source.getHelp());
 		setIsActive(source.isActive());
-		setIsCentrallyMaintained(source.isCentrallyMaintained());
 		setIsMandatory(source.isMandatory());
 		setIsRange(source.isRange());
 		setName(source.getName());
@@ -265,12 +262,7 @@ public class MProcessPara extends X_AD_Process_Para
 	 */
 	protected boolean beforeSave (boolean newRecord)
 	{
-		if (isCentrallyMaintained() && getAD_Element_ID() == 0)
-			setIsCentrallyMaintained(false);	// IDEMPIERE 109 - param without element can't be centrally maintained
-
-		//	Sync Terminology
-		if ((newRecord || is_ValueChanged ("AD_Element_ID")) 
-			&& getAD_Element_ID() != 0 && isCentrallyMaintained())
+		if ((newRecord || is_ValueChanged ("AD_Element_ID")) && getAD_Element_ID() != 0)
 		{
 			M_Element element = new M_Element (getCtx(), getAD_Element_ID (), get_TrxName());
 			setColumnName (element.getColumnName());

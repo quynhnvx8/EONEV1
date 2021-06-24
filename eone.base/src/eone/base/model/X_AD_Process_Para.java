@@ -36,25 +36,7 @@ public class X_AD_Process_Para extends PO implements I_AD_Process_Para, I_Persis
     public X_AD_Process_Para (Properties ctx, int AD_Process_Para_ID, String trxName)
     {
       super (ctx, AD_Process_Para_ID, trxName);
-      /** if (AD_Process_Para_ID == 0)
-        {
-			setAD_Process_ID (0);
-			setAD_Process_Para_ID (0);
-			setAD_Reference_ID (0);
-			setColumnName (null);
-			setEntityType (null);
-// @SQL=select get_sysconfig('DEFAULT_ENTITYTYPE','U',0,0) from dual
-			setFieldLength (0);
-			setIsCentrallyMaintained (true);
-// Y
-			setIsEncrypted (false);
-// N
-			setIsMandatory (false);
-			setIsRange (false);
-			setName (null);
-			setSeqNo (0);
-// @SQL=SELECT NVL(MAX(SeqNo),0)+10 AS DefaultValue FROM AD_Process_Para WHERE AD_Process_ID=@AD_Process_ID@
-        } */
+    
     }
 
     /** Load Constructor */
@@ -401,34 +383,7 @@ public class X_AD_Process_Para extends PO implements I_AD_Process_Para, I_Persis
 		return (String)get_Value(COLUMNNAME_Help);
 	}
 
-	/** Set Centrally maintained.
-		@param IsCentrallyMaintained 
-		Information maintained in System Element table
-	  */
-	public void setIsCentrallyMaintained (boolean IsCentrallyMaintained)
-	{
-		set_Value (COLUMNNAME_IsCentrallyMaintained, Boolean.valueOf(IsCentrallyMaintained));
-	}
-
-	/** Get Centrally maintained.
-		@return Information maintained in System Element table
-	  */
-	public boolean isCentrallyMaintained () 
-	{
-		Object oo = get_Value(COLUMNNAME_IsCentrallyMaintained);
-		if (oo != null) 
-		{
-			 if (oo instanceof Boolean) 
-				 return ((Boolean)oo).booleanValue(); 
-			return "Y".equals(oo);
-		}
-		return false;
-	}
-
-	/** Set Encrypted.
-		@param IsEncrypted 
-		Display or Storage is encrypted
-	  */
+	
 	public void setIsEncrypted (boolean IsEncrypted)
 	{
 		set_Value (COLUMNNAME_IsEncrypted, Boolean.valueOf(IsEncrypted));

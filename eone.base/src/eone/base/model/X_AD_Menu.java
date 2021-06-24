@@ -316,34 +316,7 @@ public class X_AD_Menu extends PO implements I_AD_Menu, I_Persistent
 		return (String)get_Value(COLUMNNAME_EntityType);
 	}
 
-	/** Set Centrally maintained.
-		@param IsCentrallyMaintained 
-		Information maintained in System Element table
-	  */
-	public void setIsCentrallyMaintained (boolean IsCentrallyMaintained)
-	{
-		set_Value (COLUMNNAME_IsCentrallyMaintained, Boolean.valueOf(IsCentrallyMaintained));
-	}
-
-	/** Get Centrally maintained.
-		@return Information maintained in System Element table
-	  */
-	public boolean isCentrallyMaintained () 
-	{
-		Object oo = get_Value(COLUMNNAME_IsCentrallyMaintained);
-		if (oo != null) 
-		{
-			 if (oo instanceof Boolean) 
-				 return ((Boolean)oo).booleanValue(); 
-			return "Y".equals(oo);
-		}
-		return false;
-	}
-
-	/** Set Read Only.
-		@param IsReadOnly 
-		Field is read only
-	  */
+	
 	public void setIsReadOnly (boolean IsReadOnly)
 	{
 		set_Value (COLUMNNAME_IsReadOnly, Boolean.valueOf(IsReadOnly));

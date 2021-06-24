@@ -45,11 +45,7 @@ public class MField extends X_AD_Field
 		super (ctx, AD_Field_ID, trxName);
 		if (AD_Field_ID == 0)
 		{
-		//	setAD_Tab_ID (0);	//	parent
-		//	setAD_Column_ID (0);
-		//	setName (null);
 			setEntityType (ENTITYTYPE_UserMaintained);	// U
-			setIsCentrallyMaintained (true);	// Y
 			setIsDisplayed (true);	// Y
 			setIsDisplayedGrid (true);	// Y
 			setIsEncrypted (false);
@@ -121,8 +117,7 @@ public class MField extends X_AD_Field
 	protected boolean beforeSave(boolean newRecord)
 	{
 		//	Sync Terminology
-		if ((newRecord || is_ValueChanged("AD_Column_ID")) 
-			&& isCentrallyMaintained())
+		if ((newRecord || is_ValueChanged("AD_Column_ID")))
 		{
 			M_Element element = M_Element.getOfColumn(getCtx(), getAD_Column_ID(), get_TrxName());
 			setName (element.getName ());

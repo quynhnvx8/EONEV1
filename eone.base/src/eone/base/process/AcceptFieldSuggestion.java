@@ -80,7 +80,6 @@ public class AcceptFieldSuggestion extends SvrProcess {
 				field.setHelp(suggestion.getHelp());
 			}
 			if (field.is_Changed()) {
-				field.setIsCentrallyMaintained(false);
 				field.saveEx();
 				changed = true;
 			}									

@@ -153,8 +153,7 @@ public class MInfoColumn extends X_AD_InfoColumn implements IInfoColumn
 			return false;
 		}
 		// Sync Terminology
-		if ((newRecord || is_ValueChanged ("AD_Element_ID")) 
-			&& getAD_Element_ID() != 0 && isCentrallyMaintained())
+		if ((newRecord || is_ValueChanged ("AD_Element_ID")) && getAD_Element_ID() != 0)
 		{
 			M_Element element = new M_Element (getCtx(), getAD_Element_ID (), get_TrxName());
 			setName (element.getName());

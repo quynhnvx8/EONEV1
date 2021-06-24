@@ -113,8 +113,6 @@ public class Translation implements IApplication
 	/** XML Value Original			*/
 	public static final String	XML_VALUE_ATTRIBUTE_ORIGINAL = "original";
 
-	/**	Table is centrally maintained	*/
-	private boolean			m_IsCentrallyMaintained = false;
 	/**	Logger						*/
 	private static final CLogger	log = CLogger.getCLogger(Translation.class);
 	/** Properties					*/
@@ -236,11 +234,7 @@ public class Translation implements IApplication
 				sql.append(" WHERE t.AD_Language=?");
 				haveWhere = true;
 			}
-			if (m_IsCentrallyMaintained)
-			{
-				sql.append (haveWhere ? " AND " : " WHERE ").append ("o.IsCentrallyMaintained='N'");
-				haveWhere = true;
-			}
+			
 			if (AD_Client_ID >= 0)
 				sql.append(haveWhere ? " AND " : " WHERE ").append("o.AD_Client_ID=").append(AD_Client_ID);
 
@@ -333,32 +327,10 @@ public class Translation implements IApplication
 	 */
 	private String[] getTrlColumns (String Base_Table)
 	{
-		m_IsCentrallyMaintained = false;
-		String sql = "SELECT TableName FROM AD_Table t"
-			+ " INNER JOIN AD_Column c ON (c.AD_Table_ID=t.AD_Table_ID AND c.ColumnName='IsCentrallyMaintained') "
-			+ "WHERE t.TableName=? AND c.IsActive='Y'";
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		try
-		{
-			pstmt = DB.prepareStatement(sql, null);
-			pstmt.setString(1, Base_Table);
-			rs = pstmt.executeQuery();
-			if (rs.next())
-				m_IsCentrallyMaintained = true;
-		}
-		catch (SQLException e)
-		{
-			log.log(Level.SEVERE, sql, e);
-		}
-		finally
-		{
-			DB.close(rs, pstmt);
-			rs = null;
-			pstmt = null;
-		}
-
-		sql = "SELECT ColumnName "
+		
+		String sql = "SELECT ColumnName "
 			+ "FROM AD_Column c"
 			+ " INNER JOIN AD_Table t ON (c.AD_Table_ID=t.AD_Table_ID) "
 			+ "WHERE t.TableName=?"

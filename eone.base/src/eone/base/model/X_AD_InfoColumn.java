@@ -36,30 +36,7 @@ public class X_AD_InfoColumn extends PO implements I_AD_InfoColumn, I_Persistent
     public X_AD_InfoColumn (Properties ctx, int AD_InfoColumn_ID, String trxName)
     {
       super (ctx, AD_InfoColumn_ID, trxName);
-      /** if (AD_InfoColumn_ID == 0)
-        {
-			setAD_InfoColumn_ID (0);
-			setAD_InfoWindow_ID (0);
-			setAD_Reference_ID (0);
-			setColumnName (null);
-			setEntityType (null);
-// @SQL=select get_sysconfig('DEFAULT_ENTITYTYPE','U',0,0) from dual
-			setIsCentrallyMaintained (true);
-// Y
-			setIsDisplayed (true);
-// Y
-			setIsIdentifier (false);
-// N
-			setIsMandatory (false);
-// N
-			setIsQueryCriteria (false);
-			setIsReadOnly (true);
-// Y
-			setName (null);
-			setSelectClause (null);
-			setSeqNo (0);
-// @SQL=SELECT NVL(MAX(SeqNo),0)+10 AS DefaultValue FROM AD_InfoColumn WHERE AD_InfoWindow_ID=@AD_InfoWindow_ID@
-        } */
+     
     }
 
     /** Load Constructor */
@@ -417,29 +394,7 @@ public class X_AD_InfoColumn extends PO implements I_AD_InfoColumn, I_Persistent
 		return (String)get_Value(COLUMNNAME_InputFieldValidation);
 	}
 
-	/** Set Centrally maintained.
-		@param IsCentrallyMaintained 
-		Information maintained in System Element table
-	  */
-	public void setIsCentrallyMaintained (boolean IsCentrallyMaintained)
-	{
-		set_Value (COLUMNNAME_IsCentrallyMaintained, Boolean.valueOf(IsCentrallyMaintained));
-	}
 
-	/** Get Centrally maintained.
-		@return Information maintained in System Element table
-	  */
-	public boolean isCentrallyMaintained () 
-	{
-		Object oo = get_Value(COLUMNNAME_IsCentrallyMaintained);
-		if (oo != null) 
-		{
-			 if (oo instanceof Boolean) 
-				 return ((Boolean)oo).booleanValue(); 
-			return "Y".equals(oo);
-		}
-		return false;
-	}
 
 	/** Set Displayed.
 		@param IsDisplayed 

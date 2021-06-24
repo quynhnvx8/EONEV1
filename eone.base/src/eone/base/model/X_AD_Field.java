@@ -38,30 +38,7 @@ public class X_AD_Field extends PO implements I_AD_Field, I_Persistent
     public X_AD_Field (Properties ctx, int AD_Field_ID, String trxName)
     {
       super (ctx, AD_Field_ID, trxName);
-      /** if (AD_Field_ID == 0)
-        {
-			setAD_Column_ID (0);
-			setAD_Field_ID (0);
-			setAD_Tab_ID (0);
-			setEntityType (null);
-// @SQL=select get_sysconfig('DEFAULT_ENTITYTYPE','U',0,0) from dual
-			setIsCentrallyMaintained (true);
-// Y
-			setIsDefaultFocus (false);
-// N
-			setIsDisplayed (true);
-// Y
-			setIsEncrypted (false);
-			setIsFieldOnly (false);
-			setIsHeading (false);
-			setIsQuickEntry (false);
-// N
-			setIsQuickForm (false);
-// N
-			setIsReadOnly (false);
-			setIsSameLine (false);
-			setName (null);
-        } */
+    
     }
 
     /** Load Constructor */
@@ -578,29 +555,7 @@ public class X_AD_Field extends PO implements I_AD_Field, I_Persistent
 		return (String)get_Value(COLUMNNAME_IsAlwaysUpdateable);
 	}
 
-	/** Set Centrally maintained.
-		@param IsCentrallyMaintained 
-		Information maintained in System Element table
-	  */
-	public void setIsCentrallyMaintained (boolean IsCentrallyMaintained)
-	{
-		set_Value (COLUMNNAME_IsCentrallyMaintained, Boolean.valueOf(IsCentrallyMaintained));
-	}
-
-	/** Get Centrally maintained.
-		@return Information maintained in System Element table
-	  */
-	public boolean isCentrallyMaintained () 
-	{
-		Object oo = get_Value(COLUMNNAME_IsCentrallyMaintained);
-		if (oo != null) 
-		{
-			 if (oo instanceof Boolean) 
-				 return ((Boolean)oo).booleanValue(); 
-			return "Y".equals(oo);
-		}
-		return false;
-	}
+	
 
 	/** Set Default Focus.
 		@param IsDefaultFocus Default Focus	  */
