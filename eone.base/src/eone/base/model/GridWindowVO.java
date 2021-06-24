@@ -115,9 +115,7 @@ public class GridWindowVO implements Serializable
 
 		//  --  Get Window
 
-		StringBuilder sql = new StringBuilder("SELECT Name,Description,Help,WindowType, "
-			+ "AD_Color_ID,AD_Image_ID,WinHeight,WinWidth, "
-			+ "IsSOTrx, AD_Window_UU ");
+		StringBuilder sql = new StringBuilder("SELECT Name,Description,Help,WindowType, IsSOTrx, AD_Window_UU ");
 
 		if (Env.isBaseLanguage(vo.ctx, "AD_Window"))
 			sql.append("FROM AD_Window w WHERE w.AD_Window_ID=? AND w.IsActive='Y'");
@@ -145,16 +143,10 @@ public class GridWindowVO implements Serializable
 				if (vo.Help == null)
 					vo.Help = "";
 				vo.WindowType = rs.getString(4);
+				
 				//
-				vo.AD_Color_ID = rs.getInt(5);
-				vo.AD_Image_ID = rs.getInt(6);
-				//vo.IsReadWrite = rs.getString(7);
-				//
-				vo.WinHeight = rs.getInt(7);
-				vo.WinWidth = rs.getInt(8);
-				//
-				vo.IsSOTrx = "Y".equals(rs.getString(9));
-				vo.AD_Window_UU = rs.getString(10);
+				vo.IsSOTrx = "Y".equals(rs.getString(5));
+				vo.AD_Window_UU = rs.getString(6);
 			}
 			else
 				vo = null;
@@ -293,16 +285,8 @@ public class GridWindowVO implements Serializable
 	/** Window Type			*/
 	public	String		WindowType = "";
 	/** Image				*/
-	public int          AD_Image_ID = 0;
-	/** Color				*/
-	public int          AD_Color_ID = 0;
-	/** Read Write			*/
 	public String		IsReadWrite = null;
-	/** Window Width		*/
-	public int			WinWidth = 0;
-	/** Window Height		*/
-	public int			WinHeight = 0;
-	/** Sales Order Trx		*/
+	
 	public boolean		IsSOTrx = false;
 
 	/** Tabs contains MTabVO elements   */
@@ -348,11 +332,7 @@ public class GridWindowVO implements Serializable
 			clone.Description = Description;
 			clone.Help = Help;
 			clone.WindowType = WindowType;
-			clone.AD_Image_ID = AD_Image_ID;
-			clone.AD_Color_ID = AD_Color_ID;
 			clone.IsReadWrite = IsReadWrite;
-			clone.WinWidth = WinWidth;
-			clone.WinHeight = WinHeight;
 			clone.IsSOTrx = IsSOTrx;
 			Env.setContext(ctx, windowNo, "IsSOTrx", clone.IsSOTrx);
 			clone.AD_Table_ID = AD_Table_ID;

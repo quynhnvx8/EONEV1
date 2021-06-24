@@ -56,7 +56,7 @@ public class ADWindow extends AbstractUIPart
 	private MQuery query;
 
 	private Component windowPanelComponent;
-	private MImage image;
+	//private MImage image;
     
 	private Map<Integer, List<String>> tabToolbarRestricMap = new HashMap<Integer, List<String>>();
 	
@@ -104,7 +104,7 @@ public class ADWindow extends AbstractUIPart
         windowContent = new ADWindowContent(ctx, windowNo, adWindowId);      
         windowContent.setADWindow(this);
         _title = windowContent.getTitle();
-        image = windowContent.getImage();
+        //image = windowContent.getImage();
     }
     
     /**
@@ -122,7 +122,7 @@ public class ADWindow extends AbstractUIPart
      */
     public MImage getMImage()
     {
-    	return image;
+    	return null;//image;
     }
     
     @Override

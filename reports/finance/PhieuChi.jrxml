@@ -47,7 +47,7 @@
 	'' PatternExp,
     objectName rsname, address, ca.description, ca.documentno,
     AmountConvert amount,
-    spell_number_vietnam(AmountConvert, cc.C_Currency_ID) doctien,
+    spell_number_vietnam(AmountConvert, TaxAmt, cc.C_Currency_ID) doctien,
     ca.dateacct, cc.iso_code cursymbol, '' Department,
     cc.description curdescription,
 	case when dt.docbasetype = '111CR' then 'PC' else 'PT' end doctype,

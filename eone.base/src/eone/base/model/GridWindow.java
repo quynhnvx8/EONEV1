@@ -16,8 +16,6 @@
  *****************************************************************************/
 package eone.base.model;
 
-import java.awt.Dimension;
-import java.awt.Image;
 import java.io.Serializable;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -27,8 +25,6 @@ import java.util.HashSet;
 import java.util.Properties;
 import java.util.Set;
 import java.util.logging.Level;
-
-import javax.swing.Icon;
 
 import org.apache.ecs.xhtml.a;
 import org.apache.ecs.xhtml.h2;
@@ -247,60 +243,19 @@ public class GridWindow implements Serializable
 		initTabs.add(mTab);
 	}
 	
-	/**
-	 *  Get Window Icon
-	 *  @return Icon for Window
-	 */
-	public Image getImage()
-	{
-		if (m_vo.AD_Image_ID == 0)
-			return null;
-		//
-		MImage mImage = MImage.get(Env.getCtx(), m_vo.AD_Image_ID);
-		return mImage.getImage();
-	}   //  getImage
+	
 	
 	/**
 	 * @return MImage
 	 */
 	public MImage getMImage()
 	{
-		if (m_vo.AD_Image_ID == 0)
-			return null;
-		//
-		MImage mImage = MImage.get(Env.getCtx(), m_vo.AD_Image_ID);
-		return mImage;
+		
+		return null;
 	}
 
-	/**
-	 *  Get Window Icon
-	 *  @return Icon for Window
-	 */
-	public Icon getIcon()
-	{
-		if (m_vo.AD_Image_ID == 0)
-			return null;
-		//
-		MImage mImage = MImage.get(Env.getCtx(), m_vo.AD_Image_ID);
-		return mImage.getIcon();
-	}   //  getIcon
-
-	/**
-	 *  Get Color
-	 *  @return MColor or null
-	 */
-	public MColor getColor()
-	{
-		if (m_vo.AD_Color_ID == 0)
-			return null;
-		MColor mc = new MColor(m_vo.ctx,  m_vo.AD_Color_ID, null);
-		return mc;
-	}   //  getColor
-
-	/**
-	 * 	SO Trx Window
-	 *	@return true if SO Trx
-	 */
+	
+	
 	public boolean isSOTrx()
 	{
 		return m_vo.IsSOTrx;
@@ -417,21 +372,7 @@ public class GridWindow implements Serializable
 		return m_vo.WindowType.equals(GridWindowVO.WINDOWTYPE_TRX);
 	}   //	isTransaction
 
-	/**
-	 * 	Get Window Size
-	 *	@return window size or null if not set
-	 */
-	public Dimension getWindowSize()
-	{
-		if (m_vo.WinWidth != 0 && m_vo.WinHeight != 0)
-			return new Dimension (m_vo.WinWidth, m_vo.WinHeight);
-		return null;
-	}	//	getWindowSize
-
-	/**
-	 *  To String
-	 *  @return String representation
-	 */
+	
 	public String toString()
 	{
 		StringBuilder msgreturn = new StringBuilder("MWindow[").append(m_vo.WindowNo).append(",").append(m_vo.Name).append(" (").append(m_vo.AD_Window_ID).append(")]");

@@ -45,7 +45,6 @@ import eone.base.model.GridTable;
 import eone.base.model.GridWindow;
 import eone.base.model.GridWindowVO;
 import eone.base.model.I_M_Product;
-import eone.base.model.MImage;
 import eone.base.model.MQuery;
 import eone.base.model.MRecentItem;
 import eone.base.model.MRole;
@@ -140,7 +139,7 @@ public abstract class AbstractADWindowContent extends AbstractUIPart implements 
 
 	private int adWindowId;
 
-	private MImage image;
+	//private MImage image;
 
 	/**
 	 * Quick Form Status bar
@@ -213,13 +212,13 @@ public abstract class AbstractADWindowContent extends AbstractUIPart implements 
         GridWindowVO gWindowVO = AEnv.getMWindowVO(curWindowNo, adWindowId, 0);
         if (gWindowVO == null)
         {
-            throw new ApplicationException(Msg.getMsg(ctx,
+            throw new ApplicationException(Msg.getMsg(ctx, 
                     "AccessTableNoView")
                     + "(No Window Model Info)");
         }
         gridWindow = new GridWindow(gWindowVO, true);
         title = gridWindow.getName();
-        image = gridWindow.getMImage();
+        //image = gridWindow.getMImage();
     }    
 
     /**
@@ -628,7 +627,7 @@ public abstract class AbstractADWindowContent extends AbstractUIPart implements 
      *
      * @param query
      *            initial query
-     * @param mTab
+     * @param mTab1
      *            tab
      * @return query or null
      */
@@ -739,10 +738,7 @@ public abstract class AbstractADWindowContent extends AbstractUIPart implements 
         return title;
     }
     
-    public MImage getImage()
-    {
-    	return image;
-    }
+    
 
     /**
      * @see ToolbarListener#onDetailRecord()
