@@ -258,7 +258,6 @@ public class GetDataSaleMT extends SvrProcess
 					item.setC_Tax_ID(104);
 					
 					item.setIncludeTaxTab(X_M_InOut.INCLUDETAXTAB_TAXS);
-					item.setCalculateTax(X_M_InOut.CALCULATETAX_GROSS);
 					item.set_ValueNoCheck("Created", rs.getTimestamp("EXPORT_DATE"));
 					item.set_ValueNoCheck("Updated", rs.getTimestamp("EXPORT_DATE"));
 					item.set_ValueNoCheck("CreatedBy", 100);

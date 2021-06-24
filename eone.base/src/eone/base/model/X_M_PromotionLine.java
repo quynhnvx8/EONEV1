@@ -1,18 +1,6 @@
 /******************************************************************************
- * Product: iDempiere ERP & CRM Smart Business Solution                       *
- * Copyright (C) 1999-2012 ComPiere, Inc. All Rights Reserved.                *
- * This program is free software, you can redistribute it and/or modify it    *
- * under the terms version 2 of the GNU General Public License as published   *
- * by the Free Software Foundation. This program is distributed in the hope   *
- * that it will be useful, but WITHOUT ANY WARRANTY, without even the implied *
- * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.           *
- * See the GNU General Public License for more details.                       *
- * You should have received a copy of the GNU General Public License along    *
- * with this program, if not, write to the Free Software Foundation, Inc.,    *
- * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.                     *
- * For the text or an alternative of this public license, you may reach us    *
- * ComPiere, Inc., 2620 Augustine Dr. #245, Santa Clara, CA 95054, USA        *
- * or via info@compiere.org or http://www.compiere.org/license.html           *
+ * Product: EOoe ERP & CRM Smart Business Solution	                        *
+ * Copyright (C) 2020, Inc. All Rights Reserved.				                *
  *****************************************************************************/
 /** Generated Model - DO NOT CHANGE */
 package eone.base.model;
@@ -23,7 +11,7 @@ import java.util.Properties;
 import org.compiere.util.Env;
 
 /** Generated Model for M_PromotionLine
- *  @author iDempiere (generated) 
+ *  @author EOne (generated) 
  *  @version Version 1.0 - $Id$ */
 public class X_M_PromotionLine extends PO implements I_M_PromotionLine, I_Persistent 
 {
@@ -31,7 +19,7 @@ public class X_M_PromotionLine extends PO implements I_M_PromotionLine, I_Persis
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = 20201207L;
+	private static final long serialVersionUID = 20210604L;
 
     /** Standard Constructor */
     public X_M_PromotionLine (Properties ctx, int M_PromotionLine_ID, String trxName)
@@ -70,11 +58,26 @@ public class X_M_PromotionLine extends PO implements I_M_PromotionLine, I_Persis
       return sb.toString();
     }
 
+	/** Set Department Multiple.
+		@param AD_Department_Multi_ID Department Multiple	  */
+	public void setAD_Department_Multi_ID (String AD_Department_Multi_ID)
+	{
+
+		set_Value (COLUMNNAME_AD_Department_Multi_ID, AD_Department_Multi_ID);
+	}
+
+	/** Get Department Multiple.
+		@return Department Multiple	  */
+	public String getAD_Department_Multi_ID () 
+	{
+		return (String)get_Value(COLUMNNAME_AD_Department_Multi_ID);
+	}
+
 	/** Set Amount.
 		@param Amount 
 		Amount in a defined currency
 	  */
-	public void setAmount (BigDecimal Amount)
+	public void setAmount (String Amount)
 	{
 		set_Value (COLUMNNAME_Amount, Amount);
 	}
@@ -82,65 +85,29 @@ public class X_M_PromotionLine extends PO implements I_M_PromotionLine, I_Persis
 	/** Get Amount.
 		@return Amount in a defined currency
 	  */
-	public BigDecimal getAmount () 
+	public String getAmount () 
 	{
-		BigDecimal bd = (BigDecimal)get_Value(COLUMNNAME_Amount);
-		if (bd == null)
-			 return Env.ZERO;
-		return bd;
+		return (String)get_Value(COLUMNNAME_Amount);
 	}
 
-	public eone.base.model.I_C_UOM getC_UOM_Free() throws RuntimeException
-    {
-		return (eone.base.model.I_C_UOM)MTable.get(getCtx(), eone.base.model.I_C_UOM.Table_Name)
-			.getPO(getC_UOM_Free_ID(), get_TrxName());	}
-
-	/** Set UOM Free.
-		@param C_UOM_Free_ID UOM Free	  */
-	public void setC_UOM_Free_ID (int C_UOM_Free_ID)
-	{
-		if (C_UOM_Free_ID < 1) 
-			set_Value (COLUMNNAME_C_UOM_Free_ID, null);
-		else 
-			set_Value (COLUMNNAME_C_UOM_Free_ID, Integer.valueOf(C_UOM_Free_ID));
-	}
-
-	/** Get UOM Free.
-		@return UOM Free	  */
-	public int getC_UOM_Free_ID () 
-	{
-		Integer ii = (Integer)get_Value(COLUMNNAME_C_UOM_Free_ID);
-		if (ii == null)
-			 return 0;
-		return ii.intValue();
-	}
-
-	public eone.base.model.I_C_UOM getC_UOM() throws RuntimeException
-    {
-		return (eone.base.model.I_C_UOM)MTable.get(getCtx(), eone.base.model.I_C_UOM.Table_Name)
-			.getPO(getC_UOM_ID(), get_TrxName());	}
-
-	/** Set UOM.
-		@param C_UOM_ID 
-		Unit of Measure
+	/** C_BP_Group_ID AD_Reference_ID=200045 */
+	public static final int C_BP_GROUP_ID_AD_Reference_ID=200045;
+	/** Set Business Partner Group.
+		@param C_BP_Group_ID 
+		Business Partner Group
 	  */
-	public void setC_UOM_ID (int C_UOM_ID)
+	public void setC_BP_Group_ID (String C_BP_Group_ID)
 	{
-		if (C_UOM_ID < 1) 
-			set_ValueNoCheck (COLUMNNAME_C_UOM_ID, null);
-		else 
-			set_ValueNoCheck (COLUMNNAME_C_UOM_ID, Integer.valueOf(C_UOM_ID));
+
+		set_Value (COLUMNNAME_C_BP_Group_ID, C_BP_Group_ID);
 	}
 
-	/** Get UOM.
-		@return Unit of Measure
+	/** Get Business Partner Group.
+		@return Business Partner Group
 	  */
-	public int getC_UOM_ID () 
+	public String getC_BP_Group_ID () 
 	{
-		Integer ii = (Integer)get_Value(COLUMNNAME_C_UOM_ID);
-		if (ii == null)
-			 return 0;
-		return ii.intValue();
+		return (String)get_Value(COLUMNNAME_C_BP_Group_ID);
 	}
 
 	/** Set Discount Amount.
@@ -180,78 +147,41 @@ public class X_M_PromotionLine extends PO implements I_M_PromotionLine, I_Persis
 		return bd;
 	}
 
-	/** Set Required Product.
-		@param IsRequiredProduct Required Product	  */
-	public void setIsRequiredProduct (boolean IsRequiredProduct)
-	{
-		set_Value (COLUMNNAME_IsRequiredProduct, Boolean.valueOf(IsRequiredProduct));
-	}
-
-	/** Get Required Product.
-		@return Required Product	  */
-	public boolean isRequiredProduct () 
-	{
-		Object oo = get_Value(COLUMNNAME_IsRequiredProduct);
-		if (oo != null) 
-		{
-			 if (oo instanceof Boolean) 
-				 return ((Boolean)oo).booleanValue(); 
-			return "Y".equals(oo);
-		}
-		return false;
-	}
-
-	public eone.base.model.I_M_Product getM_Product_Free() throws RuntimeException
-    {
-		return (eone.base.model.I_M_Product)MTable.get(getCtx(), eone.base.model.I_M_Product.Table_Name)
-			.getPO(getM_Product_Free_ID(), get_TrxName());	}
-
+	/** M_Product_Free_ID AD_Reference_ID=162 */
+	public static final int M_PRODUCT_FREE_ID_AD_Reference_ID=162;
 	/** Set Product Free.
 		@param M_Product_Free_ID Product Free	  */
-	public void setM_Product_Free_ID (int M_Product_Free_ID)
+	public void setM_Product_Free_ID (String M_Product_Free_ID)
 	{
-		if (M_Product_Free_ID < 1) 
-			set_Value (COLUMNNAME_M_Product_Free_ID, null);
-		else 
-			set_Value (COLUMNNAME_M_Product_Free_ID, Integer.valueOf(M_Product_Free_ID));
+
+		set_Value (COLUMNNAME_M_Product_Free_ID, M_Product_Free_ID);
 	}
 
 	/** Get Product Free.
 		@return Product Free	  */
-	public int getM_Product_Free_ID () 
+	public String getM_Product_Free_ID () 
 	{
-		Integer ii = (Integer)get_Value(COLUMNNAME_M_Product_Free_ID);
-		if (ii == null)
-			 return 0;
-		return ii.intValue();
+		return (String)get_Value(COLUMNNAME_M_Product_Free_ID);
 	}
 
-	public eone.base.model.I_M_Product getM_Product() throws RuntimeException
-    {
-		return (eone.base.model.I_M_Product)MTable.get(getCtx(), eone.base.model.I_M_Product.Table_Name)
-			.getPO(getM_Product_ID(), get_TrxName());	}
-
+	/** M_Product_ID AD_Reference_ID=162 */
+	public static final int M_PRODUCT_ID_AD_Reference_ID=162;
 	/** Set Product.
 		@param M_Product_ID 
 		Product, Service, Item
 	  */
-	public void setM_Product_ID (int M_Product_ID)
+	public void setM_Product_ID (String M_Product_ID)
 	{
-		if (M_Product_ID < 1) 
-			set_Value (COLUMNNAME_M_Product_ID, null);
-		else 
-			set_Value (COLUMNNAME_M_Product_ID, Integer.valueOf(M_Product_ID));
+
+		set_Value (COLUMNNAME_M_Product_ID, M_Product_ID);
 	}
 
 	/** Get Product.
 		@return Product, Service, Item
 	  */
-	public int getM_Product_ID () 
+	public String getM_Product_ID () 
 	{
-		Integer ii = (Integer)get_Value(COLUMNNAME_M_Product_ID);
-		if (ii == null)
-			 return 0;
-		return ii.intValue();
+		return (String)get_Value(COLUMNNAME_M_Product_ID);
 	}
 
 	public I_M_Promotion getM_Promotion() throws RuntimeException
@@ -323,40 +253,34 @@ public class X_M_PromotionLine extends PO implements I_M_PromotionLine, I_Persis
 		return false;
 	}
 
-	/** Set Quantity.
-		@param Qty 
-		Quantity
-	  */
-	public void setQty (BigDecimal Qty)
-	{
-		set_Value (COLUMNNAME_Qty, Qty);
-	}
-
-	/** Get Quantity.
-		@return Quantity
-	  */
-	public BigDecimal getQty () 
-	{
-		BigDecimal bd = (BigDecimal)get_Value(COLUMNNAME_Qty);
-		if (bd == null)
-			 return Env.ZERO;
-		return bd;
-	}
-
 	/** Set QtyFree.
 		@param QtyFree QtyFree	  */
-	public void setQtyFree (BigDecimal QtyFree)
+	public void setQtyFree (String QtyFree)
 	{
 		set_Value (COLUMNNAME_QtyFree, QtyFree);
 	}
 
 	/** Get QtyFree.
 		@return QtyFree	  */
-	public BigDecimal getQtyFree () 
+	public String getQtyFree () 
 	{
-		BigDecimal bd = (BigDecimal)get_Value(COLUMNNAME_QtyFree);
-		if (bd == null)
-			 return Env.ZERO;
-		return bd;
+		return (String)get_Value(COLUMNNAME_QtyFree);
+	}
+
+	/** Set Multiplier Quantity.
+		@param QtyMultiplier 
+		Value to multiply quantities by for generating commissions.
+	  */
+	public void setQtyMultiplier (String QtyMultiplier)
+	{
+		set_Value (COLUMNNAME_QtyMultiplier, QtyMultiplier);
+	}
+
+	/** Get Multiplier Quantity.
+		@return Value to multiply quantities by for generating commissions.
+	  */
+	public String getQtyMultiplier () 
+	{
+		return (String)get_Value(COLUMNNAME_QtyMultiplier);
 	}
 }

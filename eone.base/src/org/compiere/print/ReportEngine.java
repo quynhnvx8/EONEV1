@@ -541,8 +541,7 @@ public class ReportEngine implements PrintServiceAttributeListener
 						href.addElement(Util.maskHTML(value.toString()));
 						if (cssPrefix != null)
 							href.setClass(cssPrefix + "-href");
-						extension.extendIDColumn(row, td, href, item);
-						//new WAcctViewer(item.getZoomLogic());
+						extension.extendIDColumn(row, td, href, item);						
 					
 					}else {
 						td.addElement(Util.maskHTML(value.toString()));

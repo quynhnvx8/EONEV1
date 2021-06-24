@@ -62,7 +62,58 @@ public class CalloutAccount extends CalloutEngine
 			}
 		}
 		return "";
-	}	
+	}
+	
+	public String fillByIncludeTax (Properties ctx, int WindowNo, GridTab mTab, GridField mField, Object value)
+	{
+		if (isCalloutActive())		
+			return "";
+		List<MAccount> re  = null;
+		String includeTax = "";
+		if (value != null) {
+			includeTax = value.toString();
+		}
+		int p_ID = 0;
+		if (mTab.getValue("C_DocTypeSub_ID") == null) {
+			if (mTab.getValue("C_DocType_ID") == null) {
+				return "";
+			}
+			p_ID = Integer.parseInt(mTab.getValue("C_DocType_ID").toString());
+			re = MAccount.getAccountDocType(p_ID);
+			//return "";
+		} else {
+			p_ID = Integer.parseInt(mTab.getValue("C_DocTypeSub_ID").toString());
+			re = MAccount.getAccountDocTypeSub(p_ID);	
+		}
+		if(re == null) {
+			if (mTab.getValue("C_DocType_ID") == null) {
+				return "";
+			}
+			p_ID = Integer.parseInt(mTab.getValue("C_DocType_ID").toString());
+			re = MAccount.getAccountDocType(p_ID);			
+		}
+		if (re == null) {
+			return "";
+		}
+		if ("NONE".equals(includeTax)) {
+			mTab.setValue("Account_Tax_ID", null);//Account_Tax_ID
+			mTab.setValue("C_Tax_ID", null);
+			mTab.setValue("TaxAmt", null);
+			mTab.setValue("TaxBaseAmt", null);
+			mTab.setValue("DateInvoiced", null);
+			mTab.setValue("InvoiceNo", null);
+			mTab.setValue("DateInvoiced", null);
+		}
+		
+		for(int i = 0; i < re.size(); i++) {
+			if (X_C_Account.TYPEACCOUNT_TaxInputAccount.equals(re.get(i).getTypeAccount()) 
+					||X_C_Account.TYPEACCOUNT_TaxOutputAccount.equals(re.get(i).getTypeAccount())) 
+			{
+				mTab.setValue("Account_Tax_ID", re.get(i).getAccount_ID());		
+			}
+		}
+		return "";
+	}
 
 
 	public String fillByTax (Properties ctx, int WindowNo, GridTab mTab, GridField mField, Object value)

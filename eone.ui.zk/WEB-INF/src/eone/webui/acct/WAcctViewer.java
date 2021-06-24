@@ -183,7 +183,8 @@ public class WAcctViewer extends Window implements IFormController, EventListene
 		super ();
 		
 		m_windowNo = SessionManager.getAppDesktop().registerWindow(this);
-		m_data = new WAcctViewerData (Env.getCtx(), m_windowNo, 0, 0, sqlZoomLogic);
+		int AD_Client_ID = Env.getContextAsInt(Env.getCtx(), m_windowNo, "AD_Client_ID");
+		m_data = new WAcctViewerData (Env.getCtx(), m_windowNo, AD_Client_ID, 0, sqlZoomLogic);
 
 		try
 		{
@@ -428,7 +429,7 @@ public class WAcctViewer extends Window implements IFormController, EventListene
 		ZKUpdateUtil.setHeight(boderLayout, "100%");
 		ZKUpdateUtil.setWidth(boderLayout, "100%");
 		boderLayout.setStyle("background-color: transparent; margin: 0; position: absolute; padding: 0;");
-
+		this.appendChild(form);
 		this.setTitle(Msg.getMsg(Env.getCtx(), TITLE));
 		this.setClosable(true);
 		this.setStyle("position: absolute; width: 100%; height: 100%;");

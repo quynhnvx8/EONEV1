@@ -18,7 +18,7 @@ public class X_M_Promotion extends PO implements I_M_Promotion, I_Persistent
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = 20210524L;
+	private static final long serialVersionUID = 20210601L;
 
     /** Standard Constructor */
     public X_M_Promotion (Properties ctx, int M_Promotion_ID, String trxName)
@@ -128,48 +128,6 @@ public class X_M_Promotion extends PO implements I_M_Promotion, I_Persistent
 	public String getDocStatus () 
 	{
 		return (String)get_Value(COLUMNNAME_DocStatus);
-	}
-
-	/** Set IsMultiple.
-		@param IsMultiple IsMultiple	  */
-	public void setIsMultiple (boolean IsMultiple)
-	{
-		set_Value (COLUMNNAME_IsMultiple, Boolean.valueOf(IsMultiple));
-	}
-
-	/** Get IsMultiple.
-		@return IsMultiple	  */
-	public boolean isMultiple () 
-	{
-		Object oo = get_Value(COLUMNNAME_IsMultiple);
-		if (oo != null) 
-		{
-			 if (oo instanceof Boolean) 
-				 return ((Boolean)oo).booleanValue(); 
-			return "Y".equals(oo);
-		}
-		return false;
-	}
-
-	/** Set Pending.
-		@param IsPending Pending	  */
-	public void setIsPending (boolean IsPending)
-	{
-		set_Value (COLUMNNAME_IsPending, Boolean.valueOf(IsPending));
-	}
-
-	/** Get Pending.
-		@return Pending	  */
-	public boolean isPending () 
-	{
-		Object oo = get_Value(COLUMNNAME_IsPending);
-		if (oo != null) 
-		{
-			 if (oo instanceof Boolean) 
-				 return ((Boolean)oo).booleanValue(); 
-			return "Y".equals(oo);
-		}
-		return false;
 	}
 
 	/** Set IsRecursive.

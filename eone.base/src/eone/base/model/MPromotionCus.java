@@ -1,6 +1,7 @@
 package eone.base.model;
 
 import java.sql.ResultSet;
+import java.util.List;
 import java.util.Properties;
 
 public class MPromotionCus extends X_M_PromotionCus
@@ -20,6 +21,15 @@ public class MPromotionCus extends X_M_PromotionCus
 	@Override
 	protected boolean beforeSave(boolean newRecord) {
 		
+		if (newRecord || is_ValueChanged(COLUMNNAME_C_BP_Group_ID)) {
+			List<MPromotionCus> relValue = new Query(getCtx(), Table_Name, "C_Promotion_ID = ? And C_BP_Group_ID != ? And IsActive = 'Y' And C_BP_Group_ID > 0", get_TrxName())
+					.setParameters(getM_Promotion_ID(), getC_BP_Group_ID())
+					.list();
+			if (relValue.size() >= 1) {
+				log.saveError("Error", "Group exists");
+				return false;
+			}
+		}
 		return true;
 	}
 

@@ -150,7 +150,6 @@ public class GridTabVO implements Evaluatee, Serializable
 			vo.DisplayLogic = rs.getString("DisplayLogic");
 			
 			//	Access Level
-			System.out.println("");
 			vo.AccessLevel = rs.getString("AccessLevel");
 			if (!role.canView (vo.ctx, vo.AccessLevel))	//	No Access
 			{

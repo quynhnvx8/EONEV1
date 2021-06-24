@@ -2294,7 +2294,7 @@ public abstract class AbstractADWindowContent extends AbstractUIPart implements 
     	if (!Util.isEmpty(dirtyTabpanel.getGridTab().getCommitWarning()) ||
 			(!Env.isAutoCommit(ctx, curWindowNo) && onNavigationEvent))
 		{
-			FDialog.ask(curWindowNo, this.getComponent(), Msg.getMsg(Env.getCtx(), "SaveChanges?"), dirtyTabpanel.getGridTab().getCommitWarning(), new Callback<Boolean>() {
+			FDialog.ask(curWindowNo, this.getComponent(), dirtyTabpanel.getGridTab().getCommitWarning(), Msg.getMsg(Env.getCtx(), "SaveChanges?"), new Callback<Boolean>() {
 
 				@Override
 				public void onCallback(Boolean result)

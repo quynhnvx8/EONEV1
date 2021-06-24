@@ -1,18 +1,6 @@
 /******************************************************************************
- * Product: iDempiere ERP & CRM Smart Business Solution                       *
- * Copyright (C) 1999-2012 ComPiere, Inc. All Rights Reserved.                *
- * This program is free software, you can redistribute it and/or modify it    *
- * under the terms version 2 of the GNU General Public License as published   *
- * by the Free Software Foundation. This program is distributed in the hope   *
- * that it will be useful, but WITHOUT ANY WARRANTY, without even the implied *
- * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.           *
- * See the GNU General Public License for more details.                       *
- * You should have received a copy of the GNU General Public License along    *
- * with this program, if not, write to the Free Software Foundation, Inc.,    *
- * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.                     *
- * For the text or an alternative of this public license, you may reach us    *
- * ComPiere, Inc., 2620 Augustine Dr. #245, Santa Clara, CA 95054, USA        *
- * or via info@compiere.org or http://www.compiere.org/license.html           *
+ * Product: EOoe ERP & CRM Smart Business Solution	                        *
+ * Copyright (C) 2020, Inc. All Rights Reserved.				                *
  *****************************************************************************/
 /** Generated Model - DO NOT CHANGE */
 package eone.base.model;
@@ -25,7 +13,7 @@ import org.compiere.util.Env;
 import org.compiere.util.KeyNamePair;
 
 /** Generated Model for C_Cash
- *  @author iDempiere (generated) 
+ *  @author EOne (generated) 
  *  @version Version 1.0 - $Id$ */
 public class X_C_Cash extends PO implements I_C_Cash, I_Persistent 
 {
@@ -33,7 +21,7 @@ public class X_C_Cash extends PO implements I_C_Cash, I_Persistent
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = 20200911L;
+	private static final long serialVersionUID = 20210621L;
 
     /** Standard Constructor */
     public X_C_Cash (Properties ctx, int C_Cash_ID, String trxName)
@@ -311,20 +299,6 @@ public class X_C_Cash extends PO implements I_C_Cash, I_Persistent
 		if (ii == null)
 			 return 0;
 		return ii.intValue();
-	}
-
-	/** Set C_Cash_UU.
-		@param C_Cash_UU C_Cash_UU	  */
-	public void setC_Cash_UU (String C_Cash_UU)
-	{
-		set_Value (COLUMNNAME_C_Cash_UU, C_Cash_UU);
-	}
-
-	/** Get C_Cash_UU.
-		@return C_Cash_UU	  */
-	public String getC_Cash_UU () 
-	{
-		return (String)get_Value(COLUMNNAME_C_Cash_UU);
 	}
 
 	public I_C_Construction getC_Construction() throws RuntimeException
@@ -696,25 +670,6 @@ public class X_C_Cash extends PO implements I_C_Cash, I_Persistent
 		if (ii == null)
 			 return 0;
 		return ii.intValue();
-	}
-
-	/** NET = NET */
-	public static final String CALCULATETAX_NET = "NET";
-	/** GROSS = GRO */
-	public static final String CALCULATETAX_GROSS = "GRO";
-	/** Set CalculateTax.
-		@param CalculateTax CalculateTax	  */
-	public void setCalculateTax (String CalculateTax)
-	{
-
-		set_Value (COLUMNNAME_CalculateTax, CalculateTax);
-	}
-
-	/** Get CalculateTax.
-		@return CalculateTax	  */
-	public String getCalculateTax () 
-	{
-		return (String)get_Value(COLUMNNAME_CalculateTax);
 	}
 
 	/** Set Canceled.

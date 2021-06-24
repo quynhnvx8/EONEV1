@@ -123,24 +123,6 @@ public interface I_M_Promotion
 	  */
 	public boolean isActive();
 
-    /** Column name IsMultiple */
-    public static final String COLUMNNAME_IsMultiple = "IsMultiple";
-
-	/** Set IsMultiple	  */
-	public void setIsMultiple (boolean IsMultiple);
-
-	/** Get IsMultiple	  */
-	public boolean isMultiple();
-
-    /** Column name IsPending */
-    public static final String COLUMNNAME_IsPending = "IsPending";
-
-	/** Set Pending	  */
-	public void setIsPending (boolean IsPending);
-
-	/** Get Pending	  */
-	public boolean isPending();
-
     /** Column name IsRecursive */
     public static final String COLUMNNAME_IsRecursive = "IsRecursive";
 

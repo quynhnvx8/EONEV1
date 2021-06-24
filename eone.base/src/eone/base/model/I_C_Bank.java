@@ -1,18 +1,6 @@
 /******************************************************************************
- * Product: iDempiere ERP & CRM Smart Business Solution                       *
- * Copyright (C) 1999-2012 ComPiere, Inc. All Rights Reserved.                *
- * This program is free software, you can redistribute it and/or modify it    *
- * under the terms version 2 of the GNU General Public License as published   *
- * by the Free Software Foundation. This program is distributed in the hope   *
- * that it will be useful, but WITHOUT ANY WARRANTY, without even the implied *
- * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.           *
- * See the GNU General Public License for more details.                       *
- * You should have received a copy of the GNU General Public License along    *
- * with this program, if not, write to the Free Software Foundation, Inc.,    *
- * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.                     *
- * For the text or an alternative of this public license, you may reach us    *
- * ComPiere, Inc., 2620 Augustine Dr. #245, Santa Clara, CA 95054, USA        *
- * or via info@compiere.org or http://www.compiere.org/license.html           *
+ * Product: EOoe ERP & CRM Smart Business Solution	                        *
+ * Copyright (C) 2020, Inc. All Rights Reserved.				                *
  *****************************************************************************/
 package eone.base.model;
 
@@ -21,7 +9,7 @@ import java.sql.Timestamp;
 import org.compiere.util.KeyNamePair;
 
 /** Generated Interface for C_Bank
- *  @author iDempiere (generated) 
+ *  @author EOne (generated) 
  *  @version Version 1.0
  */
 public interface I_C_Bank 
@@ -147,15 +135,6 @@ public interface I_C_Bank
 	  */
 	public int getC_Bank_ID();
 
-    /** Column name C_Bank_UU */
-    public static final String COLUMNNAME_C_Bank_UU = "C_Bank_UU";
-
-	/** Set C_Bank_UU	  */
-	public void setC_Bank_UU (String C_Bank_UU);
-
-	/** Get C_Bank_UU	  */
-	public String getC_Bank_UU();
-
     /** Column name C_BPartner_Cr_ID */
     public static final String COLUMNNAME_C_BPartner_Cr_ID = "C_BPartner_Cr_ID";
 
@@ -185,28 +164,6 @@ public interface I_C_Bank
 	public int getC_BPartner_Dr_ID();
 
 	public eone.base.model.I_C_BPartner getC_BPartner_Dr() throws RuntimeException;
-
-    /** Column name C_BPartnerInfo_Cr_ID */
-    public static final String COLUMNNAME_C_BPartnerInfo_Cr_ID = "C_BPartnerInfo_Cr_ID";
-
-	/** Set BPartner Info Cr	  */
-	public void setC_BPartnerInfo_Cr_ID (int C_BPartnerInfo_Cr_ID);
-
-	/** Get BPartner Info Cr	  */
-	public int getC_BPartnerInfo_Cr_ID();
-
-	public I_C_BPartnerInfo getC_BPartnerInfo_Cr() throws RuntimeException;
-
-    /** Column name C_BPartnerInfo_Dr_ID */
-    public static final String COLUMNNAME_C_BPartnerInfo_Dr_ID = "C_BPartnerInfo_Dr_ID";
-
-	/** Set BPartner Info Dr	  */
-	public void setC_BPartnerInfo_Dr_ID (int C_BPartnerInfo_Dr_ID);
-
-	/** Get BPartner Info Dr	  */
-	public int getC_BPartnerInfo_Dr_ID();
-
-	public I_C_BPartnerInfo getC_BPartnerInfo_Dr() throws RuntimeException;
 
     /** Column name C_Construction_ID */
     public static final String COLUMNNAME_C_Construction_ID = "C_Construction_ID";
@@ -374,15 +331,6 @@ public interface I_C_Bank
 	public int getC_TypeRevenue_ID();
 
 	public I_C_TypeRevenue getC_TypeRevenue() throws RuntimeException;
-
-    /** Column name CalculateTax */
-    public static final String COLUMNNAME_CalculateTax = "CalculateTax";
-
-	/** Set CalculateTax	  */
-	public void setCalculateTax (String CalculateTax);
-
-	/** Get CalculateTax	  */
-	public String getCalculateTax();
 
     /** Column name Canceled */
     public static final String COLUMNNAME_Canceled = "Canceled";

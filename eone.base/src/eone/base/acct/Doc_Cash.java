@@ -151,6 +151,8 @@ public class Doc_Cash extends Doc
 			f1.setC_BPartner_Cr_ID(cash.getC_BPartner_Cr_ID());
 			f1.setC_TypeCost_ID(cash.getC_TypeCost_ID());
 			f1.setC_TypeRevenue_ID(cash.getC_TypeRevenue_ID());
+			f1.setDateInvoiced(cash.getDateInvoiced());
+			f1.setInvoiceNo(cash.getInvoiceNo());
 			if (Env.DisContract)
 			{
 				f1.setC_Contract_ID(cash.getC_Contract_ID());

@@ -60,28 +60,15 @@ public class CalloutInvoice extends CalloutEngine
 			if (objAmount == null) {
 				return "";
 			}			
-			String calculateTax = mTab.getValue("CalculateTax").toString();
-			if ("GRO".equalsIgnoreCase(calculateTax)) {
-				objTaxBaseAmt = mTab.getValue("TaxBaseAmt");
-				if (objTaxBaseAmt == null) {
-					objTaxBaseAmt = "0";
-				}
-				baseAmt = new BigDecimal(objTaxBaseAmt.toString());
-				
-				amount = baseAmt.divide(Env.ONE.add(rate), 0, RoundingMode.HALF_UP);
-				mTab.setValue("TaxAmt", baseAmt.subtract(amount));
-				mTab.setValue("Amount", amount);
+			objTaxBaseAmt = mTab.getValue("TaxBaseAmt");
+			if (objTaxBaseAmt == null) {
+				objTaxBaseAmt = "0";
 			}
-			if ("NET".equalsIgnoreCase(calculateTax)) {
-				objAmount = mTab.getValue("Amount");
-				if (objAmount == null) {
-					objAmount = "0";
-				}
-				amount = new BigDecimal(objAmount.toString());
-				baseAmt = amount.multiply(Env.ONE.add(rate));
-				mTab.setValue("TaxAmt", baseAmt.subtract(amount));
-				mTab.setValue("TaxBaseAmt", baseAmt);
-			}
+			amount = new BigDecimal(objAmount.toString());
+			
+			baseAmt = amount.multiply(Env.ONE.add(rate));
+			mTab.setValue("TaxAmt", baseAmt.subtract(amount));
+			mTab.setValue("TaxBaseAmt", baseAmt);
 		}
 		
 		

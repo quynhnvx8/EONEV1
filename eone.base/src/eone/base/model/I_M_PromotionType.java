@@ -114,6 +114,15 @@ public interface I_M_PromotionType
 	  */
 	public String getName();
 
+    /** Column name PromotionType */
+    public static final String COLUMNNAME_PromotionType = "PromotionType";
+
+	/** Set Promotion Type	  */
+	public void setPromotionType (String PromotionType);
+
+	/** Get Promotion Type	  */
+	public String getPromotionType();
+
     /** Column name Requied_Amt */
     public static final String COLUMNNAME_Requied_Amt = "Requied_Amt";
 

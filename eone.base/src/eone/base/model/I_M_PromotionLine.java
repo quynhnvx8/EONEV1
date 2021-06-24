@@ -1,18 +1,6 @@
 /******************************************************************************
- * Product: iDempiere ERP & CRM Smart Business Solution                       *
- * Copyright (C) 1999-2012 ComPiere, Inc. All Rights Reserved.                *
- * This program is free software, you can redistribute it and/or modify it    *
- * under the terms version 2 of the GNU General Public License as published   *
- * by the Free Software Foundation. This program is distributed in the hope   *
- * that it will be useful, but WITHOUT ANY WARRANTY, without even the implied *
- * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.           *
- * See the GNU General Public License for more details.                       *
- * You should have received a copy of the GNU General Public License along    *
- * with this program, if not, write to the Free Software Foundation, Inc.,    *
- * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.                     *
- * For the text or an alternative of this public license, you may reach us    *
- * ComPiere, Inc., 2620 Augustine Dr. #245, Santa Clara, CA 95054, USA        *
- * or via info@compiere.org or http://www.compiere.org/license.html           *
+ * Product: EOoe ERP & CRM Smart Business Solution	                        *
+ * Copyright (C) 2020, Inc. All Rights Reserved.				                *
  *****************************************************************************/
 package eone.base.model;
 
@@ -21,7 +9,7 @@ import java.sql.Timestamp;
 import org.compiere.util.KeyNamePair;
 
 /** Generated Interface for M_PromotionLine
- *  @author iDempiere (generated) 
+ *  @author EOne (generated) 
  *  @version Version 1.0
  */
 public interface I_M_PromotionLine 
@@ -49,6 +37,15 @@ public interface I_M_PromotionLine
 	  */
 	public int getAD_Client_ID();
 
+    /** Column name AD_Department_Multi_ID */
+    public static final String COLUMNNAME_AD_Department_Multi_ID = "AD_Department_Multi_ID";
+
+	/** Set Department Multiple	  */
+	public void setAD_Department_Multi_ID (String AD_Department_Multi_ID);
+
+	/** Get Department Multiple	  */
+	public String getAD_Department_Multi_ID();
+
     /** Column name AD_Org_ID */
     public static final String COLUMNNAME_AD_Org_ID = "AD_Org_ID";
 
@@ -68,38 +65,25 @@ public interface I_M_PromotionLine
 	/** Set Amount.
 	  * Amount in a defined currency
 	  */
-	public void setAmount (BigDecimal Amount);
+	public void setAmount (String Amount);
 
 	/** Get Amount.
 	  * Amount in a defined currency
 	  */
-	public BigDecimal getAmount();
+	public String getAmount();
 
-    /** Column name C_UOM_Free_ID */
-    public static final String COLUMNNAME_C_UOM_Free_ID = "C_UOM_Free_ID";
+    /** Column name C_BP_Group_ID */
+    public static final String COLUMNNAME_C_BP_Group_ID = "C_BP_Group_ID";
 
-	/** Set UOM Free	  */
-	public void setC_UOM_Free_ID (int C_UOM_Free_ID);
-
-	/** Get UOM Free	  */
-	public int getC_UOM_Free_ID();
-
-	public eone.base.model.I_C_UOM getC_UOM_Free() throws RuntimeException;
-
-    /** Column name C_UOM_ID */
-    public static final String COLUMNNAME_C_UOM_ID = "C_UOM_ID";
-
-	/** Set UOM.
-	  * Unit of Measure
+	/** Set Business Partner Group.
+	  * Business Partner Group
 	  */
-	public void setC_UOM_ID (int C_UOM_ID);
+	public void setC_BP_Group_ID (String C_BP_Group_ID);
 
-	/** Get UOM.
-	  * Unit of Measure
+	/** Get Business Partner Group.
+	  * Business Partner Group
 	  */
-	public int getC_UOM_ID();
-
-	public eone.base.model.I_C_UOM getC_UOM() throws RuntimeException;
+	public String getC_BP_Group_ID();
 
     /** Column name Created */
     public static final String COLUMNNAME_Created = "Created";
@@ -152,25 +136,14 @@ public interface I_M_PromotionLine
 	  */
 	public boolean isActive();
 
-    /** Column name IsRequiredProduct */
-    public static final String COLUMNNAME_IsRequiredProduct = "IsRequiredProduct";
-
-	/** Set Required Product	  */
-	public void setIsRequiredProduct (boolean IsRequiredProduct);
-
-	/** Get Required Product	  */
-	public boolean isRequiredProduct();
-
     /** Column name M_Product_Free_ID */
     public static final String COLUMNNAME_M_Product_Free_ID = "M_Product_Free_ID";
 
 	/** Set Product Free	  */
-	public void setM_Product_Free_ID (int M_Product_Free_ID);
+	public void setM_Product_Free_ID (String M_Product_Free_ID);
 
 	/** Get Product Free	  */
-	public int getM_Product_Free_ID();
-
-	public eone.base.model.I_M_Product getM_Product_Free() throws RuntimeException;
+	public String getM_Product_Free_ID();
 
     /** Column name M_Product_ID */
     public static final String COLUMNNAME_M_Product_ID = "M_Product_ID";
@@ -178,14 +151,12 @@ public interface I_M_PromotionLine
 	/** Set Product.
 	  * Product, Service, Item
 	  */
-	public void setM_Product_ID (int M_Product_ID);
+	public void setM_Product_ID (String M_Product_ID);
 
 	/** Get Product.
 	  * Product, Service, Item
 	  */
-	public int getM_Product_ID();
-
-	public eone.base.model.I_M_Product getM_Product() throws RuntimeException;
+	public String getM_Product_ID();
 
     /** Column name M_Promotion_ID */
     public static final String COLUMNNAME_M_Promotion_ID = "M_Promotion_ID";
@@ -220,27 +191,27 @@ public interface I_M_PromotionLine
 	  */
 	public boolean isProcessed();
 
-    /** Column name Qty */
-    public static final String COLUMNNAME_Qty = "Qty";
-
-	/** Set Quantity.
-	  * Quantity
-	  */
-	public void setQty (BigDecimal Qty);
-
-	/** Get Quantity.
-	  * Quantity
-	  */
-	public BigDecimal getQty();
-
     /** Column name QtyFree */
     public static final String COLUMNNAME_QtyFree = "QtyFree";
 
 	/** Set QtyFree	  */
-	public void setQtyFree (BigDecimal QtyFree);
+	public void setQtyFree (String QtyFree);
 
 	/** Get QtyFree	  */
-	public BigDecimal getQtyFree();
+	public String getQtyFree();
+
+    /** Column name QtyMultiplier */
+    public static final String COLUMNNAME_QtyMultiplier = "QtyMultiplier";
+
+	/** Set Multiplier Quantity.
+	  * Value to multiply quantities by for generating commissions.
+	  */
+	public void setQtyMultiplier (String QtyMultiplier);
+
+	/** Get Multiplier Quantity.
+	  * Value to multiply quantities by for generating commissions.
+	  */
+	public String getQtyMultiplier();
 
     /** Column name Updated */
     public static final String COLUMNNAME_Updated = "Updated";

@@ -118,7 +118,8 @@ public class Doc_Bank extends Doc
 			f1.setC_BPartner_Cr_ID(bank.getC_BPartner_Cr_ID());
 			f1.setC_TypeCost_ID(bank.getC_TypeCost_ID());
 			f1.setC_TypeRevenue_ID(bank.getC_TypeRevenue_ID());
-			
+			f1.setDateInvoiced(bank.getDateInvoiced());
+			f1.setInvoiceNo(bank.getInvoiceNo());
 			if (Env.DisContract)
 			{
 				f1.setC_Contract_ID(bank.getC_Contract_ID());

@@ -326,7 +326,7 @@ public class GridTab implements DataStatusListener, Evaluatee, Serializable
 				for (int i = 0; i < list.size(); i++)
 					m_depOnField.put(list.get(i), field);   //  ColumnName, Field
 				//  Add fields all fields are dependent on
-				if (columnName.equals("IsActive") || columnName.equals("Processed"))
+				if (columnName.equals("IsActive") || columnName.equals("Processed") || columnName.equals("Processing"))
 					m_depOnField.put(columnName, null);
 			}
 		}   //  for all fields

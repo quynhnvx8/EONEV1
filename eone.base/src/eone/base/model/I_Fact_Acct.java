@@ -517,6 +517,7 @@ public interface I_Fact_Acct
 	/** Get InvoiceNo	  */
 	public String getInvoiceNo();
 
+	
     /** Column name IsActive */
     public static final String COLUMNNAME_IsActive = "IsActive";
 

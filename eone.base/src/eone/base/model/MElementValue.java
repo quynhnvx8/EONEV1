@@ -160,8 +160,8 @@ public class MElementValue extends X_C_ElementValue
 	protected boolean afterSave (boolean newRecord, boolean success)
 	{
 		if (newRecord || is_ValueChanged("Value") || isActive()) {
-			List<MProduct> relValue = new Query(getCtx(), Table_Name, "C_ElementValue_ID != ? And (Value = ? or Name=?) And AD_Client_ID = ? And IsActive = 'Y'", get_TrxName())
-					.setParameters(getC_ElementValue_ID(), getValue(), getName(), getAD_Client_ID())
+			List<MElementValue> relValue = new Query(getCtx(), Table_Name, "C_ElementValue_ID != ? And (Value = ?) And AD_Client_ID = ? And IsActive = 'Y'", get_TrxName())
+					.setParameters(getC_ElementValue_ID(), getValue(), getAD_Client_ID())
 					.list();
 			if (relValue.size() >= 1) {
 				log.saveError("Error", Msg.getMsg(getCtx(), "ValueOrNameExists"));//ValueExists, NameExists

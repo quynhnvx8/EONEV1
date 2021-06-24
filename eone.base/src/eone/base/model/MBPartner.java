@@ -286,7 +286,7 @@ public class MBPartner extends X_C_BPartner
 	protected boolean beforeSave (boolean newRecord)
 	{
 		if (newRecord || is_ValueChanged("Value") || isActive() || is_ValueChanged("Name")) {
-			List<MProduct> relValue = new Query(getCtx(), Table_Name, "C_BPartner_ID != ? And (Value = ? Or Name = ?) And AD_Client_ID = ? And IsActive = 'Y'", get_TrxName())
+			List<MBPartner> relValue = new Query(getCtx(), Table_Name, "C_BPartner_ID != ? And (Value = ? Or Name = ?) And AD_Client_ID = ? And IsActive = 'Y'", get_TrxName())
 					.setParameters(getC_BPartner_ID(), getValue(), getName(), getAD_Client_ID())
 					.list();
 			if (relValue.size() >= 1) {

@@ -27,8 +27,10 @@ public class MPromotionType extends X_M_PromotionType
 		if (promotionType == null) {
 			promotionType = new Query(ctx, Table_Name, whereClause, trxName)
 					.setParameters(M_PromotionType_ID)
-					.firstOnly();					
+					.firstOnly();
+			s_cache.put(M_PromotionType_ID, promotionType);
 		}
+		
 		return promotionType;
 	}
 	

@@ -341,6 +341,38 @@ public class MInOut extends X_M_InOut implements DocAction
 			int no = DB.executeUpdateEx(sql, new Object[] {getM_InOut_ID()}, get_TrxName());
 			if (log.isLoggable(Level.FINE)) log.fine("Lines -> #" + no);
 		}
+		if (is_ValueChanged(X_M_InOut.COLUMNNAME_IncludeTaxTab) ) {
+			BigDecimal taxRate = Env.ZERO;
+			if (getC_Tax_ID() > 0) { 
+				MTax tax = MTax.get(Env.getCtx(), getC_Tax_ID());
+				if (tax != null) 
+					taxRate = tax.getRate();
+			}
+			Object [] params = null;
+			String sqlUpdateLine = "";
+			if (!"NONE".equals(getIncludeTaxTab())) {
+				sqlUpdateLine = "Update M_InOutLine r set (Amount, TaxAmt, TaxBaseAmt) = " +
+						"( Select l.Qty * l.Price, l.Qty * l.Price * (1 + ?) - l.Qty * l.Price, l.Qty * l.Price * (1 + ?) From M_InOutLine l Where r.M_InOutLine_ID = l.M_InOutLine_ID) "+
+						"Where  M_InOut_ID = ?";
+				params = new Object [] {taxRate, taxRate, getM_InOut_ID()};
+			} else {
+				sqlUpdateLine = "Update M_InOutLine r set (Amount, TaxAmt, TaxBaseAmt) = " +
+						"( Select l.Qty * l.Price, 0, 0 From M_InOutLine l Where r.M_InOutLine_ID = l.M_InOutLine_ID) "+
+						"Where M_InOut_ID = ?";
+				params = new Object [] {getM_InOut_ID()};
+			}
+			
+			DB.executeUpdateEx(sqlUpdateLine, params, get_TrxName());
+			
+			//Update Header
+			
+			String sql = "UPDATE M_InOut o"
+					+ " SET (Amount, AmountConvert, TaxAmt, TaxBaseAmt) ="
+					+ "(SELECT Sum(Amount), Sum(Amount), Sum(TaxAmt), Sum(TaxBaseAmt)"
+					+ " FROM M_InOutLine ol WHERE ol.M_InOut_ID=o.M_InOut_ID) "
+					+ "WHERE M_InOut_ID=?";
+			DB.executeUpdateEx(sql, new Object[] {getM_InOut_ID()}, get_TrxName());
+		}
 		return true;
 	}	
 
@@ -420,8 +452,8 @@ public class MInOut extends X_M_InOut implements DocAction
 		
 		//Type nhap
 		if (MDocType.DOCTYPE_Input.equals(doctype)) {
-			if (getIncludeTaxTab().equals(MInOut.INCLUDETAXTAB_TAXS) 
-					&& getCalculateTax().equals(MInOut.CALCULATETAX_GROSS))
+			if (getIncludeTaxTab() != null 
+					&& getIncludeTaxTab().equals(MInOut.INCLUDETAXTAB_TAXS))
 				//Neu co tinh thue va Thanh tien da bao gom thue thi lay truong Amt khac
 				sql = " select 'IN' DocType, il.M_InOutLine_ID, i.M_Warehouse_Dr_ID M_Warehouse_ID, i.DateAcct, il.M_Product_ID, il.Qty, il.Price, il.TaxBaseAmt Amount "+
 						" From M_InOut i Inner Join M_InOutLine il On i.M_InOut_ID = il.M_InOut_ID "+

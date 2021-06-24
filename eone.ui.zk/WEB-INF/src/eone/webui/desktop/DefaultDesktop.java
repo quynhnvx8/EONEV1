@@ -745,7 +745,7 @@ public class DefaultDesktop extends TabbedDesktop implements MenuListener, Seria
 
 	@Override
 	public void onMenuSelected(int menuId) {
-		System.out.println("-------------------OPEN WINDOW----------------------------");
+		//System.out.println("-------------------OPEN WINDOW----------------------------");
 		super.onMenuSelected(menuId);
 		//comment theo doi phan Response
 		/*TODO COMMENT 05/05/2021

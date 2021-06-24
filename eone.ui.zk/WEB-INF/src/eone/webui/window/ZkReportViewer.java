@@ -1075,6 +1075,7 @@ public class ZkReportViewer extends Window implements EventListener<Event>, ITab
 							if (cssPrefix != null)
 								href.setClass(cssPrefix + "-href");
 							extension.extendIDColumn(row, td, href, item);
+							//new WAcctViewer(item.getZoomLogic());
 						
 						}else {
 							td.addElement(Util.maskHTML(value.toString()));

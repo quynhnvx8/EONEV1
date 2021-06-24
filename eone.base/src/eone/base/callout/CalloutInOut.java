@@ -182,26 +182,11 @@ public class CalloutInOut extends CalloutEngine
 			taxRate = Env.ZERO;
 		}
 		
+		p_Amount = qty.multiply(price);
 		//Tinh lai Amount va AmountConvert neu co thue
-		if (taxRate.compareTo(Env.ZERO) == 0) {
-			p_Amount = qty.multiply(price);
-			
-		} else {
-			if(X_M_InOut.CALCULATETAX_GROSS.equalsIgnoreCase(inout.getCalculateTax())) {
-				//Neu bao gom thue:
-				//Truoc thue = Thue / 1.1
-				p_TaxBase = qty.multiply(price);
-				p_Amount = p_TaxBase.divide(Env.ONE.add(taxRate), Env.getScaleFinal(), RoundingMode.HALF_UP);
-				p_TaxAmt = p_TaxBase.subtract(p_Amount);
-			} else {
-				//Neu ko bao gom thue
-				//Tong tien = Tien hang * 1.1
-				p_Amount = qty.multiply(price);
-				p_TaxBase = p_Amount.multiply(Env.ONE.add(taxRate));
-				p_TaxAmt = p_TaxBase.subtract(p_Amount);
-			}
-		}
-		if (p_TaxBase.compareTo(Env.ZERO) != 0) {
+		if (taxRate.compareTo(Env.ZERO) != 0) {
+			p_TaxBase = p_Amount.multiply(Env.ONE.add(taxRate));
+			p_TaxAmt = p_TaxBase.subtract(p_Amount);
 			mTab.setValue("TaxAmt", p_TaxAmt);
 			mTab.setValue("TaxBaseAmt", p_TaxBase);
 		}
@@ -217,23 +202,14 @@ public class CalloutInOut extends CalloutEngine
 		Object objDiscountType = mTab.getValue(MInOutLine.COLUMNNAME_DiscountType);
 		Object objAmount = mTab.getValue(MInOutLine.COLUMNNAME_Amount);
 		Object objBaseAmt = mTab.getValue(MInOutLine.COLUMNNAME_TaxBaseAmt);
-		Object objInOut = mTab.getValue("M_InOut_ID");
-		int p_M_InOut_ID = 0;
-		if (objInOut != null) {
-			p_M_InOut_ID = Integer.parseInt(objInOut.toString());
-		}
-		MInOut inout = new MInOut (ctx, p_M_InOut_ID, null);
 		
 		BigDecimal p_Amount = Env.ZERO;
 		
 		if (objAmount != null) {
 			
 		}
-		if(X_M_InOut.CALCULATETAX_GROSS.equalsIgnoreCase(inout.getCalculateTax())) {
-			p_Amount = new BigDecimal(objBaseAmt.toString());
-		} else {
-			p_Amount = new BigDecimal(objAmount.toString());
-		}
+		p_Amount = new BigDecimal(objBaseAmt.toString());
+		
 		if (objDiscountType != null) {
 			if (!MInOutLine.DISCOUNTTYPE_NONE.equals(objDiscountType.toString())) {
 				mTab.setValue("DiscountAmt", p_Amount);

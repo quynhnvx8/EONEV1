@@ -439,7 +439,7 @@ public class GridField
 		
 		//BF [ 2910368 ]
 		//  Always editable if Active
-		if (checkContext && "Y".equals(Env.getContext(ctx, m_vo.WindowNo, m_vo.TabNo, "IsActive")))
+		if (checkContext && "Y".equals(Env.getContext(ctx, m_vo.WindowNo, m_vo.TabNo, "IsActive")) && m_vo.ColumnName.equals("Processing"))
 			return true;
 
 		//  Record is Processed	***	

@@ -895,6 +895,7 @@ public class X_Fact_Acct extends PO implements I_Fact_Acct, I_Persistent
 		set_Value (COLUMNNAME_InvoiceNo, InvoiceNo);
 	}
 
+
 	/** Get InvoiceNo.
 		@return InvoiceNo	  */
 	public String getInvoiceNo () 

@@ -17,7 +17,7 @@ public class X_M_PromotionType extends PO implements I_M_PromotionType, I_Persis
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = 20210527L;
+	private static final long serialVersionUID = 20210601L;
 
     /** Standard Constructor */
     public X_M_PromotionType (Properties ctx, int M_PromotionType_ID, String trxName)
@@ -108,6 +108,29 @@ public class X_M_PromotionType extends PO implements I_M_PromotionType, I_Persis
 	public String getName () 
 	{
 		return (String)get_Value(COLUMNNAME_Name);
+	}
+
+	/** LINE = LINE */
+	public static final String PROMOTIONTYPE_LINE = "LINE";
+	/** GROUP = GROUP */
+	public static final String PROMOTIONTYPE_GROUP = "GROUP";
+	/** BUNDLE = BUNDLE */
+	public static final String PROMOTIONTYPE_BUNDLE = "BUNDLE";
+	/** DOCMT = DOCMT */
+	public static final String PROMOTIONTYPE_DOCMT = "DOCMT";
+	/** Set Promotion Type.
+		@param PromotionType Promotion Type	  */
+	public void setPromotionType (String PromotionType)
+	{
+
+		set_Value (COLUMNNAME_PromotionType, PromotionType);
+	}
+
+	/** Get Promotion Type.
+		@return Promotion Type	  */
+	public String getPromotionType () 
+	{
+		return (String)get_Value(COLUMNNAME_PromotionType);
 	}
 
 	/** Set Requied Amount.
