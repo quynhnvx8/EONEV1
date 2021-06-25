@@ -215,10 +215,6 @@ public class GridFieldVO implements Serializable
 					vo.IsToolbarButton  = rs.getString(i);
 				else if (columnName.equalsIgnoreCase("AD_Chart_ID"))
 					vo.AD_Chart_ID = rs.getInt (i);
-				else if (columnName.equalsIgnoreCase("AD_LabelStyle_ID"))
-					vo.AD_LabelStyle_ID = rs.getInt (i);
-				else if (columnName.equalsIgnoreCase("AD_FieldStyle_ID"))
-					vo.AD_FieldStyle_ID = rs.getInt (i);
 				else if (columnName.equalsIgnoreCase("PA_DashboardContent_ID"))
 					vo.PA_DashboardContent_ID = rs.getInt (i);
 				else if (columnName.equalsIgnoreCase("placeholder"))
@@ -601,9 +597,7 @@ public class GridFieldVO implements Serializable
 	
 	public int AD_Chart_ID = 0;
 	
-	public int AD_LabelStyle_ID = 0;
 	
-	public int AD_FieldStyle_ID = 0;
 	
 	public int PA_DashboardContent_ID = 0;
 
@@ -749,8 +743,6 @@ public class GridFieldVO implements Serializable
 			clone.MandatoryLogic = MandatoryLogic;
 			clone.ObscureType = ObscureType;
 			clone.IsDefaultFocus = IsDefaultFocus;
-			clone.AD_FieldStyle_ID = AD_FieldStyle_ID;
-			clone.AD_LabelStyle_ID = AD_LabelStyle_ID;
 			clone.PA_DashboardContent_ID = PA_DashboardContent_ID;
 			clone.Placeholder = Placeholder;
 			clone.IsHtml = IsHtml;

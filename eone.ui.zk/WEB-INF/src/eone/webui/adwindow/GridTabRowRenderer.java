@@ -267,15 +267,8 @@ public class GridTabRowRenderer implements RowRenderer<Object[]>, RowRendererExt
 		return component;
 	}
 
-	private void applyFieldStyle(GridField gridField, int rowIndex,
-			HtmlBasedComponent component) {
-		int AD_Style_ID = gridField.getAD_FieldStyle_ID();
-		if (AD_Style_ID <= 0)
-			return;
-		
-		GridRowCtx gridRowCtx = new GridRowCtx(Env.getCtx(), gridTab, rowIndex);
-		MStyle style = MStyle.get(Env.getCtx(), AD_Style_ID);
-		setComponentStyle(component, style.buildStyle(ThemeManager.getTheme(), gridRowCtx));
+	private void applyFieldStyle(GridField gridField, int rowIndex, HtmlBasedComponent component) {
+		return;
 	}
 
 	protected  void setComponentStyle(HtmlBasedComponent component, String style) {

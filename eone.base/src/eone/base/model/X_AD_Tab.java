@@ -505,34 +505,7 @@ public class X_AD_Tab extends PO implements I_AD_Tab, I_Persistent
 		return false;
 	}
 
-	/** Set Accounting Tab.
-		@param IsInfoTab 
-		This Tab contains accounting information
-	  */
-	public void setIsInfoTab (boolean IsInfoTab)
-	{
-		set_Value (COLUMNNAME_IsInfoTab, Boolean.valueOf(IsInfoTab));
-	}
-
-	/** Get Accounting Tab.
-		@return This Tab contains accounting information
-	  */
-	public boolean isInfoTab () 
-	{
-		Object oo = get_Value(COLUMNNAME_IsInfoTab);
-		if (oo != null) 
-		{
-			 if (oo instanceof Boolean) 
-				 return ((Boolean)oo).booleanValue(); 
-			return "Y".equals(oo);
-		}
-		return false;
-	}
-
-	/** Set Insert Record.
-		@param IsInsertRecord 
-		The user can insert a new Record
-	  */
+	
 	public void setIsInsertRecord (boolean IsInsertRecord)
 	{
 		set_Value (COLUMNNAME_IsInsertRecord, Boolean.valueOf(IsInsertRecord));

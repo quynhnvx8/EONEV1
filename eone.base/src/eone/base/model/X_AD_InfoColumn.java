@@ -95,33 +95,7 @@ public class X_AD_InfoColumn extends PO implements I_AD_InfoColumn, I_Persistent
 		return ii.intValue();
 	}
 
-	public eone.base.model.I_AD_Style getAD_FieldStyle() throws RuntimeException
-    {
-		return (eone.base.model.I_AD_Style)MTable.get(getCtx(), eone.base.model.I_AD_Style.Table_Name)
-			.getPO(getAD_FieldStyle_ID(), get_TrxName());	}
-
-	/** Set Field Style.
-		@param AD_FieldStyle_ID 
-		Field CSS Style 
-	  */
-	public void setAD_FieldStyle_ID (int AD_FieldStyle_ID)
-	{
-		if (AD_FieldStyle_ID < 1) 
-			set_Value (COLUMNNAME_AD_FieldStyle_ID, null);
-		else 
-			set_Value (COLUMNNAME_AD_FieldStyle_ID, Integer.valueOf(AD_FieldStyle_ID));
-	}
-
-	/** Get Field Style.
-		@return Field CSS Style 
-	  */
-	public int getAD_FieldStyle_ID () 
-	{
-		Integer ii = (Integer)get_Value(COLUMNNAME_AD_FieldStyle_ID);
-		if (ii == null)
-			 return 0;
-		return ii.intValue();
-	}
+	
 
 	/** Set Info Column.
 		@param AD_InfoColumn_ID 

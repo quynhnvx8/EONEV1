@@ -339,18 +339,7 @@ public interface I_AD_Tab
 	  */
 	public boolean isAdvancedTab();
 
-    /** Column name IsInfoTab */
-    public static final String COLUMNNAME_IsInfoTab = "IsInfoTab";
-
-	/** Set Accounting Tab.
-	  * This Tab contains accounting information
-	  */
-	public void setIsInfoTab (boolean IsInfoTab);
-
-	/** Get Accounting Tab.
-	  * This Tab contains accounting information
-	  */
-	public boolean isInfoTab();
+    
 
     /** Column name IsInsertRecord */
     public static final String COLUMNNAME_IsInsertRecord = "IsInsertRecord";

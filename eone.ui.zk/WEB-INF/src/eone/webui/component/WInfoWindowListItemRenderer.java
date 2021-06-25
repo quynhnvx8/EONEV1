@@ -25,20 +25,16 @@ import java.util.List;
 
 import org.compiere.minigrid.ColumnInfo;
 import org.compiere.minigrid.IDColumn;
-import org.compiere.util.Env;
-import org.compiere.util.Evaluatee;
 import org.compiere.util.KeyNamePair;
 import org.zkoss.zul.Listcell;
 
 import eone.base.model.GridField;
 import eone.base.model.MInfoColumn;
-import eone.base.model.MStyle;
 import eone.webui.editor.WEditor;
 import eone.webui.editor.WebEditorFactory;
 import eone.webui.event.ValueChangeEvent;
 import eone.webui.event.ValueChangeListener;
 import eone.webui.info.InfoWindow;
-import eone.webui.theme.ThemeManager;
 
 public class WInfoWindowListItemRenderer extends WListItemRenderer
 {
@@ -125,41 +121,6 @@ public class WInfoWindowListItemRenderer extends WListItemRenderer
 		if(listcell == null)
 			listcell = super.getCellComponent(table, field, rowIndex, columnIndex);
 		
-			if (gridField.getAD_FieldStyle_ID() > 0)
-			{
-				MStyle style = MStyle.get(Env.getCtx(), gridField.getAD_FieldStyle_ID());
-				//devCoffee #5960
-				String styleStr = style.buildStyle(ThemeManager.getTheme(), new Evaluatee() {
-
-					@Override
-					public String get_ValueAsString(String variableName) {
-						String value = null;
-
-						int idx = 0;
-						for (MInfoColumn ic : gridDisplayedInfoColumns)
-						{
-							if (ic != null && ic.getColumnName().equals(variableName))
-							{
-								value = String.valueOf(table.getValueAt(rowIndex, idx));
-								break;
-							}
-
-							idx++;
-						}
-
-						return value;
-					}
-				});
-				if (styleStr != null && styleStr.startsWith(MStyle.SCLASS_PREFIX)) {
-					String sclass = styleStr.substring(MStyle.SCLASS_PREFIX.length());
-					listcell.setSclass(sclass);
-				} else if (style != null && styleStr.startsWith(MStyle.ZCLASS_PREFIX)) {
-					String zclass = styleStr.substring(MStyle.ZCLASS_PREFIX.length());
-					listcell.setZclass(zclass);
-				} else {
-					listcell.setStyle(styleStr);
-				}
-			}
 		}
 
 		if(listcell == null)
@@ -167,51 +128,5 @@ public class WInfoWindowListItemRenderer extends WListItemRenderer
 
 		return listcell;
 	}
-
-//
-//	//devCoffee #5960 - Get CSS Style if pass through display logic.
-//	private String getStatusStyle(ListCell listcell, PO po) {
-//		if(po instanceof MInfoWindow) {
-//			if(po.get_ValueAsInt("AD_FieldStyle_ID") != 0 && listcell != null) {
-//				try {
-//					MTable t = new MTable(Env.getCtx(), po.get_ValueAsInt("AD_Table_ID"), null);
-//					PO recordPO = (PO) new Query(Env.getCtx(), t.getTableName(), t.getTableName() + "_ID =" + listcell.getValue(), null).first();
-//
-//					List<X_AD_StyleLine> lines = new Query(Env.getCtx(), X_AD_StyleLine.Table_Name, "AD_Style_ID = " + po.get_ValueAsInt("AD_FieldStyle_ID"), null).list();
-//
-//					StringBuilder styleBuilder = new StringBuilder();
-//					for (X_AD_StyleLine line : lines)
-//					{
-//						String inlineStyle = line.getInlineStyle().trim();
-//						String displayLogic = line.getDisplayLogic();
-//						String theme = line.getTheme();
-//						if (!Util.isEmpty(theme)) {
-//							if (!ThemeManager.getTheme().equals(theme))
-//								continue;
-//						}
-//						if (!Util.isEmpty(displayLogic))
-//						{
-//							if (!Evaluator.evaluateLogic(recordPO, displayLogic))
-//								continue;
-//						}
-//						if (styleBuilder.length() > 0 && !(styleBuilder.charAt(styleBuilder.length()-1)==';'))
-//							styleBuilder.append("; ");
-//
-//						styleBuilder.append(inlineStyle);
-//					}
-//
-//					//listcell.setStyle(styleBuilder.toString());
-//					return styleBuilder.toString();
-//				} catch (Exception e) {
-//					throw new AdempiereException(e.getMessage());
-//				}
-//			}
-//		}
-//
-//		return "";
-//	}
-
-
-
 
 }

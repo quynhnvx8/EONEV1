@@ -100,9 +100,8 @@ public class GridTabVO implements Evaluatee, Serializable
 	{
 		MRole role = MRole.getDefault(vo.ctx, false);
 		boolean showTrl = "Y".equals(Env.getContext(vo.ctx, "#ShowTrl"));
-		boolean showAcct = "Y".equals(Env.getContext(vo.ctx, "#ShowAcct"));
+		//boolean showAcct = "Y".equals(Env.getContext(vo.ctx, "#ShowAcct"));
 		boolean showAdvanced = "Y".equals(Env.getContext(vo.ctx, "#ShowAdvanced"));
-	//	CLogger.get().warning("ShowTrl=" + showTrl + ", showAcct=" + showAcct);
 		try
 		{
 			vo.AD_Tab_ID = rs.getInt("AD_Tab_ID");
@@ -138,13 +137,7 @@ public class GridTabVO implements Evaluatee, Serializable
 					+ vo.AD_Tab_ID + " " + vo.Name);
 				return false;
 			}
-			//	Accounting Info Tab	**
-			if (!showAcct && rs.getString("IsInfoTab").equals("Y"))
-			{
-				CLogger.get().fine("AcctTab Not displayed - AD_Tab_ID=" 
-					+ vo.AD_Tab_ID + " " + vo.Name);
-				return false;
-			}
+			
 			
 			//	DisplayLogic
 			vo.DisplayLogic = rs.getString("DisplayLogic");

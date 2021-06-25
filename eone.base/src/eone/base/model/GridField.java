@@ -1954,22 +1954,8 @@ public class GridField
 		}		
 	}
 	
-	public int getAD_LabelStyle_ID()
-	{
-		return m_vo.AD_LabelStyle_ID;
-	}
 	
-	public int getAD_FieldStyle_ID()
-	{
-		return m_vo.AD_FieldStyle_ID;
-	}
-
-	/**
-	 * 	Set Value and Validate
-	 *	@param newValue value
-	 *	@param inserting insert
-	 *	@return null or error message
-	 */
+	
 	public String setValueValidate (String newValue, boolean inserting)
 	{
 		if (newValue == null)

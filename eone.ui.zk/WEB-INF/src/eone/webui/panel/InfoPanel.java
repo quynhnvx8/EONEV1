@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -280,7 +279,6 @@ public abstract class InfoPanel extends Window implements EventListener<Event>, 
         if (isLookup())
         	addEventListener(Events.ON_CANCEL, this);
         contentPanel.setOddRowSclass(null);
-//        contentPanel.setSizedByContent(true);
         contentPanel.setWidgetAttribute(AdempiereWebUI.WIDGET_INSTANCE_NAME, "infoListbox");
         contentPanel.addEventListener("onAfterRender", this);
         contentPanel.setSclass("z-word-nowrap");
@@ -1394,8 +1392,6 @@ public abstract class InfoPanel extends Window implements EventListener<Event>, 
 		for (int rowIndex = 0; rowIndex < contentPanel.getModel().getRowCount(); rowIndex++){
 			Integer keyViewValue = getColumnValue(rowIndex);
 			if (recordSelectedData.containsKey(keyViewValue)){
-				// TODO: maybe add logic to check value of current record (focus only to viewKeys value) is same as value save in lsSelectedKeyValue
-				// because record can change by other user
 				Object row = contentPanel.getModel().get(rowIndex);
 								
 				if(onRestoreSelectedItemIndexInPage(keyViewValue, rowIndex, row)) // F3P: provide an hook for operations on restored index
@@ -1460,25 +1456,9 @@ public abstract class InfoPanel extends Window implements EventListener<Event>, 
 		return (Integer)keyValue;
 	}
 	
-	/**
-	 * in case requery data, but want store selected record (example when run success a process)
-	 * we must sync selected row, because some selected row maybe not at data list (process make it change not map with query)
-	 * current 1000 line cache 
-	 * because in case query get more 1000 record we can't sync or maintain selected record (ever maintain for current page will make user confuse).
-	 * just clear selection
-	 * in case < 1000 record is ok
-	 * TODO:rewrite
-	 */
 	protected void syncSelectedAfterRequery (){
 		if (isRequeryByRunSuccessProcess){
 			isRequeryByRunSuccessProcess = false;
-			//TODO:it's hard to ensure in case use keyViewId we can re-sync. some issue:
-			// + after RunSuccessProcess maybe key of record is change.
-			// + after RunSuccessProcess maybe value of viewID change.
-			// + after RunSuccessProcess maybe some record is out of query result
-			// + when load many page, sync at one time effect to performance
-			// maybe make two list, just sync for first page, old list use for reference, 
-			// when user change page will use it for restore selected record, synced record will copy to new list
 		}
 	}
 	
@@ -2033,7 +2013,6 @@ public abstract class InfoPanel extends Window implements EventListener<Event>, 
 		// Execute Process
 		m_pi.setAD_InfoWindow_ID(infoWindow.getAD_InfoWindow_ID());
 		
-		//HengSin - to let process end with message and requery
 		WProcessCtl.process(p_WindowNo, m_pi, (Trx)null, new EventListener<Event>() {
 
 			@Override
@@ -2042,8 +2021,6 @@ public abstract class InfoPanel extends Window implements EventListener<Event>, 
 				if (DialogEvents.ON_BEFORE_RUN_PROCESS.equals(event.getName())){
 					updateListSelected();
 					// store in T_Selection table selected rows for Execute Process that retrieves from T_Selection in code.
-					//DB.createT_SelectionNew(pInstanceID, getSaveKeys(getInfoColumnIDFromProcess(processModalDialog.getAD_Process_ID())),
-					//	null);	
 					saveResultSelection(getInfoColumnIDFromProcess(processModalDialog.getAD_Process_ID()));
 					//createT_Selection_InfoWindow(pInstanceID);
 					recordSelectedData.clear();
@@ -2051,11 +2028,9 @@ public abstract class InfoPanel extends Window implements EventListener<Event>, 
 					if (processModalDialog.isCancel()){
 						//clear back 
 						m_results.clear();
-						// enable or disable control button rely selected record status 
 						enableButtons();
 					}else if (m_pi.isError()){
 						ProcessInfoDialog.showProcessInfo(m_pi, p_WindowNo, InfoPanel.this, true);
-						// enable or disable control button rely selected record status 
 						enableButtons();
 					}else if (!m_pi.isError()){
 						ProcessInfoDialog.showProcessInfo(m_pi, p_WindowNo, InfoPanel.this, true);	
@@ -2065,7 +2040,6 @@ public abstract class InfoPanel extends Window implements EventListener<Event>, 
 					recordSelectedData.clear();
 				}
 				
-		//HengSin -- end --
 			}
 		});   		
     }
@@ -2115,107 +2089,8 @@ public abstract class InfoPanel extends Window implements EventListener<Event>, 
 		}
 	} // saveResultSelection
 	
-	/**
-	 * Insert result values
-	 * @param AD_PInstance_ID
-	 */
-	public void createT_Selection_InfoWindow(int AD_PInstance_ID)
-	{
-		StringBuilder insert = new StringBuilder();
-		insert.append("INSERT INTO T_Selection_InfoWindow (AD_PINSTANCE_ID, T_SELECTION_ID, COLUMNNAME , VALUE_STRING, VALUE_NUMBER , VALUE_DATE ) VALUES(?,?,?,?,?,?) ");
-		for (Entry<KeyNamePair,LinkedHashMap<String, Object>> records : m_values.entrySet()) {
-			//set Record ID
-			
-				LinkedHashMap<String, Object> fields = records.getValue();
-				for(Entry<String, Object> field : fields.entrySet())
-				{
-					List<Object> parameters = new ArrayList<Object>();
-					parameters.add(AD_PInstance_ID);
-					
-					Object key = records.getKey();
-					
-					if(key instanceof KeyNamePair)
-					{
-						KeyNamePair knp = (KeyNamePair)key;
-						parameters.add(knp.getKey());
-					}
-					else
-					{
-						parameters.add(key);
-					}
-
-					parameters.add(field.getKey());
-					
-					Object data = field.getValue();
-					// set Values					
-					if (data instanceof IDColumn)
-					{
-						IDColumn id = (IDColumn) data;
-						parameters.add(null);
-						parameters.add(id.getRecord_ID());
-						parameters.add(null);
-					}					
-					else if (data instanceof String)
-					{
-						parameters.add(data);
-						parameters.add(null);
-						parameters.add(null);
-					}
-					else if (data instanceof BigDecimal || data instanceof Integer || data instanceof Double)
-					{
-						parameters.add(null);
-						if(data instanceof Double)
-						{	
-							BigDecimal value = BigDecimal.valueOf((Double)data);
-							parameters.add(value);
-						}	
-						else	
-							parameters.add(data);
-						parameters.add(null);
-					}
-					else if (data instanceof Integer)
-					{
-						parameters.add(null);
-						parameters.add((Integer)data);
-						parameters.add(null);
-					}
-					else if (data instanceof Timestamp || data instanceof Date)
-					{
-						parameters.add(null);
-						parameters.add(null);
-						if(data instanceof Date)
-						{
-							Timestamp value = new Timestamp(((Date)data).getTime());
-							parameters.add(value);
-						}
-						else 
-						parameters.add(data);
-					}
-					else if(data instanceof KeyNamePair)
-					{
-						KeyNamePair knpData = (KeyNamePair)data;
-						
-						parameters.add(null);
-						parameters.add(knpData.getKey());
-						parameters.add(null);						
-					}
-					else
-					{
-						parameters.add(data);
-						parameters.add(null);
-						parameters.add(null);
-					}
-					DB.executeUpdateEx(insert.toString(),parameters.toArray() , null);
-						
-				}
-		}
-	} // createT_Selection_InfoWindow
 	
-    /**
-     * Get InfoColumnID of infoProcess have processID is processId
-     * @param processId
-     * @return value InfoColumnID, -1 when has not any map
-     */
+   
     protected int getInfoColumnIDFromProcess (int processId){
     	for (int i = 0; i < infoProcessList.length; i++){
     		if (infoProcessList[i].getAD_Process_ID() == processId){
@@ -2246,8 +2121,6 @@ public abstract class InfoPanel extends Window implements EventListener<Event>, 
 			for(Object obj : headers)
 			{
 				Listheader header = (Listheader) obj;
-				// idempiere use mix method. sometime call model method, sometime call component method
-				// so index can be difference on complicate case, just wait to fix
 				if (header.getColumnIndex() == indexOrderColumn)
 	              header.setSortDirection(isColumnSortAscending?"ascending":"descending");
 	            else
@@ -2259,8 +2132,6 @@ public abstract class InfoPanel extends Window implements EventListener<Event>, 
     {
     	try
     	{
-//    		m_sqlUserOrder="";
-    		// event == null mean direct call from reset button
     		if (event == null)
     			m_count = 0;
     		else
@@ -2270,8 +2141,6 @@ public abstract class InfoPanel extends Window implements EventListener<Event>, 
 
             correctHeaderOrderIndicator();
             
-        	// IDEMPIERE-1334 after refresh, restore prev selected item start         	
-        	// just evaluate display logic of process button when requery by use click requery button
         	if (isQueryByUser){
         		bindInfoProcess();
         		// reset selected list
@@ -2282,7 +2151,6 @@ public abstract class InfoPanel extends Window implements EventListener<Event>, 
         		syncSelectedAfterRequery();
         		restoreSelectedInPage();
         	}
-        	// IDEMPIERE-1334 after refresh, restore prev selected item end
         	updateSubcontent ();
         }
     	finally
@@ -2480,14 +2348,6 @@ public abstract class InfoPanel extends Window implements EventListener<Event>, 
 	@Override
 	public void onPageAttached(Page newpage, Page oldpage) {
 		super.onPageAttached(newpage, oldpage);
-		/*
-		if (newpage != null) {
-			if (infoWindow != null)
-				SessionManager.getAppDesktop().updateHelpContext("Info", infoWindow.getAD_InfoWindow_ID());
-			else
-				SessionManager.getAppDesktop().updateHelpContext("Home", 0);
-		}
-		*/
 		SessionManager.getSessionApplication().getKeylistener().addEventListener(Events.ON_CTRL_KEY, this);
 	}
 
@@ -2499,12 +2359,7 @@ public abstract class InfoPanel extends Window implements EventListener<Event>, 
 		} catch (Exception e){}
 	}
 
-	/**
-	 * field call this info panel as search editor
-	 * null in case info window open in stand-alone window (from menu, fav,...) 
-	 * @return
-	 */
-	public GridField getGridfield() {
+		public GridField getGridfield() {
 		return m_gridfield;
 	}
 

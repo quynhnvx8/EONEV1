@@ -624,18 +624,7 @@ public abstract class WEditor implements EventListener<Event>, PropertyChangeLis
 					style = style + STYLE_MOBILE_ZOOMABLE;
 				}
 			}
-			if (applyDictionaryStyle && gridField.getAD_LabelStyle_ID() > 0) 
-			{
-				String s = buildStyle(gridField.getAD_LabelStyle_ID());
-				if (!Util.isEmpty(s)) {
-					style = style + s;
-				}
-				setLabelStyle(style);
-			}
-			else
-			{
-				setLabelStyle(style);
-			}
+			setLabelStyle(style);
 		}
 	}
 	
@@ -657,10 +646,6 @@ public abstract class WEditor implements EventListener<Event>, PropertyChangeLis
 
 	protected void applyFieldStyles(boolean applyDictionaryStyle) {
 		String style = null;
-		if (applyDictionaryStyle && gridField.getAD_FieldStyle_ID() > 0) 
-		{
-			style = buildStyle(gridField.getAD_FieldStyle_ID());
-		}
 		setFieldStyle(style);
 		setFieldMandatoryStyle(applyDictionaryStyle);
 	}

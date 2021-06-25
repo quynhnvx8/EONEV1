@@ -781,24 +781,6 @@ DataStatusListener, IADTabpanel, IdSpace, IFieldEditorContainer
         		Label label = new Label(field.getHeader());
         		Div div = new Div();
         		div.setSclass("form-label-heading");
-        		if (field.getAD_LabelStyle_ID() > 0) {
-            		MStyle style = MStyle.get(Env.getCtx(), field.getAD_LabelStyle_ID());
-            		String cssStyle = style.buildStyle(ThemeManager.getTheme(), new Evaluatee() {
-    					@Override
-    					public String get_ValueAsString(String variableName) {
-    						return field.get_ValueAsString(variableName);
-    					}
-    				});
-            		if (cssStyle != null && cssStyle.startsWith(MStyle.SCLASS_PREFIX)) {
-    					String sclass = cssStyle.substring(MStyle.SCLASS_PREFIX.length());
-    					div.setSclass(sclass);
-    				} else if (style != null && cssStyle.startsWith(MStyle.ZCLASS_PREFIX)) {
-    					String zclass = cssStyle.substring(MStyle.ZCLASS_PREFIX.length());
-    					div.setZclass(zclass);
-    				} else {
-    					div.setStyle(cssStyle);
-    				}
-        		}
 
         		row.appendCellChild(createSpacer());
         		div.appendChild(label);
