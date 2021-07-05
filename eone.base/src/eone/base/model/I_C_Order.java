@@ -1,18 +1,6 @@
 /******************************************************************************
- * Product: iDempiere ERP & CRM Smart Business Solution                       *
- * Copyright (C) 1999-2012 ComPiere, Inc. All Rights Reserved.                *
- * This program is free software, you can redistribute it and/or modify it    *
- * under the terms version 2 of the GNU General Public License as published   *
- * by the Free Software Foundation. This program is distributed in the hope   *
- * that it will be useful, but WITHOUT ANY WARRANTY, without even the implied *
- * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.           *
- * See the GNU General Public License for more details.                       *
- * You should have received a copy of the GNU General Public License along    *
- * with this program, if not, write to the Free Software Foundation, Inc.,    *
- * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.                     *
- * For the text or an alternative of this public license, you may reach us    *
- * ComPiere, Inc., 2620 Augustine Dr. #245, Santa Clara, CA 95054, USA        *
- * or via info@compiere.org or http://www.compiere.org/license.html           *
+ * Product: EOoe ERP & CRM Smart Business Solution	                        *
+ * Copyright (C) 2020, Inc. All Rights Reserved.				                *
  *****************************************************************************/
 package eone.base.model;
 
@@ -21,8 +9,8 @@ import java.sql.Timestamp;
 import org.compiere.util.KeyNamePair;
 
 /** Generated Interface for C_Order
- *  @author iDempiere (generated) 
- *  @version Release 7.1
+ *  @author EOne (generated) 
+ *  @version Version 1.0
  */
 public interface I_C_Order 
 {
@@ -61,6 +49,28 @@ public interface I_C_Order
 	  * Organizational entity within client
 	  */
 	public int getAD_Org_ID();
+
+    /** Column name Amount */
+    public static final String COLUMNNAME_Amount = "Amount";
+
+	/** Set Amount.
+	  * Amount in a defined currency
+	  */
+	public void setAmount (BigDecimal Amount);
+
+	/** Get Amount.
+	  * Amount in a defined currency
+	  */
+	public BigDecimal getAmount();
+
+    /** Column name Approved */
+    public static final String COLUMNNAME_Approved = "Approved";
+
+	/** Set Approved	  */
+	public void setApproved (String Approved);
+
+	/** Get Approved	  */
+	public String getApproved();
 
     /** Column name C_BPartner_ID */
     public static final String COLUMNNAME_C_BPartner_ID = "C_BPartner_ID";
@@ -135,55 +145,29 @@ public interface I_C_Order
 	  */
 	public int getC_Order_ID();
 
-    /** Column name C_Order_UU */
-    public static final String COLUMNNAME_C_Order_UU = "C_Order_UU";
+    /** Column name C_Tax_ID */
+    public static final String COLUMNNAME_C_Tax_ID = "C_Tax_ID";
 
-	/** Set C_Order_UU	  */
-	public void setC_Order_UU (String C_Order_UU);
-
-	/** Get C_Order_UU	  */
-	public String getC_Order_UU();
-
-    /** Column name C_Project_ID */
-    public static final String COLUMNNAME_C_Project_ID = "C_Project_ID";
-
-	/** Set Project.
-	  * Financial Project
+	/** Set Tax.
+	  * Tax identifier
 	  */
-	public void setC_Project_ID (int C_Project_ID);
+	public void setC_Tax_ID (int C_Tax_ID);
 
-	/** Get Project.
-	  * Financial Project
+	/** Get Tax.
+	  * Tax identifier
 	  */
-	public int getC_Project_ID();
+	public int getC_Tax_ID();
 
-	public eone.base.model.I_C_Project getC_Project() throws RuntimeException;
+	public eone.base.model.I_C_Tax getC_Tax() throws RuntimeException;
 
-    /** Column name ChargeAmt */
-    public static final String COLUMNNAME_ChargeAmt = "ChargeAmt";
+    /** Column name Canceled */
+    public static final String COLUMNNAME_Canceled = "Canceled";
 
-	/** Set Charge amount.
-	  * Charge Amount
-	  */
-	public void setChargeAmt (BigDecimal ChargeAmt);
+	/** Set Canceled	  */
+	public void setCanceled (String Canceled);
 
-	/** Get Charge amount.
-	  * Charge Amount
-	  */
-	public BigDecimal getChargeAmt();
-
-    /** Column name CopyFrom */
-    public static final String COLUMNNAME_CopyFrom = "CopyFrom";
-
-	/** Set Copy From.
-	  * Copy From Record
-	  */
-	public void setCopyFrom (String CopyFrom);
-
-	/** Get Copy From.
-	  * Copy From Record
-	  */
-	public String getCopyFrom();
+	/** Get Canceled	  */
+	public String getCanceled();
 
     /** Column name Created */
     public static final String COLUMNNAME_Created = "Created";
@@ -201,18 +185,18 @@ public interface I_C_Order
 	  */
 	public int getCreatedBy();
 
-    /** Column name DateAcct */
-    public static final String COLUMNNAME_DateAcct = "DateAcct";
+    /** Column name CurrencyRate */
+    public static final String COLUMNNAME_CurrencyRate = "CurrencyRate";
 
-	/** Set Account Date.
-	  * Accounting Date
+	/** Set Rate.
+	  * Currency Conversion Rate
 	  */
-	public void setDateAcct (Timestamp DateAcct);
+	public void setCurrencyRate (BigDecimal CurrencyRate);
 
-	/** Get Account Date.
-	  * Accounting Date
+	/** Get Rate.
+	  * Currency Conversion Rate
 	  */
-	public Timestamp getDateAcct();
+	public BigDecimal getCurrencyRate();
 
     /** Column name DateOrdered */
     public static final String COLUMNNAME_DateOrdered = "DateOrdered";
@@ -240,19 +224,6 @@ public interface I_C_Order
 	  */
 	public String getDescription();
 
-    /** Column name DocAction */
-    public static final String COLUMNNAME_DocAction = "DocAction";
-
-	/** Set Document Action.
-	  * The targeted status of the document
-	  */
-	public void setDocAction (String DocAction);
-
-	/** Get Document Action.
-	  * The targeted status of the document
-	  */
-	public String getDocAction();
-
     /** Column name DocStatus */
     public static final String COLUMNNAME_DocStatus = "DocStatus";
 
@@ -279,18 +250,14 @@ public interface I_C_Order
 	  */
 	public String getDocumentNo();
 
-    /** Column name GrandTotal */
-    public static final String COLUMNNAME_GrandTotal = "GrandTotal";
+    /** Column name IncludeTax */
+    public static final String COLUMNNAME_IncludeTax = "IncludeTax";
 
-	/** Set Grand Total.
-	  * Total amount of document
-	  */
-	public void setGrandTotal (BigDecimal GrandTotal);
+	/** Set IncludeTax	  */
+	public void setIncludeTax (String IncludeTax);
 
-	/** Get Grand Total.
-	  * Total amount of document
-	  */
-	public BigDecimal getGrandTotal();
+	/** Get IncludeTax	  */
+	public String getIncludeTax();
 
     /** Column name IsActive */
     public static final String COLUMNNAME_IsActive = "IsActive";
@@ -304,19 +271,6 @@ public interface I_C_Order
 	  * The record is active in the system
 	  */
 	public boolean isActive();
-
-    /** Column name IsApproved */
-    public static final String COLUMNNAME_IsApproved = "IsApproved";
-
-	/** Set Approved.
-	  * Indicates if this document requires approval
-	  */
-	public void setIsApproved (boolean IsApproved);
-
-	/** Get Approved.
-	  * Indicates if this document requires approval
-	  */
-	public boolean isApproved();
 
     /** Column name IsTaxIncluded */
     public static final String COLUMNNAME_IsTaxIncluded = "IsTaxIncluded";
@@ -359,19 +313,6 @@ public interface I_C_Order
 
 	public eone.base.model.I_M_Warehouse getM_Warehouse() throws RuntimeException;
 
-    /** Column name Posted */
-    public static final String COLUMNNAME_Posted = "Posted";
-
-	/** Set Posted.
-	  * Posting status
-	  */
-	public void setPosted (boolean Posted);
-
-	/** Get Posted.
-	  * Posting status
-	  */
-	public boolean isPosted();
-
     /** Column name Processed */
     public static final String COLUMNNAME_Processed = "Processed";
 
@@ -385,55 +326,31 @@ public interface I_C_Order
 	  */
 	public boolean isProcessed();
 
-    /** Column name ProcessedOn */
-    public static final String COLUMNNAME_ProcessedOn = "ProcessedOn";
+    /** Column name TaxAmt */
+    public static final String COLUMNNAME_TaxAmt = "TaxAmt";
 
-	/** Set Processed On.
-	  * The date+time (expressed in decimal format) when the document has been processed
+	/** Set Tax Amount.
+	  * Tax Amount for a document
 	  */
-	public void setProcessedOn (BigDecimal ProcessedOn);
+	public void setTaxAmt (BigDecimal TaxAmt);
 
-	/** Get Processed On.
-	  * The date+time (expressed in decimal format) when the document has been processed
+	/** Get Tax Amount.
+	  * Tax Amount for a document
 	  */
-	public BigDecimal getProcessedOn();
+	public BigDecimal getTaxAmt();
 
-    /** Column name Processing */
-    public static final String COLUMNNAME_Processing = "Processing";
+    /** Column name TaxBaseAmt */
+    public static final String COLUMNNAME_TaxBaseAmt = "TaxBaseAmt";
 
-	/** Set Process Now	  */
-	public void setProcessing (boolean Processing);
-
-	/** Get Process Now	  */
-	public boolean isProcessing();
-
-    /** Column name Ref_Order_ID */
-    public static final String COLUMNNAME_Ref_Order_ID = "Ref_Order_ID";
-
-	/** Set Referenced Order.
-	  * Reference to corresponding Sales/Purchase Order
+	/** Set Tax base Amount.
+	  * Base for calculating the tax amount
 	  */
-	public void setRef_Order_ID (int Ref_Order_ID);
+	public void setTaxBaseAmt (BigDecimal TaxBaseAmt);
 
-	/** Get Referenced Order.
-	  * Reference to corresponding Sales/Purchase Order
+	/** Get Tax base Amount.
+	  * Base for calculating the tax amount
 	  */
-	public int getRef_Order_ID();
-
-	public eone.base.model.I_C_Order getRef_Order() throws RuntimeException;
-
-    /** Column name TotalLines */
-    public static final String COLUMNNAME_TotalLines = "TotalLines";
-
-	/** Set Total Lines.
-	  * Total of all document lines
-	  */
-	public void setTotalLines (BigDecimal TotalLines);
-
-	/** Get Total Lines.
-	  * Total of all document lines
-	  */
-	public BigDecimal getTotalLines();
+	public BigDecimal getTaxBaseAmt();
 
     /** Column name Updated */
     public static final String COLUMNNAME_Updated = "Updated";

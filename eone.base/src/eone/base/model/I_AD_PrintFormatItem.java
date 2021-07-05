@@ -1,18 +1,6 @@
 /******************************************************************************
- * Product: iDempiere ERP & CRM Smart Business Solution                       *
- * Copyright (C) 1999-2012 ComPiere, Inc. All Rights Reserved.                *
- * This program is free software, you can redistribute it and/or modify it    *
- * under the terms version 2 of the GNU General Public License as published   *
- * by the Free Software Foundation. This program is distributed in the hope   *
- * that it will be useful, but WITHOUT ANY WARRANTY, without even the implied *
- * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.           *
- * See the GNU General Public License for more details.                       *
- * You should have received a copy of the GNU General Public License along    *
- * with this program, if not, write to the Free Software Foundation, Inc.,    *
- * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.                     *
- * For the text or an alternative of this public license, you may reach us    *
- * ComPiere, Inc., 2620 Augustine Dr. #245, Santa Clara, CA 95054, USA        *
- * or via info@compiere.org or http://www.compiere.org/license.html           *
+ * Product: EOoe ERP & CRM Smart Business Solution	                        *
+ * Copyright (C) 2020, Inc. All Rights Reserved.				                *
  *****************************************************************************/
 package eone.base.model;
 
@@ -21,7 +9,7 @@ import java.sql.Timestamp;
 import org.compiere.util.KeyNamePair;
 
 /** Generated Interface for AD_PrintFormatItem
- *  @author iDempiere (generated) 
+ *  @author EOne (generated) 
  *  @version Version 1.0
  */
 public interface I_AD_PrintFormatItem 
@@ -212,15 +200,6 @@ public interface I_AD_PrintFormatItem
 	/** Get FormulaSetup	  */
 	public String getFormulaSetup();
 
-    /** Column name IsAccumulateCal */
-    public static final String COLUMNNAME_IsAccumulateCal = "IsAccumulateCal";
-
-	/** Set Calculate Accumulate	  */
-	public void setIsAccumulateCal (boolean IsAccumulateCal);
-
-	/** Get Calculate Accumulate	  */
-	public boolean isAccumulateCal();
-
     /** Column name IsActive */
     public static final String COLUMNNAME_IsActive = "IsActive";
 
@@ -233,41 +212,6 @@ public interface I_AD_PrintFormatItem
 	  * The record is active in the system
 	  */
 	public boolean isActive();
-
-    /** Column name IsAveraged */
-    public static final String COLUMNNAME_IsAveraged = "IsAveraged";
-
-	/** Set Calculate Mean (μ).
-	  * Calculate Average of numeric content or length
-	  */
-	public void setIsAveraged (boolean IsAveraged);
-
-	/** Get Calculate Mean (μ).
-	  * Calculate Average of numeric content or length
-	  */
-	public boolean isAveraged();
-
-    /** Column name IsBalanceFinal */
-    public static final String COLUMNNAME_IsBalanceFinal = "IsBalanceFinal";
-
-	/** Set Balance Final	  */
-	public void setIsBalanceFinal (boolean IsBalanceFinal);
-
-	/** Get Balance Final	  */
-	public boolean isBalanceFinal();
-
-    /** Column name IsCounted */
-    public static final String COLUMNNAME_IsCounted = "IsCounted";
-
-	/** Set Calculate Count (№).
-	  * Count number of not empty elements
-	  */
-	public void setIsCounted (boolean IsCounted);
-
-	/** Get Calculate Count (№).
-	  * Count number of not empty elements
-	  */
-	public boolean isCounted();
 
     /** Column name IsCountedGroup */
     public static final String COLUMNNAME_IsCountedGroup = "IsCountedGroup";
@@ -304,32 +248,6 @@ public interface I_AD_PrintFormatItem
 	/** Get IsMapColumnSelectSQL	  */
 	public boolean isMapColumnSelectSQL();
 
-    /** Column name IsMaxCalc */
-    public static final String COLUMNNAME_IsMaxCalc = "IsMaxCalc";
-
-	/** Set Calculate Maximum (↑).
-	  * Calculate the maximum amount
-	  */
-	public void setIsMaxCalc (boolean IsMaxCalc);
-
-	/** Get Calculate Maximum (↑).
-	  * Calculate the maximum amount
-	  */
-	public boolean isMaxCalc();
-
-    /** Column name IsMinCalc */
-    public static final String COLUMNNAME_IsMinCalc = "IsMinCalc";
-
-	/** Set Calculate Minimum (↓).
-	  * Calculate the minimum amount
-	  */
-	public void setIsMinCalc (boolean IsMinCalc);
-
-	/** Get Calculate Minimum (↓).
-	  * Calculate the minimum amount
-	  */
-	public boolean isMinCalc();
-
     /** Column name IsPrintBarcodeText */
     public static final String COLUMNNAME_IsPrintBarcodeText = "IsPrintBarcodeText";
 
@@ -355,19 +273,6 @@ public interface I_AD_PrintFormatItem
 	  * Indicates if this document / line is printed
 	  */
 	public boolean isPrinted();
-
-    /** Column name IsSummarized */
-    public static final String COLUMNNAME_IsSummarized = "IsSummarized";
-
-	/** Set Calculate Sum (Σ).
-	  * Calculate the Sum of numeric content or length
-	  */
-	public void setIsSummarized (boolean IsSummarized);
-
-	/** Get Calculate Sum (Σ).
-	  * Calculate the Sum of numeric content or length
-	  */
-	public boolean isSummarized();
 
     /** Column name IsZoom */
     public static final String COLUMNNAME_IsZoom = "IsZoom";

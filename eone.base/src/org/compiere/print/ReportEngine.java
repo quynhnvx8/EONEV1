@@ -496,7 +496,7 @@ public class ReportEngine implements PrintServiceAttributeListener
 			
 			ProcessInfo pi = (ProcessInfo)m_params.get("ProcessInfo");
 			int countRow = pi.getRowCountQuery();
-			ArrayList<ArrayList<PrintDataItem>> dataQuery = pi.getDataQuery();
+			ArrayList<ArrayList<PrintDataItem>> dataQuery = pi.getDataQueryC();
 			int maxRow = pi.getMaxRow();
 			//Add Header
 			tr tr = new tr();

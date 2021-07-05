@@ -65,7 +65,7 @@ public class PrintDataXLSXExporter
 		rowCount = info.getRowCountQuery();
 		windowNo = (int)m_params.get("WindowNo");
 		columnCount = info.getColumnCountQuery();
-		dataQuery = info.getDataQuery();
+		dataQuery = info.getDataQueryC();
 		m_workbook = new XSSFWorkbook();
 		m_params.clear();
 		

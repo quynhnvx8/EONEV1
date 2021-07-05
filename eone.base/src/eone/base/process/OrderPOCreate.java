@@ -221,15 +221,12 @@ public class OrderPOCreate extends SvrProcess
 					if (soLines[i].getM_Product_ID() == M_Product_ID)
 					{
 						MOrderLine poLine = new MOrderLine (po);
-						poLine.setRef_OrderLine_ID(soLines[i].getC_OrderLine_ID());
 						poLine.setM_Product_ID(soLines[i].getM_Product_ID());
 						poLine.setC_UOM_ID(soLines[i].getC_UOM_ID());
-						poLine.setQtyOrdered(soLines[i].getQtyOrdered());
+						poLine.setQty(soLines[i].getQty());
 						poLine.setDescription(soLines[i].getDescription());
-						poLine.setPrice();
 						poLine.saveEx();
 						
-						soLines[i].setRef_OrderLine_ID(poLine.getC_OrderLine_ID());
 						soLines[i].saveEx();
 					}
 				}
@@ -248,7 +245,6 @@ public class OrderPOCreate extends SvrProcess
 		//	Set Reference to PO
 		if (counter == 1 && po != null)
 		{
-			so.setRef_Order_ID(po.getC_Order_ID());
 			so.saveEx();
 		}
 		return counter;
@@ -263,7 +259,6 @@ public class OrderPOCreate extends SvrProcess
 	{
 		MOrder po = new MOrder (getCtx(), 0, get_TrxName());
 		po.setClientOrg(so.getAD_Client_ID(), so.getAD_Org_ID());
-		po.setRef_Order_ID(so.getC_Order_ID());
 		//
 		po.setDescription(so.getDescription());
 		po.setM_Warehouse_ID(so.getM_Warehouse_ID());
@@ -271,7 +266,6 @@ public class OrderPOCreate extends SvrProcess
 		MBPartner vendor = new MBPartner (getCtx(), C_BPartner_ID, get_TrxName());
 		po.setBPartner(vendor);
 		
-		po.setC_Project_ID(so.getC_Project_ID());
 		//
 		po.saveEx();
 		return po;

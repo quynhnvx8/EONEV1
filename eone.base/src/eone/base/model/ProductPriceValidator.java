@@ -28,7 +28,7 @@ public class ProductPriceValidator implements ModelValidator {
 	}
 
 	public void initialize(ModelValidationEngine engine, MClient client) {
-		engine.addModelChange(MProductPrice.Table_Name, this);
+		engine.addModelChange(MPrice.Table_Name, this);
 		if (client != null)
 			m_AD_Client_ID = client.getAD_Client_ID();
 	}

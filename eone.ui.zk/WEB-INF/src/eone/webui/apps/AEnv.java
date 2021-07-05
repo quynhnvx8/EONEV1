@@ -1,19 +1,3 @@
-/******************************************************************************
- * Product: Posterita Ajax UI 												  *
- * Copyright (C) 2007 Posterita Ltd.  All Rights Reserved.                    *
- * This program is free software; you can redistribute it and/or modify it    *
- * under the terms version 2 of the GNU General Public License as published   *
- * by the Free Software Foundation. This program is distributed in the hope   *
- * that it will be useful, but WITHOUT ANY WARRANTY; without even the implied *
- * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.           *
- * See the GNU General Public License for more details.                       *
- * You should have received a copy of the GNU General Public License along    *
- * with this program; if not, write to the Free Software Foundation, Inc.,    *
- * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.                     *
- * For the text or an alternative of this public license, you may reach us    *
- * Posterita Ltd., 3, Draper Avenue, Quatre Bornes, Mauritius                 *
- * or via info@posterita.org or http://www.posterita.org/                     *
- *****************************************************************************/
 
 package eone.webui.apps;
 
@@ -80,23 +64,12 @@ import eone.webui.theme.ThemeManager;
 import eone.webui.util.IServerPushCallback;
 import eone.webui.util.ServerPushTemplate;
 
-/**
- *  ZK Application Environment and utilities
- *
- *  @author 	Jorg Janke
- *  @version 	$Id: AEnv.java,v 1.2 2006/07/30 00:51:27 jjanke Exp $
- *
- *  Colin Rooney (croo) & kstan_79 RFE#1670185
- */
+
 public final class AEnv
 {
 	public static final String LOCALE = Env.LOCALE;
 	
-	/**
-	 *  Show in the center of the screen.
-	 *  (pack, set location and set visibility)
-	 * 	@param window Window to position
-	 */
+
 	public static void showCenterScreen(Window window)
 	{
 		if (SessionManager.getAppDesktop() != null)
@@ -114,34 +87,20 @@ public final class AEnv
 		}
 	}   //  showCenterScreen
 
-	/**
-	 *  Show in the center of the screen.
-	 *  (pack, set location and set visibility)
-	 * 	@param window Window to position
-	 * 	@param position
-	 */
+
 	public static void showScreen(Window window, String position)
 	{
 		SessionManager.getAppDesktop().showWindow(window, position);
 	}   //  showScreen
 
-	/**
-	 *	Position in center of the parent window.
-	 *  (pack, set location and set visibility)
-	 * 	@param parent Parent Window
-	 * 	@param window Window to position
-	 */
+
 	public static void showCenterWindow(Window parent, Window window)
 	{
 		parent.appendChild(window);
 		showScreen(window, "parent,center");
 	}   //  showCenterWindow
 
-	/**
-	 *  Get Mnemonic character from text.
-	 *  @param text text with '&'
-	 *  @return Mnemonic or 0
-	 */
+
 	public static char getMnemonic (String text)
 	{
 
@@ -153,11 +112,7 @@ public final class AEnv
 	}   //  getMnemonic
 
 
-	/*************************************************************************
-	 * 	Zoom
-	 *	@param AD_Table_ID
-	 *	@param Record_ID
-	 */
+
 	public static void zoom (int AD_Table_ID, int Record_ID)
 	{
 		int AD_Window_ID = Env.getZoomWindowID(AD_Table_ID, Record_ID);
@@ -182,12 +137,7 @@ public final class AEnv
 		zoom(AD_Window_ID, query);
 	}
 
-	/*************************************************************************
-	 * 	Zoom
-	 *	@param AD_Table_ID
-	 *	@param Record_ID
-	 *	@param query
-	 */
+
 	public static void zoom (int AD_Table_ID, int Record_ID, MQuery query, int windowNo)
 	{
 		int AD_Window_ID = Env.getZoomWindowID(AD_Table_ID, Record_ID, windowNo);
@@ -242,14 +192,7 @@ public final class AEnv
 	/**	Window Cache		*/
 	private static Map<String, CCache<String,GridWindowVO>> windowCache = new HashMap<String, CCache<String,GridWindowVO>>();
 
-	/**
-	 *  Get Window Model
-	 *
-	 *  @param WindowNo  Window No
-	 *  @param AD_Window_ID window
-	 *  @param AD_Menu_ID menu
-	 *  @return Model Window Value Obkect
-	 */
+
 	public static GridWindowVO getMWindowVO (int WindowNo, int AD_Window_ID, int AD_Menu_ID)
 	{
 
@@ -318,34 +261,7 @@ public final class AEnv
 
 	}   //  getWindow
 
-	/**
-	 *  Post Immediate
-	 *  @param  WindowNo 		window
-	 *  @param  AD_Table_ID     Table ID of Document
-	 *  @param  AD_Client_ID    Client ID of Document
-	 *  @param  Record_ID       Record ID of this document
-	 *  @param  force           force posting
-	 *  @return null if success, otherwise error
-	 */
-	/*Quynhnv.x8: BO Khong cho POST o nhieu noi
-	public static String postImmediate (int WindowNo, int AD_Client_ID,
-		int AD_Table_ID, int Record_ID, boolean force)
-	{
-
-		log.info("Window=" + WindowNo
-			+ ", AD_Table_ID=" + AD_Table_ID + "/" + Record_ID
-			+ ", Force=" + force);
-
-		return Doc.manualPosting(WindowNo, AD_Client_ID, AD_Table_ID, Record_ID, force);
-	}   //  postImmediate
-
-	*/
 	
-	/**
-	 *  Cache Reset
-	 *  @param  tableName	table name
-	 *  @param  Record_ID	record id
-	 */
 	public static void cacheReset (String tableName, int Record_ID)
 	{
 
@@ -479,12 +395,7 @@ public final class AEnv
 		showZoomWindow(AD_Window_ID, query);
 	}
 
-	/**
-	 *  Get ImageIcon.
-	 *
-	 *  @param fileNameInImageDir full file name in imgaes folder (e.g. Bean16.png)
-	 *  @return image
-	 */
+
     public static URI getImage(String fileNameInImageDir)
     {
         URI uri = null;
@@ -571,12 +482,7 @@ public final class AEnv
     	return false;
     }
 
-    /**
-     *
-     * @param parent
-     * @param child
-     * @return boolean
-     */
+
     public static boolean contains(Component parent, Component child) {
     	if (child == parent)
     		return true;
@@ -591,14 +497,7 @@ public final class AEnv
     	return false;
     }
 
-    /**
-     *
-     * @param pdfList
-     * @param outFile
-     * @throws IOException
-     * @throws DocumentException
-     * @throws FileNotFoundException
-     */
+
     public static void mergePdf(List<File> pdfList, File outFile) throws IOException,
 			DocumentException, FileNotFoundException {
 		Document document = null;
@@ -684,13 +583,7 @@ public final class AEnv
 		return Env.getLocale(ctx);
 	}
 
-	/**
-	 * Get title for dialog window
-	 * @param ctx
-	 * @param windowNo
-	 * @param prefix
-	 * @return dialog header
-	 */
+
 	public static String getDialogHeader(Properties ctx, int windowNo, String prefix) {
 		StringBuilder sb = new StringBuilder();
 		if (prefix != null)
@@ -780,14 +673,7 @@ public final class AEnv
 		return ClientInfo.isMobile();
 	}
 	
-	/**
-	 * Get adWindowId below gridField
-	 * when field lie in window, it's id of this window
-	 * when field lie in process parameter dialog it's ad_window_id of window open this process
-	 * when field lie in process parameter open in a standalone window (run process from menu) return id of dummy window
-	 * @param mField
-	 * @return
-	 */
+
 	public static int getADWindowID (int windowNo){
 		int adWindowID = 0;
 		// form process parameter panel

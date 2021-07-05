@@ -407,10 +407,10 @@ public class ZkReportViewer extends Window implements EventListener<Event>, ITab
 							int windowNo = (int)m_params.get("WindowNo");
 							String zoomQuery = query.getZoomLogic();
 							String codeZoom = query.getZoomValue().toString();
-							if (zoomQuery.contains("@value%@")) {
+							if (zoomQuery.toLowerCase().contains("@value%@")) {
 								zoomQuery = zoomQuery.replaceAll("@value%@", "'" + codeZoom + "%'");
 							}
-							if (zoomQuery.contains("@value@")) {
+							if (zoomQuery.toLowerCase().contains("@value@")) {
 								zoomQuery = zoomQuery.replaceAll("@value@", "'" + codeZoom + "'");
 							}
 							zoomQuery = Env.parseContext(Env.getCtx(), windowNo,  zoomQuery, false);
@@ -1024,7 +1024,7 @@ public class ZkReportViewer extends Window implements EventListener<Event>, ITab
 				ProcessInfo pi = (ProcessInfo)m_params.get("ProcessInfo");
 				windowNo = (int)m_params.get("WindowNo");
 				int countRow = pi.getRowCountQuery();
-				ArrayList<ArrayList<PrintDataItem>> dataQuery = pi.getDataQuery();
+				ArrayList<ArrayList<PrintDataItem>> dataQuery = pi.getDataQueryC();
 				int maxRow = pi.getMaxRow();
 				//Add Header
 				tr tr = new tr();

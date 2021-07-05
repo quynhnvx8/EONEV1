@@ -21,8 +21,7 @@ public class PrintDataItem implements Serializable
 
 	public PrintDataItem (String columnName, Serializable value, int displayType, String format, String zoomLogic, 
 			int alignment, String setupFormular,
-			boolean isGroup, boolean isSum, boolean isMin, boolean isMax, boolean isAvg, 
-			boolean isCount, boolean isCountG, boolean isBalance, String tableLink,
+			boolean isGroup, boolean isCountG, String tableLink,
 			int rotation)
 	{
 		if (columnName == null)
@@ -35,13 +34,7 @@ public class PrintDataItem implements Serializable
 		m_Alignment = alignment;
 		m_setupFormular = setupFormular;
 		setGroup(isGroup);
-		setSum(isSum);
-		setMin(isMin);
-		setMax(isMax);
-		setAvg(isAvg);
-		setCount(isCount);
 		setCountG(isCountG);
-		setBalance(isBalance);
 		setTableLink(tableLink);
 		setRotation(rotation);
 		
@@ -57,13 +50,7 @@ public class PrintDataItem implements Serializable
 	private int m_Alignment;
 	private String m_setupFormular = "";
 	private boolean isGroup = false;
-	private boolean isSum = false;
-	private boolean isCount = false;
-	private boolean isMax = false;
-	private boolean isMin = false;
-	private boolean isAvg = false;
 	private boolean isCountG = false;
-	private boolean isBalance = false;
 	private String tableLink = "";
 	private int rotation = 0;
 
@@ -80,13 +67,6 @@ public class PrintDataItem implements Serializable
 		return isGroup;
 	}
 
-	public boolean isBalance() {
-		return isBalance;
-	}
-
-	public void setBalance(boolean isBalance) {
-		this.isBalance = isBalance;
-	}
 
 	public String getTableLink() {
 		return tableLink;
@@ -100,45 +80,6 @@ public class PrintDataItem implements Serializable
 		this.isGroup = isGroup;
 	}
 
-	public boolean isSum() {
-		return isSum;
-	}
-
-	public void setSum(boolean isSum) {
-		this.isSum = isSum;
-	}
-
-	public boolean isCount() {
-		return isCount;
-	}
-
-	public void setCount(boolean isCount) {
-		this.isCount = isCount;
-	}
-
-	public boolean isMax() {
-		return isMax;
-	}
-
-	public void setMax(boolean isMax) {
-		this.isMax = isMax;
-	}
-
-	public boolean isMin() {
-		return isMin;
-	}
-
-	public void setMin(boolean isMin) {
-		this.isMin = isMin;
-	}
-
-	public boolean isAvg() {
-		return isAvg;
-	}
-
-	public void setAvg(boolean isAvg) {
-		this.isAvg = isAvg;
-	}
 
 	public boolean isCountG() {
 		return isCountG;

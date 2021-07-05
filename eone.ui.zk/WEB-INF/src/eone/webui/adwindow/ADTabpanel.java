@@ -58,7 +58,6 @@ import eone.base.model.I_AD_Preference;
 import eone.base.model.MColumn;
 import eone.base.model.MPreference;
 import eone.base.model.MRole;
-import eone.base.model.MStyle;
 import eone.base.model.MSysConfig;
 import eone.base.model.MTab;
 import eone.base.model.MTable;
@@ -96,7 +95,6 @@ import eone.webui.editor.WPaymentEditor;
 import eone.webui.editor.WebEditorFactory;
 import eone.webui.event.ContextMenuListener;
 import eone.webui.session.SessionManager;
-import eone.webui.theme.ThemeManager;
 import eone.webui.util.GridTabDataBinder;
 import eone.webui.util.TreeUtils;
 import eone.webui.util.ZKUpdateUtil;
@@ -616,11 +614,12 @@ DataStatusListener, IADTabpanel, IdSpace, IFieldEditorContainer
 			//Xu ly phan sinh giao dien doi voi nhung component nao co NumLines > 0
 			
         	int xpos = field.getXPosition();
-        	if (xpos + columnSpan > numCols && diff > 0)//xpos + 
+        	
+        	if (xpos > numCols && diff > 0)//xpos +  + columnSpan
         	{
         		xpos = xpos - diff;
         		if (xpos <= 0)
-        			xpos = 1;        		
+        			xpos = xpos + 2;        		
         	}
         	
         	

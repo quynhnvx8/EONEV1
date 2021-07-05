@@ -1,18 +1,6 @@
 /******************************************************************************
- * Product: iDempiere ERP & CRM Smart Business Solution                       *
- * Copyright (C) 1999-2012 ComPiere, Inc. All Rights Reserved.                *
- * This program is free software, you can redistribute it and/or modify it    *
- * under the terms version 2 of the GNU General Public License as published   *
- * by the Free Software Foundation. This program is distributed in the hope   *
- * that it will be useful, but WITHOUT ANY WARRANTY, without even the implied *
- * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.           *
- * See the GNU General Public License for more details.                       *
- * You should have received a copy of the GNU General Public License along    *
- * with this program, if not, write to the Free Software Foundation, Inc.,    *
- * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.                     *
- * For the text or an alternative of this public license, you may reach us    *
- * ComPiere, Inc., 2620 Augustine Dr. #245, Santa Clara, CA 95054, USA        *
- * or via info@compiere.org or http://www.compiere.org/license.html           *
+ * Product: EOoe ERP & CRM Smart Business Solution	                        *
+ * Copyright (C) 2020, Inc. All Rights Reserved.				                *
  *****************************************************************************/
 /** Generated Model - DO NOT CHANGE */
 package eone.base.model;
@@ -22,7 +10,7 @@ import java.util.Properties;
 import org.compiere.util.KeyNamePair;
 
 /** Generated Model for AD_PrintFormatItem
- *  @author iDempiere (generated) 
+ *  @author EOne (generated) 
  *  @version Version 1.0 - $Id$ */
 public class X_AD_PrintFormatItem extends PO implements I_AD_PrintFormatItem, I_Persistent 
 {
@@ -30,7 +18,7 @@ public class X_AD_PrintFormatItem extends PO implements I_AD_PrintFormatItem, I_
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = 20201021L;
+	private static final long serialVersionUID = 20210701L;
 
     /** Standard Constructor */
     public X_AD_PrintFormatItem (Properties ctx, int AD_PrintFormatItem_ID, String trxName)
@@ -42,17 +30,12 @@ public class X_AD_PrintFormatItem extends PO implements I_AD_PrintFormatItem, I_
 			setAD_PrintFormatItem_ID (0);
 			setFieldAlignmentType (null);
 // D
-			setIsAveraged (false);
-			setIsCounted (false);
 			setIsCountedGroup (false);
 // N
-			setIsMaxCalc (false);
-			setIsMinCalc (false);
 			setIsPrintBarcodeText (true);
 // Y
 			setIsPrinted (true);
 // Y
-			setIsSummarized (false);
 			setMaxHeight (0);
 			setMaxWidth (0);
 			setName (null);
@@ -385,96 +368,6 @@ public class X_AD_PrintFormatItem extends PO implements I_AD_PrintFormatItem, I_
 		return (String)get_Value(COLUMNNAME_FormulaSetup);
 	}
 
-	/** Set Calculate Accumulate.
-		@param IsAccumulateCal Calculate Accumulate	  */
-	public void setIsAccumulateCal (boolean IsAccumulateCal)
-	{
-		set_Value (COLUMNNAME_IsAccumulateCal, Boolean.valueOf(IsAccumulateCal));
-	}
-
-	/** Get Calculate Accumulate.
-		@return Calculate Accumulate	  */
-	public boolean isAccumulateCal () 
-	{
-		Object oo = get_Value(COLUMNNAME_IsAccumulateCal);
-		if (oo != null) 
-		{
-			 if (oo instanceof Boolean) 
-				 return ((Boolean)oo).booleanValue(); 
-			return "Y".equals(oo);
-		}
-		return false;
-	}
-
-	/** Set Calculate Mean (μ).
-		@param IsAveraged 
-		Calculate Average of numeric content or length
-	  */
-	public void setIsAveraged (boolean IsAveraged)
-	{
-		set_Value (COLUMNNAME_IsAveraged, Boolean.valueOf(IsAveraged));
-	}
-
-	/** Get Calculate Mean (μ).
-		@return Calculate Average of numeric content or length
-	  */
-	public boolean isAveraged () 
-	{
-		Object oo = get_Value(COLUMNNAME_IsAveraged);
-		if (oo != null) 
-		{
-			 if (oo instanceof Boolean) 
-				 return ((Boolean)oo).booleanValue(); 
-			return "Y".equals(oo);
-		}
-		return false;
-	}
-
-	/** Set Balance Final.
-		@param IsBalanceFinal Balance Final	  */
-	public void setIsBalanceFinal (boolean IsBalanceFinal)
-	{
-		set_Value (COLUMNNAME_IsBalanceFinal, Boolean.valueOf(IsBalanceFinal));
-	}
-
-	/** Get Balance Final.
-		@return Balance Final	  */
-	public boolean isBalanceFinal () 
-	{
-		Object oo = get_Value(COLUMNNAME_IsBalanceFinal);
-		if (oo != null) 
-		{
-			 if (oo instanceof Boolean) 
-				 return ((Boolean)oo).booleanValue(); 
-			return "Y".equals(oo);
-		}
-		return false;
-	}
-
-	/** Set Calculate Count (№).
-		@param IsCounted 
-		Count number of not empty elements
-	  */
-	public void setIsCounted (boolean IsCounted)
-	{
-		set_Value (COLUMNNAME_IsCounted, Boolean.valueOf(IsCounted));
-	}
-
-	/** Get Calculate Count (№).
-		@return Count number of not empty elements
-	  */
-	public boolean isCounted () 
-	{
-		Object oo = get_Value(COLUMNNAME_IsCounted);
-		if (oo != null) 
-		{
-			 if (oo instanceof Boolean) 
-				 return ((Boolean)oo).booleanValue(); 
-			return "Y".equals(oo);
-		}
-		return false;
-	}
-
 	/** Set Counted Group.
 		@param IsCountedGroup 
 		Counted Group
@@ -544,54 +437,6 @@ public class X_AD_PrintFormatItem extends PO implements I_AD_PrintFormatItem, I_
 		return false;
 	}
 
-	/** Set Calculate Maximum (↑).
-		@param IsMaxCalc 
-		Calculate the maximum amount
-	  */
-	public void setIsMaxCalc (boolean IsMaxCalc)
-	{
-		set_Value (COLUMNNAME_IsMaxCalc, Boolean.valueOf(IsMaxCalc));
-	}
-
-	/** Get Calculate Maximum (↑).
-		@return Calculate the maximum amount
-	  */
-	public boolean isMaxCalc () 
-	{
-		Object oo = get_Value(COLUMNNAME_IsMaxCalc);
-		if (oo != null) 
-		{
-			 if (oo instanceof Boolean) 
-				 return ((Boolean)oo).booleanValue(); 
-			return "Y".equals(oo);
-		}
-		return false;
-	}
-
-	/** Set Calculate Minimum (↓).
-		@param IsMinCalc 
-		Calculate the minimum amount
-	  */
-	public void setIsMinCalc (boolean IsMinCalc)
-	{
-		set_Value (COLUMNNAME_IsMinCalc, Boolean.valueOf(IsMinCalc));
-	}
-
-	/** Get Calculate Minimum (↓).
-		@return Calculate the minimum amount
-	  */
-	public boolean isMinCalc () 
-	{
-		Object oo = get_Value(COLUMNNAME_IsMinCalc);
-		if (oo != null) 
-		{
-			 if (oo instanceof Boolean) 
-				 return ((Boolean)oo).booleanValue(); 
-			return "Y".equals(oo);
-		}
-		return false;
-	}
-
 	/** Set Print Barcode Text.
 		@param IsPrintBarcodeText 
 		Print barcode text at the bottom of barcode
@@ -631,30 +476,6 @@ public class X_AD_PrintFormatItem extends PO implements I_AD_PrintFormatItem, I_
 	public boolean isPrinted () 
 	{
 		Object oo = get_Value(COLUMNNAME_IsPrinted);
-		if (oo != null) 
-		{
-			 if (oo instanceof Boolean) 
-				 return ((Boolean)oo).booleanValue(); 
-			return "Y".equals(oo);
-		}
-		return false;
-	}
-
-	/** Set Calculate Sum (Σ).
-		@param IsSummarized 
-		Calculate the Sum of numeric content or length
-	  */
-	public void setIsSummarized (boolean IsSummarized)
-	{
-		set_Value (COLUMNNAME_IsSummarized, Boolean.valueOf(IsSummarized));
-	}
-
-	/** Get Calculate Sum (Σ).
-		@return Calculate the Sum of numeric content or length
-	  */
-	public boolean isSummarized () 
-	{
-		Object oo = get_Value(COLUMNNAME_IsSummarized);
 		if (oo != null) 
 		{
 			 if (oo instanceof Boolean) 
@@ -801,6 +622,8 @@ public class X_AD_PrintFormatItem extends PO implements I_AD_PrintFormatItem, I_
 	public static final String PRINTAREATYPE_Header = "H";
 	/** Footer = F */
 	public static final String PRINTAREATYPE_Footer = "F";
+	/** Content Other = O */
+	public static final String PRINTAREATYPE_ContentOther = "O";
 	/** Set Area.
 		@param PrintAreaType 
 		Print Area

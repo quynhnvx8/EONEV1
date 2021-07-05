@@ -83,7 +83,7 @@ public class OrderLineCreateShipment extends SvrProcess
 		if (!MOrder.DOCSTATUS_Completed.equals(order.getDocStatus()))
 			throw new IllegalArgumentException(Msg.getMsg(getCtx(), "Order not completed"));
 		
-		if ( (line.getQtyOrdered().subtract(line.getQtyDelivered())).compareTo(Env.ZERO) <= 0 )
+		if ( (line.getQty().subtract(line.getQtyDelivered())).compareTo(Env.ZERO) <= 0 )
 			return Msg.getMsg(getCtx(), "Ordered quantity already shipped");
 		
 		int C_DocTypeShipment_ID = DB.getSQLValue(get_TrxName(),

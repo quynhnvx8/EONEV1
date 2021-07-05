@@ -1,9 +1,12 @@
 package eone.base.model;
 
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 import java.util.logging.Level;
 
+import org.compiere.util.DB;
 import org.compiere.util.Env;
 
 import eone.base.process.DocAction;
@@ -32,7 +35,19 @@ public class MPrice extends X_M_Price implements DocAction
 
 	@Override
 	protected boolean beforeSave(boolean newRecord) {
-		
+		if (is_ValueChanged(X_M_Price.COLUMNNAME_ValidFrom) || is_ValueChanged(X_M_Price.COLUMNNAME_ValidTo)) {
+			String sql = "Select count(1) From M_Price Where ((? between ValidFrom And ValidTo) Or (? between ValidFrom And ValidTo)) And M_Price_ID > 0 And M_Price_ID != ? And M_Product_ID = ?";
+			List<Object> params = new ArrayList<Object>();
+			params.add(getValidFrom());
+			params.add(getValidTo());
+			params.add(getM_Price_ID());
+			params.add(getM_Product_ID());
+			int no = DB.getSQLValue(null, sql, params);
+			if (no > 0) {
+				log.saveError("Save Error!", "Thời gian không hợp lệ");
+				return false;
+			}
+		}
 		return true;
 	}
 

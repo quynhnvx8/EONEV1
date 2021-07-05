@@ -87,7 +87,35 @@ public class ProcessInfo implements Serializable
 	private int columnCountQuery = 0;
 	
 	//Lay du lieu tu ProcedureName mapping theo PrintFormatItem
-	private ArrayList<ArrayList<PrintDataItem>> dataQuery = null;
+	private ArrayList<ArrayList<PrintDataItem>> dataQueryC = null; //Content
+	private ArrayList<ArrayList<PrintDataItem>> dataQueryH = null; //Header
+	private ArrayList<ArrayList<PrintDataItem>> dataQueryF = null; //Footer
+	
+	
+	
+	public ArrayList<ArrayList<PrintDataItem>> getDataQueryH() {
+		return dataQueryH;
+	}
+
+	public void setDataQueryH(ArrayList<ArrayList<PrintDataItem>> dataQueryH) {
+		this.dataQueryH = dataQueryH;
+	}
+
+	public ArrayList<ArrayList<PrintDataItem>> getDataQueryF() {
+		return dataQueryF;
+	}
+
+	public void setDataQueryF(ArrayList<ArrayList<PrintDataItem>> dataQueryF) {
+		this.dataQueryF = dataQueryF;
+	}
+
+	public ArrayList<ArrayList<PrintDataItem>> getDataQueryC() {
+		return dataQueryC;
+	}
+
+	public void setDataQueryC(ArrayList<ArrayList<PrintDataItem>> dataQueryC) {
+		this.dataQueryC = dataQueryC;
+	}
 	
 	//Lay do rong cua bang theo cau hinh tu PrintFormatItem
 	private float [] widthTable = null;
@@ -126,13 +154,7 @@ public class ProcessInfo implements Serializable
 	public void setColumnCountQuery(int columnCountQuery) {
 		this.columnCountQuery = columnCountQuery;
 	}
-	public ArrayList<ArrayList<PrintDataItem>> getDataQuery() {
-		return dataQuery;
-	}
-
-	public void setDataQuery(ArrayList<ArrayList<PrintDataItem>> dataQuery) {
-		this.dataQuery = dataQuery;
-	}
+	
 	//Quynhnv.x8 End add.
 	
 	/*	General Data Object			*/

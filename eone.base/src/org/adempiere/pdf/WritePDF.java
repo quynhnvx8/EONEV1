@@ -64,7 +64,7 @@ public class WritePDF {
 
 	
 	//Create Header
-	private static void createHeader(PdfPTable table, HashMap<String, Object> m_params, MPrintFormat format, BaseFont courier, int columnCount) {
+	private void createHeader(PdfPTable table, HashMap<String, Object> m_params, MPrintFormat format, BaseFont courier, int columnCount) {
 		//MClientInfo ci = MClientInfo.get(Env.getCtx());
 		PdfPCell cell = null;
 		Font smallfont = new Font(courier,10, Font.BOLD);
@@ -75,76 +75,58 @@ public class WritePDF {
 		if (m_params.get("TEMPAPPLY") != null) {
 			tempApply = m_params.get("TEMPAPPLY").toString();
 		}
-		//Neu khong cau hinh header
-		//Header la Title bao cao tro len tren. Cac tham so khong dua vao cau hinh. Cac tham so se duoc lay tu giao dien chon bao cao
-		if (header.length == 0) {
-			//row1
-			cell = new PdfPCell(new Phrase(company, smallfont));
-	        cell.setNoWrap(false);
-	        cell.setHorizontalAlignment(Element.ALIGN_LEFT);
-	        cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-	        cell.setBorder(Rectangle.NO_BORDER);
-	        cell.setColspan((int)columnCount/2);
-	        cell.setPadding(4);
-	        table.addCell(cell);
-	        
-	        smallfont = new Font(courier,10, Font.NORMAL);
-	        cell = new PdfPCell(new Phrase(tempApply, smallfont));
-	        cell.setNoWrap(false);
-	        cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-	        cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-	        cell.setBorder(Rectangle.NO_BORDER);
-	        cell.setColspan(columnCount - (int)columnCount/2);
-	        cell.setRowspan(2);
-	        cell.setPadding(4);
-	        table.addCell(cell);
-	        
-			//row 2
-	        
-	        cell = new PdfPCell(new Phrase(address, smallfont));
-	        cell.setNoWrap(false);
-	        cell.setHorizontalAlignment(Element.ALIGN_LEFT);
-	        cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-	        cell.setBorder(Rectangle.NO_BORDER);
-	        cell.setColspan((int)columnCount/2);
-	        cell.setPadding(4);
-	        table.addCell(cell);
-	        
-			//Fill Templete Reference (if any)
-			
-			//Fill Title Report
-	        smallfont = new Font(courier,10, Font.BOLD);
-			String titleReport = m_params.get("ReportName").toString().toUpperCase();
-			cell = new PdfPCell(new Phrase(titleReport, smallfont));
-	        cell.setNoWrap(false);
-	        cell.setHorizontalAlignment(Element.ALIGN_CENTER);
-	        cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-	        cell.setBorder(Rectangle.NO_BORDER);
-	        cell.setColspan(columnCount);
-	        cell.setBorderWidth(0.5f);
-	        cell.setPaddingBottom(5);
-	        table.addCell(cell);
-		}//End khong cau hinh heade, 
-		else {//Co cau hinh header
-			for( int i = 0; i < header.length; i++) {
-	        	MPrintFormatItem item = header[i];
-	        	String name = item.getName(language, windowNo);
-	        	if (name.contains("@")) {
-	        		name = Env.parseContext(Env.getCtx(), windowNo, name, false);
-	        	}
-	        	cell = new PdfPCell(new Phrase((String) name, smallfont));
-	        	cell.setNoWrap(false);
-	            cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-	            cell.setHorizontalAlignment(item.getAlignment());
-	            cell.setBorder(Rectangle.NO_BORDER);
-	            cell.setRowspan(item.getNumLines());
-	            cell.setColspan(item.getColumnSpan());
-	            cell.setPadding(4);
-	            table.addCell(cell); 
-	        }
-		}//End cau hinh header
 		
+		//Neu khong cau hinh header
+		
+		//Header la Title bao cao tro len tren. Cac tham so khong dua vao cau hinh. Cac tham so se duoc lay tu giao dien chon bao cao
+		//row1
+		cell = new PdfPCell(new Phrase(company, smallfont));
+        cell.setNoWrap(false);
+        cell.setHorizontalAlignment(Element.ALIGN_LEFT);
+        cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+        cell.setBorder(Rectangle.NO_BORDER);
+        cell.setColspan((int)columnCount/2);
+        cell.setPadding(4);
+        table.addCell(cell);
         
+        smallfont = new Font(courier,10, Font.NORMAL);
+        cell = new PdfPCell(new Phrase(tempApply, smallfont));
+        cell.setNoWrap(false);
+        cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+        cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+        cell.setBorder(Rectangle.NO_BORDER);
+        cell.setColspan(columnCount - (int)columnCount/2);
+        cell.setRowspan(2);
+        cell.setPadding(4);
+        table.addCell(cell);
+        
+		//row 2
+        
+        cell = new PdfPCell(new Phrase(address, smallfont));
+        cell.setNoWrap(false);
+        cell.setHorizontalAlignment(Element.ALIGN_LEFT);
+        cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+        cell.setBorder(Rectangle.NO_BORDER);
+        cell.setColspan((int)columnCount/2);
+        cell.setPadding(4);
+        table.addCell(cell);
+        
+		//Fill Templete Reference (if any)
+		
+		//Fill Title Report
+        smallfont = new Font(courier,10, Font.BOLD);
+		String titleReport = m_params.get("ReportName").toString().toUpperCase();
+		cell = new PdfPCell(new Phrase(titleReport, smallfont));
+        cell.setNoWrap(false);
+        cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+        cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+        cell.setBorder(Rectangle.NO_BORDER);
+        cell.setColspan(columnCount);
+        cell.setBorderWidth(0.5f);
+        cell.setPaddingBottom(5);
+        table.addCell(cell);
+        
+		
         //Fill Param:
         ProcessInfo processInfo = (ProcessInfo) m_params.get("ProcessInfo");
         ProcessInfoParameter[] para = processInfo.getProcessPara();
@@ -199,6 +181,39 @@ public class WritePDF {
         }
         //Fill Currency.
         
+
+        
+		for( int i = 0; i < header.length; i++) {			
+			cell = new PdfPCell(new Phrase("", smallfont));
+            cell.setNoWrap(false);
+            cell.setHorizontalAlignment(Element.ALIGN_LEFT);
+            cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+            cell.setBorder(Rectangle.NO_BORDER);
+            cell.setColspan(1);
+            cell.setPadding(4);
+            table.addCell(cell);
+            
+        	MPrintFormatItem item = header[i];
+        	String name = item.getName(language, windowNo);
+        	if (name.contains("@")) {
+        		name = Env.parseContext(Env.getCtx(), windowNo, name, false);
+        	}
+        	
+        	//Replace
+        	name = getContextHeader(name);
+        	//
+        	
+        	cell = new PdfPCell(new Phrase((String) name, smallfont));
+        	cell.setNoWrap(false);
+            cell.setVerticalAlignment(Element.ALIGN_LEFT);
+            cell.setHorizontalAlignment(Element.ALIGN_MIDDLE);
+            cell.setBorder(Rectangle.NO_BORDER);
+            //cell.setRowspan(item.getNumLines());
+            cell.setColspan(columnCount - 1);
+            cell.setPadding(4);
+            table.addCell(cell); 
+        }
+	//}//End cau hinh header
 	}//End Create Header
 	
 	//Create Footer
@@ -304,6 +319,8 @@ public class WritePDF {
     private static int countRow = 0;
     private static int windowNo = 0;
     private static ArrayList<ArrayList<PrintDataItem>> dataQuery = null;
+    private static ArrayList<ArrayList<PrintDataItem>> dataHeader = null;
+    private static ArrayList<ArrayList<PrintDataItem>> dataFooter = null;
     private static MPrintFormatItem [] items = null;
     private static MPrintFormatItem [] header = null;
     private static MPrintFormatItem [] footer = null;
@@ -373,12 +390,17 @@ public class WritePDF {
         cell.setColspan(countColumn);
         table.addCell(cell);
         //add footer
+       
         for( int i = 0; i < footer.length; i++) {
         	MPrintFormatItem item = footer[i];
         	String name = item.getName(language, windowNo);
         	if (name.contains("@")) {
         		name = Env.parseContext(Env.getCtx(), windowNo, name, false);
         	}
+        	
+        	//replace value
+        	name = getContextFooter(name);
+        	//
         	cell = new PdfPCell(new Phrase((String) name, smallfont));
         	cell.setNoWrap(false);
             cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
@@ -392,6 +414,60 @@ public class WritePDF {
         
     }
     
+    private String getContextHeader(String name) {
+    	ArrayList<PrintDataItem> arrItem = null;
+        if (dataHeader != null && dataHeader.size() > 0) {
+        	arrItem = dataHeader.get(0);
+        }
+    	if (name.contains("%#") && arrItem != null) {
+    		String [] arrs = name.split("%#");
+    		for(int v = 0; v < arrs.length; v++) {
+    			if(arrs[v].contains("%")) {
+    				String columnName = arrs[v].trim().substring(0, arrs[v].lastIndexOf("%"));
+        			for(int r = 0; r < arrItem.size(); r++) {
+            			if(columnName.equalsIgnoreCase(arrItem.get(r).getColumnName())) {
+            				Object value = arrItem.get(r).getValueDisplay(Env.getLanguage(Env.getCtx()));
+            				if (value == null || "".equals(value.toString())) {
+            					value = "...";
+            				}
+            				name = name.replace("%#" + columnName + "%", (String)value);
+            				break;
+            			}
+            		}
+    			}
+    			
+    		}        		
+    	}
+    	return name;
+    }
+    
+    private String getContextFooter(String name) {
+    	ArrayList<PrintDataItem> arrItem = null;
+        if (dataFooter != null && dataFooter.size() > 0) {
+        	arrItem = dataFooter.get(0);
+        }
+    	if (name.contains("%#") && arrItem != null) {
+    		String [] arrs = name.split("%#");
+    		for(int v = 0; v < arrs.length; v++) {
+    			if(arrs[v].contains("%")) {
+    				String columnName = arrs[v].trim().substring(0, arrs[v].lastIndexOf("%"));
+        			for(int r = 0; r < arrItem.size(); r++) {
+            			if(columnName.equalsIgnoreCase(arrItem.get(r).getColumnName())) {
+            				Object value = arrItem.get(r).getValueDisplay(Env.getLanguage(Env.getCtx()));
+            				if (value == null || "".equals(value.toString())) {
+            					value = "...";
+            				}
+            				name = name.replace("%#" + columnName + "%", (String)value);
+            				break;
+            			}
+            		}
+    			}
+    			
+    		}        		
+    	}
+    	return name;
+    }
+    
     private  void writePDF(OutputStream output, MPrintFormat format, HashMap<String, Object> m_params)//Pageable pageable, 
 	{
 		try {
@@ -400,7 +476,9 @@ public class WritePDF {
 			widthTable = pi.getWidthTable();
 			countColumn = pi.getColumnCountQuery();
 			countRow = pi.getRowCountQuery();
-			dataQuery = pi.getDataQuery();
+			dataQuery = pi.getDataQueryC();
+			dataHeader = pi.getDataQueryH();
+			dataFooter = pi.getDataQueryF();
 			maxRow = pi.getMaxRow();
 			windowNo = (int)m_params.get("WindowNo");
 			
@@ -437,7 +515,7 @@ public class WritePDF {
             //Create header Report
             createHeader(table, m_params, format, courier, countColumn); 
             document.add(table);
-            
+            //document.newPage();
             // first row: add header
             table = new PdfPTable(countColumn);
             table.setTotalWidth(widthTable);

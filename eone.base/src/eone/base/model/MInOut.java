@@ -38,7 +38,7 @@ public class MInOut extends X_M_InOut implements DocAction
 		for (int i = 0; i < oLines.length; i++)
 		{
 			// Calculate how much is left to deliver (ordered - delivered)
-			BigDecimal qty = oLines[i].getQtyOrdered().subtract(oLines[i].getQtyDelivered());
+			BigDecimal qty = oLines[i].getQty().subtract(oLines[i].getQtyDelivered());
 			//	Nothing to deliver
 			if (qty.signum() == 0)
 				continue;

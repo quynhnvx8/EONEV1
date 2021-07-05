@@ -75,8 +75,7 @@ public abstract class AbstractProductPricing implements IProductPricing {
 	public void setOrderLine(I_C_OrderLine orderLine, String trxName) {
 		m_M_Product_ID = orderLine.getM_Product_ID();
 		
-		m_C_BPartner_ID = orderLine.getC_BPartner_ID();
-		BigDecimal qty = orderLine.getQtyOrdered();
+		BigDecimal qty = orderLine.getQty();
 		if (qty != null && Env.ZERO.compareTo(qty) != 0)
 			m_Qty = qty;
 		this.trxName = trxName;

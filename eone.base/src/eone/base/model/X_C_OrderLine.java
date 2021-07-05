@@ -1,18 +1,6 @@
 /******************************************************************************
- * Product: iDempiere ERP & CRM Smart Business Solution                       *
- * Copyright (C) 1999-2012 ComPiere, Inc. All Rights Reserved.                *
- * This program is free software, you can redistribute it and/or modify it    *
- * under the terms version 2 of the GNU General Public License as published   *
- * by the Free Software Foundation. This program is distributed in the hope   *
- * that it will be useful, but WITHOUT ANY WARRANTY, without even the implied *
- * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.           *
- * See the GNU General Public License for more details.                       *
- * You should have received a copy of the GNU General Public License along    *
- * with this program, if not, write to the Free Software Foundation, Inc.,    *
- * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.                     *
- * For the text or an alternative of this public license, you may reach us    *
- * ComPiere, Inc., 2620 Augustine Dr. #245, Santa Clara, CA 95054, USA        *
- * or via info@compiere.org or http://www.compiere.org/license.html           *
+ * Product: EOoe ERP & CRM Smart Business Solution	                        *
+ * Copyright (C) 2020, Inc. All Rights Reserved.				                *
  *****************************************************************************/
 /** Generated Model - DO NOT CHANGE */
 package eone.base.model;
@@ -24,15 +12,15 @@ import org.compiere.util.Env;
 import org.compiere.util.KeyNamePair;
 
 /** Generated Model for C_OrderLine
- *  @author iDempiere (generated) 
- *  @version Release 7.1 - $Id$ */
+ *  @author EOne (generated) 
+ *  @version Version 1.0 - $Id$ */
 public class X_C_OrderLine extends PO implements I_C_OrderLine, I_Persistent 
 {
 
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = 20200622L;
+	private static final long serialVersionUID = 20210702L;
 
     /** Standard Constructor */
     public X_C_OrderLine (Properties ctx, int C_OrderLine_ID, String trxName)
@@ -40,23 +28,13 @@ public class X_C_OrderLine extends PO implements I_C_OrderLine, I_Persistent
       super (ctx, C_OrderLine_ID, trxName);
       /** if (C_OrderLine_ID == 0)
         {
-			setC_Currency_ID (0);
-// @C_Currency_ID@
 			setC_Order_ID (0);
 			setC_OrderLine_ID (0);
-			setC_Tax_ID (0);
 			setC_UOM_ID (0);
 // @#C_UOM_ID@
 			setLine (0);
-// @SQL=SELECT COALESCE(MAX(Line),0)+10 AS DefaultValue FROM C_OrderLine WHERE C_Order_ID=@C_Order_ID@
-			setLineNetAmt (Env.ZERO);
-			setPriceActual (Env.ZERO);
-			setPriceList (Env.ZERO);
+// @SQL=SELECT COALESCE(MAX(Line),0)+1 AS DefaultValue FROM C_OrderLine WHERE C_Order_ID=@C_Order_ID@
 			setProcessed (false);
-			setQtyDelivered (Env.ZERO);
-			setQtyInvoiced (Env.ZERO);
-			setQtyOrdered (Env.ZERO);
-// 1
         } */
     }
 
@@ -88,60 +66,24 @@ public class X_C_OrderLine extends PO implements I_C_OrderLine, I_Persistent
       return sb.toString();
     }
 
-	public eone.base.model.I_C_BPartner getC_BPartner() throws RuntimeException
-    {
-		return (eone.base.model.I_C_BPartner)MTable.get(getCtx(), eone.base.model.I_C_BPartner.Table_Name)
-			.getPO(getC_BPartner_ID(), get_TrxName());	}
-
-	/** Set Business Partner .
-		@param C_BPartner_ID 
-		Identifies a Business Partner
+	/** Set Amount.
+		@param Amount 
+		Amount in a defined currency
 	  */
-	public void setC_BPartner_ID (int C_BPartner_ID)
+	public void setAmount (BigDecimal Amount)
 	{
-		if (C_BPartner_ID < 1) 
-			set_ValueNoCheck (COLUMNNAME_C_BPartner_ID, null);
-		else 
-			set_ValueNoCheck (COLUMNNAME_C_BPartner_ID, Integer.valueOf(C_BPartner_ID));
+		set_Value (COLUMNNAME_Amount, Amount);
 	}
 
-	/** Get Business Partner .
-		@return Identifies a Business Partner
+	/** Get Amount.
+		@return Amount in a defined currency
 	  */
-	public int getC_BPartner_ID () 
+	public BigDecimal getAmount () 
 	{
-		Integer ii = (Integer)get_Value(COLUMNNAME_C_BPartner_ID);
-		if (ii == null)
-			 return 0;
-		return ii.intValue();
-	}
-
-	public eone.base.model.I_C_Currency getC_Currency() throws RuntimeException
-    {
-		return (eone.base.model.I_C_Currency)MTable.get(getCtx(), eone.base.model.I_C_Currency.Table_Name)
-			.getPO(getC_Currency_ID(), get_TrxName());	}
-
-	/** Set Currency.
-		@param C_Currency_ID 
-		The Currency for this record
-	  */
-	public void setC_Currency_ID (int C_Currency_ID)
-	{
-		if (C_Currency_ID < 1) 
-			set_ValueNoCheck (COLUMNNAME_C_Currency_ID, null);
-		else 
-			set_ValueNoCheck (COLUMNNAME_C_Currency_ID, Integer.valueOf(C_Currency_ID));
-	}
-
-	/** Get Currency.
-		@return The Currency for this record
-	  */
-	public int getC_Currency_ID () 
-	{
-		Integer ii = (Integer)get_Value(COLUMNNAME_C_Currency_ID);
-		if (ii == null)
-			 return 0;
-		return ii.intValue();
+		BigDecimal bd = (BigDecimal)get_Value(COLUMNNAME_Amount);
+		if (bd == null)
+			 return Env.ZERO;
+		return bd;
 	}
 
 	public eone.base.model.I_C_Order getC_Order() throws RuntimeException
@@ -198,100 +140,6 @@ public class X_C_OrderLine extends PO implements I_C_OrderLine, I_Persistent
 	public int getC_OrderLine_ID () 
 	{
 		Integer ii = (Integer)get_Value(COLUMNNAME_C_OrderLine_ID);
-		if (ii == null)
-			 return 0;
-		return ii.intValue();
-	}
-
-	/** Set C_OrderLine_UU.
-		@param C_OrderLine_UU C_OrderLine_UU	  */
-	public void setC_OrderLine_UU (String C_OrderLine_UU)
-	{
-		set_Value (COLUMNNAME_C_OrderLine_UU, C_OrderLine_UU);
-	}
-
-	/** Get C_OrderLine_UU.
-		@return C_OrderLine_UU	  */
-	public String getC_OrderLine_UU () 
-	{
-		return (String)get_Value(COLUMNNAME_C_OrderLine_UU);
-	}
-
-	public eone.base.model.I_C_Project getC_Project() throws RuntimeException
-    {
-		return (eone.base.model.I_C_Project)MTable.get(getCtx(), eone.base.model.I_C_Project.Table_Name)
-			.getPO(getC_Project_ID(), get_TrxName());	}
-
-	/** Set Project.
-		@param C_Project_ID 
-		Financial Project
-	  */
-	public void setC_Project_ID (int C_Project_ID)
-	{
-		if (C_Project_ID < 1) 
-			set_Value (COLUMNNAME_C_Project_ID, null);
-		else 
-			set_Value (COLUMNNAME_C_Project_ID, Integer.valueOf(C_Project_ID));
-	}
-
-	/** Get Project.
-		@return Financial Project
-	  */
-	public int getC_Project_ID () 
-	{
-		Integer ii = (Integer)get_Value(COLUMNNAME_C_Project_ID);
-		if (ii == null)
-			 return 0;
-		return ii.intValue();
-	}
-
-	
-	/** Set Project Phase.
-		@param C_ProjectPhase_ID 
-		Phase of a Project
-	  */
-	public void setC_ProjectPhase_ID (int C_ProjectPhase_ID)
-	{
-		if (C_ProjectPhase_ID < 1) 
-			set_ValueNoCheck (COLUMNNAME_C_ProjectPhase_ID, null);
-		else 
-			set_ValueNoCheck (COLUMNNAME_C_ProjectPhase_ID, Integer.valueOf(C_ProjectPhase_ID));
-	}
-
-	/** Get Project Phase.
-		@return Phase of a Project
-	  */
-	public int getC_ProjectPhase_ID () 
-	{
-		Integer ii = (Integer)get_Value(COLUMNNAME_C_ProjectPhase_ID);
-		if (ii == null)
-			 return 0;
-		return ii.intValue();
-	}
-
-	public eone.base.model.I_C_Tax getC_Tax() throws RuntimeException
-    {
-		return (eone.base.model.I_C_Tax)MTable.get(getCtx(), eone.base.model.I_C_Tax.Table_Name)
-			.getPO(getC_Tax_ID(), get_TrxName());	}
-
-	/** Set Tax.
-		@param C_Tax_ID 
-		Tax identifier
-	  */
-	public void setC_Tax_ID (int C_Tax_ID)
-	{
-		if (C_Tax_ID < 1) 
-			set_Value (COLUMNNAME_C_Tax_ID, null);
-		else 
-			set_Value (COLUMNNAME_C_Tax_ID, Integer.valueOf(C_Tax_ID));
-	}
-
-	/** Get Tax.
-		@return Tax identifier
-	  */
-	public int getC_Tax_ID () 
-	{
-		Integer ii = (Integer)get_Value(COLUMNNAME_C_Tax_ID);
 		if (ii == null)
 			 return 0;
 		return ii.intValue();
@@ -362,26 +210,6 @@ public class X_C_OrderLine extends PO implements I_C_OrderLine, I_Persistent
 		return ii.intValue();
 	}
 
-	/** Set Line Amount.
-		@param LineNetAmt 
-		Line Extended Amount (Quantity * Actual Price) without Freight and Charges
-	  */
-	public void setLineNetAmt (BigDecimal LineNetAmt)
-	{
-		set_ValueNoCheck (COLUMNNAME_LineNetAmt, LineNetAmt);
-	}
-
-	/** Get Line Amount.
-		@return Line Extended Amount (Quantity * Actual Price) without Freight and Charges
-	  */
-	public BigDecimal getLineNetAmt () 
-	{
-		BigDecimal bd = (BigDecimal)get_Value(COLUMNNAME_LineNetAmt);
-		if (bd == null)
-			 return Env.ZERO;
-		return bd;
-	}
-
 	public eone.base.model.I_M_Product getM_Product() throws RuntimeException
     {
 		return (eone.base.model.I_M_Product)MTable.get(getCtx(), eone.base.model.I_M_Product.Table_Name)
@@ -410,69 +238,21 @@ public class X_C_OrderLine extends PO implements I_C_OrderLine, I_Persistent
 		return ii.intValue();
 	}
 
-	public eone.base.model.I_M_Warehouse getM_Warehouse() throws RuntimeException
-    {
-		return (eone.base.model.I_M_Warehouse)MTable.get(getCtx(), eone.base.model.I_M_Warehouse.Table_Name)
-			.getPO(getM_Warehouse_ID(), get_TrxName());	}
-
-	/** Set Warehouse.
-		@param M_Warehouse_ID 
-		Storage Warehouse and Service Point
+	/** Set Price.
+		@param Price 
+		Price
 	  */
-	public void setM_Warehouse_ID (int M_Warehouse_ID)
+	public void setPrice (BigDecimal Price)
 	{
-		if (M_Warehouse_ID < 1) 
-			set_Value (COLUMNNAME_M_Warehouse_ID, null);
-		else 
-			set_Value (COLUMNNAME_M_Warehouse_ID, Integer.valueOf(M_Warehouse_ID));
+		set_ValueNoCheck (COLUMNNAME_Price, Price);
 	}
 
-	/** Get Warehouse.
-		@return Storage Warehouse and Service Point
+	/** Get Price.
+		@return Price
 	  */
-	public int getM_Warehouse_ID () 
+	public BigDecimal getPrice () 
 	{
-		Integer ii = (Integer)get_Value(COLUMNNAME_M_Warehouse_ID);
-		if (ii == null)
-			 return 0;
-		return ii.intValue();
-	}
-
-	/** Set Unit Price.
-		@param PriceActual 
-		Actual Price 
-	  */
-	public void setPriceActual (BigDecimal PriceActual)
-	{
-		set_ValueNoCheck (COLUMNNAME_PriceActual, PriceActual);
-	}
-
-	/** Get Unit Price.
-		@return Actual Price 
-	  */
-	public BigDecimal getPriceActual () 
-	{
-		BigDecimal bd = (BigDecimal)get_Value(COLUMNNAME_PriceActual);
-		if (bd == null)
-			 return Env.ZERO;
-		return bd;
-	}
-
-	/** Set List Price.
-		@param PriceList 
-		List Price
-	  */
-	public void setPriceList (BigDecimal PriceList)
-	{
-		set_Value (COLUMNNAME_PriceList, PriceList);
-	}
-
-	/** Get List Price.
-		@return List Price
-	  */
-	public BigDecimal getPriceList () 
-	{
-		BigDecimal bd = (BigDecimal)get_Value(COLUMNNAME_PriceList);
+		BigDecimal bd = (BigDecimal)get_Value(COLUMNNAME_Price);
 		if (bd == null)
 			 return Env.ZERO;
 		return bd;
@@ -502,13 +282,33 @@ public class X_C_OrderLine extends PO implements I_C_OrderLine, I_Persistent
 		return false;
 	}
 
+	/** Set Quantity.
+		@param Qty 
+		Quantity
+	  */
+	public void setQty (BigDecimal Qty)
+	{
+		set_Value (COLUMNNAME_Qty, Qty);
+	}
+
+	/** Get Quantity.
+		@return Quantity
+	  */
+	public BigDecimal getQty () 
+	{
+		BigDecimal bd = (BigDecimal)get_Value(COLUMNNAME_Qty);
+		if (bd == null)
+			 return Env.ZERO;
+		return bd;
+	}
+
 	/** Set Delivered Quantity.
 		@param QtyDelivered 
 		Delivered Quantity
 	  */
 	public void setQtyDelivered (BigDecimal QtyDelivered)
 	{
-		set_ValueNoCheck (COLUMNNAME_QtyDelivered, QtyDelivered);
+		set_Value (COLUMNNAME_QtyDelivered, QtyDelivered);
 	}
 
 	/** Get Delivered Quantity.
@@ -522,71 +322,43 @@ public class X_C_OrderLine extends PO implements I_C_OrderLine, I_Persistent
 		return bd;
 	}
 
-	/** Set Quantity Invoiced.
-		@param QtyInvoiced 
-		Invoiced Quantity
+	/** Set Tax Amount.
+		@param TaxAmt 
+		Tax Amount for a document
 	  */
-	public void setQtyInvoiced (BigDecimal QtyInvoiced)
+	public void setTaxAmt (BigDecimal TaxAmt)
 	{
-		set_ValueNoCheck (COLUMNNAME_QtyInvoiced, QtyInvoiced);
+		set_ValueNoCheck (COLUMNNAME_TaxAmt, TaxAmt);
 	}
 
-	/** Get Quantity Invoiced.
-		@return Invoiced Quantity
+	/** Get Tax Amount.
+		@return Tax Amount for a document
 	  */
-	public BigDecimal getQtyInvoiced () 
+	public BigDecimal getTaxAmt () 
 	{
-		BigDecimal bd = (BigDecimal)get_Value(COLUMNNAME_QtyInvoiced);
+		BigDecimal bd = (BigDecimal)get_Value(COLUMNNAME_TaxAmt);
 		if (bd == null)
 			 return Env.ZERO;
 		return bd;
 	}
 
-	/** Set Ordered Quantity.
-		@param QtyOrdered 
-		Ordered Quantity
+	/** Set Tax base Amount.
+		@param TaxBaseAmt 
+		Base for calculating the tax amount
 	  */
-	public void setQtyOrdered (BigDecimal QtyOrdered)
+	public void setTaxBaseAmt (BigDecimal TaxBaseAmt)
 	{
-		set_Value (COLUMNNAME_QtyOrdered, QtyOrdered);
+		set_Value (COLUMNNAME_TaxBaseAmt, TaxBaseAmt);
 	}
 
-	/** Get Ordered Quantity.
-		@return Ordered Quantity
+	/** Get Tax base Amount.
+		@return Base for calculating the tax amount
 	  */
-	public BigDecimal getQtyOrdered () 
+	public BigDecimal getTaxBaseAmt () 
 	{
-		BigDecimal bd = (BigDecimal)get_Value(COLUMNNAME_QtyOrdered);
+		BigDecimal bd = (BigDecimal)get_Value(COLUMNNAME_TaxBaseAmt);
 		if (bd == null)
 			 return Env.ZERO;
 		return bd;
-	}
-
-	public eone.base.model.I_C_OrderLine getRef_OrderLine() throws RuntimeException
-    {
-		return (eone.base.model.I_C_OrderLine)MTable.get(getCtx(), eone.base.model.I_C_OrderLine.Table_Name)
-			.getPO(getRef_OrderLine_ID(), get_TrxName());	}
-
-	/** Set Referenced Order Line.
-		@param Ref_OrderLine_ID 
-		Reference to corresponding Sales/Purchase Order
-	  */
-	public void setRef_OrderLine_ID (int Ref_OrderLine_ID)
-	{
-		if (Ref_OrderLine_ID < 1) 
-			set_ValueNoCheck (COLUMNNAME_Ref_OrderLine_ID, null);
-		else 
-			set_ValueNoCheck (COLUMNNAME_Ref_OrderLine_ID, Integer.valueOf(Ref_OrderLine_ID));
-	}
-
-	/** Get Referenced Order Line.
-		@return Reference to corresponding Sales/Purchase Order
-	  */
-	public int getRef_OrderLine_ID () 
-	{
-		Integer ii = (Integer)get_Value(COLUMNNAME_Ref_OrderLine_ID);
-		if (ii == null)
-			 return 0;
-		return ii.intValue();
 	}
 }

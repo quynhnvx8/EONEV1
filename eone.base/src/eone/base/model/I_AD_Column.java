@@ -1,18 +1,6 @@
 /******************************************************************************
- * Product: iDempiere ERP & CRM Smart Business Solution                       *
- * Copyright (C) 1999-2012 ComPiere, Inc. All Rights Reserved.                *
- * This program is free software, you can redistribute it and/or modify it    *
- * under the terms version 2 of the GNU General Public License as published   *
- * by the Free Software Foundation. This program is distributed in the hope   *
- * that it will be useful, but WITHOUT ANY WARRANTY, without even the implied *
- * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.           *
- * See the GNU General Public License for more details.                       *
- * You should have received a copy of the GNU General Public License along    *
- * with this program, if not, write to the Free Software Foundation, Inc.,    *
- * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.                     *
- * For the text or an alternative of this public license, you may reach us    *
- * ComPiere, Inc., 2620 Augustine Dr. #245, Santa Clara, CA 95054, USA        *
- * or via info@compiere.org or http://www.compiere.org/license.html           *
+ * Product: EOoe ERP & CRM Smart Business Solution	                        *
+ * Copyright (C) 2020, Inc. All Rights Reserved.				                *
  *****************************************************************************/
 package eone.base.model;
 
@@ -21,8 +9,8 @@ import java.sql.Timestamp;
 import org.compiere.util.KeyNamePair;
 
 /** Generated Interface for AD_Column
- *  @author iDempiere (generated) 
- *  @version Release 7.1
+ *  @author EOne (generated) 
+ *  @version Version 1.0
  */
 public interface I_AD_Column 
 {
@@ -72,15 +60,6 @@ public interface I_AD_Column
 	  * Column in the table
 	  */
 	public int getAD_Column_ID();
-
-    /** Column name AD_Column_UU */
-    public static final String COLUMNNAME_AD_Column_UU = "AD_Column_UU";
-
-	/** Set AD_Column_UU	  */
-	public void setAD_Column_UU (String AD_Column_UU);
-
-	/** Get AD_Column_UU	  */
-	public String getAD_Column_UU();
 
     /** Column name AD_Element_ID */
     public static final String COLUMNNAME_AD_Element_ID = "AD_Element_ID";
@@ -444,6 +423,15 @@ public interface I_AD_Column
 	  */
 	public boolean isIdentifier();
 
+    /** Column name IsInfoPanel */
+    public static final String COLUMNNAME_IsInfoPanel = "IsInfoPanel";
+
+	/** Set Search InfoPanel	  */
+	public void setIsInfoPanel (boolean IsInfoPanel);
+
+	/** Get Search InfoPanel	  */
+	public boolean isInfoPanel();
+
     /** Column name IsKey */
     public static final String COLUMNNAME_IsKey = "IsKey";
 
@@ -509,15 +497,24 @@ public interface I_AD_Column
 	  */
 	public boolean isSelectionColumn();
 
+    /** Column name IsSetContext */
+    public static final String COLUMNNAME_IsSetContext = "IsSetContext";
+
+	/** Set Set Context	  */
+	public void setIsSetContext (boolean IsSetContext);
+
+	/** Get Set Context	  */
+	public boolean isSetContext();
+
     /** Column name IsSyncDatabase */
     public static final String COLUMNNAME_IsSyncDatabase = "IsSyncDatabase";
 
-	/** Set Synchronize Database.
+	/** Set Synch Database.
 	  * Change database table definition when changing dictionary definition
 	  */
 	public void setIsSyncDatabase (String IsSyncDatabase);
 
-	/** Get Synchronize Database.
+	/** Get Synch Database.
 	  * Change database table definition when changing dictionary definition
 	  */
 	public String getIsSyncDatabase();
@@ -592,6 +589,7 @@ public interface I_AD_Column
 	/** Get Dashboard Content	  */
 	public int getPA_DashboardContent_ID();
 
+	public eone.base.model.I_PA_DashboardContent getPA_DashboardContent() throws RuntimeException;
 
     /** Column name Placeholder */
     public static final String COLUMNNAME_Placeholder = "Placeholder";
@@ -633,12 +631,12 @@ public interface I_AD_Column
     /** Column name SeqNoSelection */
     public static final String COLUMNNAME_SeqNoSelection = "SeqNoSelection";
 
-	/** Set Selection Column Sequence.
+	/** Set Column Sequence.
 	  * Selection Column Sequence
 	  */
 	public void setSeqNoSelection (int SeqNoSelection);
 
-	/** Get Selection Column Sequence.
+	/** Get Column Sequence.
 	  * Selection Column Sequence
 	  */
 	public int getSeqNoSelection();

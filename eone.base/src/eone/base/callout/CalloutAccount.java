@@ -60,6 +60,13 @@ public class CalloutAccount extends CalloutEngine
 					||X_C_Account.TYPEACCOUNT_TaxOutputAccount.equals(re.get(i).getTypeAccount())) {
 				mTab.setValue("Account_Tax_ID", re.get(i).getAccount_ID());
 			}
+			if (X_C_Account.TYPEACCOUNT_RevenueAccount.equals(re.get(i).getTypeAccount())) {
+				mTab.setValue("Account_REV_ID", re.get(i).getAccount_ID());
+			}
+			if (X_C_Account.TYPEACCOUNT_COGSAccount.equals(re.get(i).getTypeAccount())) {
+				mTab.setValue("Account_COGS_ID", re.get(i).getAccount_ID());
+			}
+			
 		}
 		return "";
 	}

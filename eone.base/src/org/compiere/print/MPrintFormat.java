@@ -33,11 +33,7 @@ public class MPrintFormat extends X_AD_PrintFormat
 	{
 		super (ctx, AD_PrintFormat_ID, trxName);
 		m_language = Env.getLanguage(ctx);
-		if (AD_PrintFormat_ID == 0)
-		{
-			setIsStandardHeaderFooter(true);
-			setIsDefault(false);
-		}
+		
 		getItems();
 		
 	}	//	MPrintFormat
@@ -61,12 +57,12 @@ public class MPrintFormat extends X_AD_PrintFormat
 
 	private static CCache<Integer,MPrintFormatItem[]> s_itemsHeader = new CCache<Integer,MPrintFormatItem[]>(Table_Name, 5);
 	private static CCache<Integer,MPrintFormatItem[]> s_itemsContent = new CCache<Integer,MPrintFormatItem[]>(Table_Name, 5);
+	private static CCache<Integer,MPrintFormatItem[]> s_itemsContentOther = new CCache<Integer,MPrintFormatItem[]>(Table_Name, 5);
 	private static CCache<Integer,MPrintFormatItem[]> s_itemsFooter = new CCache<Integer,MPrintFormatItem[]>(Table_Name, 5);
 	
-	
-	private static CCache<Integer,Map<String, String>> s_formula = new CCache<Integer,Map<String, String>>(Table_Name, 5);
 	/** Items							*/
 	private MPrintFormatItem[]		m_itemsContent = null;
+	private MPrintFormatItem[]		m_itemsContentOther = null;
 	private MPrintFormatItem[]		m_itemsHeader = null;
 	private MPrintFormatItem[]		m_itemsFooter = null;
 	
@@ -89,6 +85,13 @@ public class MPrintFormat extends X_AD_PrintFormat
 			return s_itemsContent.get(getAD_PrintFormat_ID());
 		getItems();
 		return m_itemsContent;
+	}
+	
+	public MPrintFormatItem[] getItemContentOther() {
+		if (s_itemsContentOther.containsKey(getAD_PrintFormat_ID()))
+			return s_itemsContentOther.get(getAD_PrintFormat_ID());
+		getItems();
+		return m_itemsContentOther;
 	}
 	
 	public MPrintFormatItem[] getItemFooter() {
@@ -131,6 +134,7 @@ public class MPrintFormat extends X_AD_PrintFormat
 			return;
 		ArrayList<MPrintFormatItem> lsHeader = new ArrayList<MPrintFormatItem>();
 		ArrayList<MPrintFormatItem> lsContent = new ArrayList<MPrintFormatItem>();
+		ArrayList<MPrintFormatItem> lsContentOther = new ArrayList<MPrintFormatItem>();
 		ArrayList<MPrintFormatItem> lsFooter = new ArrayList<MPrintFormatItem>();
 		String sql = "SELECT * FROM AD_PrintFormatItem pfi "
 			+ "WHERE pfi.AD_PrintFormat_ID=? AND pfi.IsActive='Y' "
@@ -152,10 +156,8 @@ public class MPrintFormat extends X_AD_PrintFormat
 					lsHeader.add (pfi);
 				else if (pfi.isFooter())
 					lsFooter.add (pfi);
-				
-				if (pfi.isAccumulateCal() && pfi.getFormulaSetup() != "") {
-					formula.put(pfi.getColumnName(), pfi.getFormulaSetup());
-				}
+				else if(pfi.isContentOther())
+					lsContentOther.add(pfi);
 			}
 		}
 		catch (SQLException e)
@@ -170,6 +172,9 @@ public class MPrintFormat extends X_AD_PrintFormat
 		m_itemsContent = new MPrintFormatItem[lsContent.size()];
 		lsContent.toArray(m_itemsContent);
 		
+		m_itemsContentOther = new MPrintFormatItem[lsContentOther.size()];
+		lsContentOther.toArray(m_itemsContentOther);
+		
 		m_itemsHeader = new MPrintFormatItem[lsHeader.size()];
 		lsHeader.toArray(m_itemsHeader);
 		
@@ -179,7 +184,8 @@ public class MPrintFormat extends X_AD_PrintFormat
 		s_itemsContent.put(getAD_PrintFormat_ID(), m_itemsContent);
 		s_itemsHeader.put(getAD_PrintFormat_ID(), m_itemsHeader);
 		s_itemsFooter.put(getAD_PrintFormat_ID(), m_itemsFooter);
-		s_formula.put(getAD_PrintFormat_ID(), formula);
+		s_itemsContentOther.put(getAD_PrintFormat_ID(), m_itemsContentOther);
+		//s_formula.put(getAD_PrintFormat_ID(), formula);
 	}
 	
 	

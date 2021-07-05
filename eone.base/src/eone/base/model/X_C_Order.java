@@ -1,18 +1,6 @@
 /******************************************************************************
- * Product: iDempiere ERP & CRM Smart Business Solution                       *
- * Copyright (C) 1999-2012 ComPiere, Inc. All Rights Reserved.                *
- * This program is free software, you can redistribute it and/or modify it    *
- * under the terms version 2 of the GNU General Public License as published   *
- * by the Free Software Foundation. This program is distributed in the hope   *
- * that it will be useful, but WITHOUT ANY WARRANTY, without even the implied *
- * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.           *
- * See the GNU General Public License for more details.                       *
- * You should have received a copy of the GNU General Public License along    *
- * with this program, if not, write to the Free Software Foundation, Inc.,    *
- * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.                     *
- * For the text or an alternative of this public license, you may reach us    *
- * ComPiere, Inc., 2620 Augustine Dr. #245, Santa Clara, CA 95054, USA        *
- * or via info@compiere.org or http://www.compiere.org/license.html           *
+ * Product: EOoe ERP & CRM Smart Business Solution	                        *
+ * Copyright (C) 2020, Inc. All Rights Reserved.				                *
  *****************************************************************************/
 /** Generated Model - DO NOT CHANGE */
 package eone.base.model;
@@ -25,15 +13,15 @@ import org.compiere.util.Env;
 import org.compiere.util.KeyNamePair;
 
 /** Generated Model for C_Order
- *  @author iDempiere (generated) 
- *  @version Release 7.1 - $Id$ */
+ *  @author EOne (generated) 
+ *  @version Version 1.0 - $Id$ */
 public class X_C_Order extends PO implements I_C_Order, I_Persistent 
 {
 
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = 20200622L;
+	private static final long serialVersionUID = 20210702L;
 
     /** Standard Constructor */
     public X_C_Order (Properties ctx, int C_Order_ID, String trxName)
@@ -43,28 +31,17 @@ public class X_C_Order extends PO implements I_C_Order, I_Persistent
         {
 			setC_BPartner_ID (0);
 			setC_Currency_ID (0);
-// @C_Currency_ID@
+// @#C_CurrencyDefault_ID@
 			setC_DocType_ID (0);
 // 0
 			setC_Order_ID (0);
-			setDateAcct (new Timestamp( System.currentTimeMillis() ));
-// @#Date@
 			setDateOrdered (new Timestamp( System.currentTimeMillis() ));
 // @#Date@
-			setDocAction (null);
-// CO
 			setDocStatus (null);
 // DR
 			setDocumentNo (null);
-			setGrandTotal (Env.ZERO);
-			setIsApproved (false);
-// @IsApproved@
-			setIsTaxIncluded (false);
 			setIsTransferred (false);
-			setPosted (false);
-// N
 			setProcessed (false);
-			setTotalLines (Env.ZERO);
         } */
     }
 
@@ -95,6 +72,40 @@ public class X_C_Order extends PO implements I_C_Order, I_Persistent
         .append(get_ID()).append("]");
       return sb.toString();
     }
+
+	/** Set Amount.
+		@param Amount 
+		Amount in a defined currency
+	  */
+	public void setAmount (BigDecimal Amount)
+	{
+		set_Value (COLUMNNAME_Amount, Amount);
+	}
+
+	/** Get Amount.
+		@return Amount in a defined currency
+	  */
+	public BigDecimal getAmount () 
+	{
+		BigDecimal bd = (BigDecimal)get_Value(COLUMNNAME_Amount);
+		if (bd == null)
+			 return Env.ZERO;
+		return bd;
+	}
+
+	/** Set Approved.
+		@param Approved Approved	  */
+	public void setApproved (String Approved)
+	{
+		set_Value (COLUMNNAME_Approved, Approved);
+	}
+
+	/** Get Approved.
+		@return Approved	  */
+	public String getApproved () 
+	{
+		return (String)get_Value(COLUMNNAME_Approved);
+	}
 
 	public eone.base.model.I_C_BPartner getC_BPartner() throws RuntimeException
     {
@@ -231,100 +242,66 @@ public class X_C_Order extends PO implements I_C_Order, I_Persistent
 		return ii.intValue();
 	}
 
-	/** Set C_Order_UU.
-		@param C_Order_UU C_Order_UU	  */
-	public void setC_Order_UU (String C_Order_UU)
-	{
-		set_Value (COLUMNNAME_C_Order_UU, C_Order_UU);
-	}
-
-	/** Get C_Order_UU.
-		@return C_Order_UU	  */
-	public String getC_Order_UU () 
-	{
-		return (String)get_Value(COLUMNNAME_C_Order_UU);
-	}
-
-	public eone.base.model.I_C_Project getC_Project() throws RuntimeException
+	public eone.base.model.I_C_Tax getC_Tax() throws RuntimeException
     {
-		return (eone.base.model.I_C_Project)MTable.get(getCtx(), eone.base.model.I_C_Project.Table_Name)
-			.getPO(getC_Project_ID(), get_TrxName());	}
+		return (eone.base.model.I_C_Tax)MTable.get(getCtx(), eone.base.model.I_C_Tax.Table_Name)
+			.getPO(getC_Tax_ID(), get_TrxName());	}
 
-	/** Set Project.
-		@param C_Project_ID 
-		Financial Project
+	/** Set Tax.
+		@param C_Tax_ID 
+		Tax identifier
 	  */
-	public void setC_Project_ID (int C_Project_ID)
+	public void setC_Tax_ID (int C_Tax_ID)
 	{
-		if (C_Project_ID < 1) 
-			set_Value (COLUMNNAME_C_Project_ID, null);
+		if (C_Tax_ID < 1) 
+			set_Value (COLUMNNAME_C_Tax_ID, null);
 		else 
-			set_Value (COLUMNNAME_C_Project_ID, Integer.valueOf(C_Project_ID));
+			set_Value (COLUMNNAME_C_Tax_ID, Integer.valueOf(C_Tax_ID));
 	}
 
-	/** Get Project.
-		@return Financial Project
+	/** Get Tax.
+		@return Tax identifier
 	  */
-	public int getC_Project_ID () 
+	public int getC_Tax_ID () 
 	{
-		Integer ii = (Integer)get_Value(COLUMNNAME_C_Project_ID);
+		Integer ii = (Integer)get_Value(COLUMNNAME_C_Tax_ID);
 		if (ii == null)
 			 return 0;
 		return ii.intValue();
 	}
 
-	/** Set Charge amount.
-		@param ChargeAmt 
-		Charge Amount
-	  */
-	public void setChargeAmt (BigDecimal ChargeAmt)
+	/** Set Canceled.
+		@param Canceled Canceled	  */
+	public void setCanceled (String Canceled)
 	{
-		set_Value (COLUMNNAME_ChargeAmt, ChargeAmt);
+		set_Value (COLUMNNAME_Canceled, Canceled);
 	}
 
-	/** Get Charge amount.
-		@return Charge Amount
-	  */
-	public BigDecimal getChargeAmt () 
+	/** Get Canceled.
+		@return Canceled	  */
+	public String getCanceled () 
 	{
-		BigDecimal bd = (BigDecimal)get_Value(COLUMNNAME_ChargeAmt);
+		return (String)get_Value(COLUMNNAME_Canceled);
+	}
+
+	/** Set Rate.
+		@param CurrencyRate 
+		Currency Conversion Rate
+	  */
+	public void setCurrencyRate (BigDecimal CurrencyRate)
+	{
+		set_Value (COLUMNNAME_CurrencyRate, CurrencyRate);
+	}
+
+	/** Get Rate.
+		@return Currency Conversion Rate
+	  */
+	public BigDecimal getCurrencyRate () 
+	{
+		BigDecimal bd = (BigDecimal)get_Value(COLUMNNAME_CurrencyRate);
 		if (bd == null)
 			 return Env.ZERO;
 		return bd;
-	}
-
-	/** Set Copy From.
-		@param CopyFrom 
-		Copy From Record
-	  */
-	public void setCopyFrom (String CopyFrom)
-	{
-		set_Value (COLUMNNAME_CopyFrom, CopyFrom);
-	}
-
-	/** Get Copy From.
-		@return Copy From Record
-	  */
-	public String getCopyFrom () 
-	{
-		return (String)get_Value(COLUMNNAME_CopyFrom);
-	}
-
-	/** Set Account Date.
-		@param DateAcct 
-		Accounting Date
-	  */
-	public void setDateAcct (Timestamp DateAcct)
-	{
-		set_Value (COLUMNNAME_DateAcct, DateAcct);
-	}
-
-	/** Get Account Date.
-		@return Accounting Date
-	  */
-	public Timestamp getDateAcct () 
-	{
-		return (Timestamp)get_Value(COLUMNNAME_DateAcct);
 	}
 
 	/** Set Date Ordered.
@@ -361,50 +338,16 @@ public class X_C_Order extends PO implements I_C_Order, I_Persistent
 		return (String)get_Value(COLUMNNAME_Description);
 	}
 
-	/** DocAction AD_Reference_ID=135 */
-	public static final int DOCACTION_AD_Reference_ID=135;
-	/** Complete = CO */
-	public static final String DOCACTION_Complete = "CO";
-	/** Approve = AP */
-	public static final String DOCACTION_Approve = "AP";
-	/** Reject = RJ */
-	public static final String DOCACTION_Reject = "RJ";
-	/** Post = PO */
-	public static final String DOCACTION_Post = "PO";
-	/** Close = CL */
-	public static final String DOCACTION_Close = "CL";
-	/** Re-activate = RE */
-	public static final String DOCACTION_Re_Activate = "RE";
-	/** Set Document Action.
-		@param DocAction 
-		The targeted status of the document
-	  */
-	public void setDocAction (String DocAction)
-	{
-
-		set_Value (COLUMNNAME_DocAction, DocAction);
-	}
-
-	/** Get Document Action.
-		@return The targeted status of the document
-	  */
-	public String getDocAction () 
-	{
-		return (String)get_Value(COLUMNNAME_DocAction);
-	}
-
 	/** DocStatus AD_Reference_ID=131 */
 	public static final int DOCSTATUS_AD_Reference_ID=131;
 	/** Drafted = DR */
 	public static final String DOCSTATUS_Drafted = "DR";
 	/** Completed = CO */
 	public static final String DOCSTATUS_Completed = "CO";
-	/** Approved = AP */
-	public static final String DOCSTATUS_Approved = "AP";
-	/** Closed = CL */
-	public static final String DOCSTATUS_Closed = "CL";
 	/** In Progress = IP */
 	public static final String DOCSTATUS_InProgress = "IP";
+	/** Reject = RE */
+	public static final String DOCSTATUS_Reject = "RE";
 	/** Set Document Status.
 		@param DocStatus 
 		The current status of the document
@@ -448,48 +391,23 @@ public class X_C_Order extends PO implements I_C_Order, I_Persistent
         return new KeyNamePair(get_ID(), getDocumentNo());
     }
 
-	/** Set Grand Total.
-		@param GrandTotal 
-		Total amount of document
-	  */
-	public void setGrandTotal (BigDecimal GrandTotal)
+	/** NoneTax = NONE */
+	public static final String INCLUDETAX_NoneTax = "NONE";
+	/** Included = INCL */
+	public static final String INCLUDETAX_Included = "INCL";
+	/** Set IncludeTax.
+		@param IncludeTax IncludeTax	  */
+	public void setIncludeTax (String IncludeTax)
 	{
-		set_ValueNoCheck (COLUMNNAME_GrandTotal, GrandTotal);
+
+		set_Value (COLUMNNAME_IncludeTax, IncludeTax);
 	}
 
-	/** Get Grand Total.
-		@return Total amount of document
-	  */
-	public BigDecimal getGrandTotal () 
+	/** Get IncludeTax.
+		@return IncludeTax	  */
+	public String getIncludeTax () 
 	{
-		BigDecimal bd = (BigDecimal)get_Value(COLUMNNAME_GrandTotal);
-		if (bd == null)
-			 return Env.ZERO;
-		return bd;
-	}
-
-	/** Set Approved.
-		@param IsApproved 
-		Indicates if this document requires approval
-	  */
-	public void setIsApproved (boolean IsApproved)
-	{
-		set_ValueNoCheck (COLUMNNAME_IsApproved, Boolean.valueOf(IsApproved));
-	}
-
-	/** Get Approved.
-		@return Indicates if this document requires approval
-	  */
-	public boolean isApproved () 
-	{
-		Object oo = get_Value(COLUMNNAME_IsApproved);
-		if (oo != null) 
-		{
-			 if (oo instanceof Boolean) 
-				 return ((Boolean)oo).booleanValue(); 
-			return "Y".equals(oo);
-		}
-		return false;
+		return (String)get_Value(COLUMNNAME_IncludeTax);
 	}
 
 	/** Set Price includes Tax.
@@ -568,30 +486,6 @@ public class X_C_Order extends PO implements I_C_Order, I_Persistent
 		return ii.intValue();
 	}
 
-	/** Set Posted.
-		@param Posted 
-		Posting status
-	  */
-	public void setPosted (boolean Posted)
-	{
-		set_Value (COLUMNNAME_Posted, Boolean.valueOf(Posted));
-	}
-
-	/** Get Posted.
-		@return Posting status
-	  */
-	public boolean isPosted () 
-	{
-		Object oo = get_Value(COLUMNNAME_Posted);
-		if (oo != null) 
-		{
-			 if (oo instanceof Boolean) 
-				 return ((Boolean)oo).booleanValue(); 
-			return "Y".equals(oo);
-		}
-		return false;
-	}
-
 	/** Set Processed.
 		@param Processed 
 		The document has been processed
@@ -616,90 +510,41 @@ public class X_C_Order extends PO implements I_C_Order, I_Persistent
 		return false;
 	}
 
-	/** Set Processed On.
-		@param ProcessedOn 
-		The date+time (expressed in decimal format) when the document has been processed
+	/** Set Tax Amount.
+		@param TaxAmt 
+		Tax Amount for a document
 	  */
-	public void setProcessedOn (BigDecimal ProcessedOn)
+	public void setTaxAmt (BigDecimal TaxAmt)
 	{
-		set_Value (COLUMNNAME_ProcessedOn, ProcessedOn);
+		set_ValueNoCheck (COLUMNNAME_TaxAmt, TaxAmt);
 	}
 
-	/** Get Processed On.
-		@return The date+time (expressed in decimal format) when the document has been processed
+	/** Get Tax Amount.
+		@return Tax Amount for a document
 	  */
-	public BigDecimal getProcessedOn () 
+	public BigDecimal getTaxAmt () 
 	{
-		BigDecimal bd = (BigDecimal)get_Value(COLUMNNAME_ProcessedOn);
+		BigDecimal bd = (BigDecimal)get_Value(COLUMNNAME_TaxAmt);
 		if (bd == null)
 			 return Env.ZERO;
 		return bd;
 	}
 
-	/** Set Process Now.
-		@param Processing Process Now	  */
-	public void setProcessing (boolean Processing)
-	{
-		set_Value (COLUMNNAME_Processing, Boolean.valueOf(Processing));
-	}
-
-	/** Get Process Now.
-		@return Process Now	  */
-	public boolean isProcessing () 
-	{
-		Object oo = get_Value(COLUMNNAME_Processing);
-		if (oo != null) 
-		{
-			 if (oo instanceof Boolean) 
-				 return ((Boolean)oo).booleanValue(); 
-			return "Y".equals(oo);
-		}
-		return false;
-	}
-
-	public eone.base.model.I_C_Order getRef_Order() throws RuntimeException
-    {
-		return (eone.base.model.I_C_Order)MTable.get(getCtx(), eone.base.model.I_C_Order.Table_Name)
-			.getPO(getRef_Order_ID(), get_TrxName());	}
-
-	/** Set Referenced Order.
-		@param Ref_Order_ID 
-		Reference to corresponding Sales/Purchase Order
+	/** Set Tax base Amount.
+		@param TaxBaseAmt 
+		Base for calculating the tax amount
 	  */
-	public void setRef_Order_ID (int Ref_Order_ID)
+	public void setTaxBaseAmt (BigDecimal TaxBaseAmt)
 	{
-		if (Ref_Order_ID < 1) 
-			set_Value (COLUMNNAME_Ref_Order_ID, null);
-		else 
-			set_Value (COLUMNNAME_Ref_Order_ID, Integer.valueOf(Ref_Order_ID));
+		set_Value (COLUMNNAME_TaxBaseAmt, TaxBaseAmt);
 	}
 
-	/** Get Referenced Order.
-		@return Reference to corresponding Sales/Purchase Order
+	/** Get Tax base Amount.
+		@return Base for calculating the tax amount
 	  */
-	public int getRef_Order_ID () 
+	public BigDecimal getTaxBaseAmt () 
 	{
-		Integer ii = (Integer)get_Value(COLUMNNAME_Ref_Order_ID);
-		if (ii == null)
-			 return 0;
-		return ii.intValue();
-	}
-
-	/** Set Total Lines.
-		@param TotalLines 
-		Total of all document lines
-	  */
-	public void setTotalLines (BigDecimal TotalLines)
-	{
-		set_ValueNoCheck (COLUMNNAME_TotalLines, TotalLines);
-	}
-
-	/** Get Total Lines.
-		@return Total of all document lines
-	  */
-	public BigDecimal getTotalLines () 
-	{
-		BigDecimal bd = (BigDecimal)get_Value(COLUMNNAME_TotalLines);
+		BigDecimal bd = (BigDecimal)get_Value(COLUMNNAME_TaxBaseAmt);
 		if (bd == null)
 			 return Env.ZERO;
 		return bd;

@@ -106,8 +106,9 @@ public class CalloutInOut extends CalloutEngine
 				qtyRemain = new BigDecimal(data.get(0).toString());
 				amtRemain = new BigDecimal(data.get(1).toString());
 				price = amtRemain.divide(qtyRemain, Env.getScalePrice(), RoundingMode.HALF_UP);
-				p_Amount = qty.multiply(price).setScale(Env.getScaleFinal());
+				p_Amount = qty.multiply(price);
 				
+				p_Amount = p_Amount.setScale(Env.getScaleFinal(), RoundingMode.HALF_UP);
 			
 				if (qtyRemain.compareTo(qty) < 0)
 				{

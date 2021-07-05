@@ -1,18 +1,6 @@
 /******************************************************************************
- * Product: iDempiere ERP & CRM Smart Business Solution                       *
- * Copyright (C) 1999-2012 ComPiere, Inc. All Rights Reserved.                *
- * This program is free software, you can redistribute it and/or modify it    *
- * under the terms version 2 of the GNU General Public License as published   *
- * by the Free Software Foundation. This program is distributed in the hope   *
- * that it will be useful, but WITHOUT ANY WARRANTY, without even the implied *
- * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.           *
- * See the GNU General Public License for more details.                       *
- * You should have received a copy of the GNU General Public License along    *
- * with this program, if not, write to the Free Software Foundation, Inc.,    *
- * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.                     *
- * For the text or an alternative of this public license, you may reach us    *
- * ComPiere, Inc., 2620 Augustine Dr. #245, Santa Clara, CA 95054, USA        *
- * or via info@compiere.org or http://www.compiere.org/license.html           *
+ * Product: EOoe ERP & CRM Smart Business Solution	                        *
+ * Copyright (C) 2020, Inc. All Rights Reserved.				                *
  *****************************************************************************/
 package eone.base.model;
 
@@ -21,7 +9,7 @@ import java.sql.Timestamp;
 import org.compiere.util.KeyNamePair;
 
 /** Generated Interface for AD_PrintFormat
- *  @author iDempiere (generated) 
+ *  @author EOne (generated) 
  *  @version Version 1.0
  */
 public interface I_AD_PrintFormat 
@@ -120,7 +108,6 @@ public interface I_AD_PrintFormat
 
 	public eone.base.model.I_AD_PrintPaper getAD_PrintPaper() throws RuntimeException;
 
-    
     /** Column name CreateCopy */
     public static final String COLUMNNAME_CreateCopy = "CreateCopy";
 
@@ -198,33 +185,6 @@ public interface I_AD_PrintFormat
 	  */
 	public boolean isActive();
 
-    /** Column name IsDefault */
-    public static final String COLUMNNAME_IsDefault = "IsDefault";
-
-	/** Set Default.
-	  * Default value
-	  */
-	public void setIsDefault (boolean IsDefault);
-
-	/** Get Default.
-	  * Default value
-	  */
-	public boolean isDefault();
-
-    /** Column name IsStandardHeaderFooter */
-    public static final String COLUMNNAME_IsStandardHeaderFooter = "IsStandardHeaderFooter";
-
-	/** Set Standard Header/Footer.
-	  * The standard Header and Footer is used
-	  */
-	public void setIsStandardHeaderFooter (boolean IsStandardHeaderFooter);
-
-	/** Get Standard Header/Footer.
-	  * The standard Header and Footer is used
-	  */
-	public boolean isStandardHeaderFooter();
-
-
     /** Column name Name */
     public static final String COLUMNNAME_Name = "Name";
 
@@ -237,8 +197,6 @@ public interface I_AD_PrintFormat
 	  * Alphanumeric identifier of the entity
 	  */
 	public String getName();
-
-    
 
     /** Column name Updated */
     public static final String COLUMNNAME_Updated = "Updated";

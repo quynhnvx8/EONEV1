@@ -1,19 +1,3 @@
-/******************************************************************************
- * Product: Posterita Ajax UI 												  *
- * Copyright (C) 2007 Posterita Ltd.  All Rights Reserved.                    *
- * This program is free software; you can redistribute it and/or modify it    *
- * under the terms version 2 of the GNU General Public License as published   *
- * by the Free Software Foundation. This program is distributed in the hope   *
- * that it will be useful, but WITHOUT ANY WARRANTY; without even the implied *
- * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.           *
- * See the GNU General Public License for more details.                       *
- * You should have received a copy of the GNU General Public License along    *
- * with this program; if not, write to the Free Software Foundation, Inc.,    *
- * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.                     *
- * For the text or an alternative of this public license, you may reach us    *
- * Posterita Ltd., 3, Draper Avenue, Quatre Bornes, Mauritius                 *
- * or via info@posterita.org or http://www.posterita.org/                     *
- *****************************************************************************/
 
 package eone.webui.component;
 
@@ -42,19 +26,6 @@ import eone.webui.event.WTableModelEvent;
 import eone.webui.event.WTableModelListener;
 import eone.webui.exception.ApplicationException;
 
-/**
- * Replacement for the Swing client minigrid component
- *
- * ZK Listbox extension for Adempiere Web UI.
- * The listbox contains a model and a renderer.
- * The model holds the underlying data objects, while the
- * renderer deals with displaying the data objects.
- * The renderer will render data objects using a variety of components.
- * These components can then be edited if they are not readonly.
- *
- * @author Andrew Kimball
- * @author Sendy Yagambrum
- */
 public class WListbox extends Listbox implements IMiniTable, TableValueChangeListener, WTableModelListener
 {
 	/**
@@ -145,9 +116,6 @@ public class WListbox extends Listbox implements IMiniTable, TableValueChangeLis
         super.setModel(model);
         if (model instanceof ListModelTable)
         {
-            // TODO need to remove listener before adding, but how to do this without
-            // causing ConcurrentModificationException
-            //((ListModelTable)model).removeTableModelListener(this);
             ((ListModelTable)model).addTableModelListener(this);
         }
     }
@@ -193,19 +161,14 @@ public class WListbox extends Listbox implements IMiniTable, TableValueChangeLis
 	 */
 	public boolean isCellEditable(int row, int column)
 	{
-		//  if the first column holds a boolean and it is false, it is not editable
-		
 		Object val = getValueAt(row, 0); 
 		
-		//  if the first column holds a boolean and it is false, it is not editable
 		if (column != 0
 			&& (val instanceof Boolean)
 			&& !((Boolean)val).booleanValue())
 		{
 			return false;
 		}
-		
-		// F3P: If allowed, use idcolumn as a switch for read/write (Some logic as boolean)
 		
 		if(allowIDColumnForReadWrite 
 			&& column != 0
@@ -224,31 +187,13 @@ public class WListbox extends Listbox implements IMiniTable, TableValueChangeLis
 		return false;
 	}   //  isCellEditable
 
-    /**
-     * Returns the cell value at <code>row</code> and <code>column</code>.
-     * <p>
-     * <b>Note</b>: The column is specified in the table view's display
-     *  order, and not in the <code>TableModel</code>'s column
-     *	order.  This is an important distinction because as the
-     *	user rearranges the columns in the table,
-     *	the column at a given index in the view will change.
-     *  Meanwhile the user's actions never affect the model's
-     *  column ordering.
-     *
-     * @param   row    	the index of the row whose value is to be queried
-     * @param   column  the index of the column whose value is to be queried
-     * @return  the Object at the specified cell
-     */
+   
     public Object getValueAt(int row, int column)
     {
         return getModel().getDataAt(row, convertColumnIndexToModel(column));
     }
 
-    /**
-     * Return the <code>ListModelTable</code> associated with this table.
-     *
-     * @return The <code>ListModelTable</code> associated with this table.
-     */
+    
     public ListModelTable getModel()
     {
     	if (super.getModel() == null)
@@ -265,42 +210,18 @@ public class WListbox extends Listbox implements IMiniTable, TableValueChangeLis
 		}
     }
 
-    /**
-	 * Set the cell value at <code>row</code> and <code>column</code>.
-	 *
-	 * @param value		The value to set
-     * @param row    	the index of the row whose value is to be set
-     * @param column	the index of the column whose value is to be set
-	 */
+   
 	public void setValueAt(Object value, int row, int column)
 	{
 		getModel().setDataAt(value, row, convertColumnIndexToModel(column));
 	}
 
-    /**
-     * Convert the index for a column from the display index to the
-     * corresponding index in the underlying model.
-     * <p>
-     * This is unused for this implementation because the column ordering
-     * cannot be dynamically changed.
-     *
-     * @param   viewColumnIndex     the index of the column in the view
-     * @return  the index of the corresponding column in the model
-     *
-     * @see #convertColumnIndexToVi
-     */
+    
     public int convertColumnIndexToModel(int viewColumnIndex)
     {
     	return viewColumnIndex;
     }
 
-    /**
-	 *  Set Column at the specified <code>index</code> to read-only or read/write.
-	 *
-	 *  @param index 	index of column to set as read-only (or not)
-	 *  @param readOnly Read only value. If <code>true</code> column is read only,
-	 *  				if <code>false</code> column is read-write
-	 */
 	public void setColumnReadOnly (int index, boolean readOnly)
 	{
 		Integer indexObject = Integer.valueOf(index);
@@ -323,17 +244,7 @@ public class WListbox extends Listbox implements IMiniTable, TableValueChangeLis
 		return;
 	}   //  setColumnReadOnly
 
-	/**
-	 *  Prepare Table and return SQL required to get resultset to
-	 *  populate table.
-	 *
-	 *  @param layout    		array of column info
-	 *  @param from      		SQL FROM content
-	 *  @param where     		SQL WHERE content
-	 *  @param multiSelection 	multiple selections
-	 *  @param tableName 		table name
-	 *  @return SQL statement to use to get resultset to populate table
-	 */
+	
 	public String prepareTable(ColumnInfo[] layout,
 							String from,
 							String where,
@@ -343,18 +254,7 @@ public class WListbox extends Listbox implements IMiniTable, TableValueChangeLis
 		return prepareTable(layout, from, where, multiSelection, tableName, true);
 	}   //  prepareTable
 
-    /**
-     *  Prepare Table and return SQL required to get resultset to
-     *  populate table
-     *
-     * @param layout            array of column info
-     * @param from              SQL FROM content
-     * @param where             SQL WHERE content
-     * @param multiSelection    multiple selections
-     * @param tableName         multiple selections
-     * @param addAccessSQL      specifies whether to addAcessSQL
-     * @return  SQL statement to use to get resultset to populate table
-     */
+    
     public String prepareTable(ColumnInfo[] layout,
             String from,
             String where,
@@ -472,16 +372,7 @@ public class WListbox extends Listbox implements IMiniTable, TableValueChangeLis
 		return;
 	}   //  addColumn
 
-	/**
-	 * Set the attributes of the column.
-	 *
-	 * @param index		The index of the column to be modified
-	 * @param classType	The class of data that the column will contain
-	 * @param readOnly	Whether the data in the column is read only
-	 * @param header	The header text for the column
-	 *
-	 * @see #setColumnClass(int, Class, boolean)
-	 */
+	
 	public void setColumnClass (int index, Class<?> classType, boolean readOnly, String header)
 	{
 		WListItemRenderer renderer = (WListItemRenderer)getItemRenderer();
@@ -502,16 +393,6 @@ public class WListbox extends Listbox implements IMiniTable, TableValueChangeLis
 
 
 
-
-    /**
-     * Set the attributes of the column.
-     *
-     * @param index     The index of the column to be modified
-     * @param classType The class of data that the column will contain
-     * @param readOnly  Whether the data in the column is read only
-     *
-     * @see #setColumnClass(int, Class, boolean, String)
-     */
     public void setColumnClass (int index, Class<?> classType, boolean readOnly)
     {
         setColumnReadOnly(index, readOnly);
@@ -558,13 +439,7 @@ public class WListbox extends Listbox implements IMiniTable, TableValueChangeLis
 		m_colorColumnIndex = modelIndex;
 	}   //  setColorColumn
 
-	/**
-	 *	Load Table from ResultSet - The ResultSet is not closed.
-	 *
-	 *  @param rs 	ResultSet containing data t enter int the table.
-	 *  			The contents must conform to the column layout defined in
-	 *  			{@link #prepareTable(ColumnInfo[], String, String, boolean, String)}
-	 */
+	
 	public void loadTable(ResultSet rs)
 	{
 		int row = 0; // model row
@@ -953,22 +828,9 @@ public class WListbox extends Listbox implements IMiniTable, TableValueChangeLis
 		return;
 	}   //
 
-	/**
-	 *	Get ColorCode for Row.
-	 *  <pre>
-	 *	If numerical value in compare column is
-	 *		negative = -1,
-	 *      positive = 1,
-	 *      otherwise = 0
-	 *  If Timestamp
-	 *  </pre>
-	 * @param row row
-	 * @return color code
-	 */
+	
 	public int getColorCode (int row)
 	{
-		// TODO expose these through interface
-		// (i.e. make public class member variables)
 		final int valPositive = 1;
 		final int valNegative = -1;
 		final int valOtherwise = 0;
@@ -1039,8 +901,6 @@ public class WListbox extends Listbox implements IMiniTable, TableValueChangeLis
 		boolean newBoolean;
 		IDColumn idColumn;
 
-		// if the event was caused by an ID Column and the value is a boolean
-		// then set the IDColumn's select field
 		if (col >= 0 && row >=0)
 		{
 			if (this.getValueAt(row, col) instanceof IDColumn
@@ -1051,7 +911,6 @@ public class WListbox extends Listbox implements IMiniTable, TableValueChangeLis
 				idColumn.setSelected(newBoolean);
 				this.setValueAt(idColumn, row, col);
 			}
-			// othewise just set the value in the model to the new value
 			else
 			{
 				this.setValueAt(event.getNewValue(), row, col);
@@ -1067,7 +926,6 @@ public class WListbox extends Listbox implements IMiniTable, TableValueChangeLis
 	 */
 	public void repaint()
 	{
-	    // create header (if needed)
 	    initialiseHeader();
 	    invalidate();
 	}
@@ -1131,19 +989,12 @@ public class WListbox extends Listbox implements IMiniTable, TableValueChangeLis
         return;
     }
 
-    /**
-     * no op, to ease porting of swing form
-     */
+   
 	public void autoSize() {
 		//no op
 	}
 
-	/**
-	 * TODO:in theory column of model maybe not map with column of view
-	 * in case set other data model this function always return number of column of model, 
-	 * maybe not equal with number of column of view
-	 * so it should is m_layout.length
-	 */
+	
 	public int getColumnCount() {
 		return getModel() != null ? getModel().getNoColumns() : 0;
 	}

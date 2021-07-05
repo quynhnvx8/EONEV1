@@ -1,18 +1,6 @@
 /******************************************************************************
- * Product: iDempiere ERP & CRM Smart Business Solution                       *
- * Copyright (C) 1999-2012 ComPiere, Inc. All Rights Reserved.                *
- * This program is free software, you can redistribute it and/or modify it    *
- * under the terms version 2 of the GNU General Public License as published   *
- * by the Free Software Foundation. This program is distributed in the hope   *
- * that it will be useful, but WITHOUT ANY WARRANTY, without even the implied *
- * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.           *
- * See the GNU General Public License for more details.                       *
- * You should have received a copy of the GNU General Public License along    *
- * with this program, if not, write to the Free Software Foundation, Inc.,    *
- * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.                     *
- * For the text or an alternative of this public license, you may reach us    *
- * ComPiere, Inc., 2620 Augustine Dr. #245, Santa Clara, CA 95054, USA        *
- * or via info@compiere.org or http://www.compiere.org/license.html           *
+ * Product: EOoe ERP & CRM Smart Business Solution	                        *
+ * Copyright (C) 2020, Inc. All Rights Reserved.				                *
  *****************************************************************************/
 package eone.base.model;
 
@@ -21,8 +9,8 @@ import java.sql.Timestamp;
 import org.compiere.util.KeyNamePair;
 
 /** Generated Interface for C_OrderLine
- *  @author iDempiere (generated) 
- *  @version Release 7.1
+ *  @author EOne (generated) 
+ *  @version Version 1.0
  */
 public interface I_C_OrderLine 
 {
@@ -62,35 +50,18 @@ public interface I_C_OrderLine
 	  */
 	public int getAD_Org_ID();
 
-    /** Column name C_BPartner_ID */
-    public static final String COLUMNNAME_C_BPartner_ID = "C_BPartner_ID";
+    /** Column name Amount */
+    public static final String COLUMNNAME_Amount = "Amount";
 
-	/** Set Business Partner .
-	  * Identifies a Business Partner
+	/** Set Amount.
+	  * Amount in a defined currency
 	  */
-	public void setC_BPartner_ID (int C_BPartner_ID);
+	public void setAmount (BigDecimal Amount);
 
-	/** Get Business Partner .
-	  * Identifies a Business Partner
+	/** Get Amount.
+	  * Amount in a defined currency
 	  */
-	public int getC_BPartner_ID();
-
-	public eone.base.model.I_C_BPartner getC_BPartner() throws RuntimeException;
-
-    /** Column name C_Currency_ID */
-    public static final String COLUMNNAME_C_Currency_ID = "C_Currency_ID";
-
-	/** Set Currency.
-	  * The Currency for this record
-	  */
-	public void setC_Currency_ID (int C_Currency_ID);
-
-	/** Get Currency.
-	  * The Currency for this record
-	  */
-	public int getC_Currency_ID();
-
-	public eone.base.model.I_C_Currency getC_Currency() throws RuntimeException;
+	public BigDecimal getAmount();
 
     /** Column name C_Order_ID */
     public static final String COLUMNNAME_C_Order_ID = "C_Order_ID";
@@ -119,59 +90,6 @@ public interface I_C_OrderLine
 	  * Sales Order Line
 	  */
 	public int getC_OrderLine_ID();
-
-    /** Column name C_OrderLine_UU */
-    public static final String COLUMNNAME_C_OrderLine_UU = "C_OrderLine_UU";
-
-	/** Set C_OrderLine_UU	  */
-	public void setC_OrderLine_UU (String C_OrderLine_UU);
-
-	/** Get C_OrderLine_UU	  */
-	public String getC_OrderLine_UU();
-
-    /** Column name C_Project_ID */
-    public static final String COLUMNNAME_C_Project_ID = "C_Project_ID";
-
-	/** Set Project.
-	  * Financial Project
-	  */
-	public void setC_Project_ID (int C_Project_ID);
-
-	/** Get Project.
-	  * Financial Project
-	  */
-	public int getC_Project_ID();
-
-	public eone.base.model.I_C_Project getC_Project() throws RuntimeException;
-
-    /** Column name C_ProjectPhase_ID */
-    public static final String COLUMNNAME_C_ProjectPhase_ID = "C_ProjectPhase_ID";
-
-	/** Set Project Phase.
-	  * Phase of a Project
-	  */
-	public void setC_ProjectPhase_ID (int C_ProjectPhase_ID);
-
-	/** Get Project Phase.
-	  * Phase of a Project
-	  */
-	public int getC_ProjectPhase_ID();
-
-
-    /** Column name C_Tax_ID */
-    public static final String COLUMNNAME_C_Tax_ID = "C_Tax_ID";
-
-	/** Set Tax.
-	  * Tax identifier
-	  */
-	public void setC_Tax_ID (int C_Tax_ID);
-
-	/** Get Tax.
-	  * Tax identifier
-	  */
-	public int getC_Tax_ID();
-
-	public eone.base.model.I_C_Tax getC_Tax() throws RuntimeException;
 
     /** Column name C_UOM_ID */
     public static final String COLUMNNAME_C_UOM_ID = "C_UOM_ID";
@@ -243,19 +161,6 @@ public interface I_C_OrderLine
 	  */
 	public int getLine();
 
-    /** Column name LineNetAmt */
-    public static final String COLUMNNAME_LineNetAmt = "LineNetAmt";
-
-	/** Set Line Amount.
-	  * Line Extended Amount (Quantity * Actual Price) without Freight and Charges
-	  */
-	public void setLineNetAmt (BigDecimal LineNetAmt);
-
-	/** Get Line Amount.
-	  * Line Extended Amount (Quantity * Actual Price) without Freight and Charges
-	  */
-	public BigDecimal getLineNetAmt();
-
     /** Column name M_Product_ID */
     public static final String COLUMNNAME_M_Product_ID = "M_Product_ID";
 
@@ -271,46 +176,18 @@ public interface I_C_OrderLine
 
 	public eone.base.model.I_M_Product getM_Product() throws RuntimeException;
 
-    /** Column name M_Warehouse_ID */
-    public static final String COLUMNNAME_M_Warehouse_ID = "M_Warehouse_ID";
+    /** Column name Price */
+    public static final String COLUMNNAME_Price = "Price";
 
-	/** Set Warehouse.
-	  * Storage Warehouse and Service Point
+	/** Set Price.
+	  * Price
 	  */
-	public void setM_Warehouse_ID (int M_Warehouse_ID);
+	public void setPrice (BigDecimal Price);
 
-	/** Get Warehouse.
-	  * Storage Warehouse and Service Point
+	/** Get Price.
+	  * Price
 	  */
-	public int getM_Warehouse_ID();
-
-	public eone.base.model.I_M_Warehouse getM_Warehouse() throws RuntimeException;
-
-    /** Column name PriceActual */
-    public static final String COLUMNNAME_PriceActual = "PriceActual";
-
-	/** Set Unit Price.
-	  * Actual Price 
-	  */
-	public void setPriceActual (BigDecimal PriceActual);
-
-	/** Get Unit Price.
-	  * Actual Price 
-	  */
-	public BigDecimal getPriceActual();
-
-    /** Column name PriceList */
-    public static final String COLUMNNAME_PriceList = "PriceList";
-
-	/** Set List Price.
-	  * List Price
-	  */
-	public void setPriceList (BigDecimal PriceList);
-
-	/** Get List Price.
-	  * List Price
-	  */
-	public BigDecimal getPriceList();
+	public BigDecimal getPrice();
 
     /** Column name Processed */
     public static final String COLUMNNAME_Processed = "Processed";
@@ -325,6 +202,19 @@ public interface I_C_OrderLine
 	  */
 	public boolean isProcessed();
 
+    /** Column name Qty */
+    public static final String COLUMNNAME_Qty = "Qty";
+
+	/** Set Quantity.
+	  * Quantity
+	  */
+	public void setQty (BigDecimal Qty);
+
+	/** Get Quantity.
+	  * Quantity
+	  */
+	public BigDecimal getQty();
+
     /** Column name QtyDelivered */
     public static final String COLUMNNAME_QtyDelivered = "QtyDelivered";
 
@@ -338,46 +228,31 @@ public interface I_C_OrderLine
 	  */
 	public BigDecimal getQtyDelivered();
 
-    /** Column name QtyInvoiced */
-    public static final String COLUMNNAME_QtyInvoiced = "QtyInvoiced";
+    /** Column name TaxAmt */
+    public static final String COLUMNNAME_TaxAmt = "TaxAmt";
 
-	/** Set Quantity Invoiced.
-	  * Invoiced Quantity
+	/** Set Tax Amount.
+	  * Tax Amount for a document
 	  */
-	public void setQtyInvoiced (BigDecimal QtyInvoiced);
+	public void setTaxAmt (BigDecimal TaxAmt);
 
-	/** Get Quantity Invoiced.
-	  * Invoiced Quantity
+	/** Get Tax Amount.
+	  * Tax Amount for a document
 	  */
-	public BigDecimal getQtyInvoiced();
+	public BigDecimal getTaxAmt();
 
-    /** Column name QtyOrdered */
-    public static final String COLUMNNAME_QtyOrdered = "QtyOrdered";
+    /** Column name TaxBaseAmt */
+    public static final String COLUMNNAME_TaxBaseAmt = "TaxBaseAmt";
 
-	/** Set Ordered Quantity.
-	  * Ordered Quantity
+	/** Set Tax base Amount.
+	  * Base for calculating the tax amount
 	  */
-	public void setQtyOrdered (BigDecimal QtyOrdered);
+	public void setTaxBaseAmt (BigDecimal TaxBaseAmt);
 
-	/** Get Ordered Quantity.
-	  * Ordered Quantity
+	/** Get Tax base Amount.
+	  * Base for calculating the tax amount
 	  */
-	public BigDecimal getQtyOrdered();
-
-    /** Column name Ref_OrderLine_ID */
-    public static final String COLUMNNAME_Ref_OrderLine_ID = "Ref_OrderLine_ID";
-
-	/** Set Referenced Order Line.
-	  * Reference to corresponding Sales/Purchase Order
-	  */
-	public void setRef_OrderLine_ID (int Ref_OrderLine_ID);
-
-	/** Get Referenced Order Line.
-	  * Reference to corresponding Sales/Purchase Order
-	  */
-	public int getRef_OrderLine_ID();
-
-	public eone.base.model.I_C_OrderLine getRef_OrderLine() throws RuntimeException;
+	public BigDecimal getTaxBaseAmt();
 
     /** Column name Updated */
     public static final String COLUMNNAME_Updated = "Updated";

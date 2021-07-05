@@ -1,18 +1,6 @@
 /******************************************************************************
- * Product: iDempiere ERP & CRM Smart Business Solution                       *
- * Copyright (C) 1999-2012 ComPiere, Inc. All Rights Reserved.                *
- * This program is free software, you can redistribute it and/or modify it    *
- * under the terms version 2 of the GNU General Public License as published   *
- * by the Free Software Foundation. This program is distributed in the hope   *
- * that it will be useful, but WITHOUT ANY WARRANTY, without even the implied *
- * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.           *
- * See the GNU General Public License for more details.                       *
- * You should have received a copy of the GNU General Public License along    *
- * with this program, if not, write to the Free Software Foundation, Inc.,    *
- * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.                     *
- * For the text or an alternative of this public license, you may reach us    *
- * ComPiere, Inc., 2620 Augustine Dr. #245, Santa Clara, CA 95054, USA        *
- * or via info@compiere.org or http://www.compiere.org/license.html           *
+ * Product: EOoe ERP & CRM Smart Business Solution	                        *
+ * Copyright (C) 2020, Inc. All Rights Reserved.				                *
  *****************************************************************************/
 /** Generated Model - DO NOT CHANGE */
 package eone.base.model;
@@ -22,7 +10,7 @@ import java.util.Properties;
 import org.compiere.util.KeyNamePair;
 
 /** Generated Model for AD_PrintFormat
- *  @author iDempiere (generated) 
+ *  @author EOne (generated) 
  *  @version Version 1.0 - $Id$ */
 public class X_AD_PrintFormat extends PO implements I_AD_PrintFormat, I_Persistent 
 {
@@ -30,7 +18,7 @@ public class X_AD_PrintFormat extends PO implements I_AD_PrintFormat, I_Persiste
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = 20201001L;
+	private static final long serialVersionUID = 20210701L;
 
     /** Standard Constructor */
     public X_AD_PrintFormat (Properties ctx, int AD_PrintFormat_ID, String trxName)
@@ -43,13 +31,6 @@ public class X_AD_PrintFormat extends PO implements I_AD_PrintFormat, I_Persiste
 			setAD_PrintFormat_ID (0);
 // 0
 			setAD_PrintPaper_ID (0);
-			setFooterMargin (0);
-			setHeaderMargin (0);
-			setIsDefault (false);
-			setIsStandardHeaderFooter (true);
-// Y
-			setIsTableBased (true);
-// Y
 			setName (null);
         } */
     }
@@ -189,7 +170,6 @@ public class X_AD_PrintFormat extends PO implements I_AD_PrintFormat, I_Persiste
 		return ii.intValue();
 	}
 
-
 	/** Set Create Copy.
 		@param CreateCopy Create Copy	  */
 	public void setCreateCopy (String CreateCopy)
@@ -261,56 +241,6 @@ public class X_AD_PrintFormat extends PO implements I_AD_PrintFormat, I_Persiste
 		return ii.intValue();
 	}
 
-	/** Set Default.
-		@param IsDefault 
-		Default value
-	  */
-	public void setIsDefault (boolean IsDefault)
-	{
-		set_Value (COLUMNNAME_IsDefault, Boolean.valueOf(IsDefault));
-	}
-
-	/** Get Default.
-		@return Default value
-	  */
-	public boolean isDefault () 
-	{
-		Object oo = get_Value(COLUMNNAME_IsDefault);
-		if (oo != null) 
-		{
-			 if (oo instanceof Boolean) 
-				 return ((Boolean)oo).booleanValue(); 
-			return "Y".equals(oo);
-		}
-		return false;
-	}
-
-	/** Set Standard Header/Footer.
-		@param IsStandardHeaderFooter 
-		The standard Header and Footer is used
-	  */
-	public void setIsStandardHeaderFooter (boolean IsStandardHeaderFooter)
-	{
-		set_Value (COLUMNNAME_IsStandardHeaderFooter, Boolean.valueOf(IsStandardHeaderFooter));
-	}
-
-	/** Get Standard Header/Footer.
-		@return The standard Header and Footer is used
-	  */
-	public boolean isStandardHeaderFooter () 
-	{
-		Object oo = get_Value(COLUMNNAME_IsStandardHeaderFooter);
-		if (oo != null) 
-		{
-			 if (oo instanceof Boolean) 
-				 return ((Boolean)oo).booleanValue(); 
-			return "Y".equals(oo);
-		}
-		return false;
-	}
-
-	
-
 	/** Set Name.
 		@param Name 
 		Alphanumeric identifier of the entity
@@ -335,6 +265,4 @@ public class X_AD_PrintFormat extends PO implements I_AD_PrintFormat, I_Persiste
     {
         return new KeyNamePair(get_ID(), getName());
     }
-
-	
 }

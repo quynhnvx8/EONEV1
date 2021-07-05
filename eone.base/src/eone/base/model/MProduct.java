@@ -1,7 +1,12 @@
 package eone.base.model;
 
+import java.math.BigDecimal;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 import org.compiere.util.CCache;
@@ -198,6 +203,33 @@ public class MProduct extends X_M_Product
 		return success;
 	}	//	afterDelete
 	
-	
+	public static Map<String, BigDecimal> getPrice_SOPO(java.sql.Timestamp date, int M_Product_ID) {
+		String sql = "";
+		Map<String, BigDecimal> data = new HashMap<String, BigDecimal>();
+    	if (DB.isOracle() ) {
+    		sql = "select PriceSO, PricePO from (select Coalesce(Price,0) PriceSO, Coalesce(PricePO,0) PricePO from M_Price where ? between ValidFrom And ValidTo And M_Product_ID = ? order by ValidTo desc)b where ROWNUM <= 1";
+    	} else {
+    		sql = "select PriceSO, PricePO from (select Coalesce(Price,0) PriceSO, Coalesce(PricePO,0) PricePO, COUNT(*) OVER ( ORDER BY ValidTo Desc) as ROWNUM from M_Price where ? between ValidFrom And ValidTo And M_Product_ID = ? order by ValidTo desc)b where ROWNUM <= 1";
+    	}
+    	PreparedStatement ps = DB.prepareCall(sql);
+    	ResultSet rs = null;
+    	try {
+			ps.setTimestamp(1, date);
+			ps.setInt(2, M_Product_ID);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				data.put("PricePO", rs.getBigDecimal("PricePO"));
+				data.put("PriceSO", rs.getBigDecimal("PriceSO"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			DB.close(rs, ps);
+			rs = null;
+			ps = null;
+		}
+    	
+    	return data;
+	}
 	
 }	//	MProduct

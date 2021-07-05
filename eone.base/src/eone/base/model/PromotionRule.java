@@ -36,8 +36,8 @@ public class PromotionRule {
 		boolean hasDeleteLine = false;
 		for (MOrderLine ol : lines) {
 			if (ol.getM_Product_ID() > 0) {
-				if (ol.getQtyOrdered().signum() > 0) {
-					orderLineQty.put(ol.getC_OrderLine_ID(), ol.getQtyOrdered());
+				if (ol.getQty().signum() > 0) {
+					orderLineQty.put(ol.getC_OrderLine_ID(), ol.getQty());
 					//orderLineIndex.put(ol.getC_OrderLine_ID(), ol);
 				}
 			} 
@@ -47,8 +47,7 @@ public class PromotionRule {
 		//refresh order
 		if (hasDeleteLine) {
 			order.getLines(true, null);
-			order.getTaxes(true);
-			order.setGrandTotal(DB.getSQLValueBD(order.get_TrxName(), "SELECT GrandTotal From C_Order WHERE C_Order_ID = ?", order.getC_Order_ID()));
+			order.setAmount(DB.getSQLValueBD(order.get_TrxName(), "SELECT Amount From C_Order WHERE C_Order_ID = ?", order.getC_Order_ID()));
 		}
 
 		Map<Integer, List<Integer>> promotions = PromotionRule.findM_Promotion_ID(order);
@@ -87,7 +86,7 @@ public class PromotionRule {
 		}
 
 		public int compare(Integer ol1, Integer ol2) {
-			return index.get(ol1).getPriceActual().compareTo(index.get(ol2).getPriceActual());
+			return index.get(ol1).getPrice().compareTo(index.get(ol2).getPrice());
 		}
 	}
 }

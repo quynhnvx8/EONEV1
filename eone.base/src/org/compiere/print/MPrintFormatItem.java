@@ -43,12 +43,6 @@ public class MPrintFormatItem extends X_AD_PrintFormatItem
 			//
 			setMaxWidth(0);
 			setMaxHeight(0);
-			setIsSummarized(false);
-			setIsAveraged(false);
-			setIsCounted(false);
-			setIsMinCalc(false);
-			
-			setIsMaxCalc(false);
 			setIsCountedGroup(false);
 		}
 	}	//	MPrintFormatItem
@@ -212,6 +206,11 @@ public class MPrintFormatItem extends X_AD_PrintFormatItem
 	{
 		return getPrintAreaType().equals(PRINTAREATYPE_Content);
 	}
+	
+	public boolean isContentOther()
+	{
+		return getPrintAreaType().equals(PRINTAREATYPE_ContentOther);
+	}
 	/**
 	 * 	Footer
 	 *	@return true if area is footer
@@ -263,8 +262,7 @@ public class MPrintFormatItem extends X_AD_PrintFormatItem
 			;
 		//
 		sb.append(", Printed=").append(isPrinted())
-			.append(",SeqNo=").append(getSeqNo())
-			.append(",Summarized=").append(isSummarized());
+			.append(",SeqNo=").append(getSeqNo());
 		sb.append("]");
 		return sb.toString();
 	}	//	toString

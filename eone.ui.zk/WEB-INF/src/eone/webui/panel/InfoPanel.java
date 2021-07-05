@@ -1623,72 +1623,25 @@ public abstract class InfoPanel extends Window implements EventListener<Event>, 
 	 */
 	protected abstract String getSQLWhere();
 
-	/**
-	 *  Set Parameters for Query
-	 *	To be overwritten by concrete classes
-	 *  When override this method, please consider isQueryByUser and prevWhereClause
-	 *  @param pstmt statement
-	 *  @param forCount for counting records
-	 *  @throws SQLException
-	 */
 	protected abstract void setParameters (PreparedStatement pstmt, boolean forCount)
 		throws SQLException;
-    /**
-     * notify to search editor of a value change in the selection info
-     * @param event event
-    *
-     */
-
+    
 	protected void showHistory()					{}
-	/**
-	 *  Has History (false)
-	 *	To be overwritten by concrete classes
-	 *  @return true if it has history (default false)
-	 */
+	
 	protected boolean hasHistory()				{return false;}
-	/**
-	 *  Customize dialog
-	 *	To be overwritten by concrete classes
-	 */
+	
 	protected boolean hasProcess()				{return false;}
-	/**
-	 *  Customize dialog
-	 *	To be overwritten by concrete classes
-	 */	
+	
 	protected void customize()					{}
-	/**
-	 *  Has Customize (false)
-	 *	To be overwritten by concrete classes
-	 *  @return true if it has customize (default false)
-	 */
+	
 	protected boolean hasCustomize()				{return false;}
-	/**
-	 *  Has Zoom (false)
-	 *	To be overwritten by concrete classes
-	 *  @return true if it has zoom (default false)
-	 */
+	
 	protected boolean hasZoom()					{return false;}
-	/**
-	 *  Has new function for create new record (false)
-	 *	To be overwritten by concrete classes 
-	 * @return
-	 */
+	
 	protected boolean hasNew()					{return false;}
-	/**
-	 *  Save Selection Details
-	 *	To be overwritten by concrete classes
-	 *  this function call when close info window.
-	 *  default infoWindow will set value of all column of current selected record to environment variable with {@link Env.TAB_INF}
-	 *  class extends can do more by override it. 
-	 */
+	
 	protected void saveSelectionDetail()          {}
 
-	/**
-	 * 	Get Zoom Window
-	 *	@param tableName table name
-	 *	@param isSOTrx sales trx
-	 *	@return AD_Window_ID
-	 */
 	protected int getAD_Window_ID (String tableName, boolean isSOTrx)
 	{
 		if (!isSOTrx && m_PO_Window_ID > 0)
@@ -1908,7 +1861,6 @@ public abstract class InfoPanel extends Window implements EventListener<Event>, 
         		}
         	}else if (event.getName().equals(Events.ON_OK)){// on ok when focus at non parameter component. example grid result
 	        	if (m_lookup && contentPanel.getSelectedIndex() >= 0){
-	    			// do nothing when parameter not change and at window mode, or at dialog mode but select non record    			
 	    			onOk();
 	    		}
 	        	else if (m_infoWindowID == 0 && event.getTarget() instanceof InfoGeneralPanel) {
@@ -1918,11 +1870,6 @@ public abstract class InfoPanel extends Window implements EventListener<Event>, 
         		m_cancel = true;
         		dispose(false);
         	}
-            //when user push enter keyboard at input parameter field
-            else
-            {
-            	// onUserQuery(); // captured now on control key
-            }
     }  //  onEvent
 
     public static final int VK_ENTER          = '\r';
@@ -1995,13 +1942,7 @@ public abstract class InfoPanel extends Window implements EventListener<Event>, 
     	Events.echoEvent(ON_RUN_PROCESS, this, processId);
     }
     
-    /**
-     * Run a process.
-     * show process dialog,
-     * before start process, save id of record selected
-     * after run process, show message report result 
-     * @param processIdObj
-     */
+    
     protected void runProcess (Object processIdObj){
     	final Integer processId = (Integer)processIdObj;
     	final MProcess m_process = MProcess.get(Env.getCtx(), processId);
@@ -2009,8 +1950,6 @@ public abstract class InfoPanel extends Window implements EventListener<Event>, 
 		m_pi.setAD_User_ID(Env.getAD_User_ID(Env.getCtx()));
 		m_pi.setAD_Client_ID(Env.getAD_Client_ID(Env.getCtx()));
 
-		
-		// Execute Process
 		m_pi.setAD_InfoWindow_ID(infoWindow.getAD_InfoWindow_ID());
 		
 		WProcessCtl.process(p_WindowNo, m_pi, (Trx)null, new EventListener<Event>() {
@@ -2020,9 +1959,7 @@ public abstract class InfoPanel extends Window implements EventListener<Event>, 
 				ProcessModalDialog processModalDialog = (ProcessModalDialog)event.getTarget();
 				if (DialogEvents.ON_BEFORE_RUN_PROCESS.equals(event.getName())){
 					updateListSelected();
-					// store in T_Selection table selected rows for Execute Process that retrieves from T_Selection in code.
 					saveResultSelection(getInfoColumnIDFromProcess(processModalDialog.getAD_Process_ID()));
-					//createT_Selection_InfoWindow(pInstanceID);
 					recordSelectedData.clear();
 				}else if (ProcessModalDialog.ON_WINDOW_CLOSE.equals(event.getName())){ 
 					if (processModalDialog.isCancel()){

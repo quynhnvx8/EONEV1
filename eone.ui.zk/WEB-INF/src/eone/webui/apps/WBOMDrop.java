@@ -916,12 +916,8 @@ public class WBOMDrop extends ADForm implements EventListener<Event>
 				int i = m_selectionList.indexOf(displayChb);
 				if (m_selectionList.get(i).isChecked()) 
 				{
-					int M_Product_ID = m_productList.get(i).intValue();
 					// Create Line
 					MOrderLine ol = new MOrderLine(order);
-					ol.setM_Product_ID(M_Product_ID, true);
-					ol.setPrice();
-					ol.setTax();
 					ol.saveEx();
 					lineCount++;
 

@@ -4,8 +4,10 @@ import java.io.InvalidClassException;
 import java.io.Serializable;
 import java.lang.reflect.UndeclaredThrowableException;
 import java.math.BigDecimal;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -189,7 +191,11 @@ public abstract class AbstractProcessCtl implements Runnable
 			params.put("ReportName", m_pi.getTitle());
 			params.put("WindowNo", windowno);
 			params.put("MPrintFormat", format);
-			getDataExcute(ProcedureName, format);
+			//excuteQuery(ProcedureName, format);
+			if (ProcedureName.indexOf("'a'") > 0)
+				getDataExcute(ProcedureName, format);
+			else
+				getDataExcuteOld(ProcedureName, format);
 			//Luu y phai dat o day de lay duoc data
 			params.put("ProcessInfo", m_pi);
 			m_pi.setReportingProcess(true);
@@ -199,22 +205,26 @@ public abstract class AbstractProcessCtl implements Runnable
 			
 	}   //  run
 	
-	private void getDataExcute(String sql, MPrintFormat  format)
+	private void getDataExcuteOld(String sql, MPrintFormat  format)
 	{
         String sqlProc = Env.parseContext(Env.getCtx(), windowno, sql, false);
         PreparedStatement ps = DB.prepareCall(sqlProc);
-        ArrayList<PrintDataItem> arr = null;
-        ArrayList<ArrayList<PrintDataItem>> arrs = new ArrayList<ArrayList<PrintDataItem>>();
+        
+        ArrayList<PrintDataItem> arrC = null;
+        ArrayList<PrintDataItem> arrH = null;
+        ArrayList<PrintDataItem> arrF = null;
+        ArrayList<ArrayList<PrintDataItem>> arrsC = new ArrayList<ArrayList<PrintDataItem>>();
+        ArrayList<ArrayList<PrintDataItem>> arrsH = new ArrayList<ArrayList<PrintDataItem>>();
+        ArrayList<ArrayList<PrintDataItem>> arrsF = new ArrayList<ArrayList<PrintDataItem>>();
+        
         int rowCount = 0;
 		ResultSet rs = null;
-		MPrintFormatItem [] items = format.getItemContent();
+		MPrintFormatItem [] itemsC = format.getItemContent();
+		MPrintFormatItem [] itemsH = format.getItemHeader();
+		MPrintFormatItem [] itemsF = format.getItemFooter();
 		
 		//Gia tri tinh toan cong thuc bao cao
-		Map<String, String> formula = format.getFormula();
 		Map<String, Object> data = new HashMap<String, Object>();
-    	Map<String, Object> valueOld = new HashMap<String, Object>();
-    	Serializable balance = Env.ZERO;
-    	//End
     	
 		ArrayList<Object> arrWidth = new ArrayList<Object>();
 		
@@ -224,9 +234,51 @@ public abstract class AbstractProcessCtl implements Runnable
 			rs = ps.executeQuery();
 			while (rs.next()) {
 				Serializable element = null;
-				arr = new ArrayList<PrintDataItem>();
-				for(int i = 0; i < items.length; i++) {
-					MPrintFormatItem item = items[i];
+				arrC = new ArrayList<PrintDataItem>();
+				arrH = new ArrayList<PrintDataItem>();
+				arrF = new ArrayList<PrintDataItem>();
+				
+				for(int i = 0; i < itemsH.length; i++) {
+					MPrintFormatItem item = itemsH[i];
+					if (item.isMapColumnSelectSQL() && item.isPrinted()){
+						if(item.getName().contains("%#")) {
+							String [] hf = item.getName().split("%#");
+							for(int v = 0; v < hf.length; v++) {
+				    			if(hf[v].contains("%")) {
+				    				String columnName = hf[v].trim().substring(0, hf[v].lastIndexOf("%"));
+				    				element = (Serializable) rs.getObject(columnName);
+				    				item.setName(columnName);
+				    				break;
+				    			}
+				    			
+				    		}        
+						}
+						arrH.add(addNewItem(item, element));						
+					}
+				}
+				
+				for(int i = 0; i < itemsF.length; i++) {
+					
+					MPrintFormatItem item = itemsF[i];
+					if (item.isMapColumnSelectSQL() && item.isPrinted()){
+						if(item.getName().contains("%#")) {
+							String [] hf = item.getName().split("%#");
+							for(int v = 0; v < hf.length; v++) {
+				    			if(hf[v].contains("%")) {
+				    				String columnName = hf[v].trim().substring(0, hf[v].lastIndexOf("%"));
+				    				element = (Serializable) rs.getObject(columnName);
+				    				item.setName(columnName);
+				    				break;
+				    			}
+				    			
+				    		}        
+						}
+						arrF.add(addNewItem(item, element));						
+					}
+				}
+				
+				for(int i = 0; i < itemsC.length; i++) {
+					MPrintFormatItem item = itemsC[i];
 					if (item.isMapColumnSelectSQL() && item.isPrinted()){
 						element = (Serializable) rs.getObject(item.getName());
 						
@@ -235,26 +287,17 @@ public abstract class AbstractProcessCtl implements Runnable
 		        			data.put(item.getColumnName(), element);
 		        		}
 						
-						//Tinh toan doi voi cot dat cong thuc de day vao List data truoc khi view bao cao.
-						if (item.isAccumulateCal() && item.getFormulaSetup() != "") {
-		        			balance = getBalance(data, formula, item.getColumnName(), valueOld); 
-		        			valueOld.put(item.getColumnName(), balance);
-		        			if (new BigDecimal(balance.toString()).compareTo(Env.ZERO) < 0)
-		        				balance = 0;
-		        			element = balance;        			       			        			        				
-		        		}
-						
 						//Add vao data
-						arr.add(addNewItem(item, element));
+						arrC.add(addNewItem(item, element));
 						//Add do rong cua cac cot
 						if (rowCount == 0)
-							arrWidth.add((float)items[i].getMaxWidth());
+							arrWidth.add((float)itemsC[i].getMaxWidth());
 					}
 					if (item.getNumLines() > maxRow) {
 						maxRow = item.getNumLines();
 					}
 				}
-				arrs.add(arr);
+				arrsC.add(arrC);
 				rowCount++;
 			} 
 		}
@@ -269,22 +312,24 @@ public abstract class AbstractProcessCtl implements Runnable
 		}
 		
 		//Truong hop query khong co du lieu tra ve
-		if (arrs.size() == 0) {
+		if (arrsC.size() == 0) {
 			Serializable element = null;
-			arr = new ArrayList<PrintDataItem>();
-			for(int i = 0; i < items.length; i++) {
-				MPrintFormatItem item = items[i];
+			arrC = new ArrayList<PrintDataItem>();
+			for(int i = 0; i < itemsC.length; i++) {
+				MPrintFormatItem item = itemsC[i];
 				if (item.isMapColumnSelectSQL() && item.isPrinted()) {
-					arr.add(addNewItem(item, element));
+					arrC.add(addNewItem(item, element));
 					//Add do rong cua cac cot
-					arrWidth.add((float)items[i].getMaxWidth());
+					arrWidth.add((float)itemsC[i].getMaxWidth());
 						
 				}
 				if (item.getNumLines() > maxRow) {
 					maxRow = item.getNumLines();
 				}
 			}
-			arrs.add(arr);
+			arrsC.add(arrC);
+			arrsH.add(arrH);
+			arrsF.add(arrF);
 		}//End khogn co du lieu tra ve
 		
 		float [] retValue = new float [arrWidth.size()];
@@ -293,12 +338,199 @@ public abstract class AbstractProcessCtl implements Runnable
 		}
 		
 		m_pi.setWidthTable(retValue);
-		m_pi.setDataQuery(arrs);
+		m_pi.setDataQueryC(arrsC);
 		m_pi.setRowCountQuery(rowCount);
 		m_pi.setColumnCountQuery(arrWidth.size());
 		m_pi.setMaxRow(maxRow);
 	}
 	
+	private void getDataExcute(String sql, MPrintFormat  format)
+	{
+		Connection conn = DB.getConnectionID();
+		
+        String sqlProc = Env.parseContext(Env.getCtx(), windowno, sql, false);
+        PreparedStatement ps = null;
+        ArrayList<PrintDataItem> arrC = null;
+        ArrayList<PrintDataItem> arrH = null;
+        ArrayList<PrintDataItem> arrF = null;
+        ArrayList<ArrayList<PrintDataItem>> arrsC = new ArrayList<ArrayList<PrintDataItem>>();
+        ArrayList<ArrayList<PrintDataItem>> arrsH = new ArrayList<ArrayList<PrintDataItem>>();
+        ArrayList<ArrayList<PrintDataItem>> arrsF = new ArrayList<ArrayList<PrintDataItem>>();
+        int rowCount = 0;
+		ResultSet rs = null;
+		MPrintFormatItem [] itemsC = format.getItemContent();
+		MPrintFormatItem [] itemsH = format.getItemHeader();
+		MPrintFormatItem [] itemsF = format.getItemFooter();
+		
+		//Gia tri tinh toan cong thuc bao cao
+		Map<String, Object> data = new HashMap<String, Object>();
+    	//End
+    	
+		ArrayList<Object> arrWidth = new ArrayList<Object>();
+		
+		int maxRow = 0;
+		
+		try {
+			conn.setAutoCommit(false);
+        	ps = conn.prepareCall(sqlProc);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				
+				Serializable element = null;
+				arrC = new ArrayList<PrintDataItem>();
+				arrH = new ArrayList<PrintDataItem>();
+				arrF = new ArrayList<PrintDataItem>();
+				
+				/*=========================================================*/
+				//Process Header
+				ResultSet rsH = (ResultSet) rs.getObject(1);
+				ResultSetMetaData  metaH = rsH.getMetaData();
+				while (rsH.next()) {
+					String name = metaH.getColumnName(1);
+					if ("?column?".equalsIgnoreCase(name))
+						break;
+					for(int i = 0; i < itemsH.length; i++) {
+						MPrintFormatItem item = itemsH[i];
+						if (item.isMapColumnSelectSQL() && item.isPrinted()){
+							if(item.getName().contains("%#")) {
+								String [] hf = item.getName().split("%#");
+								for(int v = 0; v < hf.length; v++) {
+					    			if(hf[v].contains("%")) {
+					    				String columnName = hf[v].trim().substring(0, hf[v].lastIndexOf("%"));
+					    				element = (Serializable) rsH.getObject(columnName);
+					    				item.setName(columnName);
+					    				break;
+					    			}
+					    			
+					    		}        
+							}
+							arrH.add(addNewItem(item, element));						
+						}
+					}
+					arrsH.add(arrH);
+				}
+				rsH.close();
+				//End Header
+				/*=========================================================*/
+				
+				
+				/*=========================================================*/
+				//Process Content
+				ResultSet rsC = (ResultSet) rs.getObject(2);
+				while (rsC.next()) {
+					for(int i = 0; i < itemsC.length; i++) {
+						MPrintFormatItem item = itemsC[i];
+						if (item.isMapColumnSelectSQL() && item.isPrinted()){
+							element = (Serializable) rsC.getObject(item.getName());
+							
+							//Nhung truong du lieu kieu so se add vao data phuc vu cho tinh toan cong thuc (neu co)
+							if (item.isNumber()) {
+			        			data.put(item.getColumnName(), element);
+			        		}
+							
+							//Add vao data
+							arrC.add(addNewItem(item, element));
+							//Add do rong cua cac cot
+							if (rowCount == 0)
+								arrWidth.add((float)itemsC[i].getMaxWidth());
+						}
+						if (Integer.parseInt(item.getOrderRowHeader()) > maxRow) {
+							maxRow = Integer.parseInt(item.getOrderRowHeader());
+						}
+					}
+					arrsC.add(arrC);
+					rowCount++;
+				}
+				rsC.close();
+				//End Content
+				/*=========================================================*/
+				
+
+				
+				/*=========================================================*/
+				//Process Footer
+				ResultSet rsF = (ResultSet) rs.getObject(3);
+				ResultSetMetaData  metaF = rsF.getMetaData();
+				while (rsF.next()) {
+					String name = metaF.getColumnName(1);
+					if ("?column?".equalsIgnoreCase(name))
+						break;
+					for(int i = 0; i < itemsF.length; i++) {
+						
+						MPrintFormatItem item = itemsF[i];
+						if (item.isMapColumnSelectSQL() && item.isPrinted()){
+							if(item.getName().contains("%#")) {
+								String [] hf = item.getName().split("%#");
+								for(int v = 0; v < hf.length; v++) {
+					    			if(hf[v].contains("%")) {
+					    				String columnName = hf[v].trim().substring(0, hf[v].lastIndexOf("%"));
+					    				element = (Serializable) rsF.getObject(columnName);
+					    				item.setName(columnName);
+					    				break;
+					    			}
+					    			
+					    		}        
+							}
+							arrF.add(addNewItem(item, element));						
+						}
+					}
+					arrsF.add(arrF);
+				}
+				rsF.close();
+				//End Footer
+				/*=========================================================*/
+				
+				
+				
+			} 
+			conn.commit();
+			conn.close();
+		}
+		catch (SQLException e)
+		{
+			log.saveError("Error", e);
+		}
+		finally
+		{
+			DB.close(rs, ps);
+			rs = null; ps = null;
+			
+		}
+		
+		//Truong hop query khong co du lieu tra ve
+		if (arrsC.size() == 0) {
+			Serializable element = null;
+			arrC = new ArrayList<PrintDataItem>();
+			for(int i = 0; i < itemsC.length; i++) {
+				MPrintFormatItem item = itemsC[i];
+				if (item.isMapColumnSelectSQL() && item.isPrinted()) {
+					arrC.add(addNewItem(item, element));
+					//Add do rong cua cac cot
+					arrWidth.add((float)itemsC[i].getMaxWidth());
+						
+				}
+				if (Integer.parseInt(item.getOrderRowHeader()) > maxRow) {
+					maxRow = Integer.parseInt(item.getOrderRowHeader());
+				}
+			}
+			arrsC.add(arrC);
+		}//End khogn co du lieu tra ve
+		
+		float [] retValue = new float [arrWidth.size()];
+		for(int i = 0; i < arrWidth.size(); i++) {
+			retValue[i] = (float)arrWidth.get(i);
+		}
+		
+		m_pi.setWidthTable(retValue);
+		m_pi.setDataQueryC(arrsC);
+		m_pi.setDataQueryH(arrsH);
+		m_pi.setDataQueryF(arrsF);
+		m_pi.setRowCountQuery(rowCount);
+		m_pi.setColumnCountQuery(arrWidth.size());
+		m_pi.setMaxRow(maxRow);
+	}
+	
+
 	private PrintDataItem addNewItem(MPrintFormatItem item, Serializable element) {
 		return new PrintDataItem(
 				item.getName(), 			//Ten cot
@@ -309,42 +541,11 @@ public abstract class AbstractProcessCtl implements Runnable
 				item.getAlignment(), 		//Can trai, phai, giua
 				item.getFormulaSetup(),		//thiet lap cong thuc tinh so du
 				item.isGroupBy(), 			//Co phan nhom hay khong	
-				item.isSummarized(), 		//Co cong tong bao cao hay khong
-				item.isMinCalc(), 			//Tinh gia tri nho nhat
-				item.isMaxCalc(), 			//Tinh gia tri lon nhat
-				item.isAveraged(),			//Tinh gia tri trung binh
-				item.isCounted(), 			//Dem so luong ban ghi cua bao cao
 				item.isCountedGroup(),		//Dem so luong ban ghi cua nhom
-				item.isBalanceFinal(),		//So du cuoi ky
 				item.getTableName(),		//Ten bang can de zoom theo dieu kien ZoomLogic	
 				item.getRotationText()		//Huong chu tren header cua bao cao
 				);
 	}
-	
-	private Serializable getBalance(Map<String, Object> data, Map<String, String> formula, String columnName, Map<String, Object> valueOlds) {
-    	String formulaStr = formula.get(columnName);
-    	for(Map.Entry<String, Object> entry : data.entrySet()) {
-    		String key = entry.getKey();
-    		Object value = entry.getValue();
-    		if (value == null) {
-    			value = 0;
-    		}
-    		if(formulaStr.contains(key)) {
-    			formulaStr = formulaStr.replaceAll(key, ""+ value);
-    		}
-    	}
-    	Object valueOld = valueOlds.get(columnName);
-    	if (valueOld == null) {
-    		valueOld = Env.ZERO;
-    	}
-    	Serializable valueNew = Env.getValueByFormula(formulaStr);
-    	
-    	BigDecimal total = new BigDecimal(valueOld.toString()).add(new BigDecimal(valueNew.toString()));
-    	
-    	return (Serializable) (total);
-    }
-	
-	
 	
 	protected int getWindowNo() 
 	{
@@ -552,4 +753,5 @@ public abstract class AbstractProcessCtl implements Runnable
     	params.put("AD_DEPARTMENT_ID", Env.getContextAsInt(Env.getCtx(), "#AD_Department_ID"));
     	params.put("AD_DEPARTMENT_NAME", Env.getContext(Env.getCtx(), "#AD_Department_Name"));
     }
+    
 }	//	ProcessCtl
