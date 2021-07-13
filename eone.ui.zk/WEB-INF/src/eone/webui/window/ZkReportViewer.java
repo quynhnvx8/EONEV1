@@ -1024,7 +1024,7 @@ public class ZkReportViewer extends Window implements EventListener<Event>, ITab
 				ProcessInfo pi = (ProcessInfo)m_params.get("ProcessInfo");
 				windowNo = (int)m_params.get("WindowNo");
 				int countRow = pi.getRowCountQuery();
-				ArrayList<ArrayList<PrintDataItem>> dataQuery = pi.getDataQueryC();
+				List<ArrayList<PrintDataItem>> dataQuery = pi.getDataQueryC();
 				int maxRow = pi.getMaxRow();
 				//Add Header
 				tr tr = new tr();

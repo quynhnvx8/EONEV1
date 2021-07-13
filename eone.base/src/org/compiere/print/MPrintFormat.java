@@ -57,12 +57,12 @@ public class MPrintFormat extends X_AD_PrintFormat
 
 	private static CCache<Integer,MPrintFormatItem[]> s_itemsHeader = new CCache<Integer,MPrintFormatItem[]>(Table_Name, 5);
 	private static CCache<Integer,MPrintFormatItem[]> s_itemsContent = new CCache<Integer,MPrintFormatItem[]>(Table_Name, 5);
-	private static CCache<Integer,MPrintFormatItem[]> s_itemsContentOther = new CCache<Integer,MPrintFormatItem[]>(Table_Name, 5);
+	private static CCache<Integer,MPrintFormatItem[]> s_itemsGroup = new CCache<Integer,MPrintFormatItem[]>(Table_Name, 5);
 	private static CCache<Integer,MPrintFormatItem[]> s_itemsFooter = new CCache<Integer,MPrintFormatItem[]>(Table_Name, 5);
 	
 	/** Items							*/
 	private MPrintFormatItem[]		m_itemsContent = null;
-	private MPrintFormatItem[]		m_itemsContentOther = null;
+	private MPrintFormatItem[]		m_itemsGroup = null;
 	private MPrintFormatItem[]		m_itemsHeader = null;
 	private MPrintFormatItem[]		m_itemsFooter = null;
 	
@@ -87,11 +87,11 @@ public class MPrintFormat extends X_AD_PrintFormat
 		return m_itemsContent;
 	}
 	
-	public MPrintFormatItem[] getItemContentOther() {
-		if (s_itemsContentOther.containsKey(getAD_PrintFormat_ID()))
-			return s_itemsContentOther.get(getAD_PrintFormat_ID());
+	public MPrintFormatItem[] getItemGroup() {
+		if (s_itemsGroup.containsKey(getAD_PrintFormat_ID()))
+			return s_itemsGroup.get(getAD_PrintFormat_ID());
 		getItems();
-		return m_itemsContentOther;
+		return m_itemsGroup;
 	}
 	
 	public MPrintFormatItem[] getItemFooter() {
@@ -134,11 +134,11 @@ public class MPrintFormat extends X_AD_PrintFormat
 			return;
 		ArrayList<MPrintFormatItem> lsHeader = new ArrayList<MPrintFormatItem>();
 		ArrayList<MPrintFormatItem> lsContent = new ArrayList<MPrintFormatItem>();
-		ArrayList<MPrintFormatItem> lsContentOther = new ArrayList<MPrintFormatItem>();
+		ArrayList<MPrintFormatItem> lsGroup = new ArrayList<MPrintFormatItem>();
 		ArrayList<MPrintFormatItem> lsFooter = new ArrayList<MPrintFormatItem>();
 		String sql = "SELECT * FROM AD_PrintFormatItem pfi "
 			+ "WHERE pfi.AD_PrintFormat_ID=? AND pfi.IsActive='Y' "
-			+ "ORDER BY SeqNo ASC";
+			+ "ORDER BY IsGroupBy Desc, SeqNo ASC";
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -157,7 +157,7 @@ public class MPrintFormat extends X_AD_PrintFormat
 				else if (pfi.isFooter())
 					lsFooter.add (pfi);
 				else if(pfi.isContentOther())
-					lsContentOther.add(pfi);
+					lsGroup.add(pfi);
 			}
 		}
 		catch (SQLException e)
@@ -172,8 +172,8 @@ public class MPrintFormat extends X_AD_PrintFormat
 		m_itemsContent = new MPrintFormatItem[lsContent.size()];
 		lsContent.toArray(m_itemsContent);
 		
-		m_itemsContentOther = new MPrintFormatItem[lsContentOther.size()];
-		lsContentOther.toArray(m_itemsContentOther);
+		m_itemsGroup = new MPrintFormatItem[lsGroup.size()];
+		lsGroup.toArray(m_itemsGroup);
 		
 		m_itemsHeader = new MPrintFormatItem[lsHeader.size()];
 		lsHeader.toArray(m_itemsHeader);
@@ -184,7 +184,7 @@ public class MPrintFormat extends X_AD_PrintFormat
 		s_itemsContent.put(getAD_PrintFormat_ID(), m_itemsContent);
 		s_itemsHeader.put(getAD_PrintFormat_ID(), m_itemsHeader);
 		s_itemsFooter.put(getAD_PrintFormat_ID(), m_itemsFooter);
-		s_itemsContentOther.put(getAD_PrintFormat_ID(), m_itemsContentOther);
+		s_itemsGroup.put(getAD_PrintFormat_ID(), m_itemsGroup);
 		//s_formula.put(getAD_PrintFormat_ID(), formula);
 	}
 	

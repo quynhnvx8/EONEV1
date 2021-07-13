@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 
@@ -351,23 +352,29 @@ public abstract class AbstractProcessCtl implements Runnable
         String sqlProc = Env.parseContext(Env.getCtx(), windowno, sql, false);
         PreparedStatement ps = null;
         ArrayList<PrintDataItem> arrC = null;
+        ArrayList<PrintDataItem> arrG = null;
         ArrayList<PrintDataItem> arrH = null;
         ArrayList<PrintDataItem> arrF = null;
-        ArrayList<ArrayList<PrintDataItem>> arrsC = new ArrayList<ArrayList<PrintDataItem>>();
-        ArrayList<ArrayList<PrintDataItem>> arrsH = new ArrayList<ArrayList<PrintDataItem>>();
-        ArrayList<ArrayList<PrintDataItem>> arrsF = new ArrayList<ArrayList<PrintDataItem>>();
-        int rowCount = 0;
+        List<ArrayList<PrintDataItem>> arrsC = new ArrayList<ArrayList<PrintDataItem>>();
+        List<ArrayList<PrintDataItem>> arrsH = new ArrayList<ArrayList<PrintDataItem>>();
+        List<ArrayList<PrintDataItem>> arrsF = new ArrayList<ArrayList<PrintDataItem>>();
+        
+        
 		ResultSet rs = null;
 		MPrintFormatItem [] itemsC = format.getItemContent();
+		MPrintFormatItem [] itemsG = format.getItemGroup();
 		MPrintFormatItem [] itemsH = format.getItemHeader();
 		MPrintFormatItem [] itemsF = format.getItemFooter();
 		
-		//Gia tri tinh toan cong thuc bao cao
-		Map<String, Object> data = new HashMap<String, Object>();
+		//Group by
+		Map<String, BigDecimal> objGroup = new HashMap<String, BigDecimal>();
+		Map<String, Map<String, BigDecimal>> dataGroup = new HashMap<String, Map<String, BigDecimal>>();
     	//End
     	
 		ArrayList<Object> arrWidth = new ArrayList<Object>();
 		
+		int rowCount = 0;
+		int countGroup = 0;
 		int maxRow = 0;
 		
 		try {
@@ -377,15 +384,13 @@ public abstract class AbstractProcessCtl implements Runnable
 			while (rs.next()) {
 				
 				Serializable element = null;
-				arrC = new ArrayList<PrintDataItem>();
-				arrH = new ArrayList<PrintDataItem>();
-				arrF = new ArrayList<PrintDataItem>();
 				
 				/*=========================================================*/
 				//Process Header
 				ResultSet rsH = (ResultSet) rs.getObject(1);
 				ResultSetMetaData  metaH = rsH.getMetaData();
 				while (rsH.next()) {
+					arrH = new ArrayList<PrintDataItem>();
 					String name = metaH.getColumnName(1);
 					if ("?column?".equalsIgnoreCase(name))
 						break;
@@ -416,25 +421,59 @@ public abstract class AbstractProcessCtl implements Runnable
 				
 				/*=========================================================*/
 				//Process Content
+				//Đang cấu hình chỉ 1 group
+				MPrintFormatItem itemG = itemsG[0];
+				
 				ResultSet rsC = (ResultSet) rs.getObject(2);
 				while (rsC.next()) {
+					//Neu group by
+					int nextcol = 0;
+
+					if (itemsG != null && itemsG.length > 0) {
+						itemG = itemsG[nextcol];
+						element = (Serializable)rsC.getString(itemG.getName());
+						String groupName = itemG.getName();
+						if (!dataGroup.containsKey(groupName + "-o0o-"+ element) && element != null) {
+							arrG = new ArrayList<PrintDataItem>();
+							arrG.add(addNewItem(itemG, element));
+							
+							nextcol = nextcol + itemG.getColumnSpan();
+							//End 
+							String [] obj = itemG.getFieldSumGroup().split(";");
+							if (obj.length > 0) {
+								for(int g = 0; g < obj.length; g++) {
+									//Lay gia tri cot cua group.
+									itemG = itemsC[nextcol];
+									
+									String [] col = obj[g].split("->");
+									String colGroup = col[0];
+									String forColSum = col[1];
+									objGroup.put(forColSum, rsC.getBigDecimal(""+ colGroup +""));
+									
+									//add vao arr cua group
+									arrG.add(addNewItem(itemG, (Serializable)rsC.getBigDecimal(""+ colGroup +"")));
+								}
+								dataGroup.put(groupName + "-o0o-"+ element, objGroup);
+							}
+							arrsC.add(arrG);
+							countGroup++;
+						}								
+					}
+					
+					
+					arrC = new ArrayList<PrintDataItem>();
 					for(int i = 0; i < itemsC.length; i++) {
 						MPrintFormatItem item = itemsC[i];
+						
 						if (item.isMapColumnSelectSQL() && item.isPrinted()){
 							element = (Serializable) rsC.getObject(item.getName());
 							
-							//Nhung truong du lieu kieu so se add vao data phuc vu cho tinh toan cong thuc (neu co)
-							if (item.isNumber()) {
-			        			data.put(item.getColumnName(), element);
-			        		}
-							
-							//Add vao data
 							arrC.add(addNewItem(item, element));
 							//Add do rong cua cac cot
 							if (rowCount == 0)
 								arrWidth.add((float)itemsC[i].getMaxWidth());
 						}
-						if (Integer.parseInt(item.getOrderRowHeader()) > maxRow) {
+						if (Integer.parseInt(item.getOrderRowHeader()) > maxRow && !item.isGroupBy()) {
 							maxRow = Integer.parseInt(item.getOrderRowHeader());
 						}
 					}
@@ -452,6 +491,9 @@ public abstract class AbstractProcessCtl implements Runnable
 				ResultSet rsF = (ResultSet) rs.getObject(3);
 				ResultSetMetaData  metaF = rsF.getMetaData();
 				while (rsF.next()) {
+
+					arrF = new ArrayList<PrintDataItem>();
+					
 					String name = metaF.getColumnName(1);
 					if ("?column?".equalsIgnoreCase(name))
 						break;
@@ -525,10 +567,12 @@ public abstract class AbstractProcessCtl implements Runnable
 		m_pi.setDataQueryC(arrsC);
 		m_pi.setDataQueryH(arrsH);
 		m_pi.setDataQueryF(arrsF);
-		m_pi.setRowCountQuery(rowCount);
+		m_pi.setRowCountQuery(rowCount + countGroup);
 		m_pi.setColumnCountQuery(arrWidth.size());
 		m_pi.setMaxRow(maxRow);
+		m_pi.setDataGroup(dataGroup);
 	}
+	
 	
 
 	private PrintDataItem addNewItem(MPrintFormatItem item, Serializable element) {
@@ -543,7 +587,10 @@ public abstract class AbstractProcessCtl implements Runnable
 				item.isGroupBy(), 			//Co phan nhom hay khong	
 				item.isCountedGroup(),		//Dem so luong ban ghi cua nhom
 				item.getTableName(),		//Ten bang can de zoom theo dieu kien ZoomLogic	
-				item.getRotationText()		//Huong chu tren header cua bao cao
+				item.getRotationText(),		//Huong chu tren header cua bao cao
+				item.getFieldSumGroup(),	//Tính tổng theo group
+				item.getNumLines(),
+				item.getColumnSpan()
 				);
 	}
 	

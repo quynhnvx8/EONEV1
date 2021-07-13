@@ -8,6 +8,7 @@ import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.compiere.print.PrintDataItem;
 import org.compiere.util.DisplayType;
@@ -87,33 +88,42 @@ public class ProcessInfo implements Serializable
 	private int columnCountQuery = 0;
 	
 	//Lay du lieu tu ProcedureName mapping theo PrintFormatItem
-	private ArrayList<ArrayList<PrintDataItem>> dataQueryC = null; //Content
-	private ArrayList<ArrayList<PrintDataItem>> dataQueryH = null; //Header
-	private ArrayList<ArrayList<PrintDataItem>> dataQueryF = null; //Footer
+	private List<ArrayList<PrintDataItem>> dataQueryC = null; //Content
+	private List<ArrayList<PrintDataItem>> dataQueryH = null; //Header
+	private List<ArrayList<PrintDataItem>> dataQueryF = null; //Footer
+	
+	private Map<String, Map<String, BigDecimal>> dataGroup = null; //Group by
 	
 	
-	
-	public ArrayList<ArrayList<PrintDataItem>> getDataQueryH() {
+	public Map<String, Map<String, BigDecimal>> getDataGroup() {
+		return dataGroup;
+	}
+
+	public void setDataGroup(Map<String, Map<String, BigDecimal>> dataGroup) {
+		this.dataGroup = dataGroup;
+	}
+
+	public List<ArrayList<PrintDataItem>> getDataQueryH() {
 		return dataQueryH;
 	}
 
-	public void setDataQueryH(ArrayList<ArrayList<PrintDataItem>> dataQueryH) {
+	public void setDataQueryH(List<ArrayList<PrintDataItem>> dataQueryH) {
 		this.dataQueryH = dataQueryH;
 	}
 
-	public ArrayList<ArrayList<PrintDataItem>> getDataQueryF() {
+	public List<ArrayList<PrintDataItem>> getDataQueryF() {
 		return dataQueryF;
 	}
 
-	public void setDataQueryF(ArrayList<ArrayList<PrintDataItem>> dataQueryF) {
+	public void setDataQueryF(List<ArrayList<PrintDataItem>> dataQueryF) {
 		this.dataQueryF = dataQueryF;
 	}
 
-	public ArrayList<ArrayList<PrintDataItem>> getDataQueryC() {
+	public List<ArrayList<PrintDataItem>> getDataQueryC() {
 		return dataQueryC;
 	}
 
-	public void setDataQueryC(ArrayList<ArrayList<PrintDataItem>> dataQueryC) {
+	public void setDataQueryC(List<ArrayList<PrintDataItem>> dataQueryC) {
 		this.dataQueryC = dataQueryC;
 	}
 	

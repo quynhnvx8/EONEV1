@@ -199,6 +199,14 @@ public interface I_AD_PrintFormatItem
 
 	/** Get FormulaSetup	  */
 	public String getFormulaSetup();
+	
+	public static final String COLUMNNAME_FieldSumGroup = "FieldSumGroup";
+
+	/** Set FormulaSetup	  */
+	public void setFieldSumGroup (String FieldSumGroup);
+
+	/** Get FormulaSetup	  */
+	public String getFieldSumGroup();
 
     /** Column name IsActive */
     public static final String COLUMNNAME_IsActive = "IsActive";

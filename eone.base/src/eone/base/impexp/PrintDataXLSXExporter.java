@@ -7,6 +7,7 @@ import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.print.attribute.standard.MediaSizeName;
 
@@ -55,7 +56,7 @@ public class PrintDataXLSXExporter
 	private XSSFFont						m_fontDefault	= null;
 	private HashMap<String, XSSFCellStyle>	m_styles		= new HashMap<String, XSSFCellStyle>();
 	
-	private ArrayList<ArrayList<PrintDataItem>> dataQuery = null;
+	private List<ArrayList<PrintDataItem>> dataQuery = null;
 
 	public PrintDataXLSXExporter(HashMap<String, Object> m_params, MPrintFormat printFormat)
 	{

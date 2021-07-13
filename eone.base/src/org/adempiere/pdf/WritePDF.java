@@ -10,6 +10,7 @@ import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.adempiere.exceptions.AdempiereException;
 import org.compiere.Adempiere;
@@ -318,9 +319,9 @@ public class WritePDF {
     private static int countColumn = 0;
     private static int countRow = 0;
     private static int windowNo = 0;
-    private static ArrayList<ArrayList<PrintDataItem>> dataQuery = null;
-    private static ArrayList<ArrayList<PrintDataItem>> dataHeader = null;
-    private static ArrayList<ArrayList<PrintDataItem>> dataFooter = null;
+    private static List<ArrayList<PrintDataItem>> dataQuery = null;
+    private static List<ArrayList<PrintDataItem>> dataHeader = null;
+    private static List<ArrayList<PrintDataItem>> dataFooter = null;
     private static MPrintFormatItem [] items = null;
     private static MPrintFormatItem [] header = null;
     private static MPrintFormatItem [] footer = null;
@@ -336,6 +337,7 @@ public class WritePDF {
     	for(int r = 1; r <= maxRow; r++) {
     		for(int c = 0; c < items.length; c++) {
             	MPrintFormatItem item = items[c];
+            	
             	int rowOrder = Integer.parseInt(item.getOrderRowHeader());
             	if (rowOrder == r && item.isPrinted()) {
             		cell = new PdfPCell(new Phrase(item.getName(language, windowNo), smallfont));
@@ -359,12 +361,8 @@ public class WritePDF {
     
     private  void createContent(PdfPTable table) {
     	PdfPCell cell = null;
-    	//Map<Integer, BigDecimal> lsTotal = new HashMap<Integer, BigDecimal>();
-    	//Map<Integer, BigDecimal> lsMax = new HashMap<Integer, BigDecimal>();
-    	//Map<Integer, BigDecimal> lsMin = new HashMap<Integer, BigDecimal>();
-    	//Map<Integer, BigDecimal> lsAvg = new HashMap<Integer, BigDecimal>();
-    	//Map<Integer, BigDecimal> lsBalance = new HashMap<Integer, BigDecimal>();
-        for(int row = 0; row < countRow; row ++) {
+    	
+    	for(int row = 0; row < countRow; row ++) {
         	ArrayList<PrintDataItem> arrItem = dataQuery.get(row);
         	
         	//
@@ -375,12 +373,13 @@ public class WritePDF {
                 cell.setNoWrap(false);
                 cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
                 cell.setHorizontalAlignment(item.getAlignment());
+                cell.setColspan(item.getColSpan());
                 cell.setPadding(4);
                 table.addCell(cell);
                 
             }
         }
-        
+    	
         //Add 1 dong trang cach footer
         cell = new PdfPCell(new Phrase(" ", smallfont));
     	cell.setNoWrap(false);
