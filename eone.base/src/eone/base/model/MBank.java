@@ -152,8 +152,7 @@ public class MBank extends X_C_Bank implements DocAction
 			m_processMsg = "@PeriodClosed@";
 			return DocAction.STATUS_Drafted;
 		}
-
-		m_processMsg = ModelValidationEngine.get().fireDocValidate(this, ModelValidator.TIMING_BEFORE_COMPLETE);
+		m_processMsg = null;
 		if (m_processMsg != null)
 			return DocAction.STATUS_Drafted;
 		
@@ -183,19 +182,16 @@ public class MBank extends X_C_Bank implements DocAction
 		}
 		
 		if (log.isLoggable(Level.INFO)) log.info("reActivateIt - " + toString());
-		// Before reActivate
-		m_processMsg = ModelValidationEngine.get().fireDocValidate(this,ModelValidator.TIMING_BEFORE_REACTIVATE);
+		m_processMsg = null;
 		if (m_processMsg != null)
-			return false;		
+			return false;
 		
 		if(!super.reActivate())
 			return false;
 		
 		setProcessed(false);
 		
-		m_processMsg = ModelValidationEngine.get().fireDocValidate(this,ModelValidator.TIMING_AFTER_REACTIVATE);
-		if (m_processMsg != null)
-			return false;		
+			
 		return true;
 	}	//	reActivateIt
 	

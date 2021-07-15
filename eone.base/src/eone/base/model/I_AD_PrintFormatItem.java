@@ -178,6 +178,15 @@ public interface I_AD_PrintFormatItem
 	  */
 	public String getFieldAlignmentType();
 
+    /** Column name FieldSumGroup */
+    public static final String COLUMNNAME_FieldSumGroup = "FieldSumGroup";
+
+	/** Set Field Sum Group	  */
+	public void setFieldSumGroup (String FieldSumGroup);
+
+	/** Get Field Sum Group	  */
+	public String getFieldSumGroup();
+
     /** Column name FormatPattern */
     public static final String COLUMNNAME_FormatPattern = "FormatPattern";
 
@@ -199,14 +208,6 @@ public interface I_AD_PrintFormatItem
 
 	/** Get FormulaSetup	  */
 	public String getFormulaSetup();
-	
-	public static final String COLUMNNAME_FieldSumGroup = "FieldSumGroup";
-
-	/** Set FormulaSetup	  */
-	public void setFieldSumGroup (String FieldSumGroup);
-
-	/** Get FormulaSetup	  */
-	public String getFieldSumGroup();
 
     /** Column name IsActive */
     public static final String COLUMNNAME_IsActive = "IsActive";
@@ -220,6 +221,15 @@ public interface I_AD_PrintFormatItem
 	  * The record is active in the system
 	  */
 	public boolean isActive();
+
+    /** Column name IsBreakPage */
+    public static final String COLUMNNAME_IsBreakPage = "IsBreakPage";
+
+	/** Set IsBreakPage	  */
+	public void setIsBreakPage (boolean IsBreakPage);
+
+	/** Get IsBreakPage	  */
+	public boolean isBreakPage();
 
     /** Column name IsCountedGroup */
     public static final String COLUMNNAME_IsCountedGroup = "IsCountedGroup";

@@ -17,17 +17,14 @@
 package eone.base.model;
 
 import java.io.File;
-import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.Properties;
 import java.util.logging.Level;
 
-import org.adempiere.exceptions.PeriodClosedException;
 import org.compiere.util.CCache;
 import org.compiere.util.DB;
-import org.compiere.util.Env;
 import org.compiere.util.Msg;
 
 import eone.base.process.DocAction;
@@ -315,331 +312,22 @@ public class MInventory extends X_M_Inventory implements DocAction
 		return true;
 	}	//	invalidateIt
 	
-	/**
-	 *	Prepare Document
-	 * 	@return new status (In Progress or Invalid) 
-	 */
-	public String prepareIt()
-	{
-		if (log.isLoggable(Level.INFO)) log.info(toString());
-		m_processMsg = ModelValidationEngine.get().fireDocValidate(this, ModelValidator.TIMING_BEFORE_PREPARE);
-		if (m_processMsg != null)
-			return DocAction.STATUS_Drafted;
-
-		//	Std Period open?
-		MPeriod.isOpen(getCtx(), getMovementDate(), getAD_Org_ID());
-		MInventoryLine[] lines = getLines(false);
-		if (lines.length == 0)
-		{
-			m_processMsg = "@NoLines@";
-			return DocAction.STATUS_Drafted;
-		}
-
-		
-		//	TODO: Add up Amounts
-	//	setApprovalAmt();
-		
-		m_processMsg = ModelValidationEngine.get().fireDocValidate(this, ModelValidator.TIMING_AFTER_PREPARE);
-		if (m_processMsg != null)
-			return DocAction.STATUS_Drafted;
-
-		m_justPrepared = true;
-		if (!DOCACTION_Complete.equals(getDocAction()))
-			setDocAction(DOCACTION_Complete);
-		return DocAction.STATUS_Drafted;
-	}	//	prepareIt
 	
-	/**
-	 * 	Approve Document
-	 * 	@return true if success 
-	 */
-	public boolean  approveIt()
-	{
-		if (log.isLoggable(Level.INFO)) log.info(toString());
-		setIsApproved(true);
-		return true;
-	}	//	approveIt
-	
-	/**
-	 * 	Reject Approval
-	 * 	@return true if success 
-	 */
-	public boolean rejectIt()
-	{
-		if (log.isLoggable(Level.INFO)) log.info(toString());
-		setIsApproved(false);
-		return true;
-	}	//	rejectIt
-	
-	/**
-	 * 	Complete Document
-	 * 	@return new status (Complete, In Progress, Invalid, Waiting ..)
-	 */
 	public String completeIt()
 	{
 		
-
-		//	Re-Check
-		if (!m_justPrepared)
-		{
-			String status = prepareIt();
-			m_justPrepared = false;
-			if (!DocAction.STATUS_Drafted.equals(status))
-				return status;
-		}
-
-		
-
-		m_processMsg = ModelValidationEngine.get().fireDocValidate(this, ModelValidator.TIMING_BEFORE_COMPLETE);
-		if (m_processMsg != null)
-			return DocAction.STATUS_Drafted;
-
-		//	Implicit Approval
-		if (!isApproved())
-			approveIt();
-		if (log.isLoggable(Level.INFO)) log.info(toString());
-
-		
-		//	User Validation
-		String valid = ModelValidationEngine.get().fireDocValidate(this, ModelValidator.TIMING_AFTER_COMPLETE);
-		if (valid != null)
-		{
-			m_processMsg = valid;
-			return DocAction.STATUS_Drafted;
-		}
-
-		//
 		setProcessed(true);
 		setDocAction(DOCACTION_Close);
 		return DocAction.STATUS_Completed;
 	}	//	completeIt
 	
 	
-	public boolean voidIt()
-	{
-		if (log.isLoggable(Level.INFO)) log.info(toString());
-				
-		if (DOCSTATUS_Closed.equals(getDocStatus())
-			|| DOCSTATUS_Reversed.equals(getDocStatus())
-			|| DOCSTATUS_Voided.equals(getDocStatus()))
-		{
-			m_processMsg = "Document Closed: " + getDocStatus();
-			return false;
-		}
-
-		//	Not Processed
-		if (DOCSTATUS_Drafted.equals(getDocStatus())
-			|| DOCSTATUS_Invalid.equals(getDocStatus())
-			|| DOCSTATUS_InProgress.equals(getDocStatus())
-			|| DOCSTATUS_Approved.equals(getDocStatus())
-			|| DOCSTATUS_NotApproved.equals(getDocStatus()) )
-		{
-			// Before Void
-			m_processMsg = ModelValidationEngine.get().fireDocValidate(this,ModelValidator.TIMING_BEFORE_VOID);
-			if (m_processMsg != null)
-				return false;
-			
-			//	Set lines to 0
-			MInventoryLine[] lines = getLines(false);
-			for (int i = 0; i < lines.length; i++)
-			{
-				MInventoryLine line = lines[i];
-				BigDecimal oldCount = line.getQtyCount();
-				BigDecimal oldInternal = line.getQtyInternalUse();
-				if (oldCount.compareTo(line.getQtyBook()) != 0 
-					|| oldInternal.signum() != 0)
-				{
-					line.setQtyInternalUse(Env.ZERO);
-					line.setQtyCount(line.getQtyBook());
-					StringBuilder msgd = new StringBuilder("Void (").append(oldCount).append("/").append(oldInternal).append(")");
-					line.addDescription(msgd.toString());
-					line.saveEx(get_TrxName());
-				}
-			}
-		}
-		else
-		{
-			boolean accrual = false;
-			try 
-			{
-				MPeriod.isOpen(getCtx(), getMovementDate(), getAD_Org_ID());
-			}
-			catch (PeriodClosedException e) 
-			{
-				accrual = true;
-			}
-			
-			if (accrual)
-				return reverseAccrualIt();
-			else
-				return reverseCorrectIt();
-		}
-			
-		// After Void
-		m_processMsg = ModelValidationEngine.get().fireDocValidate(this,ModelValidator.TIMING_AFTER_VOID);
-		if (m_processMsg != null)
-			return false;		
-		setProcessed(true);
-		setDocAction(DOCACTION_None);
-		return true;
-	}	//	voidIt
 	
-	/**
-	 * 	Close Document.
-	 * 	@return true if success 
-	 */
-	public boolean closeIt()
-	{
-		if (log.isLoggable(Level.INFO)) log.info(toString());
-		// Before Close
-		m_processMsg = ModelValidationEngine.get().fireDocValidate(this,ModelValidator.TIMING_BEFORE_CLOSE);
-		if (m_processMsg != null)
-			return false;
-
-		setDocAction(DOCACTION_None);
-		// After Close
-		m_processMsg = ModelValidationEngine.get().fireDocValidate(this,ModelValidator.TIMING_AFTER_CLOSE);
-		if (m_processMsg != null)
-			return false;
-		return true;
-	}	//	closeIt
-	
-	/**
-	 * 	Reverse Correction
-	 * 	@return false 
-	 */
-	public boolean reverseCorrectIt()
-	{
-		if (log.isLoggable(Level.INFO)) log.info(toString());
-		// Before reverseCorrect
-		m_processMsg = ModelValidationEngine.get().fireDocValidate(this,ModelValidator.TIMING_BEFORE_REVERSECORRECT);
-		if (m_processMsg != null)
-			return false;
-
-		MInventory reversal = reverse(false);
-		if (reversal == null)
-			return false;
-		
-		// After reverseCorrect
-		m_processMsg = ModelValidationEngine.get().fireDocValidate(this,ModelValidator.TIMING_AFTER_REVERSECORRECT);
-		if (m_processMsg != null)
-			return false;
-
-		m_processMsg = reversal.getDocumentNo();
-
-		return true;
-	}	//	reverseCorrectIt
-
-	protected MInventory reverse(boolean accrual) {
-		Timestamp reversalDate = accrual ? Env.getContextAsDate(getCtx(), "#Date") : getMovementDate();
-		if (reversalDate == null) {
-			reversalDate = new Timestamp(System.currentTimeMillis());
-		}
-		
-		MPeriod.isOpen(getCtx(), reversalDate, getAD_Org_ID());
-
-		//	Deep Copy
-		MInventory reversal = new MInventory(getCtx(), 0, get_TrxName());
-		copyValues(this, reversal, getAD_Client_ID(), getAD_Org_ID());
-		reversal.setDocumentNo(getDocumentNo() + REVERSE_INDICATOR);	//	indicate reversals
-		reversal.setMovementDate(reversalDate);
-		reversal.setDocStatus(DOCSTATUS_Drafted);
-		reversal.setDocAction(DOCACTION_Complete);
-		reversal.setIsApproved (false);
-		reversal.setPosted(false);
-		reversal.setProcessed(false);
-		StringBuilder msgd = new StringBuilder("{->").append(getDocumentNo()).append(")");
-		reversal.addDescription(msgd.toString());
-		//FR1948157
-		reversal.setReversal_ID(getM_Inventory_ID());
-		reversal.saveEx();
-		reversal.setReversal(true);
-
-		//	Reverse Line Qty
-		MInventoryLine[] oLines = getLines(true);
-		for (int i = 0; i < oLines.length; i++)
-		{
-			MInventoryLine oLine = oLines[i];
-			MInventoryLine rLine = new MInventoryLine(getCtx(), 0, get_TrxName());
-			copyValues(oLine, rLine, oLine.getAD_Client_ID(), oLine.getAD_Org_ID());
-			rLine.setM_Inventory_ID(reversal.getM_Inventory_ID());
-			rLine.setParent(reversal);
-			//AZ Goodwill
-			// store original (voided/reversed) document line
-			rLine.setReversalLine_ID(oLine.getM_InventoryLine_ID());
-			//
-			rLine.setQtyBook (oLine.getQtyCount());		//	switch
-			rLine.setQtyCount (oLine.getQtyBook());
-			rLine.setQtyInternalUse (oLine.getQtyInternalUse().negate());		
-			rLine.setNewCostPrice(oLine.getCurrentCostPrice());
-			rLine.setCurrentCostPrice(oLine.getNewCostPrice());
-			
-			rLine.saveEx();
-
-			
-		}
-		
-		reversal.closeIt();
-		reversal.setDocStatus(DOCSTATUS_Reversed);
-		reversal.setDocAction(DOCACTION_None);
-		reversal.saveEx();
-		
-		//	Update Reversed (this)
-		msgd = new StringBuilder("(").append(reversal.getDocumentNo()).append("<-)");
-		addDescription(msgd.toString());
-		setProcessed(true);
-		//FR1948157
-		setReversal_ID(reversal.getM_Inventory_ID());
-		setDocStatus(DOCSTATUS_Reversed);	//	may come from void
-		setDocAction(DOCACTION_None);
-		
-		return reversal;
-	}
-	
-	/**
-	 * 	Reverse Accrual
-	 * 	@return false 
-	 */
-	public boolean reverseAccrualIt()
-	{
-		if (log.isLoggable(Level.INFO)) log.info(toString());
-		// Before reverseAccrual
-		m_processMsg = ModelValidationEngine.get().fireDocValidate(this,ModelValidator.TIMING_BEFORE_REVERSEACCRUAL);
-		if (m_processMsg != null)
-			return false;
-		
-		MInventory reversal = reverse(true);
-		if (reversal == null)
-			return false;
-		
-		// After reverseAccrual
-		m_processMsg = ModelValidationEngine.get().fireDocValidate(this,ModelValidator.TIMING_AFTER_REVERSEACCRUAL);
-		if (m_processMsg != null)
-			return false;
-
-		m_processMsg = reversal.getDocumentNo();
-		
-		return true;
-	}	//	reverseAccrualIt
-	
-	/** 
-	 * 	Re-activate
-	 * 	@return false 
-	 */
 	public boolean reActivateIt()
 	{
 		if (log.isLoggable(Level.INFO)) log.info(toString());
-		// Before reActivate
-		m_processMsg = ModelValidationEngine.get().fireDocValidate(this,ModelValidator.TIMING_BEFORE_REACTIVATE);
-		if (m_processMsg != null)
-			return false;	
 		
-		// After reActivate
-		m_processMsg = ModelValidationEngine.get().fireDocValidate(this,ModelValidator.TIMING_AFTER_REACTIVATE);
-		if (m_processMsg != null)
-			return false;
-		
-		return false;
+		return true;
 	}	//	reActivateIt
 	
 	

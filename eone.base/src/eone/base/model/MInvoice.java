@@ -172,17 +172,6 @@ public class MInvoice extends X_C_Invoice implements DocAction
 	public String completeIt()
 	{
 		
-
-		
-		m_processMsg = ModelValidationEngine.get().fireDocValidate(this, ModelValidator.TIMING_BEFORE_COMPLETE);
-		if (m_processMsg != null)
-			return DocAction.STATUS_Drafted;
-
-		
-		if (log.isLoggable(Level.INFO)) log.info(toString());
-		
-		
-  		
 		setProcessed(true);
 		return DocAction.STATUS_Completed;
 	}	//	completeIt
@@ -191,15 +180,7 @@ public class MInvoice extends X_C_Invoice implements DocAction
 	public boolean reActivateIt()
 	{
 		if (log.isLoggable(Level.INFO)) log.info(toString());
-		// Before reActivate
-		m_processMsg = ModelValidationEngine.get().fireDocValidate(this,ModelValidator.TIMING_BEFORE_REACTIVATE);
-		if (m_processMsg != null)
-			return false;
-
-		// After reActivate
-		m_processMsg = ModelValidationEngine.get().fireDocValidate(this,ModelValidator.TIMING_AFTER_REACTIVATE);
-		if (m_processMsg != null)
-			return false;
+		
 
 		if(!super.reActivate())
 			return false;

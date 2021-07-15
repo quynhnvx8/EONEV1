@@ -83,18 +83,10 @@ public class MAssetDelivery extends X_A_Asset_Delivery implements DocAction
 
 	@Override
 	public String completeIt() {
-		m_processMsg = ModelValidationEngine.get().fireDocValidate(this, ModelValidator.TIMING_BEFORE_COMPLETE);
+		m_processMsg = null;
 		if (m_processMsg != null)
 			return DocAction.STATUS_Drafted;
-
 		
-		
-		String valid = ModelValidationEngine.get().fireDocValidate(this, ModelValidator.TIMING_AFTER_COMPLETE);
-		if (valid != null)
-		{
-			m_processMsg = valid;
-			return DocAction.STATUS_Drafted;
-		}
 		setProcessed(true);
 		updateProcessed(true);
 		updateAllAsset(true);
@@ -106,7 +98,7 @@ public class MAssetDelivery extends X_A_Asset_Delivery implements DocAction
 	@Override
 	public boolean reActivateIt() {
 		if (log.isLoggable(Level.INFO)) log.info(toString());
-		m_processMsg = ModelValidationEngine.get().fireDocValidate(this,ModelValidator.TIMING_BEFORE_REACTIVATE);
+		m_processMsg = null;
 		if (m_processMsg != null)
 			return false;	
 				
@@ -117,9 +109,7 @@ public class MAssetDelivery extends X_A_Asset_Delivery implements DocAction
 		setProcessed(false);
 		updateProcessed(false);
 		updateAllAsset(false);
-		m_processMsg = ModelValidationEngine.get().fireDocValidate(this,ModelValidator.TIMING_AFTER_REACTIVATE);
-		if (m_processMsg != null)
-			return false;		
+				
 		return true;
 	}
 

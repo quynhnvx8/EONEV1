@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.sql.ResultSet;
 import java.util.Properties;
-import java.util.logging.Level;
 
 import org.compiere.util.DB;
 import org.compiere.util.Env;
@@ -123,18 +122,8 @@ public class MAssetBuild extends X_A_Asset_Build implements DocAction
 			return DocAction.STATUS_Drafted;
 		}
 		
-		m_processMsg = ModelValidationEngine.get().fireDocValidate(this, ModelValidator.TIMING_BEFORE_COMPLETE);
-		if (m_processMsg != null)
-			return DocAction.STATUS_Drafted;
-
 		updateAllAsset(true);
 		
-		String valid = ModelValidationEngine.get().fireDocValidate(this, ModelValidator.TIMING_AFTER_COMPLETE);
-		if (valid != null)
-		{
-			m_processMsg = valid;
-			return DocAction.STATUS_Drafted;
-		}
 		setProcessed(true);
 		return DocAction.STATUS_Completed;
 	}
@@ -150,11 +139,7 @@ public class MAssetBuild extends X_A_Asset_Build implements DocAction
 			return false;
 		}
 		
-		if (log.isLoggable(Level.INFO)) log.info(toString());
-		m_processMsg = ModelValidationEngine.get().fireDocValidate(this,ModelValidator.TIMING_BEFORE_REACTIVATE);
-		if (m_processMsg != null)
-			return false;	
-				
+		
 		updateAllAsset(false);
 		
 		if(!super.reActivate())
@@ -162,10 +147,7 @@ public class MAssetBuild extends X_A_Asset_Build implements DocAction
 		
 		setProcessed(false);
 		
-		// After reActivate
-		m_processMsg = ModelValidationEngine.get().fireDocValidate(this,ModelValidator.TIMING_AFTER_REACTIVATE);
-		if (m_processMsg != null)
-			return false;		
+			
 		return true;
 	}
 

@@ -111,18 +111,7 @@ public class MSafetyStock extends X_M_SafetyStock implements DocAction
 
 	@Override
 	public String completeIt() {
-		m_processMsg = ModelValidationEngine.get().fireDocValidate(this, ModelValidator.TIMING_BEFORE_COMPLETE);
-		if (m_processMsg != null)
-			return DocAction.STATUS_Drafted;
-
 		
-		
-		String valid = ModelValidationEngine.get().fireDocValidate(this, ModelValidator.TIMING_AFTER_COMPLETE);
-		if (valid != null)
-		{
-			m_processMsg = valid;
-			return DocAction.STATUS_Drafted;
-		}
 		setProcessed(true);
 		updateProcessed(true);
 		return DocAction.STATUS_Completed;
@@ -133,19 +122,13 @@ public class MSafetyStock extends X_M_SafetyStock implements DocAction
 	@Override
 	public boolean reActivateIt() {
 		if (log.isLoggable(Level.INFO)) log.info(toString());
-		m_processMsg = ModelValidationEngine.get().fireDocValidate(this,ModelValidator.TIMING_BEFORE_REACTIVATE);
-		if (m_processMsg != null)
-			return false;	
-				
 		
 		if(!super.reActivate())
 			return false;
 		
 		setProcessed(false);
 		updateProcessed(false);
-		m_processMsg = ModelValidationEngine.get().fireDocValidate(this,ModelValidator.TIMING_AFTER_REACTIVATE);
-		if (m_processMsg != null)
-			return false;		
+			
 		return true;
 	}
 

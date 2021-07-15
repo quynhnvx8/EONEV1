@@ -1,19 +1,3 @@
-/******************************************************************************
- * Product: Posterita Ajax UI 												  *
- * Copyright (C) 2007 Posterita Ltd.  All Rights Reserved.                    *
- * This program is free software; you can redistribute it and/or modify it    *
- * under the terms version 2 of the GNU General Public License as published   *
- * by the Free Software Foundation. This program is distributed in the hope   *
- * that it will be useful, but WITHOUT ANY WARRANTY; without even the implied *
- * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.           *
- * See the GNU General Public License for more details.                       *
- * You should have received a copy of the GNU General Public License along    *
- * with this program; if not, write to the Free Software Foundation, Inc.,    *
- * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.                     *
- * For the text or an alternative of this public license, you may reach us    *
- * Posterita Ltd., 3, Draper Avenue, Quatre Bornes, Mauritius                 *
- * or via info@posterita.org or http://www.posterita.org/                     *
- *****************************************************************************/
 
 package eone.webui.editor;
 
@@ -67,13 +51,7 @@ import eone.webui.session.SessionManager;
 import eone.webui.theme.ThemeManager;
 import eone.webui.window.WFieldRecordInfo;
 
-/**
- * Search Editor for web UI.
- * Web UI port of search type VLookup
- *
- * @author Ashley G Ramdass
- *
- */
+
 public class WSearchEditor extends WEditor implements ContextMenuListener, ValueChangeListener, IZoomableEditor
 {
 	private static final int MAX_AUTO_COMPLETE_ROWS = 50;	
@@ -103,12 +81,7 @@ public class WSearchEditor extends WEditor implements ContextMenuListener, Value
 		this(gridField, false, null);
 	}
 	
-	/**
-	 * 
-	 * @param gridField
-	 * @param tableEditor
-	 * @param editorConfiguration
-	 */
+
 	public WSearchEditor (GridField gridField, boolean tableEditor, IEditorConfiguration editorConfiguration)
 	{
 		super(new CustomSearchBox(), gridField, tableEditor, editorConfiguration);
@@ -140,16 +113,7 @@ public class WSearchEditor extends WEditor implements ContextMenuListener, Value
 	}
 
 
-	/**
-	 * Constructor for use if a grid field is unavailable
-	 *
-	 * @param lookup		Store of selectable data
-	 * @param label			column name (not displayed)
-	 * @param description	description of component
-	 * @param mandatory		whether a selection must be made
-	 * @param readonly		whether or not the editor is read only
-	 * @param updateable	whether the editor contents can be changed
-	 */
+
 	public WSearchEditor (Lookup lookup, String label, String description, boolean mandatory, boolean readonly, boolean updateable)
 	{
 		super(new CustomSearchBox() , label, description, mandatory, readonly, updateable);
@@ -218,12 +182,9 @@ public class WSearchEditor extends WEditor implements ContextMenuListener, Value
 			getComponent().getButton().setIconSclass(imageUrl);
 		else
 			getComponent().getButton().setImage(imageUrl);
-		//getComponent().getButton().setTabindex(-1);
-		//ZKUpdateUtil.setHflex(getComponent().getButton(), "0");
 		addChangeLogMenu(popupMenu);
 		if (gridField != null)
 			getComponent().getCombobox().setPlaceholder(gridField.getPlaceholder());
-		//getComponent().setSclass("editor-input");
 		if (gridField != null && gridField.isAutocomplete()) {
 			setTableAndKeyColumn();
 			listModel = new InfoListSubModel(lookup, gridField, m_tableName, m_keyColumnName);
@@ -266,7 +227,6 @@ public class WSearchEditor extends WEditor implements ContextMenuListener, Value
 				if (value instanceof Integer && gridField != null && gridField.getDisplayType() != DisplayType.ID && 
 						(gridTab==null || !gridTab.getTableModel().isImporting())) // for IDs is ok to be out of the list
 				{
-					//if it is problem with record lock, just keep value (no trigger change) and set field readonly
 					MRole role = MRole.getDefault(Env.getCtx(), false);
 					int refTableID = -1;
 					if (gridTab != null) // fields process para don't represent a column ID
@@ -332,7 +292,6 @@ public class WSearchEditor extends WEditor implements ContextMenuListener, Value
 			actionText(getComponent().getText());
 		}
 		else if ((Events.ON_OK.equals(e.getName()))) {
-			// Do not allow to open info panel if component text is empty & belongs to quick form.
 			boolean isQuickFormComp = false;
 			if (getComponent().getAttribute(QuickGridTabRowRenderer.IS_QUICK_FORM_COMPONENT) != null)
 				isQuickFormComp = (boolean) getComponent().getAttribute(QuickGridTabRowRenderer.IS_QUICK_FORM_COMPONENT);
@@ -618,22 +577,11 @@ public class WSearchEditor extends WEditor implements ContextMenuListener, Value
 		if (lookup == null)
 			return;		//	leave button disabled
 
-		/**
-		 *  Three return options:
-		 *  - Value Selected & OK pressed   => store result => result has value
-		 *  - Cancel pressed                => store null   => result == null && cancelled
-		 *  - Window closed                 -> ignore       => result == null && !cancalled
-		 */
-
-		//  Zoom / Validation
 		String whereClause = getWhereClause();
 
 		if (log.isLoggable(Level.FINE))
 			log.fine(lookup.getColumnName() + ", Zoom=" + lookup.getZoom() + " (" + whereClause + ")");
 
-		// boolean resetValue = false;	// Reset value so that is always treated as new entry
-
-		//  Replace Value with name if no value exists
 		if (queryValue.length() == 0 && getComponent().getText().length() > 0)
 			queryValue = getComponent().getText();
 
@@ -660,8 +608,6 @@ public class WSearchEditor extends WEditor implements ContextMenuListener, Value
 				Component component = SessionManager.getAppDesktop().getActiveWindow();
 				if (component instanceof IHelpContext)
 					Events.sendEvent(new Event(WindowContainer.ON_WINDOW_CONTAINER_SELECTION_CHANGED_EVENT, component));
-				//else
-				//	SessionManager.getAppDesktop().updateHelpContext("Home", 0);
 				
 				boolean cancelled = ip.isCancelled();
 				Object[] result = ip.getSelectedKeys();
@@ -756,8 +702,6 @@ public class WSearchEditor extends WEditor implements ContextMenuListener, Value
 		else if (validation.length() > 0)
 			whereClause += " AND " + validation;
 
-		//	log.finest("ZoomQuery=" + (lookup.getZoomQuery()==null ? "" : lookup.getZoomQuery().getWhereClause())
-	//		+ ", Validation=" + lookup.getValidation());
 
 		if (whereClause.indexOf('@') != -1)
 		{

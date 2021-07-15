@@ -125,68 +125,12 @@ public class MAssembly extends X_M_Assembly implements DocAction
 	protected boolean		m_justPrepared = false;
 
 	
-	/**
-	 *	Prepare Document
-	 * 	@return new status (In Progress or Invalid) 
-	 */
-	public String prepareIt()
-	{
-		if (log.isLoggable(Level.INFO)) log.info(toString());
-		m_processMsg = ModelValidationEngine.get().fireDocValidate(this, ModelValidator.TIMING_BEFORE_PREPARE);
-		if (m_processMsg != null)
-			return DocAction.STATUS_Drafted;
-
-		
-
-		m_processMsg = ModelValidationEngine.get().fireDocValidate(this, ModelValidator.TIMING_AFTER_PREPARE);
-		if (m_processMsg != null)
-			return DocAction.STATUS_Drafted;
-
-		m_justPrepared = true;
-		if (!DOCACTION_Complete.equals(getDocAction()))
-			setDocAction(DOCACTION_Complete);
-		return DocAction.STATUS_Drafted;
-	}	//	prepareIt
 	
-	/**
-	 * 	Approve Document
-	 * 	@return true if success 
-	 */
-	public boolean  approveIt()
-	{
-		return true;
-	}	//	approveIt
-	
-	/**
-	 * 	Reject Approval
-	 * 	@return true if success 
-	 */
-	public boolean rejectIt()
-	{
-		return true;
-	}	//	rejectIt
-	
-	/**
-	 * 	Complete Document
-	 * 	@return new status (Complete, In Progress, Invalid, Waiting ..)
-	 */
 	public String completeIt()
 	{
+		m_processMsg = "";
 		
-		m_processMsg = ModelValidationEngine.get().fireDocValidate(this, ModelValidator.TIMING_BEFORE_COMPLETE);
-		if (m_processMsg != null)
-			return DocAction.STATUS_Drafted;
-
 		
-		//	Implicit Approval
-		
-		String valid = ModelValidationEngine.get().fireDocValidate(this, ModelValidator.TIMING_AFTER_COMPLETE);
-		if (valid != null)
-		{
-			m_processMsg = valid;
-			return DocAction.STATUS_Drafted;
-		}
-		//
 		setProcessed(true);
 		setDocAction(DOCACTION_Close);
 		return DocAction.STATUS_Completed;
@@ -203,28 +147,6 @@ public class MAssembly extends X_M_Assembly implements DocAction
 		
 	}	//	addDescription
 
-	/**
-	 * 	Close Document.
-	 * 	Cancel not delivered Quantities
-	 * 	@return true if success 
-	 */
-	public boolean closeIt()
-	{
-		if (log.isLoggable(Level.INFO)) log.info(toString());
-		// Before Close
-		m_processMsg = ModelValidationEngine.get().fireDocValidate(this,ModelValidator.TIMING_BEFORE_CLOSE);
-		if (m_processMsg != null)
-			return false;
-		
-		setDocAction(STATUS_Drafted);
-
-		// After Close
-		m_processMsg = ModelValidationEngine.get().fireDocValidate(this,ModelValidator.TIMING_AFTER_CLOSE);
-		if (m_processMsg != null)
-			return false;
-		return true;
-	}	//	closeIt
-	
 	
 	/** 
 	 * 	Re-activate
@@ -233,21 +155,14 @@ public class MAssembly extends X_M_Assembly implements DocAction
 	public boolean reActivateIt()
 	{
 		if (log.isLoggable(Level.INFO)) log.info(toString());
-		// Before reActivate
-		m_processMsg = ModelValidationEngine.get().fireDocValidate(this,ModelValidator.TIMING_BEFORE_REACTIVATE);
 		if (m_processMsg != null)
-			return false;	
-				
-		
+			return false;
 		if(!super.reActivate())
 			return false;
 		
 		setProcessed(false);
 		
-		// After reActivate
-		m_processMsg = ModelValidationEngine.get().fireDocValidate(this,ModelValidator.TIMING_AFTER_REACTIVATE);
-		if (m_processMsg != null)
-			return false;		
+				
 		return true;
 	}	//	reActivateIt
 	

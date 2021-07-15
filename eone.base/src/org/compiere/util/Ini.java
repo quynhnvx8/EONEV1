@@ -15,8 +15,6 @@ import java.util.Enumeration;
 import java.util.Properties;
 import java.util.logging.Level;
 
-import eone.base.model.ModelValidationEngine;
-
 public final class Ini implements Serializable
 {
 	
@@ -192,11 +190,7 @@ public final class Ini implements Serializable
 	 */
 	public static void saveProperties (boolean tryUserHome)
 	{
-		if (Ini.isClient() && DB.isConnected()) {
-			// Call ModelValidators beforeSaveProperties
-			ModelValidationEngine.get().beforeSaveProperties();
-		}
-
+		
 		String fileName = getFileName (tryUserHome);
 		FileOutputStream fos = null;
 		try

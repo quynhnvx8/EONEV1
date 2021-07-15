@@ -66,12 +66,9 @@ public class MProduction extends X_M_Production implements DocAction {
 	@Override
 	public String completeIt()
 	{
-		m_processMsg = ModelValidationEngine.get().fireDocValidate(this, ModelValidator.TIMING_BEFORE_COMPLETE);
+		m_processMsg = null;
 		if (m_processMsg != null)
 			return DocAction.STATUS_Drafted;
-
-		
-
 		setProcessed(true);
 		setDocAction(DOCACTION_Close);
 		return DocAction.STATUS_Completed;
@@ -295,15 +292,7 @@ public class MProduction extends X_M_Production implements DocAction {
 	@Override
 	public boolean reActivateIt() {
 		if (log.isLoggable(Level.INFO)) log.info("reActivateIt - " + toString());
-		// Before reActivate
-		m_processMsg = ModelValidationEngine.get().fireDocValidate(this,ModelValidator.TIMING_BEFORE_REACTIVATE);
-		if (m_processMsg != null)
-			return false;
-
-		// After reActivate
-		m_processMsg = ModelValidationEngine.get().fireDocValidate(this,ModelValidator.TIMING_AFTER_REACTIVATE);
-		if (m_processMsg != null)
-			return false;
+		
 		return false;
 	}
 

@@ -9,7 +9,6 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.Properties;
-import java.util.logging.Level;
 
 import org.compiere.util.CLogger;
 import org.compiere.util.DB;
@@ -236,22 +235,13 @@ public class MAssetChange extends X_A_Asset_Change implements DocAction
 			return DocAction.STATUS_Drafted;
 		}
 		
-		m_processMsg = ModelValidationEngine.get().fireDocValidate(this, ModelValidator.TIMING_BEFORE_COMPLETE);
-		if (m_processMsg != null)
-			return DocAction.STATUS_Drafted;
-
+		
 		String errorDis = checkAssetDistribution();
 		if (errorDis != null) {
 			m_processMsg = Msg.getMsg(Env.getCtx(), "AssetDistributed") + ": "+ errorDis;
 			return DocAction.STATUS_Drafted;
 		}
 		
-		String valid = ModelValidationEngine.get().fireDocValidate(this, ModelValidator.TIMING_AFTER_COMPLETE);
-		if (valid != null)
-		{
-			m_processMsg = valid;
-			return DocAction.STATUS_Drafted;
-		}
 		setProcessed(true);
 		updateProcessed(true);
 		updateAllAsset(true);
@@ -303,11 +293,6 @@ public class MAssetChange extends X_A_Asset_Change implements DocAction
 			return false;
 		}
 		
-		if (log.isLoggable(Level.INFO)) log.info(toString());
-		m_processMsg = ModelValidationEngine.get().fireDocValidate(this,ModelValidator.TIMING_BEFORE_REACTIVATE);
-		if (m_processMsg != null)
-			return false;	
-				
 		
 		if(!super.reActivate())
 			return false;
@@ -315,9 +300,7 @@ public class MAssetChange extends X_A_Asset_Change implements DocAction
 		setProcessed(false);
 		updateProcessed(false);
 		updateAllAsset(false);
-		m_processMsg = ModelValidationEngine.get().fireDocValidate(this,ModelValidator.TIMING_AFTER_REACTIVATE);
-		if (m_processMsg != null)
-			return false;		
+			
 		return true;
 	}
 

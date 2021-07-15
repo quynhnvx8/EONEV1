@@ -2082,24 +2082,6 @@ public abstract class PO
 
 		try
 		{
-			// Call ModelValidators TYPE_NEW/TYPE_CHANGE
-			String errorMsg = ModelValidationEngine.get().fireModelChange
-				(this, newRecord ? ModelValidator.TYPE_NEW : ModelValidator.TYPE_CHANGE);
-			if (errorMsg != null)
-			{
-				log.warning("Validation failed - " + errorMsg);
-				log.saveError("Error", errorMsg);
-				if (localTrx != null)
-				{
-					localTrx.rollback();
-					m_trxName = null;
-				}
-				else
-				{
-					trx.rollback(savepoint);
-				}
-				return false;
-			}
 			//	Save
 			if (newRecord)
 			{
@@ -2265,20 +2247,7 @@ public abstract class PO
 		set_ValueNoCheck("Updated", new Timestamp(new Date().getTime()));
 		set_ValueNoCheck("Created", new Timestamp(new Date().getTime()));
 		
-		// Call ModelValidators TYPE_AFTER_NEW/TYPE_AFTER_CHANGE - teo_sarca [ 1675490 ]
-		if (success) {
-			String errorMsg = ModelValidationEngine.get().fireModelChange
-				(this, newRecord ?
-							(isReplication() ? ModelValidator.TYPE_AFTER_NEW_REPLICATION : ModelValidator.TYPE_AFTER_NEW)
-						:
-							(isReplication() ? ModelValidator.TYPE_AFTER_CHANGE_REPLICATION : ModelValidator.TYPE_AFTER_CHANGE)
-				);
-			setReplication(false);
-			if (errorMsg != null) {
-				log.saveError("Error", errorMsg);
-				success = false;
-			}
-		}
+		
 		//	OK
 		if (success)
 		{
@@ -3263,26 +3232,7 @@ public abstract class PO
 				}
 				return false;
 			}
-			// Call ModelValidators TYPE_DELETE
-			errorMsg = ModelValidationEngine.get().fireModelChange
-				(this, isReplication() ? ModelValidator.TYPE_BEFORE_DELETE_REPLICATION : ModelValidator.TYPE_DELETE);
-			setReplication(false); // @Trifon
-			if (errorMsg != null)
-			{
-				log.saveError("Error", errorMsg);
-				if (localTrx != null) 
-				{
-					localTrx.rollback();
-				}
-				else if (savepoint != null)
-				{
-					try {
-						trx.rollback(savepoint);
-					} catch (SQLException e) {}
-					savepoint = null;
-				}
-				return false;
-			}
+			
 
 			try 
 			{
@@ -3408,14 +3358,6 @@ public abstract class PO
 			//	throw new DBException(e);
 			}
 	
-			// Call ModelValidators TYPE_AFTER_DELETE - teo_sarca [ 1675490 ]
-			if (success) {
-				errorMsg = ModelValidationEngine.get().fireModelChange(this, ModelValidator.TYPE_AFTER_DELETE);
-				if (errorMsg != null) {
-					log.saveError("Error", errorMsg);
-					success = false;
-				}
-			}
 
 			if (!success)
 			{

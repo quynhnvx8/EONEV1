@@ -117,22 +117,14 @@ public class MDepreciation extends X_A_Depreciation implements DocAction
 
 	@Override
 	public String completeIt() {
-		m_processMsg = ModelValidationEngine.get().fireDocValidate(this, ModelValidator.TIMING_BEFORE_COMPLETE);
-		if (m_processMsg != null)
-			return DocAction.STATUS_Drafted;
-
+		
 		if (!MPeriod.isOpen(getCtx(), getDateAcct(), getAD_Org_ID()))
 		{
 			m_processMsg = "@PeriodClosed@";
 			return DocAction.STATUS_Drafted;
 		}
 		
-		String valid = ModelValidationEngine.get().fireDocValidate(this, ModelValidator.TIMING_AFTER_COMPLETE);
-		if (valid != null)
-		{
-			m_processMsg = valid;
-			return DocAction.STATUS_Drafted;
-		}
+		
 		setProcessed(true);
 		updateProcessed(true);
 		updateInfoAsset(true);
@@ -144,10 +136,7 @@ public class MDepreciation extends X_A_Depreciation implements DocAction
 	@Override
 	public boolean reActivateIt() {
 		if (log.isLoggable(Level.INFO)) log.info(toString());
-		m_processMsg = ModelValidationEngine.get().fireDocValidate(this,ModelValidator.TIMING_BEFORE_REACTIVATE);
-		if (m_processMsg != null)
-			return false;	
-				
+		
 		if (!MPeriod.isOpen(getCtx(), getDateAcct(), getAD_Org_ID()))
 		{
 			m_processMsg = "@PeriodClosed@";
@@ -159,9 +148,6 @@ public class MDepreciation extends X_A_Depreciation implements DocAction
 		setProcessed(false);
 		updateProcessed(false);
 		updateInfoAsset(false);
-		m_processMsg = ModelValidationEngine.get().fireDocValidate(this,ModelValidator.TIMING_AFTER_REACTIVATE);
-		if (m_processMsg != null)
-			return false;		
 		return true;
 	}
 

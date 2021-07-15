@@ -22,7 +22,7 @@ public class PrintDataItem implements Serializable
 	public PrintDataItem (String columnName, Serializable value, int displayType, String format, String zoomLogic, 
 			int alignment, String setupFormular,
 			boolean isGroup, boolean isCountG, String tableLink,
-			int rotation, String fieldSumGroup, int rowSpan, int colSpan)
+			int rotation, String fieldSumGroup, int rowSpan, int colSpan, boolean breakPage)
 	{
 		if (columnName == null)
 			throw new IllegalArgumentException("PrintDataElement - Name cannot be null");
@@ -40,6 +40,7 @@ public class PrintDataItem implements Serializable
 		setFieldSumGroup(fieldSumGroup);
 		setRowSpan(rowSpan);
 		setColSpan(colSpan);
+		setBreakPage(breakPage);
 		
 	}	
 
@@ -59,8 +60,16 @@ public class PrintDataItem implements Serializable
 	private String fieldSumGroup = "";
 	private int rowSpan = 0;
 	private int colSpan = 0;
-
+	private boolean isBreakPage = false;
 	
+	public boolean isBreakPage() {
+		return isBreakPage;
+	}
+
+	public void setBreakPage(boolean isBreakPage) {
+		this.isBreakPage = isBreakPage;
+	}
+
 	public int getRowSpan() {
 		return rowSpan;
 	}

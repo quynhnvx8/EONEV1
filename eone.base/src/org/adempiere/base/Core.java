@@ -14,7 +14,6 @@ import org.idempiere.distributed.IClusterService;
 import org.idempiere.distributed.IMessageService;
 
 import eone.base.model.Callout;
-import eone.base.model.ModelValidator;
 import eone.base.process.ProcessCall;
 
 
@@ -211,40 +210,6 @@ public class Core {
 		return factories;
 	}
 
-private static final CCache<String, IServiceReferenceHolder<IModelValidatorFactory>> s_modelValidatorFactoryCache = new CCache<>(null, "IModelValidatorFactory", 100, false);
-	
-	/**
-	 *
-	 * @param validatorId Java class name or equinox extension Id
-	 * @return ModelValidator instance of null if validatorId not found
-	 */
-	public static ModelValidator getModelValidator(String validatorId) {
-		IServiceReferenceHolder<IModelValidatorFactory> cache = s_modelValidatorFactoryCache.get(validatorId);
-		if (cache != null) {
-			IModelValidatorFactory service = cache.getService();
-			if (service != null) {
-				ModelValidator validator = service.newModelValidatorInstance(validatorId);
-				if (validator != null)
-					return validator;
-			}
-			s_modelValidatorFactoryCache.remove(validatorId);
-		}
-		List<IServiceReferenceHolder<IModelValidatorFactory>> factoryList = Service.locator().list(IModelValidatorFactory.class).getServiceReferences();
-		if (factoryList != null) {
-			for(IServiceReferenceHolder<IModelValidatorFactory> factory : factoryList) {
-				IModelValidatorFactory service = factory.getService();
-				if (service != null) {
-					ModelValidator validator = service.newModelValidatorInstance(validatorId);
-					if (validator != null) {
-						s_modelValidatorFactoryCache.put(validatorId, factory);
-						return validator;
-					}
-				}
-			}
-		}
-		
-		return null;
-	}
 
 	private static IServiceReferenceHolder<IKeyStore> s_keystoreServiceReference = null;
 	

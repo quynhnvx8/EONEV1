@@ -20,11 +20,7 @@ public class GridFieldVO implements Serializable
 
 	private static final long serialVersionUID = -7810037179946135749L;
 
-	/**
-	 *  Return the SQL statement used for the MFieldVO.create
-	 *  @param ctx context
-	 *  @return SQL with or w/o translation and 1 parameter
-	 */
+	
 	public static String getSQL (Properties ctx)
 	{
 		//	IsActive is part of View
@@ -60,17 +56,7 @@ public class GridFieldVO implements Serializable
 		return sql.toString();
 	}
 	
-	/**
-	 *  Create Field Value Object
-	 *  @param ctx context
-	 *  @param WindowNo window
-	 *  @param TabNo tab
-	 *  @param AD_Window_ID window
-	 *  @param AD_Tab_ID tab
-	 *  @param readOnly r/o
-	 *  @param rs resultset AD_Field_v
-	 *  @return MFieldVO
-	 */
+	
 	public static GridFieldVO create (Properties ctx, int WindowNo, int TabNo, 
 		int AD_Window_ID, int AD_Tab_ID, boolean readOnly, ResultSet rs)
 	{
@@ -188,23 +174,18 @@ public class GridFieldVO implements Serializable
 				else if (columnName.equalsIgnoreCase("ColumnSQL")) {
 					vo.ColumnSQL = rs.getString(i);
 					if (vo.ColumnSQL != null && !vo.ColumnSQL.startsWith("@SQL=") && !vo.ColumnSQL.startsWith("@SQLFIND=") && vo.ColumnSQL.contains("@")) {
-						// NOTE: cannot use window context because this is set globally on the query, not per record
 						vo.ColumnSQL = Env.parseContext(ctx, -1, vo.ColumnSQL, false, true);
 					}
-				//Feature Request FR [ 1757088 ]
 				} else if (columnName.equalsIgnoreCase("Included_Tab_ID"))
 					vo.Included_Tab_ID = rs.getInt(i);
-				// Collapse Default State
 				else if (columnName.equalsIgnoreCase("IsCollapsedByDefault"))
 					vo.IsCollapsedByDefault = "Y".equals(rs.getString(i));
-//				Feature Request FR [ 2003044 ]
 				else if (columnName.equalsIgnoreCase("IsAutocomplete"))
 					vo.IsAutocomplete  = "Y".equals(rs.getString(i));
 				else if (columnName.equalsIgnoreCase("IsAllowCopy"))
 					vo.IsAllowCopy  = "Y".equals(rs.getString(i));
 				else if (columnName.equalsIgnoreCase("AD_Field_ID"))
 					vo.AD_Field_ID = rs.getInt(i);
-				/*IDEMPIERE-358*/
 				else if (columnName.equalsIgnoreCase("XPosition"))
 					vo.XPosition=rs.getInt(i);
 				else if (columnName.equalsIgnoreCase("ColumnSpan"))
@@ -231,7 +212,6 @@ public class GridFieldVO implements Serializable
 			CLogger.get().log(Level.SEVERE, "ColumnName=" + columnName, e);
 			return null;
 		}
-		// ASP
 		if (vo.IsDisplayed) {
 			MClient client = MClient.get(ctx);
 			if (! client.isDisplayField(AD_Field_ID))
@@ -335,11 +315,7 @@ public class GridFieldVO implements Serializable
 		voT.ValueMin = voF.ValueMin;
 		voT.ValueMax = voF.ValueMax;
 		voT.isRange = voF.isRange;
-		//
-		// Genied: For a range parameter the second field 
-		// lookup behaviour should match the first one.
 		voT.AD_Reference_Value_ID = voF.AD_Reference_Value_ID;
-		// IDEMPIERE-229 Bug with Process parameter range
 		voT.ValidationCode = voF.ValidationCode;
 		voT.IsEncryptedField = voF.IsEncryptedField;
 		voT.ReadOnlyLogic = voF.ReadOnlyLogic;
@@ -441,101 +417,51 @@ public class GridFieldVO implements Serializable
 		tabReadOnly = TabReadOnly;
 	}   //  MFieldVO
 
-	/** Context                     */
 	public Properties   ctx = null;
-	/** Window No                   */
 	public int          WindowNo;
-	/** Tab No                      */
 	public int          TabNo;
-	/** AD_Winmdow_ID               */
 	public int          AD_Window_ID;
-	/** 
-	 *  in case this field lie on parameter process panel, AD_Process_ID_Of_Panel is id of process will run in this panel 
-	 *  it's difference with AD_Process_ID
-	 */
 	public int          AD_Process_ID_Of_Panel;
-	/**
-	 * ad_window_id of window show process dialog or infoWindow dialog
-	 */
 	public int          AD_Window_ID_Of_Panel;
-	/**
-	 * AD_Infowindow_ID call process. user in case from info window call process.
-	 */
 	public int          AD_Infowindow_ID;
-	/** AD_Tab_ID					*/
 	public int			AD_Tab_ID;
-	/** Is the Tab Read Only        */
 	public boolean      tabReadOnly = false;
 
-	/** Is Process Parameter        */
 	public boolean      isProcess = false;
 
-	/**	Column name		*/
 	public String       ColumnName = "";
-	/**	Column sql		*/
 	public String       ColumnSQL;
-	/**	Label			*/
 	public String       Header = "";
-	/**	DisplayType		*/
 	public int          displayType = 0;
-	/**	Table ID		*/
 	public int          AD_Table_ID = 0;
-	/**	Clumn ID		*/
 	public int          AD_Column_ID = 0;
-	/**	Display Length	*/
 	public int          DisplayLength = 0;
-	/**	Same Line		*/
 	public boolean      IsSameLine = false;
-	/**	Displayed		*/
 	public boolean      IsDisplayed = false;
-	/**	Displayed Grid		*/
 	public boolean      IsDisplayedGrid = false;
-	/** Position     	*/
 	public int			SeqNo = 0;
-	/** Grid Display sequence	*/
 	public int			SeqNoGrid = 0;
-	/**	Dislay Logic, never set null for it	*/
 	public String       DisplayLogic = "";
-	/**	Default Value, never set null for it	*/	
 	public String       DefaultValue = "";
-	/**	Mandatory		*/
 	public boolean      IsMandatory = false;
-	/**	Read Only		*/
 	public boolean      IsReadOnly = false;
 	
-		/**	Updateable		*/
 	public boolean      IsUpdateable = false;
-	/**	Always Updateable	*/
 	public boolean      IsAlwaysUpdateable = false;
-	/**	Heading Only	*/
 	public boolean      IsHeading = false;
-	/**	Field Only		*/
 	public boolean      IsFieldOnly = false;
-	/**	Display Encryption	*/
 	public boolean      IsEncryptedField = false;
-	/**	Storage Encryption	*/
 	public boolean      IsEncryptedColumn = false;
-	/**	Find Selection		*/
 	public boolean		IsSelectionColumn = false;
-	/**	Selection column sequence		*/
 	public int			SeqNoSelection = 0;
-	/**	Order By		*/
 	public int          SortNo = 0;
-	/**	Field Length		*/
 	public int          FieldLength = 0;
-	/**	Format enforcement		*/
 	public String       VFormat = "";
-	/**	Format pattern		*/
 	public String FormatPattern;
-	/**	Min. Value		*/
 	public String       ValueMin = "";
-	/**	Max. Value		*/
 	public String       ValueMax = "";
-	/**	Field Group		*/
 	public String       FieldGroup = "";
-	/**	Field Group	Type	*/
 	public String       FieldGroupType = "";
-	/**	PK				*/
 	public boolean      IsKey = false;
 	
 	public boolean      IsSetContext = false;
@@ -574,25 +500,17 @@ public class GridFieldVO implements Serializable
 	/** Field ID 				*/
 	public int AD_Field_ID = 0;
 	
-	/***** XPosition IDEMPIERE368***/
 	public int XPosition=0;
 	
-	/***** ColumnSpan IDEMPIERE368***/
 	public int ColumnSpan=0;
 	
-	/***** NumLines IDEMPIERE368***/
     public int NumLines=0; 
 	
-	//*  Feature Request FR [ 1757088 ]
 	public int          Included_Tab_ID = 0;
 
-	/** Collapse By Default * */
 	public boolean IsCollapsedByDefault = false;
-	/**  Autocompletion for textfields - Feature Request FR [ 1757088 ] */
 	public boolean IsAutocomplete = false;
-	/* Allow copy - IDEMPIERE-67 - Carlos Ruiz - globalqss */
 	public boolean IsAllowCopy = false;
-	/** Toolbar Button **/
 	public String IsToolbarButton = MColumn.ISTOOLBARBUTTON_Window;
 	
 	public int AD_Chart_ID = 0;
@@ -792,11 +710,7 @@ public class GridFieldVO implements Serializable
 		return sb.toString ();
 	}	//	toString
 	
-	/**
-	 * 
-	 * @author a42niem
-	 * IDEMPIERE-1120 Implement Field SeqNo customization
-	 */
+	
 	public static class SeqNoComparator implements Comparator<GridFieldVO> {
 		@Override
 		public int compare(GridFieldVO gf1, GridFieldVO gf2) {

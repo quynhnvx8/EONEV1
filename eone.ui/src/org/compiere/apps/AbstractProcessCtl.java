@@ -446,14 +446,17 @@ public abstract class AbstractProcessCtl implements Runnable
 									itemG = itemsC[nextcol];
 									
 									String [] col = obj[g].split("->");
-									String colGroup = col[0];
-									String forColSum = col[1];
+									String colGroup = col[0].trim();
+									String forColSum = col[1].trim();
 									objGroup.put(forColSum, rsC.getBigDecimal(""+ colGroup +""));
 									
 									//add vao arr cua group
 									arrG.add(addNewItem(itemG, (Serializable)rsC.getBigDecimal(""+ colGroup +"")));
 								}
 								dataGroup.put(groupName + "-o0o-"+ element, objGroup);
+							}
+							if (nextcol < itemsC.length) {
+								arrG.add(null);
 							}
 							arrsC.add(arrG);
 							countGroup++;
@@ -590,7 +593,8 @@ public abstract class AbstractProcessCtl implements Runnable
 				item.getRotationText(),		//Huong chu tren header cua bao cao
 				item.getFieldSumGroup(),	//Tính tổng theo group
 				item.getNumLines(),
-				item.getColumnSpan()
+				item.getColumnSpan(),
+				item.isBreakPage()
 				);
 	}
 	

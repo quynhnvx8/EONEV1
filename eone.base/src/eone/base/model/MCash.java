@@ -146,18 +146,9 @@ public class MCash extends X_C_Cash implements DocAction
 		}
 		*/
 
-		m_processMsg = ModelValidationEngine.get().fireDocValidate(this, ModelValidator.TIMING_BEFORE_COMPLETE);
+		m_processMsg = null;
 		if (m_processMsg != null)
 			return DocAction.STATUS_Drafted;
-
-		
-		
-		String valid = ModelValidationEngine.get().fireDocValidate(this, ModelValidator.TIMING_AFTER_COMPLETE);
-		if (valid != null)
-		{
-			m_processMsg = valid;
-			return DocAction.STATUS_Drafted;
-		}
 		//
 		setProcessed(true);
 		return DocAction.STATUS_Completed;
@@ -207,21 +198,14 @@ public class MCash extends X_C_Cash implements DocAction
 		}
 		
 		if (log.isLoggable(Level.INFO)) log.info(toString());
-		// Before reActivate
-		m_processMsg = ModelValidationEngine.get().fireDocValidate(this,ModelValidator.TIMING_BEFORE_REACTIVATE);
-		if (m_processMsg != null)
-			return false;	
-				
+		
 		
 		if(!super.reActivate())
 			return false;
 		
 		setProcessed(false);
 		
-		// After reActivate
-		m_processMsg = ModelValidationEngine.get().fireDocValidate(this,ModelValidator.TIMING_AFTER_REACTIVATE);
-		if (m_processMsg != null)
-			return false;		
+			
 		return true;
 	}	//	reActivateIt
 	

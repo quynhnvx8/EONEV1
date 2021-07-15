@@ -421,11 +421,6 @@ public class MOrder extends X_C_Order implements DocAction
 	public String prepareIt()
 	{
 		if (log.isLoggable(Level.INFO)) log.info(toString());
-		m_processMsg = ModelValidationEngine.get().fireDocValidate(this, ModelValidator.TIMING_BEFORE_PREPARE);
-		if (m_processMsg != null)
-			return DocAction.STATUS_Drafted;
-
-		
 		
 		//	Lines
 		MOrderLine[] lines = getLines(true, MOrderLine.COLUMNNAME_M_Product_ID);
@@ -435,10 +430,6 @@ public class MOrder extends X_C_Order implements DocAction
 			return DocAction.STATUS_Drafted;
 		}
 				
-		
-		m_processMsg = ModelValidationEngine.get().fireDocValidate(this, ModelValidator.TIMING_AFTER_PREPARE);
-		if (m_processMsg != null)
-			return DocAction.STATUS_Drafted;
 		
 		m_justPrepared = true;
 		return DocAction.STATUS_Drafted;
@@ -460,16 +451,7 @@ public class MOrder extends X_C_Order implements DocAction
 	public boolean reActivateIt()
 	{
 		if (log.isLoggable(Level.INFO)) log.info(toString());
-		// Before reActivate
-		m_processMsg = ModelValidationEngine.get().fireDocValidate(this,ModelValidator.TIMING_BEFORE_REACTIVATE);
-		if (m_processMsg != null)
-			return false;	
-				
 		
-		// After reActivate
-		m_processMsg = ModelValidationEngine.get().fireDocValidate(this,ModelValidator.TIMING_AFTER_REACTIVATE);
-		if (m_processMsg != null)
-			return false;
 		
 		if(!super.reActivate())
 			return false;

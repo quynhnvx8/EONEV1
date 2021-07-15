@@ -18,13 +18,34 @@ public class X_AD_PrintFormatItem extends PO implements I_AD_PrintFormatItem, I_
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = 20210701L;
+	private static final long serialVersionUID = 20210714L;
 
     /** Standard Constructor */
     public X_AD_PrintFormatItem (Properties ctx, int AD_PrintFormatItem_ID, String trxName)
     {
       super (ctx, AD_PrintFormatItem_ID, trxName);
-     
+      /** if (AD_PrintFormatItem_ID == 0)
+        {
+			setAD_PrintFormat_ID (0);
+			setAD_PrintFormatItem_ID (0);
+			setFieldAlignmentType (null);
+// D
+			setIsCountedGroup (false);
+// N
+			setIsPrintBarcodeText (true);
+// Y
+			setIsPrinted (true);
+// Y
+			setMaxHeight (0);
+			setMaxWidth (0);
+			setName (null);
+			setPrintAreaType (null);
+// C
+			setPrintFormatType (null);
+// F
+			setSeqNo (0);
+// @SQL=SELECT NVL(MAX(SeqNo),0)+10 AS DefaultValue FROM AD_PrintFormatItem WHERE AD_PrintFormat_ID=@AD_PrintFormat_ID@
+        } */
     }
 
     /** Load Constructor */
@@ -316,6 +337,20 @@ public class X_AD_PrintFormatItem extends PO implements I_AD_PrintFormatItem, I_
 		return (String)get_Value(COLUMNNAME_FieldAlignmentType);
 	}
 
+	/** Set Field Sum Group.
+		@param FieldSumGroup Field Sum Group	  */
+	public void setFieldSumGroup (String FieldSumGroup)
+	{
+		set_Value (COLUMNNAME_FieldSumGroup, FieldSumGroup);
+	}
+
+	/** Get Field Sum Group.
+		@return Field Sum Group	  */
+	public String getFieldSumGroup () 
+	{
+		return (String)get_Value(COLUMNNAME_FieldSumGroup);
+	}
+
 	/** Set Format Pattern.
 		@param FormatPattern 
 		The pattern used to format a number or date.
@@ -345,6 +380,27 @@ public class X_AD_PrintFormatItem extends PO implements I_AD_PrintFormatItem, I_
 	public String getFormulaSetup () 
 	{
 		return (String)get_Value(COLUMNNAME_FormulaSetup);
+	}
+
+	/** Set IsBreakPage.
+		@param IsBreakPage IsBreakPage	  */
+	public void setIsBreakPage (boolean IsBreakPage)
+	{
+		set_Value (COLUMNNAME_IsBreakPage, Boolean.valueOf(IsBreakPage));
+	}
+
+	/** Get IsBreakPage.
+		@return IsBreakPage	  */
+	public boolean isBreakPage () 
+	{
+		Object oo = get_Value(COLUMNNAME_IsBreakPage);
+		if (oo != null) 
+		{
+			 if (oo instanceof Boolean) 
+				 return ((Boolean)oo).booleanValue(); 
+			return "Y".equals(oo);
+		}
+		return false;
 	}
 
 	/** Set Counted Group.
@@ -532,19 +588,6 @@ public class X_AD_PrintFormatItem extends PO implements I_AD_PrintFormatItem, I_
 	public void setName (String Name)
 	{
 		set_Value (COLUMNNAME_Name, Name);
-	}
-
-	/** Get Name.
-		@return Alphanumeric identifier of the entity
-	  */
-	public String getFieldSumGroup () 
-	{
-		return (String)get_Value(COLUMNNAME_FieldSumGroup);
-	}
-	
-	public void setFieldSumGroup (String FieldSumGroup)
-	{
-		set_Value (COLUMNNAME_FieldSumGroup, FieldSumGroup);
 	}
 
 	/** Get Name.

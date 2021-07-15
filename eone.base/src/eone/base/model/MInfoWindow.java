@@ -1,19 +1,4 @@
-/******************************************************************************
- * Product: Adempiere ERP & CRM Smart Business Solution                       *
- * Copyright (C) 1999-2006 ComPiere, Inc. All Rights Reserved.                *
- * This program is free software; you can redistribute it and/or modify it    *
- * under the terms version 2 of the GNU General Public License as published   *
- * by the Free Software Foundation. This program is distributed in the hope   *
- * that it will be useful, but WITHOUT ANY WARRANTY; without even the implied *
- * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.           *
- * See the GNU General Public License for more details.                       *
- * You should have received a copy of the GNU General Public License along    *
- * with this program; if not, write to the Free Software Foundation, Inc.,    *
- * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.                     *
- * For the text or an alternative of this public license, you may reach us    *
- * ComPiere, Inc., 2620 Augustine Dr. #245, Santa Clara, CA 95054, USA        *
- * or via info@compiere.org or http://www.compiere.org/license.html           *
- *****************************************************************************/
+
 package eone.base.model;
 
 import java.sql.PreparedStatement;
@@ -31,12 +16,7 @@ import org.compiere.util.Msg;
 
 import eone.base.model.AccessSqlParser.TableInfo;
 
-/**
- * 	Info Window Model
- *	
- *  @author Jorg Janke
- *  @version $Id: MInfoWindow.java,v 1.2 2006/07/30 00:51:03 jjanke Exp $
- */
+
 public class MInfoWindow extends X_AD_InfoWindow
 {
 	/**
@@ -44,23 +24,13 @@ public class MInfoWindow extends X_AD_InfoWindow
 	 */
 	private static final long serialVersionUID = -1619434756919905441L;
 
-	/**
-	 * 	Standard Constructor
-	 *	@param ctx context
-	 *	@param AD_InfoWindow_ID id
-	 *	@param trxName transaction
-	 */
+
 	public MInfoWindow (Properties ctx, int AD_InfoWindow_ID, String trxName)
 	{
 		super (ctx, AD_InfoWindow_ID, trxName);
 	}	//	MInfoWindow
 
-	/**
-	 * 	Load Constructor
-	 *	@param ctx context
-	 *	@param rs result set
-	 *	@param trxName transaction
-	 */
+
 	public MInfoWindow (Properties ctx, ResultSet rs, String trxName)
 	{
 		super (ctx, rs, trxName);
@@ -85,11 +55,7 @@ public class MInfoWindow extends X_AD_InfoWindow
 		return null;
 	}
 
-	/**
-	 * @author xolali
-	 * @param AD_InfoWindow_ID
-	 * @return
-	 */
+
 	public static MInfoWindow getInfoWindow(int AD_InfoWindow_ID) {
 
 		if (AD_InfoWindow_ID != 0) {
@@ -105,17 +71,10 @@ public class MInfoWindow extends X_AD_InfoWindow
 		return null;
 	}
 
-	/**
-	 * @author xolali
-	 * @param requery
-	 * @return
-	 */
+
 	private MInfoRelated[] m_infoRelated;
 
-	/**
-	 * IDEMPIERE-1334
-	 * cache list process button info
-	 */
+	
 	private MInfoProcess[]  m_infoProcess;
 
 	public MInfoRelated[] getInfoRelated(boolean requery) {
@@ -135,12 +94,7 @@ public class MInfoWindow extends X_AD_InfoWindow
 		return m_infoRelated;
 	}
 
-	/**
-	 * IDEMPIERE-1334
-	 * Get list {@link MInfoProcess} of this infoWindow
-	 * @param requery true get from db, false try get from cache
-	 * @return empty array when not exists Info Process
-	 */
+	
 	public MInfoProcess [] getInfoProcess(boolean requery) {
 		// try from cache
 		if ((this.m_infoProcess != null) && (!requery)) {
@@ -148,7 +102,6 @@ public class MInfoWindow extends X_AD_InfoWindow
 			return this.m_infoProcess;
 		}
 		
-		// get list info process from db, order by seqNo
 		List<MInfoProcess> list = new Query(getCtx(), MInfoProcess.Table_Name, "AD_InfoWindow_ID=?", get_TrxName())
 			.setParameters(getAD_InfoWindow_ID())
 			.setOnlyActiveRecords(true)
@@ -162,10 +115,7 @@ public class MInfoWindow extends X_AD_InfoWindow
 	}
 	
 
-    /**
-     * if user haven't right to run a process, set infoProcess to null 
-     * @param lsInfoProcess
-     */
+
 	protected void checkProcessRight (List<MInfoProcess> lsInfoProcess) {
 		Iterator<MInfoProcess> iterator = lsInfoProcess.iterator();
 		while (iterator.hasNext()){
@@ -259,15 +209,7 @@ public class MInfoWindow extends X_AD_InfoWindow
 			sql.append(mColumns[i].getSelectClause());//getColumnSQL());	//	Normal and Virtual Column
 		}
 		sql.append(" FROM ").append(fromsql)//getTableName())
-		//.append(" WHERE ")
-		//.append(getWhereClause(false))
 		.append(oclause);
-		//.append("ORDER BY SeqNo"); //.append(get_WhereClause(false));
-
-		//
-		//	int index = -1;
-		//if (CLogMgt.isLevelFinest())
-		//log.finest(getWhereClause(true));
 		log.info("Generated SQL -- getSql: "+ sql.toString());
 
 		return sql.toString();
@@ -284,7 +226,6 @@ public class MInfoWindow extends X_AD_InfoWindow
 					MRole.SQL_FULLYQUALIFIED, MRole.SQL_RO);
 
 			pstmt = DB.prepareStatement(countSql, null);
-			//	pstmt.setString(1, p_tableName);
 			rs = pstmt.executeQuery();
 			while (rs.next())
 			{
@@ -293,11 +234,7 @@ public class MInfoWindow extends X_AD_InfoWindow
 		}
 		catch (SQLException e)
 		{
-			//ADialog.error(WindowNo, c, AD_Message)
-			//Env.getUi().showError(0, null, sql.toString() + "<br> " + e.getMessage());
 			log.log(Level.SEVERE, sql, e);
-			// String error = e.toString();
-			// show error to user and return: TODO
 			return false;
 		}
 		finally {

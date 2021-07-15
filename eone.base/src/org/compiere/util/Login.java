@@ -18,7 +18,6 @@ import eone.base.model.MSystem;
 import eone.base.model.MTree;
 import eone.base.model.MUser;
 import eone.base.model.MUserPreference;
-import eone.base.model.ModelValidationEngine;
 import eone.base.model.Query;
 
 
@@ -228,15 +227,7 @@ public class Login
 	public String validateLogin (KeyNamePair org)
 	{
 		int AD_Client_ID = Env.getAD_Client_ID(m_ctx);
-		int AD_Org_ID = org.getKey();
 		int AD_Role_ID = Env.getAD_Role_ID(m_ctx);
-		int AD_User_ID = Env.getAD_User_ID(m_ctx);
-		String error = ModelValidationEngine.get().loginComplete(AD_Client_ID, AD_Org_ID, AD_Role_ID, AD_User_ID);
-		if (error != null && error.length() > 0)
-		{
-			log.severe("Refused: " + error);
-			return error;
-		}
 
 		if (! MRole.get(m_ctx, AD_Role_ID).isAccessAdvanced()) {
 			if (MSysConfig.getBooleanValue(MSysConfig.SYSTEM_IN_MAINTENANCE_MODE, false, 0))
@@ -357,7 +348,6 @@ public class Login
 			DB.close(rs, pstmt);
 			rs = null; pstmt = null;
 		}
-		ModelValidationEngine.get().afterLoadPreferences(m_ctx);
 		return retValue;
 	}	//	loadPreferences
 	

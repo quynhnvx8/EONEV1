@@ -30,7 +30,6 @@ import org.compiere.util.Util;
 import eone.base.model.MClient;
 import eone.base.model.MSysConfig;
 import eone.base.model.MSystem;
-import eone.base.model.ModelValidationEngine;
 import eone.base.model.ServerStateChangeEvent;
 import eone.base.model.ServerStateChangeListener;
 
@@ -543,7 +542,7 @@ public final class Adempiere
 			return false;
 		
 		//	Initialize main cached Singletons
-		ModelValidationEngine.get();
+		//ModelValidationEngine.get();
 		try
 		{
 			String className = system.getEncryptionKey();

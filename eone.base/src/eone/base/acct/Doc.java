@@ -19,8 +19,6 @@ import org.compiere.util.Trx;
 
 import eone.base.model.MPeriod;
 import eone.base.model.MRefList;
-import eone.base.model.ModelValidationEngine;
-import eone.base.model.ModelValidator;
 import eone.base.model.PO;
 
 
@@ -242,27 +240,11 @@ public abstract class Doc
 			p_Error = e.toString();
 		}
 
-		String validatorMsg = null;
-		// Call validator on before post
-		if (p_Status.equals(STATUS_Posted)) {
-			validatorMsg = ModelValidationEngine.get().fireDocValidate(getPO(), ModelValidator.TIMING_BEFORE_POST);
-			if (validatorMsg != null) {
-				p_Status = STATUS_Error;
-				p_Error = validatorMsg;
-			}
-		}
-
+		
 		//  commitFact
 		p_Status = postCommit (p_Status);
 
-		if (p_Status.equals(STATUS_Posted)) {
-			validatorMsg = ModelValidationEngine.get().fireDocValidate(getPO(), ModelValidator.TIMING_AFTER_POST);
-			if (validatorMsg != null) {
-				p_Status = STATUS_Error;
-				p_Error = validatorMsg;
-			}
-		}
-
+		
 		//  Create Note
 		if (!p_Status.equals(STATUS_Posted) && !p_Status.equals(STATUS_Deferred))
 		{
@@ -312,13 +294,7 @@ public abstract class Doc
 		if (facts == null)
 			return STATUS_Error;
 
-		// call modelValidator
-		String validatorMsg = ModelValidationEngine.get().fireFactsValidate(facts, getPO());
-		if (validatorMsg != null) {
-			p_Error = validatorMsg;
-			return STATUS_Error;
-		}
-
+		
 		for (int f = 0; f < facts.size(); f++)
 		{
 			Fact fact = facts.get(f);
