@@ -1,57 +1,24 @@
-/******************************************************************************
- * Product: Posterita Ajax UI 												  *
- * Copyright (C) 2007 Posterita Ltd.  All Rights Reserved.                    *
- * This program is free software; you can redistribute it and/or modify it    *
- * under the terms version 2 of the GNU General Public License as published   *
- * by the Free Software Foundation. This program is distributed in the hope   *
- * that it will be useful, but WITHOUT ANY WARRANTY; without even the implied *
- * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.           *
- * See the GNU General Public License for more details.                       *
- * You should have received a copy of the GNU General Public License along    *
- * with this program; if not, write to the Free Software Foundation, Inc.,    *
- * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.                     *
- * For the text or an alternative of this public license, you may reach us    *
- * Posterita Ltd., 3, Draper Avenue, Quatre Bornes, Mauritius                 *
- * or via info@posterita.org or http://www.posterita.org/                     *
- *****************************************************************************/
 
 package eone.webui.panel;
 
 import org.compiere.apps.IStatusBar;
-import org.compiere.util.Env;
-import org.compiere.util.Msg;
 import org.zkoss.zhtml.Text;
 import org.zkoss.zk.au.out.AuScript;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.Page;
-import org.zkoss.zk.ui.event.Event;
-import org.zkoss.zk.ui.event.EventListener;
-import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zk.ui.util.Clients;
 import org.zkoss.zul.Cell;
 import org.zkoss.zul.Div;
 import org.zkoss.zul.Hbox;
 import org.zkoss.zul.Vbox;
 
-import eone.base.model.DataStatusEvent;
-import eone.base.model.MRole;
 import eone.webui.AdempiereWebUI;
 import eone.webui.LayoutUtils;
 import eone.webui.component.Label;
 import eone.webui.component.Panel;
-import eone.webui.session.SessionManager;
 import eone.webui.util.ZKUpdateUtil;
-import eone.webui.window.WRecordInfo;
 
-/**
- * This class is based on org.compiere.apps.StatusBar written by Jorg Janke.
- * @author Jorg Janke
- *
- * @author  <a href="mailto:agramdass@gmail.com">Ashley G Ramdass</a>
- * @date    Mar 12, 2007
- * @version $Revision: 0.10 $
- */
-public class StatusBarPanel extends Panel implements EventListener<Event>, IStatusBar
+public class StatusBarPanel extends Panel implements  IStatusBar
 {
 	/**
 	 *
@@ -65,14 +32,10 @@ public class StatusBarPanel extends Panel implements EventListener<Event>, IStat
 
 	private static final String SHADOW_STYLE = "-moz-box-shadow: 2px 2px 2px #888; -webkit-box-shadow: 2px 2px 2px #888; box-shadow: 2px 2px 2px #888;";
 
-	private Label statusDB;
     private Label infoLine;
     private Label statusLine;
     private Label selectedLine;
 
-	private DataStatusEvent m_dse;
-
-	private String m_text;
 
 	private Div east;
 
@@ -92,7 +55,6 @@ public class StatusBarPanel extends Panel implements EventListener<Event>, IStat
     private void init()
     {
     	setWidgetAttribute(AdempiereWebUI.WIDGET_INSTANCE_NAME, "statusBar");
-        statusDB = new Label("  ");
         statusLine = new Label();
 
         Hbox hbox = new Hbox();
@@ -101,11 +63,8 @@ public class StatusBarPanel extends Panel implements EventListener<Event>, IStat
         ZKUpdateUtil.setHflex(hbox, "1");
         Cell leftCell = new Cell();
         hbox.appendChild(leftCell);
-        Cell rightCell = new Cell();
-        hbox.appendChild(rightCell);
         
-        ZKUpdateUtil.setWidth(leftCell, "50%");
-        ZKUpdateUtil.setWidth(rightCell, "50%");
+        ZKUpdateUtil.setWidth(leftCell, "100%");
         
         west = new Div();
         west.setStyle("text-align: left; ");
@@ -127,59 +86,20 @@ public class StatusBarPanel extends Panel implements EventListener<Event>, IStat
         
         infoLine = new Label();
     	east.appendChild(infoLine);
-    	infoLine.setVisible(false);
-        east.appendChild(statusDB);
-
-        LayoutUtils.addSclass("status-db", statusDB);
         LayoutUtils.addSclass("status-info", infoLine);
         vbox = new Vbox();
         vbox.setAlign("stretch");
         vbox.setPack("center");
         LayoutUtils.addSclass("status", vbox);
         vbox.appendChild(east);
-        rightCell.appendChild(vbox);
 
         this.appendChild(hbox);
 
-        statusDB.addEventListener(Events.ON_CLICK, this);
 
-        createPopup();
     }
 
-    /**
-     * @param text
-     */
-    public void setStatusDB (String text)
-    {
-        setStatusDB(text, null);
-    }
-
-    /**
-     * @param text
-     * @param dse
-     */
-    public void setStatusDB (String text, DataStatusEvent dse)
-    {
-        if (text == null || text.trim().length() == 0)
-        {
-            statusDB.setValue("");
-           	statusDB.setVisible(false);
-        }
-        else
-        {
-            StringBuilder sb = new StringBuilder (" ");
-            sb.append(text).append(" ");
-            statusDB.setValue(sb.toString());
-           	statusDB.setVisible(true);
-        }
-
-        m_text = text;
-        m_dse = dse;
-    }
-
-    /**
-     * @param text
-     */
+    
+    
     public void setStatusLine (String text)
     {
         setStatusLine(text, false);
@@ -249,16 +169,7 @@ public class StatusBarPanel extends Panel implements EventListener<Event>, IStat
    		return statusLine.getValue();
    	}
 
-	private void createPopup() {
-		popupContent = new Div();
-
-		popup = new Div();
-		ZKUpdateUtil.setWidth(popup, "600px");
-        popup.appendChild(popupContent);
-        popup.addEventListener(Events.ON_CLICK, this);
-        popup.setPage(SessionManager.getAppDesktop().getComponent().getPage());
-        popup.setStyle("position: absolute; display: none");
-	}
+	
 
 	private void showPopup() {
 		popup.setVisible(true);
@@ -313,22 +224,7 @@ public class StatusBarPanel extends Panel implements EventListener<Event>, IStat
 		}
 	}
 	
-	public void onEvent(Event event) throws Exception {
-		if (Events.ON_CLICK.equals(event.getName()) && event.getTarget() == statusDB)
-		{
-			if (m_dse == null
-				|| m_dse.CreatedBy == null
-				|| !MRole.getDefault().isShowPreference())
-				return;
-
-			String title = Msg.getMsg(Env.getCtx(), "Who") + m_text;
-			new WRecordInfo (title, m_dse, null);
-		}
-		else if (Events.ON_CLICK.equals(event.getName()) && event.getTarget() == popup)
-		{
-			popup.setVisible(false);
-		}
-	}
+	
 
 	@Override
 	public void onPageDetached(Page page) {
@@ -343,5 +239,6 @@ public class StatusBarPanel extends Panel implements EventListener<Event>, IStat
 	public void setEastVisibility(boolean visible) {
 		east.setVisible(visible);
 	}
+
 
 }

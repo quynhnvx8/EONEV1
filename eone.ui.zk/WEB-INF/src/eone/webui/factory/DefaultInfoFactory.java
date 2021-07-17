@@ -6,28 +6,11 @@ import org.compiere.util.Env;
 import eone.base.model.GridField;
 import eone.base.model.Lookup;
 import eone.base.model.MInfoWindow;
-import eone.webui.info.InfoAssetWindow;
-import eone.webui.info.InfoAssignmentWindow;
-import eone.webui.info.InfoBPartnerWindow;
-import eone.webui.info.InfoInOutWindow;
-import eone.webui.info.InfoInvoiceWindow;
-import eone.webui.info.InfoOrderWindow;
-import eone.webui.info.InfoPaymentWindow;
-import eone.webui.info.InfoProductWindow;
 import eone.webui.info.InfoWindow;
-import eone.webui.panel.InfoAssetPanel;
-import eone.webui.panel.InfoAssignmentPanel;
-import eone.webui.panel.InfoBPartnerPanel;
-import eone.webui.panel.InfoCashLinePanel;
 import eone.webui.panel.InfoGeneralPanel;
-import eone.webui.panel.InfoInOutPanel;
-import eone.webui.panel.InfoInvoicePanel;
-import eone.webui.panel.InfoOrderPanel;
 import eone.webui.panel.InfoPanel;
-import eone.webui.panel.InfoPaymentPanel;
-import eone.webui.panel.InfoProductPanel;
 
-@SuppressWarnings("deprecation")
+
 public class DefaultInfoFactory implements IInfoFactory {
 
 	@Override
@@ -35,6 +18,17 @@ public class DefaultInfoFactory implements IInfoFactory {
 			String value, boolean multiSelection, String whereClause, int AD_InfoWindow_ID, boolean lookup) {
 		InfoPanel info = null;
 
+		info = new InfoWindow(WindowNo, tableName, keyColumn, value, multiSelection, whereClause, AD_InfoWindow_ID, lookup);
+    	if (!info.loadedOK()) {
+            info = new InfoGeneralPanel (value, WindowNo,
+                tableName, keyColumn,
+                multiSelection, whereClause, lookup);
+        	if (!info.loadedOK()) {
+        		info.dispose(false);
+        		info = null;
+        	}
+    	}
+		/*
         if (tableName.equals("C_BPartner")) {
         	info = new InfoBPartnerWindow(WindowNo, tableName, keyColumn, value, multiSelection, whereClause, AD_InfoWindow_ID, lookup);
         	if (!info.loadedOK()) {
@@ -99,6 +93,7 @@ public class DefaultInfoFactory implements IInfoFactory {
 	        	}
         	}
         }
+        */
         //
         return info;
 	}
@@ -113,7 +108,10 @@ public class DefaultInfoFactory implements IInfoFactory {
 
 		if (col.indexOf('.') != -1)
 			col = col.substring(col.indexOf('.')+1);
-						
+		
+		info = create(lookup.getWindowNo(), tableName, keyColumn, queryValue, false, whereClause, AD_InfoWindow_ID, true);
+		/*
+		
 		if (col.equals("M_Product_ID"))
 		{
 			InfoWindow infoWindow = new InfoProductWindow(lookup.getWindowNo(), tableName, keyColumn, queryValue, true, whereClause, AD_InfoWindow_ID);
@@ -152,6 +150,7 @@ public class DefaultInfoFactory implements IInfoFactory {
 		{
 			info = create(lookup.getWindowNo(), tableName, keyColumn, queryValue, false, whereClause, AD_InfoWindow_ID, true);
 		}
+		*/
 		return info;
 	}
 

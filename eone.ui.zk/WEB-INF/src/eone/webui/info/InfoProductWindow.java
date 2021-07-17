@@ -14,7 +14,6 @@ import org.compiere.util.Msg;
 import org.compiere.util.Util;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.EventListener;
-import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zul.Center;
 import org.zkoss.zul.South;
 
@@ -22,7 +21,6 @@ import eone.webui.ClientInfo;
 import eone.webui.component.Borderlayout;
 import eone.webui.component.Button;
 import eone.webui.component.Checkbox;
-import eone.webui.component.ConfirmPanel;
 import eone.webui.component.ListboxFactory;
 import eone.webui.component.Tab;
 import eone.webui.component.Tabbox;
@@ -124,17 +122,7 @@ public class InfoProductWindow extends InfoWindow {
 	@Override
 	protected void renderWindow() {
 		super.renderWindow();
-		// Product Attribute Instance
-		m_PAttributeButton = confirmPanel.createButton(ConfirmPanel.A_PATTRIBUTE);
-		confirmPanel.addComponentsLeft(m_PAttributeButton);
-		m_PAttributeButton.setEnabled(false);
-		m_PAttributeButton.addEventListener(Events.ON_CLICK, new EventListener<Event>() {
-			@Override
-			public void onEvent(Event event) throws Exception {
-				onPAttributeClick();
-			}
-		});
-		m_PAttributeButton.setVisible(true);
+		
 	}
 
 	@Override
@@ -495,20 +483,7 @@ public class InfoProductWindow extends InfoWindow {
 		return true;
 	}
 
-	@Override
-	protected void saveSelectionDetail() {
-        int row = contentPanel.getSelectedRow();
-        if (row == -1)
-            return;
-
-		super.saveSelectionDetail();
-
-		Env.setContext(Env.getCtx(), p_WindowNo, Env.TAB_INFO, "M_Warehouse_ID", String.valueOf(m_M_Warehouse_ID));
-        //  publish for Callout to read
-        Integer ID = getSelectedRowKey();
-        Env.setContext(Env.getCtx(), p_WindowNo, Env.TAB_INFO, "M_Product_ID", ID == null ? "0" : ID.toString());
-	}
-
+	
 	@Override
 	protected void prepareTable(ColumnInfo[] layout, String from, String where,
 			String orderBy) {

@@ -430,7 +430,6 @@ public class WMatch extends Match
 		cmd_matchTo();
 
 		statusBar.setStatusLine("");
-		statusBar.setStatusDB("0");
 	}   //  dynInit
 
 	/**
@@ -510,7 +509,6 @@ public class WMatch extends Match
 			statusBar.setStatusLine(matchFrom.getSelectedItem().getLabel()
 				+ "# = " + xMatchedTable.getRowCount(),
 				xMatchedTable.getRowCount() == 0);
-			statusBar.setStatusDB("0");
 			cmd_searchTo();
 		}
 		else if (e.getTarget() == bProcess)
@@ -523,7 +521,7 @@ public class WMatch extends Match
 			statusBar.setStatusLine(matchFrom.getSelectedItem().getLabel()
 				+ "# = " + xMatchedTable.getRowCount(),
 				xMatchedTable.getRowCount() == 0);
-			statusBar.setStatusDB("0");
+			statusBar.setStatusLine("0");
 			cmd_searchTo();
 		}
 		else if (e.getTarget() == sameBPartner
@@ -583,7 +581,7 @@ public class WMatch extends Match
 			+ getMatchToLabel()
 			+  "# = " + xMatchedToTable.getRowCount(),
 			xMatchedToTable.getRowCount() == 0);
-		statusBar.setStatusDB("0");
+		statusBar.setStatusLine("0");
 	}   //  cmd_seachTo
 	
 	private String getMatchToLabel() {
@@ -634,7 +632,7 @@ public class WMatch extends Match
 		difference.setValue(m_xMatched.subtract(m_xMatchedTo));
 		bProcess.setEnabled(noRows != 0);
 		//  Status
-		statusBar.setStatusDB(noRows + "");
+		statusBar.setStatusLine(noRows + "");
 	}   //  tableChanged
 
 

@@ -3,8 +3,6 @@
  */
 package eone.webui.info;
 
-import org.compiere.util.Env;
-
 /**
  * @author hengsin
  *
@@ -48,17 +46,6 @@ public class InfoInvoiceWindow extends InfoWindow {
 				whereClause, AD_InfoWindow_ID, lookup);
 	}
 
-	@Override
-	protected void saveSelectionDetail() {
-        int row = contentPanel.getSelectedRow();
-        if (row == -1)
-            return;
-
-		super.saveSelectionDetail();
-
-        //  publish for Callout to read
-        Integer ID = getSelectedRowKey();
-        Env.setContext(Env.getCtx(), p_WindowNo, Env.TAB_INFO, "C_Invoice_ID", ID == null ? "0" : ID.toString());
-	}
+	
 
 }

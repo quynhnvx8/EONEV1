@@ -3,8 +3,6 @@
  */
 package eone.webui.info;
 
-import org.compiere.util.Env;
-
 /**
  * @author hengsin
  *
@@ -50,17 +48,6 @@ public class InfoAssetWindow extends InfoWindow {
 		// TODO Auto-generated constructor stub
 	}
 
-	@Override
-	protected void saveSelectionDetail() {
-        int row = contentPanel.getSelectedRow();
-        if (row == -1)
-            return;
-
-		super.saveSelectionDetail();
-
-        //  publish for Callout to read
-        Integer ID = getSelectedRowKey();
-        Env.setContext(Env.getCtx(), p_WindowNo, Env.TAB_INFO, "A_Asset_ID", ID == null ? "0" : ID.toString());
-	}
+	
 
 }

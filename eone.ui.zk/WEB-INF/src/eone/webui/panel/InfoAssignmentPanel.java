@@ -149,7 +149,6 @@ public class InfoAssignmentPanel extends InfoPanel implements EventListener<Even
 
 		int no = contentPanel.getRowCount();
 		setStatusLine(Integer.toString(no) + " " + Msg.getMsg(Env.getCtx(), "SearchRows_EnterQuery"), false);
-		setStatusDB(Integer.toString(no));
 		
 		p_loadedOK = true;
 	} // InfoAssignmentPanel

@@ -73,7 +73,6 @@ public class WCreateFromWindow extends Window implements EventListener<Event>, W
 			zkInit();
 			confirmPanel.addActionListener(this);
 			
-			statusBar.setStatusDB("");
 			tableChanged(null);
 			createFrom.setInitOK(true);
 		}

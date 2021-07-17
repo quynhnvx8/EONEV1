@@ -147,6 +147,5 @@ public class TranslationController
 	{
 		//	Info
 		statusBar.setStatusLine(" ");
-		statusBar.setStatusDB(" ");
 	}	//	dynInit
 }

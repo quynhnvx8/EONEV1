@@ -86,7 +86,6 @@ public class WCreateFromForm extends ADForm implements EventListener<Event>, WTa
 			zkInit();
 			confirmPanel.addActionListener(this);
 			
-			statusBar.setStatusDB("");
 			tableChanged(null);
 		}
 		catch(Exception e)

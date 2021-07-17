@@ -105,7 +105,6 @@ public class InfoGeneralPanel extends InfoPanel implements EventListener<Event>
 		// Elaine 2008/12/15
 		int no = contentPanel.getRowCount();
 		setStatusLine(Integer.toString(no) + " " + Msg.getMsg(Env.getCtx(), "SearchRows_EnterQuery"), false);
-		setStatusDB(Integer.toString(no));
 		//
 
 		if (queryValue != null && queryValue.length() > 0)
@@ -156,8 +155,9 @@ public class InfoGeneralPanel extends InfoPanel implements EventListener<Event>
 		ZKUpdateUtil.setWidth(southBody, "100%");
 		south.appendChild(southBody);
 		southBody.appendChild(new Separator());
+		confirmPanel.addComponentsCenter(statusBar);
 		southBody.appendChild(confirmPanel);		
-		southBody.appendChild(statusBar);
+		//southBody.appendChild(statusBar);
 		ZKUpdateUtil.setVflex(south, "min");
 	}
 
@@ -168,21 +168,14 @@ public class InfoGeneralPanel extends InfoPanel implements EventListener<Event>
 
 		Row row = new Row();
 		rows.appendChild(row);
-		row.appendChild(lbl1.rightAlign());
+		//row.appendChild(lbl1);
 		row.appendChild(txt1);
 		ZKUpdateUtil.setHflex(txt1, "1");
 		
 	}
 
 	private int getNoOfParameterColumn() {
-		if (ClientInfo.maxWidth(ClientInfo.EXTRA_SMALL_WIDTH-1))
-			return 2;
-		else if (ClientInfo.maxWidth(ClientInfo.SMALL_WIDTH-1))
-			return 4;
-		else if (ClientInfo.maxWidth(ClientInfo.MEDIUM_WIDTH-1))
-			return 6;
-		else
-			return 8;
+		return 2;
 	}
 
 	private void init()
@@ -324,17 +317,19 @@ public class InfoGeneralPanel extends InfoPanel implements EventListener<Event>
 		//	Get Display Columns
 
 		ArrayList<ColumnInfo> list = new ArrayList<ColumnInfo>();
-		sql = "SELECT c.ColumnName, c.AD_Reference_ID, c.IsKey, f.IsDisplayed, c.AD_Reference_Value_ID, c.ColumnSql, c.AD_Column_ID "
+		sql = "SELECT c.ColumnName, c.AD_Reference_ID, c.IsKey, f.IsDisplayed, c.AD_Reference_Value_ID, c.ColumnSql, c.AD_Column_ID, ft.Name "
 			+ "FROM AD_Column c"
 			+ " INNER JOIN AD_Table t ON (c.AD_Table_ID=t.AD_Table_ID)"
 			+ " INNER JOIN AD_Tab tab ON (t.AD_Window_ID=tab.AD_Window_ID)"
 			+ " INNER JOIN AD_Field f ON (tab.AD_Tab_ID=f.AD_Tab_ID AND f.AD_Column_ID=c.AD_Column_ID) "
+			+ " INNER JOIN AD_Field_Trl ft ON (f.AD_Field_ID = ft.AD_Field_ID) "
 			+ "WHERE t.AD_Table_ID=? "
 			+ " AND "
 			+ "("
 			+ "		((c.IsKey='Y' OR (f.IsEncrypted='N' AND f.ObscureType IS NULL)) And not exists (Select 1 From AD_Column cc Where c.AD_Table_ID = cc.AD_Table_ID And cc.IsInfoPanel = 'Y') )"
 			+ "		OR (Exists(Select 1 From AD_Column cc Where c.AD_Table_ID = cc.AD_Table_ID And cc.IsInfoPanel = 'Y') AND c.IsInfoPanel = 'Y')"
 			+ ")"
+			+ "	AND ft.AD_Language='"+ Env.getAD_Language(Env.getCtx())+"'"
 			+ "ORDER BY c.IsKey DESC, f.SeqNo";
 
 		try
@@ -345,6 +340,7 @@ public class InfoGeneralPanel extends InfoPanel implements EventListener<Event>
 			while (rs.next())
 			{
 				String columnName = rs.getString(1);
+				String columnNameTranslate = rs.getString("Name");
 				int displayType = rs.getInt(2);
 				boolean isKey = rs.getString(3).equals("Y");
 				boolean isDisplayed = rs.getString(4).equals("Y");
@@ -396,12 +392,12 @@ public class InfoGeneralPanel extends InfoPanel implements EventListener<Event>
 
 				if (colClass != null)
 				{
-					list.add(new ColumnInfo(Msg.translate(Env.getCtx(), columnName), colSql.toString(), colClass));
+					list.add(new ColumnInfo(columnNameTranslate, colSql.toString(), colClass));
 					if (log.isLoggable(Level.FINEST)) log.finest("Added Column=" + columnName);
 				}
 				else if (isDisplayed && DisplayType.isLookup(displayType))
 				{
-					ColumnInfo colInfo = createLookupColumnInfo(Msg.translate(Env.getCtx(), columnName), columnName, displayType, AD_Reference_Value_ID, AD_Column_ID, colSql.toString());
+					ColumnInfo colInfo = createLookupColumnInfo(columnNameTranslate, columnName, displayType, AD_Reference_Value_ID, AD_Column_ID, colSql.toString());
 					if (colInfo != null)
 					{
 						list.add(colInfo);

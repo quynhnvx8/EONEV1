@@ -29,7 +29,6 @@ import eone.base.model.MRole;
 import eone.webui.AdempiereWebUI;
 import eone.webui.apps.AEnv;
 import eone.webui.component.Button;
-import eone.webui.component.ConfirmPanel;
 import eone.webui.component.Grid;
 import eone.webui.component.GridFactory;
 import eone.webui.component.Label;
@@ -90,7 +89,6 @@ public class InfoProductPanel extends InfoPanel implements EventListener<Event>
 	/**	Search Button				*/
 	private Button	m_InfoPAttributeButton = new Button();
 	/** Instance Button				*/
-	private Button	m_PAttributeButton = null;
 	/** SQL From				*/
 	private static final String s_productFrom =
 		"M_Product p"
@@ -143,7 +141,6 @@ public class InfoProductPanel extends InfoPanel implements EventListener<Event>
 
         int no = contentPanel.getRowCount();
         setStatusLine(Integer.toString(no) + " " + Msg.getMsg(Env.getCtx(), "SearchRows_EnterQuery"), false);
-        setStatusDB(Integer.toString(no));
 		//	AutoQuery
 		if (value != null && value.length() > 0)
         {
@@ -249,12 +246,7 @@ public class InfoProductPanel extends InfoPanel implements EventListener<Event>
 		statusBar.setEastVisibility(false);
 		ZKUpdateUtil.setWidth(statusBar, "100%");
 
-		// Product Attribute Instance
-		m_PAttributeButton = confirmPanel.createButton(ConfirmPanel.A_PATTRIBUTE);
-		confirmPanel.addComponentsLeft(m_PAttributeButton);
-		m_PAttributeButton.addActionListener(this);
-		m_PAttributeButton.setEnabled(false);
-
+		
         // Elaine 2008/11/25
         fieldDescription.setMultiline(true);
 		fieldDescription.setReadonly(true);

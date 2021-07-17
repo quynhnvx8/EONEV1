@@ -141,7 +141,6 @@ public class InfoAssetPanel extends InfoPanel implements ValueChangeListener, Ev
 
 		int no = contentPanel.getRowCount();
 		setStatusLine(Integer.toString(no) + " " + Msg.getMsg(Env.getCtx(), "SearchRows_EnterQuery"), false);
-		setStatusDB(Integer.toString(no));
 		
 		//	AutoQuery
 		if (value != null && value.length() > 0)

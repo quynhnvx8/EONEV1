@@ -170,7 +170,6 @@ public class InfoPaymentPanel extends InfoPanel implements ValueChangeListener, 
 		int no = contentPanel.getRowCount();
 
 		setStatusLine(Integer.toString(no) + " " + Msg.getMsg(Env.getCtx(), "SearchRows_EnterQuery"), false);
-		setStatusDB(Integer.toString(no));
 
 		if (value != null && value.length() > 0)
 		{

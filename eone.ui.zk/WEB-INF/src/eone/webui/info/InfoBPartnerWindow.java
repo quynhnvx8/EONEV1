@@ -3,8 +3,6 @@
  */
 package eone.webui.info;
 
-import org.compiere.util.Env;
-
 import eone.webui.panel.InvoiceHistory;
 
 /**
@@ -76,18 +74,5 @@ public class InfoBPartnerWindow extends InfoWindow {
 		ih = null;
 	}	//	showHistory
 
-	
-	@Override
-	protected void saveSelectionDetail() {
-        int row = contentPanel.getSelectedRow();
-        if (row == -1)
-            return;
-
- 		super.saveSelectionDetail();
-
-        //  publish for Callout to read
-        Integer ID = getSelectedRowKey();
-        Env.setContext(Env.getCtx(), p_WindowNo, Env.TAB_INFO, "C_BPartner_ID", ID == null ? "0" : ID.toString());
-	}
 	
 }

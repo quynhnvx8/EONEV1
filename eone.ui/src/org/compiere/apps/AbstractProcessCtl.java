@@ -452,6 +452,7 @@ public abstract class AbstractProcessCtl implements Runnable
 									
 									//add vao arr cua group
 									arrG.add(addNewItem(itemG, (Serializable)rsC.getBigDecimal(""+ colGroup +"")));
+									nextcol++;
 								}
 								dataGroup.put(groupName + "-o0o-"+ element, objGroup);
 							}

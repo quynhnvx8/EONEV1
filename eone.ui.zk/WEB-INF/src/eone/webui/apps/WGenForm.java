@@ -204,7 +204,6 @@ public class WGenForm extends ADForm implements EventListener<Event>, WTableMode
 		genForm.configureMiniTable(miniTable);
 		miniTable.getModel().addTableModelListener(this);
 		//	Info
-		statusBar.setStatusDB(" ");
 		//	Tabbed Pane Listener
 		tabbedPane.addEventListener(Events.ON_SELECT, this);
 		
@@ -288,7 +287,7 @@ public class WGenForm extends ADForm implements EventListener<Event>, WTableMode
 			if (id != null && id.isSelected())
 				rowsSelected++;
 		}
-		statusBar.setStatusDB(" " + rowsSelected + " ");
+		statusBar.setStatusLine(" " + rowsSelected + " ");
 		if (tabbedPane.getSelectedIndex() == 0)
 		{
 			Button button = confirmPanelSel.getButton(ConfirmPanel.A_OK);

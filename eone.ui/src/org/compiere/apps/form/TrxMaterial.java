@@ -60,7 +60,6 @@ public class TrxMaterial {
 		m_mTab.setQuery(MQuery.getEqualQuery("1", "2"));
 		m_mTab.query(false);
 		statusBar.setStatusLine(" ", false);
-		statusBar.setStatusDB(" ");
 	}   //  dynInit
 	
 	/**************************************************************************
@@ -100,8 +99,7 @@ public class TrxMaterial {
 		m_mTab.query(false);
 		//
 		int no = m_mTab.getRowCount();
-		statusBar.setStatusLine(" ", false);
-		statusBar.setStatusDB(Integer.toString(no));
+		statusBar.setStatusLine(Integer.toString(no), false);
 	}   //  refresh
 	
 	public int AD_Table_ID;

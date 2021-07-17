@@ -142,7 +142,6 @@ public class InfoBPartnerPanel extends InfoPanel implements EventListener<Event>
         
         int no = contentPanel.getRowCount();
         setStatusLine(Integer.toString(no) + " " + Msg.getMsg(Env.getCtx(), "SearchRows_EnterQuery"), false);
-        setStatusDB(Integer.toString(no));
         //
 		if (queryValue != null && queryValue.length()>0)
 		{

@@ -70,7 +70,6 @@ import eone.webui.component.Window;
 import eone.webui.theme.ITheme;
 import eone.webui.util.BrowserToken;
 import eone.webui.util.UserPreference;
-import eone.webui.window.FDialog;
 import eone.webui.window.LoginWindow;
 
 /**
@@ -407,10 +406,7 @@ public class LoginPanel extends Window implements EventListener<Event>
         {
             validateLogin();
         }
-        else if (event.getTarget().getId().equals(ConfirmPanel.A_HELP))
-        {
-            openLoginHelp();
-        }
+        
         else if (event.getName().equals(Events.ON_SELECT))
         {
             if(eventComp.getId().equals(lstLanguage.getId())) {            	            	
@@ -442,21 +438,7 @@ public class LoginPanel extends Window implements EventListener<Event>
         //
     }
 
-	private void openLoginHelp() {
-		String langName = (String) lstLanguage.getSelectedItem().getValue();
-		langName = langName.substring(0, 2);
-		String helpURL = MSysConfig.getValue(MSysConfig.LOGIN_HELP_URL, "http://wiki.idempiere.org/{lang}/Login_Help");
-		if (helpURL.contains("{lang}"))
-			helpURL = Util.replace(helpURL, "{lang}", langName);
-		try {
-			Executions.getCurrent().sendRedirect(helpURL, "_blank");
-		}
-		catch (Exception e) {
-			String message = e.getMessage();
-			FDialog.warn(0, this, "URLnotValid", message);
-		}
-	}
-
+	
 	
     private void languageChanged(String langName)
     {

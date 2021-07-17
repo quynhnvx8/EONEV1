@@ -34,11 +34,11 @@ import org.compiere.util.Util;
 import org.zkoss.zk.ui.WrongValueException;
 import org.zkoss.zul.Borderlayout;
 import org.zkoss.zul.Center;
-import org.zkoss.zul.North;
-import org.zkoss.zul.South;
 import org.zkoss.zul.Div;
 import org.zkoss.zul.Hbox;
+import org.zkoss.zul.North;
 import org.zkoss.zul.Separator;
+import org.zkoss.zul.South;
 import org.zkoss.zul.Vbox;
 
 import eone.base.model.MLookup;
@@ -115,7 +115,6 @@ public class InfoInvoicePanel extends InfoPanel implements ValueChangeListener
        p_loadedOK = initInfo ();
        int no = contentPanel.getRowCount();
        setStatusLine(Integer.toString(no) + " " + Msg.getMsg(Env.getCtx(), "SearchRows_EnterQuery"), false);
-       setStatusDB(Integer.toString(no));
        if (value != null && value.length() > 0)
        {
            String values[] = value.split("_");
@@ -165,7 +164,6 @@ public class InfoInvoicePanel extends InfoPanel implements ValueChangeListener
         new ColumnInfo("", "''", KeyNamePair.class, "i.C_InvoicePaySchedule_ID")
     };
 
-    private static int INDEX_PAYSCHEDULE = s_invoiceLayout.length - 1;  //  last item
 
     private void initComponents()
     {
@@ -581,27 +579,7 @@ public class InfoInvoicePanel extends InfoPanel implements ValueChangeListener
         }
     }
 
-	@Override
-	protected void saveSelectionDetail()
-	{
-		//  publish for Callout to read
-		Integer ID = getSelectedRowKey();
-		Env.setContext(Env.getCtx(), p_WindowNo, Env.TAB_INFO, "C_Invoice_ID", ID == null ? "0" : ID.toString());
-		//
-		int C_InvoicePaySchedule_ID = 0;
-		int row = contentPanel.getSelectedRow();
-		if (row >= 0)
-		{
-			Object value = contentPanel.getValueAt(row, INDEX_PAYSCHEDULE);
-			if (value != null && value instanceof KeyNamePair)
-				C_InvoicePaySchedule_ID = ((KeyNamePair)value).getKey();
-		}
-		if (C_InvoicePaySchedule_ID <= 0)	//	not selected
-			Env.setContext(Env.getCtx(), p_WindowNo, Env.TAB_INFO, "C_InvoicePaySchedule_ID", "0");
-		else
-			Env.setContext(Env.getCtx(), p_WindowNo, Env.TAB_INFO, "C_InvoicePaySchedule_ID", String.valueOf(C_InvoicePaySchedule_ID));
-	}
-
+	
 	@Override
 	protected void insertPagingComponent()
 	{

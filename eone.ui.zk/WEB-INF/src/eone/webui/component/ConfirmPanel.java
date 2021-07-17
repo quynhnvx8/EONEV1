@@ -1,19 +1,3 @@
-/******************************************************************************
- * Product: Posterita Ajax UI 												  *
- * Copyright (C) 2007 Posterita Ltd.  All Rights Reserved.                    *
- * This program is free software; you can redistribute it and/or modify it    *
- * under the terms version 2 of the GNU General Public License as published   *
- * by the Free Software Foundation. This program is distributed in the hope   *
- * that it will be useful, but WITHOUT ANY WARRANTY; without even the implied *
- * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.           *
- * See the GNU General Public License for more details.                       *
- * You should have received a copy of the GNU General Public License along    *
- * with this program; if not, write to the Free Software Foundation, Inc.,    *
- * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.                     *
- * For the text or an alternative of this public license, you may reach us    *
- * Posterita Ltd., 3, Draper Avenue, Quatre Bornes, Mauritius                 *
- * or via info@posterita.org or http://www.posterita.org/                     *
- *****************************************************************************/
 
 package eone.webui.component;
 
@@ -31,14 +15,8 @@ import org.zkoss.zul.Messagebox;
 
 import eone.webui.LayoutUtils;
 import eone.webui.factory.ButtonFactory;
-import eone.webui.theme.ThemeManager;
 import eone.webui.util.ZKUpdateUtil;
-/**
- * Application Confirm Panel
- * Web UI port of the rich client's ConfirmPanel by Jorg Janke
- * @author Sendy Yagambrum
- * @date July 25, 2007
- **/
+
 public final class ConfirmPanel extends Div
 {
 	/**
@@ -64,18 +42,13 @@ public final class ConfirmPanel extends Div
     /** Action String Zoom.      */
     public static final String A_ZOOM = "Zoom";
     
-    /** Action String Process.   */
     public static final String A_PROCESS = "Process";
     /** Action String Print.     */
     public static final String A_PRINT = "Print";
     /** Action String Export.    */
     public static final String A_EXPORT = "Export";
-    /** Action String Help.      */
-    public static final String A_HELP = "Help";
     /** Action String Delete.    */
     public static final String A_DELETE = "Delete";
-    /** Action String PAttribute.    */
-    public static final String A_PATTRIBUTE = "PAttribute";
     /** Action String New.   */
     public static final String A_NEW = "New";
 
@@ -242,7 +215,6 @@ public final class ConfirmPanel extends Div
     //
     private Hlayout pnlBtnRight;
     private Hlayout pnlBtnLeft;
-    // IDEMPIERE-1334 center panel, contain all process button
     private Hlayout pnlBtnCenter;
 
 	private String extraButtonSClass;
@@ -257,13 +229,10 @@ public final class ConfirmPanel extends Div
         pnlBtnRight = new Hlayout();
         pnlBtnRight.setSclass("confirm-panel-right");
 
-        // IDEMPIERE-1334 start
         pnlBtnCenter = new Hlayout();
         pnlBtnCenter.setSclass("confirm-panel-center");
-        // IDEMPIERE-1334 end
         
         this.appendChild(pnlBtnLeft);
-        // IDEMPIERE-1334
         this.appendChild(pnlBtnCenter);
         this.appendChild(pnlBtnRight);
         this.setSclass("confirm-panel");
@@ -271,35 +240,7 @@ public final class ConfirmPanel extends Div
         setId("confirmPanel");
     }
 
-    /**
-     * IDEMPIERE-1334
-     * add a process button into center panel
-     * @param btName
-     * @param imgName
-     * @return
-     */
-    public Button addButton (String btName, String imgName){
-    	 Button btProcess = createButton(btName);
-    	 // replace default image with image set at info process
-    	 if (m_withImage && imgName != null && imgName.trim().length() > 0)
-    		 btProcess.setImage(ThemeManager.getThemeResource("images/" + imgName));
-    	 addComponentsCenter(btProcess);
-    	 return btProcess;     	
-    }
-    
-    public Button addProcessButton (String btName, String imgName){
-   	 Button btProcess = createButton(btName, imgName, null);
-   	 // replace default image with image set at info process
-   	 if (m_withImage && imgName != null && imgName.trim().length() > 0)
-   		 btProcess.setImage(ThemeManager.getThemeResource("images/" + imgName));
-   	 addComponentsCenter(btProcess);
-   	 return btProcess;     	
-   }
    
-    /**
-     * add button to the left side of the confirm panel
-     * @param button button
-     */
     public void addComponentsLeft(Button button)
     {
     	if (!buttonMap.containsKey(button.getId()))
@@ -322,49 +263,17 @@ public final class ConfirmPanel extends Div
         	LayoutUtils.addSclass(SMALL_SCREEN_BUTTON_CLASS, button);
     }
 
-    /**
-     * IDEMPIERE-1334
-     * add button to the center side of the confirm panel
-     * @param button button
-     */
-    public void addComponentsCenter(Button button)
+    
+    public void addComponentsCenter(Panel panel)
     {
-    	if (!buttonMap.containsKey(button.getId()))
-    		buttonMap.put(button.getId(), button);
-        pnlBtnCenter.appendChild(button);
-        if (useSmallButtonClassForSmallScreen)
-        	LayoutUtils.addSclass(SMALL_SCREEN_BUTTON_CLASS, button);
+    	pnlBtnCenter.appendChild(panel);        
     }
 
-    /**
-     * Add combobox to center panel
-     * @param cbb
-     */
+   
     public void addComponentsCenter(Combobox cbb){
     	pnlBtnCenter.appendChild(cbb);
     	
     }
-    
-    /**
-     * return button of the specified id
-     * @param id button id
-     * @return button or null if no button is found
-     * <p> The button id can be any of the following
-     * <dl>
-     * <dt>Ok</dt>          <dd>Ok button</dd>
-     * <dt>Cancel</dt>      <dd>Cancel button</dd>
-     * <dt>Refresh</dt>     <dd>Refresh button</dd>
-     * <dt>Reset</dt>       <dd>Reset button</dd>
-     * <dt>History</dt>     <dd>History button</dd>
-     * <dt>Process</dt>     <dd>Process button</dd>
-     * <dt>New</dt>         <dd>New button</dd>
-     * <dt>Customize</dt>   <dd>Customize button</dd>
-     * <dt>Delete</dt>      <dd>Delete button</dd>
-     * <dt>Save</dt>        <dd>Save button</dd>
-     * <dt>Zoom</dt>        <dd>Zoom button</dd>
-     * <dt>Help</dt>        <dd>Help button</dd>
-     * </dl>
-     */
     public Button getButton(String id)
     {
         return buttonMap.get(id);

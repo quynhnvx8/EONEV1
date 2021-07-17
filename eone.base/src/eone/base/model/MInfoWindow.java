@@ -4,12 +4,12 @@ package eone.base.model;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
 import java.util.logging.Level;
 
 import org.adempiere.exceptions.AdempiereException;
+import org.compiere.util.CCache;
 import org.compiere.util.DB;
 import org.compiere.util.Env;
 import org.compiere.util.Msg;
@@ -36,21 +36,23 @@ public class MInfoWindow extends X_AD_InfoWindow
 		super (ctx, rs, trxName);
 	}	//	MInfoWindow
 
+	protected static CCache<String,MInfoWindow> s_cache = new CCache<String,MInfoWindow>(Table_Name, 50 );
+	
 	public static MInfoWindow get(String tableName, String trxName) {
-		Query query = new Query(Env.getCtx(), MTable.get(Env.getCtx(), MInfoWindow.Table_ID), MInfoWindow.COLUMNNAME_AD_Table_ID+"=? AND IsValid='Y' ", null);
+		String key = tableName;
+		MInfoWindow retValue = (MInfoWindow)s_cache.get(key);
+		if (retValue != null)
+			return retValue;
+		
+		
 		MTable table = MTable.get(Env.getCtx(), tableName);
 		if (table != null) {
-			List<MInfoWindow> iws = query.setParameters(table.getAD_Table_ID())
-					.setOrderBy("AD_Client_ID Desc, AD_Org_ID Desc, IsDefault Desc, AD_InfoWindow_ID Desc")
-					.setOnlyActiveRecords(true)
-					.setApplyAccessFilter(true)
-					.list();
-			// verify role has access and return the first with access / IDEMPIERE-893
-			for (MInfoWindow iw : iws) {
-				Boolean access = MRole.getDefault().getInfoAccess(iw.getAD_InfoWindow_ID());
-				if (access != null && access.booleanValue())
-					return iw;
-			}
+			final String whereClause = "AD_Table_ID=? And IsActive = 'Y'";
+			retValue = new Query(Env.getCtx(),X_AD_InfoWindow.Table_Name,whereClause,trxName)
+			.setParameters(table.getAD_Table_ID())
+			.firstOnly();
+			s_cache.put (key, retValue);
+			return retValue;
 		}
 		return null;
 	}
@@ -71,62 +73,6 @@ public class MInfoWindow extends X_AD_InfoWindow
 		return null;
 	}
 
-
-	private MInfoRelated[] m_infoRelated;
-
-	
-	private MInfoProcess[]  m_infoProcess;
-
-	public MInfoRelated[] getInfoRelated(boolean requery) {
-		if ((this.m_infoRelated != null) && (!requery)) {
-			set_TrxName(this.m_infoRelated, get_TrxName());
-			return this.m_infoRelated;
-		}
-
-		List<MInfoRelated> list = new Query(getCtx(), MInfoRelated.Table_Name, "AD_InfoWindow_ID=?", get_TrxName())
-			.setParameters(getAD_InfoWindow_ID())
-			.setOnlyActiveRecords(true)
-			.setOrderBy("SeqNo")
-			.list();
-
-		m_infoRelated =  list.toArray(new MInfoRelated[list.size()]);
-
-		return m_infoRelated;
-	}
-
-	
-	public MInfoProcess [] getInfoProcess(boolean requery) {
-		// try from cache
-		if ((this.m_infoProcess != null) && (!requery)) {
-			set_TrxName(this.m_infoProcess, get_TrxName());
-			return this.m_infoProcess;
-		}
-		
-		List<MInfoProcess> list = new Query(getCtx(), MInfoProcess.Table_Name, "AD_InfoWindow_ID=?", get_TrxName())
-			.setParameters(getAD_InfoWindow_ID())
-			.setOnlyActiveRecords(true)
-			.setOrderBy("SeqNo")
-			.list();
-
-		checkProcessRight(list);
-		m_infoProcess =  list.toArray(new MInfoProcess[list.size()]);
-
-		return m_infoProcess;
-	}
-	
-
-
-	protected void checkProcessRight (List<MInfoProcess> lsInfoProcess) {
-		Iterator<MInfoProcess> iterator = lsInfoProcess.iterator();
-		while (iterator.hasNext()){
-			MInfoProcess testInfoProcess = iterator.next();
-			Boolean access = MRole.getDefault().getProcessAccess(testInfoProcess.getAD_Process_ID());
-			if (access == null || !access.booleanValue()) {
-				iterator.remove();
-			}
-		}
-		
-	}
 
 	/** return true if the current role can access to the specified info window ; otherwise return null */
 	public static MInfoWindow get(int infoWindowID, String trxName) {
@@ -293,16 +239,7 @@ public class MInfoWindow extends X_AD_InfoWindow
 	protected boolean afterSave(boolean newRecord, boolean success) {
 		if (!success)
 			return success;
-		if (newRecord)	//	Add to all automatic roles
-		{
-			MRole[] roles = MRole.getOf(getCtx(), "1=1");
-			for (int i = 0; i < roles.length; i++)
-			{
-				MInfoWindowAccess wa = new MInfoWindowAccess(this, roles[i].getAD_Role_ID());
-				wa.saveEx();
-			}
-		}
-		//	Menu
+		
 		else if (is_ValueChanged("IsActive") || is_ValueChanged("Name") 
 			|| is_ValueChanged("Description"))
 		{
@@ -392,9 +329,7 @@ public class MInfoWindow extends X_AD_InfoWindow
 		this.setIsValid(true);		
 	}
 
-	/**
-	 * IDEMPIERE-4167
-	 **/
+	
 	private boolean m_validateEachColumn = true;
 
 	public void setIsValidateEachColumn (boolean validateEachColumn) {
