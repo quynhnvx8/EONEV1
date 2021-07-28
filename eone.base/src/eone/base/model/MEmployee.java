@@ -177,6 +177,11 @@ public class MEmployee extends X_HR_Employee implements DocAction
 	}
 
 	@Override
+	public void setProcessMsg(String text) {
+		m_processMsg = text;
+	}
+	
+	@Override
 	public String getSummary() {
 		StringBuilder sb = new StringBuilder();
 		sb.append(getName());

@@ -1600,7 +1600,6 @@ public final class DB
 	}
 	
 	
-
 	public static List<List<Object>> getSQLArrayObjectsEx(String trxName, String sql, Object... params) {
 		List<List<Object>> rowsArray = new ArrayList<List<Object>>();
     	PreparedStatement pstmt = null;
@@ -1621,6 +1620,37 @@ public final class DB
         				retValue.add(obj);
     			}
     			rowsArray.add(retValue);
+    		}
+    	}
+    	catch (SQLException e)
+    	{
+    		throw new DBException(e, sql);
+    	}
+    	finally
+    	{
+    		close(rs, pstmt);
+    		rs = null; pstmt = null;
+    	}
+    	if (rowsArray.size() == 0)
+    		return null;
+    	return rowsArray;
+	}
+	
+	public static List<Object> getSQLObjectsEx(String trxName, String sql, Object... params) {
+		List<Object> rowsArray = new ArrayList<Object>();
+    	PreparedStatement pstmt = null;
+    	ResultSet rs = null;
+    	try
+    	{
+    		pstmt = prepareStatement(sql, trxName);
+    		setParameters(pstmt, params);
+    		rs = pstmt.executeQuery();
+    		while (rs.next()) {
+    			Object obj = rs.getObject(1);
+    			if (rs.wasNull())
+    				rowsArray.add(null);
+    			else
+    				rowsArray.add(obj);
     		}
     	}
     	catch (SQLException e)

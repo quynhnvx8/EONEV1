@@ -332,6 +332,21 @@ public class InfoGeneralPanel extends InfoPanel implements EventListener<Event>
 			+ "	AND ft.AD_Language='"+ Env.getAD_Language(Env.getCtx())+"'"
 			+ "ORDER BY c.IsKey DESC, f.SeqNo";
 
+		if (Env.isBaseLanguage(Env.getCtx(), "AD_Field")) {
+			sql = "SELECT c.ColumnName, c.AD_Reference_ID, c.IsKey, f.IsDisplayed, c.AD_Reference_Value_ID, c.ColumnSql, c.AD_Column_ID, f.Name "
+					+ "FROM AD_Column c"
+					+ " INNER JOIN AD_Table t ON (c.AD_Table_ID=t.AD_Table_ID)"
+					+ " INNER JOIN AD_Tab tab ON (t.AD_Window_ID=tab.AD_Window_ID)"
+					+ " INNER JOIN AD_Field f ON (tab.AD_Tab_ID=f.AD_Tab_ID AND f.AD_Column_ID=c.AD_Column_ID) "
+					+ "WHERE t.AD_Table_ID=? "
+					+ " AND "
+					+ "("
+					+ "		((c.IsKey='Y' OR (f.IsEncrypted='N' AND f.ObscureType IS NULL)) And not exists (Select 1 From AD_Column cc Where c.AD_Table_ID = cc.AD_Table_ID And cc.IsInfoPanel = 'Y') )"
+					+ "		OR (Exists(Select 1 From AD_Column cc Where c.AD_Table_ID = cc.AD_Table_ID And cc.IsInfoPanel = 'Y') AND c.IsInfoPanel = 'Y')"
+					+ ")"
+					+ "ORDER BY c.IsKey DESC, f.SeqNo";
+		}
+		
 		try
 		{
 			pstmt = DB.prepareStatement(sql, null);

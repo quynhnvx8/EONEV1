@@ -135,6 +135,11 @@ public class MProject extends X_C_Project implements DocAction
 	public String getProcessMsg() {
 		return m_processMsg;
 	}
+	
+	@Override
+	public void setProcessMsg(String text) {
+		m_processMsg = text;
+	}
 
 	@Override
 	public String getSummary() {

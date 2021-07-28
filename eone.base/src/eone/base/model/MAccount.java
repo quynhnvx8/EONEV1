@@ -170,6 +170,7 @@ public class MAccount extends X_C_Account
 		return value;
 	}
 	
+	
 	/*
 	 * Lay danh sach tai khoan cau hinh theo doctypeSub
 	 */

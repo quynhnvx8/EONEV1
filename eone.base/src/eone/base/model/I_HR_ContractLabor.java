@@ -1,18 +1,6 @@
 /******************************************************************************
- * Product: iDempiere ERP & CRM Smart Business Solution                       *
- * Copyright (C) 1999-2012 ComPiere, Inc. All Rights Reserved.                *
- * This program is free software, you can redistribute it and/or modify it    *
- * under the terms version 2 of the GNU General Public License as published   *
- * by the Free Software Foundation. This program is distributed in the hope   *
- * that it will be useful, but WITHOUT ANY WARRANTY, without even the implied *
- * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.           *
- * See the GNU General Public License for more details.                       *
- * You should have received a copy of the GNU General Public License along    *
- * with this program, if not, write to the Free Software Foundation, Inc.,    *
- * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.                     *
- * For the text or an alternative of this public license, you may reach us    *
- * ComPiere, Inc., 2620 Augustine Dr. #245, Santa Clara, CA 95054, USA        *
- * or via info@compiere.org or http://www.compiere.org/license.html           *
+ * Product: EOoe ERP & CRM Smart Business Solution	                        *
+ * Copyright (C) 2020, Inc. All Rights Reserved.				                *
  *****************************************************************************/
 package eone.base.model;
 
@@ -21,7 +9,7 @@ import java.sql.Timestamp;
 import org.compiere.util.KeyNamePair;
 
 /** Generated Interface for HR_ContractLabor
- *  @author iDempiere (generated) 
+ *  @author EOne (generated) 
  *  @version Version 1.0
  */
 public interface I_HR_ContractLabor 
@@ -164,6 +152,17 @@ public interface I_HR_ContractLabor
 
 	public I_HR_Employee getHR_Employee() throws RuntimeException;
 
+    /** Column name HR_ItemLine_05_ID */
+    public static final String COLUMNNAME_HR_ItemLine_05_ID = "HR_ItemLine_05_ID";
+
+	/** Set Jobs	  */
+	public void setHR_ItemLine_05_ID (int HR_ItemLine_05_ID);
+
+	/** Get Jobs	  */
+	public int getHR_ItemLine_05_ID();
+
+	public I_HR_ItemLine getHR_ItemLine_05() throws RuntimeException;
+
     /** Column name HR_ItemLine_20_ID */
     public static final String COLUMNNAME_HR_ItemLine_20_ID = "HR_ItemLine_20_ID";
 
@@ -186,6 +185,17 @@ public interface I_HR_ContractLabor
 
 	public I_HR_ItemLine getHR_ItemLine_28() throws RuntimeException;
 
+    /** Column name HR_ItemLine_41_ID */
+    public static final String COLUMNNAME_HR_ItemLine_41_ID = "HR_ItemLine_41_ID";
+
+	/** Set HR_ItemLine_41_ID	  */
+	public void setHR_ItemLine_41_ID (int HR_ItemLine_41_ID);
+
+	/** Get HR_ItemLine_41_ID	  */
+	public int getHR_ItemLine_41_ID();
+
+	public I_HR_ItemLine getHR_ItemLine_41() throws RuntimeException;
+
     /** Column name IsActive */
     public static final String COLUMNNAME_IsActive = "IsActive";
 
@@ -198,6 +208,15 @@ public interface I_HR_ContractLabor
 	  * The record is active in the system
 	  */
 	public boolean isActive();
+
+    /** Column name IsSelected */
+    public static final String COLUMNNAME_IsSelected = "IsSelected";
+
+	/** Set Selected	  */
+	public void setIsSelected (boolean IsSelected);
+
+	/** Get Selected	  */
+	public boolean isSelected();
 
     /** Column name NumTimes */
     public static final String COLUMNNAME_NumTimes = "NumTimes";

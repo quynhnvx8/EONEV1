@@ -4,7 +4,6 @@ package eone.base.callout;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.sql.Timestamp;
-import java.util.List;
 import java.util.Properties;
 
 import org.compiere.util.Env;
@@ -41,7 +40,7 @@ public class CalloutInOut extends CalloutEngine
 		if (objInOut != null) {
 			p_M_InOut_ID = Integer.parseInt(objInOut.toString());
 		}
-		MInOut inout = new MInOut (ctx, p_M_InOut_ID, null);
+		MInOut inout = MInOut.get(ctx, p_M_InOut_ID);
 		MDocType mDocType = MDocType.get(ctx, inout.getC_DocType_ID());
 		
 		BigDecimal qty = Env.ZERO;
@@ -99,12 +98,14 @@ public class CalloutInOut extends CalloutEngine
 				qty = new BigDecimal(objQty.toString());
 			}
 			
-			List<Object> data = MStorage.getQtyPrice(M_Product_ID, M_Warehouse_ID, dateAcct);
+			
+			Object [] data = MStorage.getQtyPrice(M_Product_ID, M_Warehouse_ID, dateAcct);
+			
 			BigDecimal qtyRemain = Env.ZERO;
 			BigDecimal amtRemain = Env.ZERO;
-			if (data != null && data.size() > 0) {
-				qtyRemain = new BigDecimal(data.get(0).toString());
-				amtRemain = new BigDecimal(data.get(1).toString());
+			if (data != null && data.length > 0) {
+				qtyRemain = new BigDecimal(data[0].toString());
+				amtRemain = new BigDecimal(data[2].toString());
 				price = amtRemain.divide(qtyRemain, Env.getScalePrice(), RoundingMode.HALF_UP);
 				p_Amount = qty.multiply(price);
 				
@@ -115,12 +116,14 @@ public class CalloutInOut extends CalloutEngine
 					//Neu so luong nhap nho hon so luong con lai thi lay so luong con lai.
 					mTab.setValue(MInOutLine.COLUMNNAME_Qty, qtyRemain);
 					mTab.setValue(MInOutLine.COLUMNNAME_Price, price);
+					mTab.setValue(MInOutLine.COLUMNNAME_PricePO, price);
 					mTab.setValue(MInOutLine.COLUMNNAME_Amount, amtRemain);
 				} 
 				else
 				{
 					//Nguoc lai thi lay tho so luong nhap tren form
 					mTab.setValue(MInOutLine.COLUMNNAME_Price, price);
+					mTab.setValue(MInOutLine.COLUMNNAME_PricePO, price);
 					mTab.setValue(MInOutLine.COLUMNNAME_Amount, p_Amount);
 				}
 			} 

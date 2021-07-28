@@ -1059,6 +1059,8 @@ public class ZkReportViewer extends Window implements EventListener<Event>, ITab
 	            		PrintDataItem item = arrItem.get(c);
 
 						td td = new td();
+						if (item.getColSpan() > 1)
+							td.setColSpan(item.getColSpan());
 						td.setStyle("font-size: 9pt;");
 						if (item.isNumeric()) {
 							td.setStyle("font-size: 9pt; text-align: right;");

@@ -85,7 +85,14 @@ public class Doc_InOut extends Doc
 				DocLine line = p_lines[i];
 				MInOutLine inoutLine = (MInOutLine) line.getPO();
 				//COGS
-				FactLine f = fact.createLine(line, cogs, cr, inout.getC_Currency_ID(), inout.getCurrencyRate(), inoutLine.getAmount(), inoutLine.getAmount());
+				FactLine f = null;
+				//xuất bán và khách hàng trả lại đều cùng type output. nhưng bút toán đảo lại
+				BigDecimal amtCOGS = inoutLine.getQty().multiply(inoutLine.getPricePO());
+				if (MDocType.DOCBASETYPE_156ReturnVendor.equals(dt.getDocBaseType())) {
+					f = fact.createLine(line, dr, cr, inout.getC_Currency_ID(), inout.getCurrencyRate(), inoutLine.getAmount(), inoutLine.getAmount());
+				} else {
+					f = fact.createLine(line, cogs, cr, inout.getC_Currency_ID(), inout.getCurrencyRate(), amtCOGS, amtCOGS);
+				}
 				f.setM_Product_ID(inoutLine.getM_Product_ID());
 				f.setM_Product_Cr_ID(inoutLine.getM_Product_ID());
 				f.setQty(inoutLine.getQty());
@@ -97,7 +104,8 @@ public class Doc_InOut extends Doc
 				
 				//Revenue
 				BigDecimal amtRev = inoutLine.getAmount().subtract(inoutLine.getDiscountAmt());
-				if (amtRev.compareTo(Env.ZERO) != 0) {
+				if (amtRev.compareTo(Env.ZERO) != 0 && !MDocType.DOCTYPEDETAIL_RETURN.equals(dt.getDocTypeDetail())) {
+					
 					f = fact.createLine(line, dr, revenue, inout.getC_Currency_ID(), inout.getCurrencyRate(), amtRev, amtRev);
 					f.setC_BPartner_Cr_ID(inout.getC_BPartner_Cr_ID());
 					f.setC_BPartner_Dr_ID(inout.getC_BPartner_Dr_ID());			
@@ -110,7 +118,9 @@ public class Doc_InOut extends Doc
 					if (X_C_DocType.DOCBASETYPE_152New.equalsIgnoreCase(dt.getDocBaseType()) 
 							|| X_C_DocType.DOCBASETYPE_153New.equalsIgnoreCase(dt.getDocBaseType())
 							|| X_C_DocType.DOCBASETYPE_155New.equalsIgnoreCase(dt.getDocBaseType())
-							|| X_C_DocType.DOCBASETYPE_156New.equalsIgnoreCase(dt.getDocBaseType())) {
+							|| X_C_DocType.DOCBASETYPE_156New.equalsIgnoreCase(dt.getDocBaseType())
+						) 
+					{
 						dr =  MElementValue.get(getCtx(), inout.getAccount_Tax_ID());
 					} else {
 						cr =  MElementValue.get(getCtx(), inout.getAccount_Tax_ID());
@@ -129,7 +139,18 @@ public class Doc_InOut extends Doc
 			{
 				DocLine line = p_lines[i];
 				MInOutLine inoutLine = (MInOutLine) line.getPO();
-				FactLine f = fact.createLine(line, dr, cr, inout.getC_Currency_ID(), inout.getCurrencyRate(), inoutLine.getAmount(), inoutLine.getAmount());
+				
+				FactLine f = null;
+				if (X_C_DocType.DOCTYPEDETAIL_RETURN.equals(dt.getDocTypeDetail())) {
+					if (inout.getAccount_COGS_ID() > 0) 
+						cogs = MElementValue.get(getCtx(), inout.getAccount_COGS_ID());
+					if (inout.getAccount_REV_ID() > 0)
+						revenue = MElementValue.get(getCtx(), inout.getAccount_REV_ID());
+					BigDecimal amtCOGS = inoutLine.getQty().multiply(inoutLine.getPricePO());
+					f = fact.createLine(line, dr, cogs, inout.getC_Currency_ID(), inout.getCurrencyRate(), amtCOGS, amtCOGS);
+				} else {
+					f = fact.createLine(line, dr, cr, inout.getC_Currency_ID(), inout.getCurrencyRate(), inoutLine.getAmount(), inoutLine.getAmount());
+				}
 				f.setM_Product_ID(inoutLine.getM_Product_ID());
 				f.setM_Product_Cr_ID(inoutLine.getM_Product_ID());
 				f.setQty(inoutLine.getQty());
@@ -139,13 +160,24 @@ public class Doc_InOut extends Doc
 				f.setC_BPartner_Dr_ID(inout.getC_BPartner_Dr_ID());			
 				f.setPrice(inoutLine.getPrice());
 				
+				//Revenue hàng trả lại
+				BigDecimal amtRev = inoutLine.getAmount().subtract(inoutLine.getDiscountAmt());
+				if (amtRev.compareTo(Env.ZERO) != 0 && MDocType.DOCTYPEDETAIL_RETURN.equals(dt.getDocTypeDetail())) {
+					
+					f = fact.createLine(line, revenue, cr, inout.getC_Currency_ID(), inout.getCurrencyRate(), amtRev, amtRev);
+					f.setC_BPartner_Cr_ID(inout.getC_BPartner_Cr_ID());
+					f.setC_BPartner_Dr_ID(inout.getC_BPartner_Dr_ID());			
+					
+				}
 				
 				//Neu co thue
 				if (inout.getC_Tax_ID() > 0 && X_M_InOut.INCLUDETAXTAB_TAXS.equalsIgnoreCase(inout.getIncludeTaxTab())) {
 					if (X_C_DocType.DOCBASETYPE_152New.equalsIgnoreCase(dt.getDocBaseType()) 
 							|| X_C_DocType.DOCBASETYPE_153New.equalsIgnoreCase(dt.getDocBaseType())
 							|| X_C_DocType.DOCBASETYPE_155New.equalsIgnoreCase(dt.getDocBaseType())
-							|| X_C_DocType.DOCBASETYPE_156New.equalsIgnoreCase(dt.getDocBaseType())) {
+							|| X_C_DocType.DOCBASETYPE_156New.equalsIgnoreCase(dt.getDocBaseType())
+							|| MDocType.DOCTYPEDETAIL_RETURN.equals(dt.getDocTypeDetail())
+						) {
 						dr =  MElementValue.get(getCtx(), inout.getAccount_Tax_ID());
 					} else {
 						cr =  MElementValue.get(getCtx(), inout.getAccount_Tax_ID());

@@ -123,6 +123,10 @@ public class MTimekeeper extends X_HR_Timekeeper implements DocAction
 		return m_processMsg;
 	}
 
+	@Override
+	public void setProcessMsg(String text) {
+		m_processMsg = text;
+	}
 
 	@Override
 	public String getSummary() {

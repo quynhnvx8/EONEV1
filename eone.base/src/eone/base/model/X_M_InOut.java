@@ -21,7 +21,7 @@ public class X_M_InOut extends PO implements I_M_InOut, I_Persistent
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = 20210620L;
+	private static final long serialVersionUID = 20210722L;
 
     /** Standard Constructor */
     public X_M_InOut (Properties ctx, int M_InOut_ID, String trxName)
@@ -397,6 +397,34 @@ public class X_M_InOut extends PO implements I_M_InOut, I_Persistent
 		return ii.intValue();
 	}
 
+	public eone.base.model.I_C_Order getC_Order() throws RuntimeException
+    {
+		return (eone.base.model.I_C_Order)MTable.get(getCtx(), eone.base.model.I_C_Order.Table_Name)
+			.getPO(getC_Order_ID(), get_TrxName());	}
+
+	/** Set Order.
+		@param C_Order_ID 
+		Order
+	  */
+	public void setC_Order_ID (int C_Order_ID)
+	{
+		if (C_Order_ID < 1) 
+			set_Value (COLUMNNAME_C_Order_ID, null);
+		else 
+			set_Value (COLUMNNAME_C_Order_ID, Integer.valueOf(C_Order_ID));
+	}
+
+	/** Get Order.
+		@return Order
+	  */
+	public int getC_Order_ID () 
+	{
+		Integer ii = (Integer)get_Value(COLUMNNAME_C_Order_ID);
+		if (ii == null)
+			 return 0;
+		return ii.intValue();
+	}
+
 	public eone.base.model.I_C_Tax getC_Tax() throws RuntimeException
     {
 		return (eone.base.model.I_C_Tax)MTable.get(getCtx(), eone.base.model.I_C_Tax.Table_Name)
@@ -578,7 +606,7 @@ public class X_M_InOut extends PO implements I_M_InOut, I_Persistent
 	  */
 	public void setDocumentNo (String DocumentNo)
 	{
-		set_ValueNoCheck (COLUMNNAME_DocumentNo, DocumentNo);
+		set_Value (COLUMNNAME_DocumentNo, DocumentNo);
 	}
 
 	/** Get Document No.

@@ -227,6 +227,21 @@ public interface I_M_InOut
 
 	public I_C_DocTypeSub getC_DocTypeSub() throws RuntimeException;
 
+    /** Column name C_Order_ID */
+    public static final String COLUMNNAME_C_Order_ID = "C_Order_ID";
+
+	/** Set Order.
+	  * Order
+	  */
+	public void setC_Order_ID (int C_Order_ID);
+
+	/** Get Order.
+	  * Order
+	  */
+	public int getC_Order_ID();
+
+	public eone.base.model.I_C_Order getC_Order() throws RuntimeException;
+
     /** Column name C_Tax_ID */
     public static final String COLUMNNAME_C_Tax_ID = "C_Tax_ID";
 

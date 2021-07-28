@@ -155,9 +155,17 @@ public class MAssetBuild extends X_A_Asset_Build implements DocAction
 
 	@Override
 	public String getProcessMsg() {
+		if (m_processMsg != null) {
+			setProcessed(false);
+			
+		}
 		return m_processMsg;
 	}
 
+	@Override
+	public void setProcessMsg(String text) {
+		m_processMsg = text;
+	}
 
 	@Override
 	public String getSummary() {

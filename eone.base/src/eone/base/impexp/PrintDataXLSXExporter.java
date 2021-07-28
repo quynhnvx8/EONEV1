@@ -299,20 +299,24 @@ public class PrintDataXLSXExporter
 	private void export(OutputStream out) throws Exception
 	{
 		XSSFSheet sheet = createTableSheet();
+		
 		//
 		XSSFCellStyle style = m_workbook.createCellStyle();
 		for (int r = 0; r < rowCount; r ++)
 		{
+			int pos = 0;
 			ArrayList<PrintDataItem> arrItem = dataQuery.get(r);
 			XSSFRow row = sheet.createRow(r+3);
 			
 			// for all columns
-			for (int col = 0; col < columnCount; col++)
+			for (int col = 0; col < arrItem.size(); col++)
 			{
 				PrintDataItem item = arrItem.get(col);
-
-				XSSFCell cell = row.createCell(col);
 				
+				XSSFCell cell = row.createCell(col + pos);
+				
+				if (item.getColSpan() > 1)
+					pos = item.getColSpan() - 1;
 				// line row
 				Object obj = item.getValue();
 				int displayType = item.getDisplayType();
@@ -346,9 +350,6 @@ public class PrintDataXLSXExporter
 						cell.setCellValue(new XSSFRichTextString(value));
 					}
 				}
-				//
-				//XSSFCellStyle style = getStyle(r, col);
-				//cell.setCellStyle(style);
 				
 			} // for all columns
 			

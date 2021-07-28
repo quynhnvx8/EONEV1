@@ -140,6 +140,11 @@ public class MForecast extends X_M_Forecast implements DocAction
 	public String getProcessMsg() {
 		return m_processMsg;
 	}
+	
+	@Override
+	public void setProcessMsg(String text) {
+		m_processMsg = text;
+	}
 
 
 	@Override

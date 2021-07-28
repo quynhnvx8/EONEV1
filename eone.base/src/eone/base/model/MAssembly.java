@@ -217,6 +217,10 @@ public class MAssembly extends X_M_Assembly implements DocAction
 		return m_processMsg;
 	}	//	getProcessMsg
 	
+	
+	public void setProcessMsg(String text) {
+		m_processMsg = text;
+	}
 	/**
 	 * 	Get Document Owner (Responsible)
 	 *	@return AD_User_ID

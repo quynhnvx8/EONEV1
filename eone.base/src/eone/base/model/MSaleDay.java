@@ -136,6 +136,11 @@ public class MSaleDay extends X_C_SaleDay implements DocAction
 	public String getProcessMsg() {
 		return m_processMsg;
 	}
+	
+	@Override
+	public void setProcessMsg(String text) {
+		m_processMsg = text;
+	}
 
 
 	@Override

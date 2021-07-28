@@ -225,6 +225,10 @@ public class MPromotion extends X_M_Promotion implements DocAction
 		return m_processMsg;
 	}
 
+	@Override
+	public void setProcessMsg(String text) {
+		m_processMsg = text;
+	}
 
 	@Override
 	public String getSummary() {

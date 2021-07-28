@@ -21,9 +21,6 @@ public final class FactLine extends X_Fact_Acct
 	public FactLine (Properties ctx, int AD_Table_ID, int Record_ID, int Line_ID, String trxName)
 	{
 		super(ctx, 0, trxName);
-		setAD_Client_ID(0);							//	do not derive
-		setAD_Org_ID(0);							//	do not derive
-		//
 		setAmount (Env.ZERO);
 		setAmountConvert (Env.ZERO);
 		setAD_Table_ID (AD_Table_ID);

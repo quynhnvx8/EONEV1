@@ -11,24 +11,24 @@ import org.compiere.util.Env;
 import org.compiere.util.Msg;
 import org.compiere.util.TimeUtil;
 
-public class MWorking extends X_HR_Working
+public class MContractLabor extends X_HR_ContractLabor
 {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -1247516669047870893L;
 
-	public MWorking (Properties ctx, int HR_Working_ID, String trxName)
+	public MContractLabor (Properties ctx, int HR_Working_ID, String trxName)
 	{
 		super (ctx, HR_Working_ID, trxName);
 		
 	}	//	MAssetUse
 
 	
-	public static MWorking get (Properties ctx, int HR_Employee_ID, int C_Period_ID, String trxName)
+	public static MContractLabor get (Properties ctx, int HR_Employee_ID, int C_Period_ID, String trxName)
 	{
 		final String whereClause = "HR_Employee_ID=? And C_Period_ID=? AND AD_Client_ID=?";
-		MWorking retValue = new Query(ctx,I_HR_Salary.Table_Name,whereClause,trxName)
+		MContractLabor retValue = new Query(ctx,I_HR_Salary.Table_Name,whereClause,trxName)
 		.setParameters(HR_Employee_ID, C_Period_ID,Env.getAD_Client_ID(ctx))
 		.firstOnly();
 		return retValue;
@@ -37,51 +37,42 @@ public class MWorking extends X_HR_Working
 	@Override
 	protected boolean beforeSave(boolean newRecord) {
 		
-		String sql = "Select max(StartDate) From HR_Working Where HR_Employee_ID = ? And HR_Working_ID != ? "+
-					" And StartDate < (Select Max(StartDate) From HR_Working Where HR_Working_ID = ?)";
-		Object [] params = {getHR_Employee_ID(), getHR_Working_ID(), getHR_Working_ID()};
+		String sql = "Select max(StartTime) From HR_ContractLabor Where HR_Employee_ID = ? And HR_ContractLabor_ID != ? "+
+					" And StartTime < (Select Max(StartTime) From HR_ContractLabor Where HR_ContractLabor_ID = ?)";
+		Object [] params = {getHR_Employee_ID(), getHR_ContractLabor_ID(), getHR_ContractLabor_ID()};
 		
 		
 		if (newRecord) {
-			sql = "Select max(StartDate) From HR_Working Where HR_Employee_ID = ?";
+			sql = "Select max(StartTime) From HR_ContractLabor Where HR_Employee_ID = ?";
 			params = new Object [] {getHR_Employee_ID()};
 		}
 		Timestamp startDateOld = DB.getSQLValueTS(get_TrxName(), sql, params);
 		if (startDateOld != null) {
-			if (startDateOld.compareTo(getStartDate()) > 0 && isSelected()) {
-				log.saveError("Error", "StartDate must be great than max StartDate current !");
+			if (startDateOld.compareTo(getStartTime()) > 0 && isSelected()) {
+				log.saveError("Error", "StartTime must be great than max StartTime current !");
 				return false;
 			} 
 			
 			//Cap nhat EndDate cua ban ghi truoc do
-			String sqlUpdate = "Update HR_Working set EndDate = ? Where StartDate = ?";
-			params = new Object [] {TimeUtil.getPreviousDay(getStartDate()), startDateOld};
+			String sqlUpdate = "Update HR_ContractLabor set EndTime = ? Where StartTime = ?";
+			params = new Object [] {TimeUtil.getPreviousDay(getStartTime()), startDateOld};
 			DB.executeUpdate(sqlUpdate, params, true, get_TrxName());
 		}
 		
 		Map<String, Object> dataColumn = new HashMap<String, Object>();
 		dataColumn.put(COLUMNNAME_IsSelected, true);
 		dataColumn.put(COLUMNNAME_HR_Employee_ID, getHR_Employee_ID());
-		boolean check = isCheckDoubleValue(Table_Name, dataColumn, COLUMNNAME_HR_Working_ID, getHR_Working_ID());
+		boolean check = isCheckDoubleValue(Table_Name, dataColumn, COLUMNNAME_HR_ContractLabor_ID, getHR_ContractLabor_ID());
 		if (!check) {
 			log.saveError("Error", Msg.getMsg(Env.getLanguage(getCtx()), "ValueExists") + ": " + COLUMNNAME_IsSelected);
 			return false;
-		}
-		
-		
-		if (isSelected()) {
-			MEmployee em = MEmployee.get(getCtx(), getHR_Employee_ID(), get_TrxName());
-			em.setHR_ItemLine_05_ID(getHR_ItemLine_05_ID());
-			em.setHR_ItemLine_06_ID(getHR_ItemLine_06_ID());
-			em.setAD_Department_ID(getAD_Department_ID());
-			em.save();
 		}
 		
 		return true;
 	}
 
 
-	public MWorking (Properties ctx, ResultSet rs, String trxName)
+	public MContractLabor (Properties ctx, ResultSet rs, String trxName)
 	{
 		super (ctx, rs, trxName);
 	}	//	MAssetUse

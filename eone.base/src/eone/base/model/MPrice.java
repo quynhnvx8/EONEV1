@@ -118,6 +118,10 @@ public class MPrice extends X_M_Price implements DocAction
 		return m_processMsg;
 	}
 
+	@Override
+	public void setProcessMsg(String text) {
+		m_processMsg = text;
+	}
 
 	@Override
 	public String getSummary() {

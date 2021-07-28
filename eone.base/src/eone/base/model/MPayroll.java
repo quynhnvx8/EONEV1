@@ -1,13 +1,16 @@
 package eone.base.model;
 
 import java.sql.ResultSet;
+import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
+import org.compiere.util.DB;
 import org.compiere.util.Env;
 import org.compiere.util.Msg;
+import org.compiere.util.TimeUtil;
 
 public class MPayroll extends X_HR_Payroll
 {
@@ -44,9 +47,31 @@ public class MPayroll extends X_HR_Payroll
 	@Override
 	protected boolean beforeSave(boolean newRecord) {
 		
+		String sql = "Select max(DateStart) From HR_Payroll Where HR_Employee_ID = ? And HR_Payroll_ID != ? "+
+				" And DateStart < (Select Max(DateStart) From HR_Payroll Where HR_Payroll_ID = ?)";
+		Object [] params = {getHR_Employee_ID(), getHR_Payroll_ID(), getHR_Payroll_ID()};
+		
+		
+		if (newRecord) {
+			sql = "Select max(DateStart) From HR_Payroll Where HR_Employee_ID = ?";
+			params = new Object [] {getHR_Employee_ID()};
+		}
+		Timestamp startDateOld = DB.getSQLValueTS(get_TrxName(), sql, params);
+		if (startDateOld != null) {
+			if (startDateOld.compareTo(getDateStart()) > 0 && isSelected()) {
+				log.saveError("Error", "StartDate must be great than max StartDate current !");
+				return false;
+			} 
+			
+			//Cap nhat EndDate cua ban ghi truoc do
+			String sqlUpdate = "Update HR_Working set DateNext = ? Where DateStart = ?";
+			params = new Object [] {TimeUtil.getPreviousDay(getDateStart()), startDateOld};
+			DB.executeUpdate(sqlUpdate, params, true, get_TrxName());
+		}
 		
 		Map<String, Object> dataColumn = new HashMap<String, Object>();
-		dataColumn.put(COLUMNNAME_IsSelected, isSelected());
+		dataColumn.put(COLUMNNAME_IsSelected, true);
+		dataColumn.put(COLUMNNAME_HR_Employee_ID, getHR_Employee_ID());
 		boolean check = isCheckDoubleValue(Table_Name, dataColumn, COLUMNNAME_HR_Payroll_ID, getHR_Payroll_ID());
 		dataColumn = null;
 		if (!check) {

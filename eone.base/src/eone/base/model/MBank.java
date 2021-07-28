@@ -216,9 +216,17 @@ public class MBank extends X_C_Bank implements DocAction
 	 */
 	public String getProcessMsg()
 	{
+		if (m_processMsg != null) {
+			setProcessed(false);
+			
+		}
 		return m_processMsg;
 	}	//	getProcessMsg
 	
+	@Override
+	public void setProcessMsg(String text) {
+		m_processMsg = text;
+	}
 	/**
 	 * 	Get Document Owner (Responsible)
 	 *	@return AD_User_ID

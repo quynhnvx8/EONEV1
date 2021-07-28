@@ -1,18 +1,6 @@
 /******************************************************************************
- * Product: iDempiere ERP & CRM Smart Business Solution                       *
- * Copyright (C) 1999-2012 ComPiere, Inc. All Rights Reserved.                *
- * This program is free software, you can redistribute it and/or modify it    *
- * under the terms version 2 of the GNU General Public License as published   *
- * by the Free Software Foundation. This program is distributed in the hope   *
- * that it will be useful, but WITHOUT ANY WARRANTY, without even the implied *
- * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.           *
- * See the GNU General Public License for more details.                       *
- * You should have received a copy of the GNU General Public License along    *
- * with this program, if not, write to the Free Software Foundation, Inc.,    *
- * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.                     *
- * For the text or an alternative of this public license, you may reach us    *
- * ComPiere, Inc., 2620 Augustine Dr. #245, Santa Clara, CA 95054, USA        *
- * or via info@compiere.org or http://www.compiere.org/license.html           *
+ * Product: EOoe ERP & CRM Smart Business Solution	                        *
+ * Copyright (C) 2020, Inc. All Rights Reserved.				                *
  *****************************************************************************/
 package eone.base.model;
 
@@ -21,7 +9,7 @@ import java.sql.Timestamp;
 import org.compiere.util.KeyNamePair;
 
 /** Generated Interface for C_DocType
- *  @author iDempiere (generated) 
+ *  @author EOne (generated) 
  *  @version Version 1.0
  */
 public interface I_C_DocType 
@@ -62,6 +50,21 @@ public interface I_C_DocType
 	  */
 	public int getAD_Org_ID();
 
+    /** Column name AD_Table_ID */
+    public static final String COLUMNNAME_AD_Table_ID = "AD_Table_ID";
+
+	/** Set Table.
+	  * Database Table information
+	  */
+	public void setAD_Table_ID (int AD_Table_ID);
+
+	/** Get Table.
+	  * Database Table information
+	  */
+	public int getAD_Table_ID();
+
+	public eone.base.model.I_AD_Table getAD_Table() throws RuntimeException;
+
     /** Column name C_DocType_ID */
     public static final String COLUMNNAME_C_DocType_ID = "C_DocType_ID";
 
@@ -74,15 +77,6 @@ public interface I_C_DocType
 	  * Document type or rules
 	  */
 	public int getC_DocType_ID();
-
-    /** Column name C_DocType_UU */
-    public static final String COLUMNNAME_C_DocType_UU = "C_DocType_UU";
-
-	/** Set C_DocType_UU	  */
-	public void setC_DocType_UU (String C_DocType_UU);
-
-	/** Get C_DocType_UU	  */
-	public String getC_DocType_UU();
 
     /** Column name Created */
     public static final String COLUMNNAME_Created = "Created";
@@ -157,6 +151,15 @@ public interface I_C_DocType
 	/** Get DocType	  */
 	public String getDocType();
 
+    /** Column name DocTypeDetail */
+    public static final String COLUMNNAME_DocTypeDetail = "DocTypeDetail";
+
+	/** Set DocTypeDetail	  */
+	public void setDocTypeDetail (String DocTypeDetail);
+
+	/** Get DocTypeDetail	  */
+	public String getDocTypeDetail();
+
     /** Column name IsActive */
     public static final String COLUMNNAME_IsActive = "IsActive";
 
@@ -226,6 +229,15 @@ public interface I_C_DocType
 	  * Alphanumeric identifier of the entity
 	  */
 	public String getName();
+
+    /** Column name Processing */
+    public static final String COLUMNNAME_Processing = "Processing";
+
+	/** Set Process Now	  */
+	public void setProcessing (boolean Processing);
+
+	/** Get Process Now	  */
+	public boolean isProcessing();
 
     /** Column name Updated */
     public static final String COLUMNNAME_Updated = "Updated";

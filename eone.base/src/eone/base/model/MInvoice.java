@@ -211,10 +211,17 @@ public class MInvoice extends X_C_Invoice implements DocAction
 	 */
 	public String getProcessMsg()
 	{
+		if (m_processMsg != null) {
+			setProcessed(false);
+			
+		}
 		return m_processMsg;
 	}	//	getProcessMsg
 
-	
+	@Override
+	public void setProcessMsg(String text) {
+		m_processMsg = text;
+	}
 	
 	public boolean isComplete()
 	{

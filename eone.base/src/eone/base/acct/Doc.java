@@ -2,10 +2,8 @@
 package eone.base.acct;
 
 import java.lang.reflect.Constructor;
-import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.Timestamp;
-import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Properties;
@@ -18,7 +16,6 @@ import org.compiere.util.Msg;
 import org.compiere.util.Trx;
 
 import eone.base.model.MPeriod;
-import eone.base.model.MRefList;
 import eone.base.model.PO;
 
 
@@ -51,7 +48,6 @@ public abstract class Doc
 	/**	Log	per Document				*/
 	protected transient CLogger			log = CLogger.getCLogger(getClass());
 
-	/* If the transaction must be managed locally (false if it's managed externally by the caller) */
 	private boolean m_manageLocalTrx;
 
 
@@ -76,11 +72,6 @@ public abstract class Doc
 		}
 		p_po.load(p_po.get_TrxName());
 
-		//	DocStatus
-		int index = p_po.get_ColumnIndex("DocStatus");
-		if (index != -1)
-			m_DocStatus = (String)p_po.get_Value(index);
-
 		
 		m_trxName = trxName;
 		m_manageLocalTrx = false;
@@ -91,11 +82,7 @@ public abstract class Doc
 		}
 		p_po.set_TrxName(m_trxName);
 
-		//	Amounts
-		for(int i = 0; i < m_Amounts.length; i++)
-		{
-			m_Amounts[i] = Env.ZERO;
-		}
+		
 	}   //  Doc
 
 	/** Properties					*/
@@ -106,8 +93,6 @@ public abstract class Doc
 	protected PO				p_po = null;
 	/** Document Type      			*/
 	private String				m_DocumentType = null;
-	/** Document Status      			*/
-	private String				m_DocStatus = null;
 	/** Document No      			*/
 	private String				m_DocumentNo = null;
 	/** Description      			*/
@@ -119,13 +104,6 @@ public abstract class Doc
 	/** Accounting Date				*/
 	private Timestamp			m_DateAcct = null;
 	
-	/** Tax Included				*/
-	private boolean				m_TaxIncluded = false;
-	
-	private boolean				m_MultiCurrency = false;
-	/** B Partner	    			*/
-	private int					m_C_BPartner_ID = -1;
-
 	/** Currency					*/
 	private int					m_C_Currency_ID = -1;
 
@@ -210,22 +188,12 @@ public abstract class Doc
 	public final String post (boolean force, boolean repost)
 	{
 		
-		if (p_po.getAD_Client_ID() != Env.getAD_Client_ID(getCtx()))
-		{
-			StringBuilder error = new StringBuilder("AD_Client_ID Conflict - Document=").append(p_po.getAD_Client_ID())
-				.append(", Env=").append(Env.getAD_Client_ID(getCtx()));
-			log.severe(error.toString());
-			return error.toString();
-		}
-
-		
 		p_Error = loadDocumentDetails();
 		if (p_Error != null)
 			return p_Error;
 			
 		p_Status = STATUS_NotPosted;
 	
-		//  Create Fact per AcctSchema
 		m_fact = new ArrayList<Fact>();
 
 		getPO().setDoc(this);
@@ -241,28 +209,19 @@ public abstract class Doc
 		}
 
 		
-		//  commitFact
 		p_Status = postCommit (p_Status);
 
 		
-		//  Create Note
 		if (!p_Status.equals(STATUS_Posted) && !p_Status.equals(STATUS_Deferred))
 		{
-			//  Insert Note
 			SimpleDateFormat dateFormat = DisplayType.getDateFormat(DisplayType.Date);
-			DecimalFormat numberFormat = DisplayType.getNumberFormat(DisplayType.Amount);
 			String AD_MessageValue = "PostingError-" + p_Status;
 			
 			StringBuilder Text = new StringBuilder (Msg.getMsg(Env.getCtx(), AD_MessageValue));
 			if (p_Error != null)
-				Text.append(" (").append(p_Error).append(")");
-			String cn = getClass().getName();
-			Text.append(" - ").append(cn.substring(cn.lastIndexOf('.')))
-			.append(" - " + Msg.getElement(Env.getCtx(),"DocumentNo") + "=").append(getDocumentNo())
-			.append(" - " + Msg.getElement(Env.getCtx(),"DateAcct") + "=").append(dateFormat.format(getDateAcct()))
-			.append(" - " + Msg.getMsg(Env.getCtx(),"Amount") + "=").append(numberFormat.format(getAmount()))
-			.append(" - " + Msg.getElement(Env.getCtx(),"DocStatus") + "=").append(MRefList.getListName(getCtx(), 131, m_DocStatus))
-			.append(" - " + Msg.getMsg(Env.getCtx(),"PeriodOpen") + "=").append(Msg.getMsg(Env.getCtx(), String.valueOf(isPeriodOpen())))
+				Text.append(p_Error);
+			Text.append(" - " + Msg.getMsg(Env.getCtx(),"DocumentNo") + "=").append(getDocumentNo())
+			.append(" - " + Msg.getMsg(Env.getCtx(),"DateAcct") + "=").append(dateFormat.format(getDateAcct()))
 			;
 			
 			p_Error = Text.toString();
@@ -306,21 +265,21 @@ public abstract class Doc
 			p_Status = STATUS_PostPrepared;
 
 			//	check accounts
+			
 			String error = fact.checkAccounts();
-			if (!error.isEmpty())
+			if (!error.isEmpty()) {
+				p_Error = error;
 				return STATUS_InvalidAccount;
+			}
+				
 	
 		}	//	for all facts
 
 		return STATUS_Posted;
 	}   //  postLogic
 
-	/**
-	 *  Post Commit.
-	 *  Save Facts & Document
-	 *  @param status status
-	 *  @return Posting Status
-	 */
+	
+	
 	private final String postCommit (String status)
 	{
 	
@@ -448,71 +407,7 @@ public abstract class Doc
 		return open;
 	}	//	isPeriodOpen
 
-	/*************************************************************************/
-
-	/**	Amount Type - Invoice - Gross   */
-	public static final int 	AMTTYPE_Gross   = 0;
-	/**	Amount Type - Invoice - Net   */
-	public static final int 	AMTTYPE_Net     = 1;
-	/**	Amount Type - Invoice - Charge   */
-	public static final int 	AMTTYPE_Charge  = 2;
-
-	/** Source Amounts (may not all be used)	*/
-	private BigDecimal[]		m_Amounts = new BigDecimal[4];
-	/** Quantity								*/
-	private BigDecimal			m_qty = null;
-
-	/**
-	 *	Get the Amount
-	 *  (loaded in loadDocumentDetails)
-	 *
-	 *  @param AmtType see AMTTYPE_*
-	 *  @return Amount
-	 */
-	public BigDecimal getAmount(int AmtType)
-	{
-		if (AmtType < 0 || AmtType >= m_Amounts.length)
-			return null;
-		return m_Amounts[AmtType];
-	}	//	getAmount
-
-	/**
-	 *	Set the Amount
-	 *  @param AmtType see AMTTYPE_*
-	 *  @param amt Amount
-	 */
-	public void setAmount(int AmtType, BigDecimal amt)
-	{
-		if (AmtType < 0 || AmtType >= m_Amounts.length)
-			return;
-		if (amt == null)
-			m_Amounts[AmtType] = Env.ZERO;
-		else
-			m_Amounts[AmtType] = amt;
-	}	//	setAmount
-
-	/**
-	 *  Get Amount with index 0
-	 *  @return Amount (primary document amount)
-	 */
-	public BigDecimal getAmount()
-	{
-		return m_Amounts[0];
-	}   //  getAmount
-
 	
-	public BigDecimal getQty()
-	{
-		if (m_qty == null)
-		{
-			int index = p_po.get_ColumnIndex("Qty");
-			if (index != -1)
-				m_qty = (BigDecimal)p_po.get_Value(index);
-			else
-				m_qty = Env.ZERO;
-		}
-		return m_qty;
-	}   //  getQty
 
 	
 	public DocLine getDocLine (int Record_ID)
@@ -626,42 +521,7 @@ public abstract class Doc
 		m_C_Currency_ID = C_Currency_ID;
 	}	//	setC_Currency_ID
 
-	/**
-	 * 	Is Multi Currency
-	 *	@return mc
-	 */
-	public boolean isMultiCurrency()
-	{
-		return m_MultiCurrency;
-	}	//	isMultiCurrency
-
-	/**
-	 * 	Set Multi Currency
-	 *	@param mc multi currency
-	 */
-	public void setIsMultiCurrency (boolean mc)
-	{
-		m_MultiCurrency = mc;
-	}	//	setIsMultiCurrency
-
-	/**
-	 * 	Is Tax Included
-	 *	@return tax incl
-	 */
-	public boolean isTaxIncluded()
-	{
-		return m_TaxIncluded;
-	}	//	isTaxIncluded
-
-	/**
-	 * 	Set Tax Included
-	 *	@param ti Tax Included
-	 */
-	public void setIsTaxIncluded (boolean ti)
-	{
-		m_TaxIncluded = ti;
-	}	//	setIsTaxIncluded
-
+	
 	
 	public Timestamp getDateAcct()
 	{
@@ -686,36 +546,7 @@ public abstract class Doc
 		m_DateAcct = da;
 	}	//	setDateAcct
 	
-	public void setDocumentNo(String value)
-    {
-		m_DocumentNo = value;
-    }
-	
-	
-	
-	/**
-	 * 	Is Document Posted
-	 *	@return true if posted
-	 */
-	public boolean isPosted()
-	{
-		int index = p_po.get_ColumnIndex("Posted");
-		if (index != -1)
-		{
-			Object posted = p_po.get_Value(index);
-			if (posted instanceof Boolean)
-				return ((Boolean)posted).booleanValue();
-			if (posted instanceof String)
-				return "Y".equals(posted);
-		}
-		throw new IllegalStateException("No Posted");
-	}	//	isPosted
 
-	
-	/**
-	 * 	Get C_DocType_ID
-	 *	@return DocType
-	 */
 	public int getC_DocType_ID()
 	{
 		int index = p_po.get_ColumnIndex("C_DocType_ID");
@@ -744,123 +575,7 @@ public abstract class Doc
 		return 0;
 	}
 
-	/**
-	 * 	Get M_Warehouse_ID
-	 *	@return Warehouse
-	 */
-	public int getM_Warehouse_ID()
-	{
-		int index = p_po.get_ColumnIndex("M_Warehouse_ID");
-		if (index != -1)
-		{
-			Integer ii = (Integer)p_po.get_Value(index);
-			if (ii != null)
-				return ii.intValue();
-		}
-		return 0;
-	}	//	getM_Warehouse_ID
-
-
-	/**
-	 * 	Get C_BPartner_ID
-	 *	@return BPartner
-	 */
-	public int getC_BPartner_ID()
-	{
-		if (m_C_BPartner_ID == -1)
-		{
-			int index = p_po.get_ColumnIndex("C_BPartner_ID");
-			if (index != -1)
-			{
-				Integer ii = (Integer)p_po.get_Value(index);
-				if (ii != null)
-					m_C_BPartner_ID = ii.intValue();
-			}
-			if (m_C_BPartner_ID == -1)
-				m_C_BPartner_ID = 0;
-		}
-		return m_C_BPartner_ID;
-	}	//	getC_BPartner_ID
-
-	/**
-	 * 	Set C_BPartner_ID
-	 *	@param C_BPartner_ID bp
-	 */
-	public void setC_BPartner_ID (int C_BPartner_ID)
-	{
-		m_C_BPartner_ID = C_BPartner_ID;
-	}	//	setC_BPartner_ID
-
 	
-
-	/**
-	 * 	Get C_Project_ID
-	 *	@return Project
-	 */
-	public int getC_Project_ID()
-	{
-		int index = p_po.get_ColumnIndex("C_Project_ID");
-		if (index != -1)
-		{
-			Integer ii = (Integer)p_po.get_Value(index);
-			if (ii != null)
-				return ii.intValue();
-		}
-		return 0;
-	}	//	getC_Project_ID
-
-	/**
-	 * 	Get C_ProjectPhase_ID
-	 *	@return Project Phase
-	 */
-	public int getC_ProjectPhase_ID()
-	{
-		int index = p_po.get_ColumnIndex("C_ProjectPhase_ID");
-		if (index != -1)
-		{
-			Integer ii = (Integer)p_po.get_Value(index);
-			if (ii != null)
-				return ii.intValue();
-		}
-		return 0;
-	}	//	getC_ProjectPhase_ID
-
-	
-
-	/**
-	 * 	Get M_Product_ID
-	 *	@return Product
-	 */
-	public int getM_Product_ID()
-	{
-		int index = p_po.get_ColumnIndex("M_Product_ID");
-		if (index != -1)
-		{
-			Integer ii = (Integer)p_po.get_Value(index);
-			if (ii != null)
-				return ii.intValue();
-		}
-		return 0;
-	}	//	getM_Product_ID
-
-	
-
-        	/**
-	 * 	Get User Defined value
-	 *	@return User defined
-	 */
-	public int getValue (String ColumnName)
-	{
-		int index = p_po.get_ColumnIndex(ColumnName);
-		if (index != -1)
-		{
-			Integer ii = (Integer)p_po.get_Value(index);
-			if (ii != null)
-				return ii.intValue();
-		}
-		return 0;
-	}	//	getValue
-
 	protected abstract String loadDocumentDetails ();
 
 	

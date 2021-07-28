@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Properties;
 import java.util.logging.Level;
 
+import org.compiere.util.CCache;
 import org.compiere.util.DB;
 import org.compiere.util.Env;
 
@@ -21,8 +22,24 @@ import eone.base.process.DocumentEngine;
 public class MInOut extends X_M_InOut implements DocAction
 {
 
+
+	
 	private static final long serialVersionUID = 1226522383231204912L;
 
+	private static CCache<Integer,MInOut>		s_cache	= new CCache<Integer,MInOut>(Table_Name, 5);
+
+	public static MInOut get(Properties ctx, int M_InOut_ID) {
+		MInOut inout = null;
+		if (s_cache.containsKey(M_InOut_ID)) {
+			return s_cache.get(M_InOut_ID);
+		}
+		inout = new Query(ctx, Table_Name, "M_InOut_ID = ?", null)
+				.setParameters(M_InOut_ID)
+				.first();
+		s_cache.put(M_InOut_ID, inout);
+		return inout;
+	}
+	
 	public static MInOut createFrom (MOrder order, Timestamp movementDate,
 			boolean forceDelivery, boolean allAttributeInstances, Timestamp minGuaranteeDate,
 			boolean complete, String trxName)
@@ -89,6 +106,40 @@ public class MInOut extends X_M_InOut implements DocAction
 				trxName, setOrder);
 		return to;
 
+	}
+	
+	public static void createOrderLine(MOrder order, int C_Tax_ID, Properties ctx, int M_InOut_ID, String trxName) {
+		BigDecimal taxRate = Env.ZERO;
+		if(C_Tax_ID > 0) {
+			MTax tax = MTax.get(ctx, C_Tax_ID);
+			taxRate = tax.getRate();
+		}
+		MOrderLine [] line = order.getLines(" And Coalesce(QtyDelivered,0) < Qty", "");
+		MInOutLine ioline = null;
+		for(int i = 0; i < line.length; i++) {
+			ioline = new MInOutLine(ctx, 0, trxName);
+			ioline.setLine(line[i].getLine());
+			ioline.setM_Product_ID(line[i].getM_Product_ID());
+			ioline.setPrice(line[i].getPrice());
+			ioline.setQty(line[i].getQty().subtract(line[i].getQtyDelivered()));
+			ioline.setAmount(ioline.getPrice().multiply(ioline.getQty()));
+			ioline.setTaxBaseAmt(ioline.getAmount().multiply((Env.ONE.add(taxRate))));
+			ioline.setTaxAmt(ioline.getTaxBaseAmt().subtract(ioline.getAmount()));
+			ioline.setM_InOut_ID(M_InOut_ID);
+			ioline.setC_OrderLine_ID(line[i].getC_OrderLine_ID());
+			ioline.save();
+		}
+			
+	}
+	
+	private void updateQtyOrderDelivered(boolean aproved) {
+		String sql = "UPDATE C_OrderLine ol SET QtyDelivered = Coalesce(ol.QtyDelivered,0) + "
+				+ " (SELECT coalesce(io.Qty,0) FROM M_InOutLine io WHERE  ol.C_OrderLine_ID = io.C_OrderLine_ID AND io.M_InOut_ID = ?)";
+		if (!aproved) {
+			sql = "UPDATE C_OrderLine ol SET QtyDelivered = Coalesce(ol.QtyDelivered,0) - "
+					+ " (SELECT coalesce(io.Qty,0) FROM M_InOutLine io WHERE  ol.C_OrderLine_ID = io.C_OrderLine_ID AND io.M_InOut_ID = ?)";
+		}
+		DB.executeUpdate(sql, getM_InOut_ID(), get_TrxName());
 	}
 
 	/**************************************************************************
@@ -373,6 +424,12 @@ public class MInOut extends X_M_InOut implements DocAction
 					+ "WHERE M_InOut_ID=?";
 			DB.executeUpdateEx(sql, new Object[] {getM_InOut_ID()}, get_TrxName());
 		}
+		
+		if (getC_Order_ID() > 0) {
+			MOrder order = MOrder.get(getCtx(), getC_Order_ID());
+			createOrderLine(order, getC_Tax_ID(), getCtx(), getM_InOut_ID(), get_TrxName()); 
+		}
+		
 		return true;
 	}	
 
@@ -386,20 +443,7 @@ public class MInOut extends X_M_InOut implements DocAction
 
 	/**	Process Message 			*/
 	protected String		m_processMsg = null;
-	/**	Just Prepared Flag			*/
-	protected boolean		m_justPrepared = false;
 
-	/**
-	 * 	Unlock Document.
-	 * 	@return true if success
-	 */
-	public boolean unlockIt()
-	{
-		if (log.isLoggable(Level.INFO)) log.info(toString());
-		return true;
-	}	//	unlockIt
-
-	
 
 	public String completeIt()
 	{
@@ -416,7 +460,9 @@ public class MInOut extends X_M_InOut implements DocAction
 			return DocAction.STATUS_Drafted;
 		}
 		
-
+		if (getC_Order_ID() > 0) {
+			updateQtyOrderDelivered(true);
+		}
 		
 		updateStorage(true);
 		
@@ -576,6 +622,10 @@ public class MInOut extends X_M_InOut implements DocAction
 		//Cap nhat Storage
 		updateStorage(false);
 		
+		if (getC_Order_ID() > 0) {
+			updateQtyOrderDelivered(false);
+		}
+		
 		setProcessed(false);
 		
 		return true;
@@ -606,9 +656,17 @@ public class MInOut extends X_M_InOut implements DocAction
 	 */
 	public String getProcessMsg()
 	{
+		if (m_processMsg != null) {
+			setProcessed(false);
+			
+		}
 		return m_processMsg;
 	}	//	getProcessMsg
 
+	
+	public void setProcessMsg(String text) {
+		m_processMsg = text;
+	}
 	/**
 	 * 	Get Document Owner (Responsible)
 	 *	@return AD_User_ID

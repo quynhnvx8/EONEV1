@@ -1,19 +1,4 @@
-/******************************************************************************
- * Product: Adempiere ERP & CRM Smart Business Solution                       *
- * Copyright (C) 1999-2006 ComPiere, Inc. All Rights Reserved.                *
- * This program is free software; you can redistribute it and/or modify it    *
- * under the terms version 2 of the GNU General Public License as published   *
- * by the Free Software Foundation. This program is distributed in the hope   *
- * that it will be useful, but WITHOUT ANY WARRANTY; without even the implied *
- * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.           *
- * See the GNU General Public License for more details.                       *
- * You should have received a copy of the GNU General Public License along    *
- * with this program; if not, write to the Free Software Foundation, Inc.,    *
- * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.                     *
- * For the text or an alternative of this public license, you may reach us    *
- * ComPiere, Inc., 2620 Augustine Dr. #245, Santa Clara, CA 95054, USA        *
- * or via info@compiere.org or http://www.compiere.org/license.html           *
- *****************************************************************************/
+
 package eone.base.model;
 
 import java.sql.ResultSet;
@@ -24,41 +9,18 @@ import org.compiere.util.CCache;
 import org.compiere.util.DB;
 import org.compiere.util.Env;
 
-/**
- *	Document Type Model
- *	
- *  @author Jorg Janke
- *  @author Karsten Thiemann FR [ 1782412 ]
- *  @author Teo Sarca, www.arhipac.ro
- *  		<li>BF [ 2476824 ] MDocType.getOfDocBaseType should return ONLY active records
- *  		<li>BF [ -       ] MDocType.getOfClient should return ONLY active records.
- *  							See https://sourceforge.net/forum/message.php?msg_id=6499893
- *  @version $Id: MDocType.java,v 1.3 2006/07/30 00:54:54 jjanke Exp $
- */
+
 public class MDocType extends X_C_DocType
 {
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = -6556521509479670059L;
 
-	/**
-	 * Return the first Doc Type for this BaseType
-	 * @param DocBaseType
-	 * @return
-	 */
 	static public int getDocType(String DocBaseType)
 	{
 		MDocType[] doc = MDocType.getOfDocBaseType(Env.getCtx(), DocBaseType);
 		return doc.length > 0 ? doc[0].get_ID() : 0;
 	}
 	
-	/**
-	 * 	Get Client Document Type with DocBaseType
-	 *	@param ctx context
-	 *	@param DocBaseType base document type
-	 *	@return array of doc types
-	 */
 	static public MDocType[] getOfDocBaseType (Properties ctx, String DocBaseType)
 	{
 		final String whereClause  = "AD_Client_ID=? AND DocBaseType=?";
@@ -208,6 +170,13 @@ public class MDocType extends X_C_DocType
 		return true;
 	}   //  beforeDelete
 
-	
+	public List<Object> getListDocTypeSub() {
+		String sql = "Select C_DocTypeSub_ID From C_DocTypeSub WHERE C_DocType_ID = ?";
+		Object [] param = {getC_DocType_ID()} ;
+		List<Object> data = DB.getSQLObjectsEx(get_TrxName(), sql, param);
+		if (data.size() > 0)
+			return data;
+		return null;
+	}
 
 }	//	MDocType

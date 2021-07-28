@@ -1,18 +1,6 @@
 /******************************************************************************
- * Product: iDempiere ERP & CRM Smart Business Solution                       *
- * Copyright (C) 1999-2012 ComPiere, Inc. All Rights Reserved.                *
- * This program is free software, you can redistribute it and/or modify it    *
- * under the terms version 2 of the GNU General Public License as published   *
- * by the Free Software Foundation. This program is distributed in the hope   *
- * that it will be useful, but WITHOUT ANY WARRANTY, without even the implied *
- * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.           *
- * See the GNU General Public License for more details.                       *
- * You should have received a copy of the GNU General Public License along    *
- * with this program, if not, write to the Free Software Foundation, Inc.,    *
- * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.                     *
- * For the text or an alternative of this public license, you may reach us    *
- * ComPiere, Inc., 2620 Augustine Dr. #245, Santa Clara, CA 95054, USA        *
- * or via info@compiere.org or http://www.compiere.org/license.html           *
+ * Product: EOoe ERP & CRM Smart Business Solution	                        *
+ * Copyright (C) 2020, Inc. All Rights Reserved.				                *
  *****************************************************************************/
 /** Generated Model - DO NOT CHANGE */
 package eone.base.model;
@@ -22,7 +10,7 @@ import java.util.Properties;
 import org.compiere.util.KeyNamePair;
 
 /** Generated Model for C_DocType
- *  @author iDempiere (generated) 
+ *  @author EOne (generated) 
  *  @version Version 1.0 - $Id$ */
 public class X_C_DocType extends PO implements I_C_DocType, I_Persistent 
 {
@@ -30,7 +18,7 @@ public class X_C_DocType extends PO implements I_C_DocType, I_Persistent
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = 20200904L;
+	private static final long serialVersionUID = 20210723L;
 
     /** Standard Constructor */
     public X_C_DocType (Properties ctx, int C_DocType_ID, String trxName)
@@ -73,6 +61,34 @@ public class X_C_DocType extends PO implements I_C_DocType, I_Persistent
       return sb.toString();
     }
 
+	public eone.base.model.I_AD_Table getAD_Table() throws RuntimeException
+    {
+		return (eone.base.model.I_AD_Table)MTable.get(getCtx(), eone.base.model.I_AD_Table.Table_Name)
+			.getPO(getAD_Table_ID(), get_TrxName());	}
+
+	/** Set Table.
+		@param AD_Table_ID 
+		Database Table information
+	  */
+	public void setAD_Table_ID (int AD_Table_ID)
+	{
+		if (AD_Table_ID < 1) 
+			set_Value (COLUMNNAME_AD_Table_ID, null);
+		else 
+			set_Value (COLUMNNAME_AD_Table_ID, Integer.valueOf(AD_Table_ID));
+	}
+
+	/** Get Table.
+		@return Database Table information
+	  */
+	public int getAD_Table_ID () 
+	{
+		Integer ii = (Integer)get_Value(COLUMNNAME_AD_Table_ID);
+		if (ii == null)
+			 return 0;
+		return ii.intValue();
+	}
+
 	/** Set Document Type.
 		@param C_DocType_ID 
 		Document type or rules
@@ -94,20 +110,6 @@ public class X_C_DocType extends PO implements I_C_DocType, I_Persistent
 		if (ii == null)
 			 return 0;
 		return ii.intValue();
-	}
-
-	/** Set C_DocType_UU.
-		@param C_DocType_UU C_DocType_UU	  */
-	public void setC_DocType_UU (String C_DocType_UU)
-	{
-		set_Value (COLUMNNAME_C_DocType_UU, C_DocType_UU);
-	}
-
-	/** Get C_DocType_UU.
-		@return C_DocType_UU	  */
-	public String getC_DocType_UU () 
-	{
-		return (String)get_Value(COLUMNNAME_C_DocType_UU);
 	}
 
 	/** Set Date Column.
@@ -472,10 +474,8 @@ public class X_C_DocType extends PO implements I_C_DocType, I_Persistent
 	public static final String DOCBASETYPE_155Return = "155RE";
 	/** 152 Return = 152RE */
 	public static final String DOCBASETYPE_152Return = "152RE";
-	/** 156 Return = 156RE */
-	public static final String DOCBASETYPE_156Return = "156RE";
-	/** 156 Return = 156RE */
-	public static final String DOCBASETYPE_156Sell = "156SE";
+	/** 156 ReturnVendor = 156RV */
+	public static final String DOCBASETYPE_156ReturnVendor = "156RV";
 	/** 15 Inventory miss = 15IVM */
 	public static final String DOCBASETYPE_15InventoryMiss = "15IVM";
 	/** 15 Inventory redundant = 15IVR */
@@ -496,6 +496,14 @@ public class X_C_DocType extends PO implements I_C_DocType, I_Persistent
 	public static final String DOCBASETYPE_153Expense = "153EX";
 	/** 153 ONE = 153ON */
 	public static final String DOCBASETYPE_153ONE = "153ON";
+	/** 156 Sell = 156SE */
+	public static final String DOCBASETYPE_156Sell = "156SE";
+	/** 331 Credit = 331CR */
+	public static final String DOCBASETYPE_331Credit = "331CR";
+	/** 131 Debit = 131DR */
+	public static final String DOCBASETYPE_131Debit = "131DR";
+	/** 156 Customer return = 156RC */
+	public static final String DOCBASETYPE_156CustomerReturn = "156RC";
 	/** Set Document BaseType.
 		@param DocBaseType 
 		Logical type of document
@@ -549,6 +557,25 @@ public class X_C_DocType extends PO implements I_C_DocType, I_Persistent
 	public String getDocType () 
 	{
 		return (String)get_Value(COLUMNNAME_DocType);
+	}
+
+	/** NONE = NONE */
+	public static final String DOCTYPEDETAIL_NONE = "NONE";
+	/** RETURN = RETURN */
+	public static final String DOCTYPEDETAIL_RETURN = "RETURN";
+	/** Set DocTypeDetail.
+		@param DocTypeDetail DocTypeDetail	  */
+	public void setDocTypeDetail (String DocTypeDetail)
+	{
+
+		set_Value (COLUMNNAME_DocTypeDetail, DocTypeDetail);
+	}
+
+	/** Get DocTypeDetail.
+		@return DocTypeDetail	  */
+	public String getDocTypeDetail () 
+	{
+		return (String)get_Value(COLUMNNAME_DocTypeDetail);
 	}
 
 	/** Set IsConfirmPosting.
@@ -665,4 +692,25 @@ public class X_C_DocType extends PO implements I_C_DocType, I_Persistent
     {
         return new KeyNamePair(get_ID(), getName());
     }
+
+	/** Set Process Now.
+		@param Processing Process Now	  */
+	public void setProcessing (boolean Processing)
+	{
+		set_Value (COLUMNNAME_Processing, Boolean.valueOf(Processing));
+	}
+
+	/** Get Process Now.
+		@return Process Now	  */
+	public boolean isProcessing () 
+	{
+		Object oo = get_Value(COLUMNNAME_Processing);
+		if (oo != null) 
+		{
+			 if (oo instanceof Boolean) 
+				 return ((Boolean)oo).booleanValue(); 
+			return "Y".equals(oo);
+		}
+		return false;
+	}
 }

@@ -7,6 +7,7 @@ import java.util.logging.Level;
 
 import org.compiere.util.CLogger;
 import org.compiere.util.Env;
+import org.compiere.util.Msg;
 
 import eone.base.model.MDocType;
 import eone.base.model.MElementValue;
@@ -36,8 +37,6 @@ public final class Fact
 	public static final String	POST_Actual = MFactAcct.POSTINGTYPE_Actual;
 	public static final String	POST_Wait = MFactAcct.POSTINGTYPE_Wait;
 	
-
-	private boolean		    m_converted = false;
 
 	private ArrayList<FactLine>	m_lines = new ArrayList<FactLine>();
 
@@ -90,37 +89,11 @@ public final class Fact
 		m_lines.add(line);
 	}   //  add
 
-	/**
-	 *  Remove Fact Line
-	 *  @param line fact line
-	 */
-	public void remove (FactLine line)
-	{
-		m_lines.remove(line);
-	}   //  remove
-
-	
-	
-	public boolean isPostingType (String PostingType)
-	{
-		return m_postingType.equals(PostingType);
-	}   //  isPostingType
-
-	/**
-	 *	Is converted
-	 *  @return true if converted
-	 */
-	public boolean isConverted()
-	{
-		return m_converted;
-	}	//	isConverted
-
 	
 	
 	
 	public String checkAccounts()
 	{
-		//  no lines -> nothing to distribute
 		if (m_lines.size() == 0)
 			return "";
 		
@@ -133,43 +106,43 @@ public final class Fact
 			MElementValue dr = line.getAccountDr();
 			if (dr == null && !X_C_DocType.DOCTYPE_Balance.equals(dt.getDocType())) {
 				log.warning("No Credit Account for " + line);
-				return "No Credit Account for " + line;
+				//rollbackPosted();
+				return Msg.getMsg(Env.getCtx(), "No_AccountDR") + "; ";
 			}
 
 			if (dr != null && dr.isSummary()) {
 				log.warning("Cannot post to Summary Account " + dr + ": " + line);
-				m_doc.p_Error = dr.toString();
-				return "Cannot post to Summary Account " + dr + ": "+ line;
+				//rollbackPosted();
+				return Msg.getMsg(Env.getCtx(), "Yes_Account_Summary") + ": " + dr + "; ";
 			}
 			if (dr != null && !dr.isActive()) {
 				log.warning("Cannot post to Inactive Account " + dr	+ ": " + line);
-				m_doc.p_Error = dr.toString();
-				return "Cannot post to Inactive Account " + dr + ": " + line;
+				//rollbackPosted();
+				return Msg.getMsg(Env.getCtx(), "No_Account_Active") + ": " + dr + "; ";
 			}
 			
 			MElementValue cr = line.getAccountCr();
 			if (cr == null && !X_C_DocType.DOCTYPE_Balance.equals(dt.getDocType())) {
 				log.warning("No Credit Account for " + line);
-				return "No Credit Account for " + line;
+				//rollbackPosted();
+				return Msg.getMsg(Env.getCtx(), "No_AccountCR") + "; ";
 			}
 
 			if (cr != null && cr.isSummary()) {
 				log.warning("Cannot post to Summary Account " + cr + ": " + line);
-				m_doc.p_Error = cr.toString();
-				return "Cannot post to Summary Account " + cr + ": "
-						+ line;
+				//rollbackPosted();
+				return Msg.getMsg(Env.getCtx(), "Yes_Account_Summary") + ": " + cr + "; ";
 			}
 			if (cr != null && !cr.isActive()) {
 				log.warning("Cannot post to Inactive Account " + cr + ": " + line);
-				m_doc.p_Error = cr.toString();
-				return "Cannot post to Inactive Account " + cr + ": " + line;
+				//rollbackPosted();
+				return Msg.getMsg(Env.getCtx(), "No_Account_Active") + ": " + cr + "; ";
 			}
 
 		}	//	for all lines
 		
 		return "";
 	}	//	checkAccounts
-	
 	
 	public String toString()
 	{

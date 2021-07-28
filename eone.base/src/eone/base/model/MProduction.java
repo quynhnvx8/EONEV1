@@ -308,6 +308,11 @@ public class MProduction extends X_M_Production implements DocAction {
 	}
 
 	@Override
+	public void setProcessMsg(String text) {
+		m_processMsg = text;
+	}
+	
+	@Override
 	protected boolean beforeSave(boolean newRecord) {
 		
 		return true;

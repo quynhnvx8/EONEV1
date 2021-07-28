@@ -37,6 +37,8 @@ public interface DocAction
 		
 	public String getProcessMsg ();
 	
+	public void setProcessMsg(String text);
+	
 	public boolean save();
 	
 	public void saveEx() throws AdempiereException;

@@ -182,7 +182,7 @@ public class DocumentEngine implements DocAction
 			return false;
 
 		String error = postImmediate(Env.getCtx(), Env.getAD_Client_ID(getCtx()), m_document.get_Table_ID(), m_document.get_ID(), true, m_document.get_TrxName(), AD_Window_ID);
-		setProcessMsg(error);
+		m_document.setProcessMsg(error);
 		return (error == null);
 	}	//	postIt
 

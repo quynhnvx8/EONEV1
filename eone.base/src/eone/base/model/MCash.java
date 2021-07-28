@@ -265,8 +265,18 @@ public class MCash extends X_C_Cash implements DocAction
 	 */
 	public String getProcessMsg()
 	{
+		if (m_processMsg != null) {
+			setProcessed(false);
+			
+		}
 		return m_processMsg;
 	}	//	getProcessMsg
+	
+	
+	@Override
+	public void setProcessMsg(String text) {
+		m_processMsg = text;
+	}
 	
 	/**
 	 * 	Get Document Owner (Responsible)

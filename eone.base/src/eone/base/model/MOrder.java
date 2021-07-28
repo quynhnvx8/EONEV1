@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Properties;
 import java.util.logging.Level;
 
+import org.compiere.util.CCache;
 import org.compiere.util.DB;
 import org.compiere.util.Env;
 import org.compiere.util.Msg;
@@ -24,6 +25,19 @@ public class MOrder extends X_C_Order implements DocAction
 	 */
 	private static final long serialVersionUID = -7784588474522162502L;
 
+	private static CCache<Integer,MOrder>		s_cache	= new CCache<Integer,MOrder>(Table_Name, 5);
+
+	public static MOrder get(Properties ctx, int C_Order_ID) {
+		MOrder order = null;
+		if (s_cache.containsKey(C_Order_ID)) {
+			return s_cache.get(C_Order_ID);
+		}
+		order = new Query(ctx, Table_Name, "C_Order_ID = ?", null)
+				.setParameters(C_Order_ID)
+				.first();
+		s_cache.put(C_Order_ID, order);
+		return order;
+	}
 	
 	public static MOrder copyFrom (MOrder from, Timestamp dateDoc, 
 		int C_DocTypeTarget_ID, boolean counter, boolean copyASI, 
@@ -489,6 +503,10 @@ public class MOrder extends X_C_Order implements DocAction
 		return m_processMsg;
 	}	//	getProcessMsg
 	
+	@Override
+	public void setProcessMsg(String text) {
+		m_processMsg = text;
+	}
 	
 	public int getDoc_User_ID()
 	{

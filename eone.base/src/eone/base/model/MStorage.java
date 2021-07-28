@@ -103,7 +103,7 @@ public class MStorage extends X_M_Storage
 		return qty;
 	}
 	
-	public static List<Object> getQtyPrice(int M_Product_ID, int M_Warehouse_ID, Timestamp DateTrx) {
+	public static Object [] getQtyPrice(int M_Product_ID, int M_Warehouse_ID, Timestamp DateTrx) {
 		
 		List<Object> params = new ArrayList<Object>();
 		params.add(Env.getAD_Client_ID(Env.getCtx()));
@@ -122,7 +122,7 @@ public class MStorage extends X_M_Storage
 		if (MClient.MMPOLICY_Average.equals(MaterialPolicy))
 		{
 			sql = 
-					" Select Sum(Qty) Qty, Sum(Amount) Amount"+
+					" Select Sum(Qty) Qty, round(Sum(Amount)/Sum(Qty),4) Price, Sum(Amount) Amount"+
 					" From "+
 					" ( "+
 					" 	select Sum(Qty) Qty, Sum(Amount) Amount from M_Storage "+ 
@@ -132,7 +132,7 @@ public class MStorage extends X_M_Storage
 					" 	Where TypeInOut = 'OU' And DateTrx >= ? And DateTrx <= ?  And M_Warehouse_ID = ? And M_Product_ID = ? "+ //#5,#6,#7,#8
 					" )B Having Sum(Qty) != 0";
 			Object [] param = new Object[] {startDate, DateTrx, M_Warehouse_ID, M_Product_ID, startDate, DateTrx, M_Warehouse_ID, M_Product_ID};
-			return DB.getSQLValueObjectsEx(null, sql, param);
+			return DB.getObjectValuesEx(null, sql, 3, param);
 			
 			
 		}//End binh quan

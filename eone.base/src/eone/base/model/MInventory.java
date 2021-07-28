@@ -358,6 +358,10 @@ public class MInventory extends X_M_Inventory implements DocAction
 		return m_processMsg;
 	}	//	getProcessMsg
 	
+	@Override
+	public void setProcessMsg(String text) {
+		m_processMsg = text;
+	}
 	/**
 	 * 	Get Document Owner (Responsible)
 	 *	@return AD_User_ID

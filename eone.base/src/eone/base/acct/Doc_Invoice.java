@@ -17,8 +17,6 @@ public class Doc_Invoice extends Doc
 		super (MInvoice.class, rs, trxName);
 	}	//	Doc_Invoice
 
-	/** Contained Optional Tax Lines    */
-	protected DocTax[]        m_taxes = null;
 	/** Currency Precision				*/
 	protected int				m_precision = -1;
 	/** All lines are Service			*/

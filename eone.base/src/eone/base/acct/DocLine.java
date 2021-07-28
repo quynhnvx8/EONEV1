@@ -48,7 +48,6 @@ public class DocLine
 	/** Accounting Date				*/
 	private Timestamp			m_DateAcct = null;
 	
-	private int					m_C_BPartner_ID = -1;
 	
 	/** Currency					*/
 	private int					m_C_Currency_ID = -1;
@@ -315,37 +314,6 @@ public class DocLine
 		return 0;
 	}   //  getLine
 
-	/**
-	 *  Get BPartner
-	 *  @return C_BPartner_ID
-	 */
-	public int getC_BPartner_ID()
-	{
-		if (m_C_BPartner_ID == -1)
-		{
-			int index = p_po.get_ColumnIndex("C_BPartner_ID");
-			if (index != -1)
-			{
-				Integer ii = (Integer)p_po.get_Value(index);
-				if (ii != null)
-					m_C_BPartner_ID = ii.intValue();
-			}
-			if (m_C_BPartner_ID <= 0)
-				m_C_BPartner_ID = m_doc.getC_BPartner_ID();
-		}
-		return m_C_BPartner_ID;
-	}   //  getC_BPartner_ID
-
-	/**
-	 * 	Set C_BPartner_ID
-	 *	@param C_BPartner_ID id
-	 */
-	protected void setC_BPartner_ID (int C_BPartner_ID)
-	{
-		m_C_BPartner_ID = C_BPartner_ID;
-	}	//	setC_BPartner_ID
-	
-	
 	
 
 	

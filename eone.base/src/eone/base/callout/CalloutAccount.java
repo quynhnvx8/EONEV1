@@ -10,6 +10,7 @@ import eone.base.model.MAccount;
 import eone.base.model.MBPartner;
 import eone.base.model.MBPartnerInfo;
 import eone.base.model.MDocType;
+import eone.base.model.MTax;
 import eone.base.model.X_C_Account;
 import eone.base.model.X_C_DocType;
 
@@ -109,7 +110,8 @@ public class CalloutAccount extends CalloutEngine
 			mTab.setValue("TaxBaseAmt", null);
 			mTab.setValue("DateInvoiced", null);
 			mTab.setValue("InvoiceNo", null);
-			mTab.setValue("DateInvoiced", null);
+		} else {
+			mTab.setValue("C_Tax_ID", MTax.getDefault(ctx).getC_Tax_ID());
 		}
 		
 		for(int i = 0; i < re.size(); i++) {
@@ -146,19 +148,33 @@ public class CalloutAccount extends CalloutEngine
 		for (int i = 0; i < re.size(); i++) {
 			if(columnName.equalsIgnoreCase("C_Tax_ID") && re != null && re.get(i).getAccount_ID() > 0) {
 				
-				if (dt != null && X_C_DocType.DOCTYPE_Input.equalsIgnoreCase(dt.getDocType()) 
-						&& X_C_Account.TYPEACCOUNT_TaxInputAccount.equals(re.get(i).getTypeAccount())) {
-					Account_ID = re.get(i).getAccount_ID();
-				} else if (dt != null && X_C_DocType.DOCTYPE_Output.equalsIgnoreCase(dt.getDocType()) 
-						&& X_C_Account.TYPEACCOUNT_TaxOutputAccount.equals(re.get(i).getTypeAccount())) {
-					Account_ID = re.get(i).getAccount_ID();
+				if (dt != null && X_C_DocType.DOCTYPE_Input.equalsIgnoreCase(dt.getDocType())) {
+					if (X_C_DocType.DOCTYPEDETAIL_RETURN.equals(dt.getDocTypeDetail())) {
+						if (X_C_Account.TYPEACCOUNT_TaxOutputAccount.equals(re.get(i).getTypeAccount()))
+							Account_ID = re.get(i).getAccount_ID();
+					} else {
+						if (X_C_Account.TYPEACCOUNT_TaxInputAccount.equals(re.get(i).getTypeAccount()))
+							Account_ID = re.get(i).getAccount_ID();
+					}
+				}
+				
+				if (dt != null && X_C_DocType.DOCTYPE_Output.equalsIgnoreCase(dt.getDocType())) {
+					if (X_C_DocType.DOCTYPEDETAIL_RETURN.equals(dt.getDocTypeDetail())) {
+						if (X_C_Account.TYPEACCOUNT_TaxInputAccount.equals(re.get(i).getTypeAccount()))
+							Account_ID = re.get(i).getAccount_ID();
+					} else {
+						if (X_C_Account.TYPEACCOUNT_TaxOutputAccount.equals(re.get(i).getTypeAccount()))
+							Account_ID = re.get(i).getAccount_ID();
+					}
 				}
 				
 			}
+			/*
 			if (X_C_Account.TYPEACCOUNT_TaxInputAccount.equals(re.get(i).getTypeAccount()) 
 					||X_C_Account.TYPEACCOUNT_TaxOutputAccount.equals(re.get(i).getTypeAccount())) {
 				Account_ID = re.get(i).getAccount_ID();
 			}
+			*/
 		}
 		
 		mTab.setValue("Account_Tax_ID", Account_ID);

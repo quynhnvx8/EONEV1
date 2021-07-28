@@ -197,6 +197,9 @@ public class MAsset extends X_A_Asset implements DocAction
 		return m_processMsg;
 	}
 
+	public void setProcessMsg(String text) {
+		m_processMsg = text;
+	}
 
 	@Override
 	public String getSummary() {

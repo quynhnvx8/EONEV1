@@ -144,6 +144,11 @@ public class MContract extends X_C_Contract implements DocAction
 	}
 
 	@Override
+	public void setProcessMsg(String text) {
+		m_processMsg = text;
+	}
+	
+	@Override
 	public String getSummary() {
 		
 		return "";

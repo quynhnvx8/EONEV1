@@ -1,18 +1,6 @@
 /******************************************************************************
- * Product: iDempiere ERP & CRM Smart Business Solution                       *
- * Copyright (C) 1999-2012 ComPiere, Inc. All Rights Reserved.                *
- * This program is free software, you can redistribute it and/or modify it    *
- * under the terms version 2 of the GNU General Public License as published   *
- * by the Free Software Foundation. This program is distributed in the hope   *
- * that it will be useful, but WITHOUT ANY WARRANTY, without even the implied *
- * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.           *
- * See the GNU General Public License for more details.                       *
- * You should have received a copy of the GNU General Public License along    *
- * with this program, if not, write to the Free Software Foundation, Inc.,    *
- * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.                     *
- * For the text or an alternative of this public license, you may reach us    *
- * ComPiere, Inc., 2620 Augustine Dr. #245, Santa Clara, CA 95054, USA        *
- * or via info@compiere.org or http://www.compiere.org/license.html           *
+ * Product: EOoe ERP & CRM Smart Business Solution	                        *
+ * Copyright (C) 2020, Inc. All Rights Reserved.				                *
  *****************************************************************************/
 /** Generated Model - DO NOT CHANGE */
 package eone.base.model;
@@ -24,7 +12,7 @@ import org.compiere.util.Env;
 import org.compiere.util.KeyNamePair;
 
 /** Generated Model for M_InOutLine
- *  @author iDempiere (generated) 
+ *  @author EOne (generated) 
  *  @version Version 1.0 - $Id$ */
 public class X_M_InOutLine extends PO implements I_M_InOutLine, I_Persistent 
 {
@@ -32,7 +20,7 @@ public class X_M_InOutLine extends PO implements I_M_InOutLine, I_Persistent
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = 20210326L;
+	private static final long serialVersionUID = 20210723L;
 
     /** Standard Constructor */
     public X_M_InOutLine (Properties ctx, int M_InOutLine_ID, String trxName)
@@ -95,6 +83,34 @@ public class X_M_InOutLine extends PO implements I_M_InOutLine, I_Persistent
 		if (bd == null)
 			 return Env.ZERO;
 		return bd;
+	}
+
+	public eone.base.model.I_C_OrderLine getC_OrderLine() throws RuntimeException
+    {
+		return (eone.base.model.I_C_OrderLine)MTable.get(getCtx(), eone.base.model.I_C_OrderLine.Table_Name)
+			.getPO(getC_OrderLine_ID(), get_TrxName());	}
+
+	/** Set Sales Order Line.
+		@param C_OrderLine_ID 
+		Sales Order Line
+	  */
+	public void setC_OrderLine_ID (int C_OrderLine_ID)
+	{
+		if (C_OrderLine_ID < 1) 
+			set_ValueNoCheck (COLUMNNAME_C_OrderLine_ID, null);
+		else 
+			set_ValueNoCheck (COLUMNNAME_C_OrderLine_ID, Integer.valueOf(C_OrderLine_ID));
+	}
+
+	/** Get Sales Order Line.
+		@return Sales Order Line
+	  */
+	public int getC_OrderLine_ID () 
+	{
+		Integer ii = (Integer)get_Value(COLUMNNAME_C_OrderLine_ID);
+		if (ii == null)
+			 return 0;
+		return ii.intValue();
 	}
 
 	public eone.base.model.I_C_UOM getC_UOM() throws RuntimeException
@@ -277,9 +293,9 @@ public class X_M_InOutLine extends PO implements I_M_InOutLine, I_Persistent
 	public void setM_Product_ID (int M_Product_ID)
 	{
 		if (M_Product_ID < 1) 
-			set_Value (COLUMNNAME_M_Product_ID, null);
+			set_ValueNoCheck (COLUMNNAME_M_Product_ID, null);
 		else 
-			set_Value (COLUMNNAME_M_Product_ID, Integer.valueOf(M_Product_ID));
+			set_ValueNoCheck (COLUMNNAME_M_Product_ID, Integer.valueOf(M_Product_ID));
 	}
 
 	/** Get Product.
@@ -329,6 +345,26 @@ public class X_M_InOutLine extends PO implements I_M_InOutLine, I_Persistent
 	public BigDecimal getPrice () 
 	{
 		BigDecimal bd = (BigDecimal)get_Value(COLUMNNAME_Price);
+		if (bd == null)
+			 return Env.ZERO;
+		return bd;
+	}
+
+	/** Set PO Price.
+		@param PricePO 
+		Price based on a purchase order
+	  */
+	public void setPricePO (BigDecimal PricePO)
+	{
+		set_Value (COLUMNNAME_PricePO, PricePO);
+	}
+
+	/** Get PO Price.
+		@return Price based on a purchase order
+	  */
+	public BigDecimal getPricePO () 
+	{
+		BigDecimal bd = (BigDecimal)get_Value(COLUMNNAME_PricePO);
 		if (bd == null)
 			 return Env.ZERO;
 		return bd;
