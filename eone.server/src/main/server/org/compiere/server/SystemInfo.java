@@ -37,7 +37,7 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 import java.util.logging.Level;
 
-import org.compiere.Adempiere;
+import org.compiere.EONE;
 import org.compiere.db.AdempiereDatabase;
 import org.compiere.db.CConnection;
 import org.compiere.util.CLogMgt;
@@ -240,7 +240,7 @@ public class SystemInfo implements Serializable {
 	public static SystemInfo getLocalSystemInfo() {
 		SystemInfo si = new SystemInfo();
 		si.propertyFileName = Ini.getPropertyFileName();
-		si.idempereHome = Adempiere.getAdempiereHome();
+		si.idempereHome = EONE.getAdempiereHome();
 		OperatingSystemMXBean os = ManagementFactory.getOperatingSystemMXBean();
 		String osInfo = os.getName() + " " + os.getVersion();
 		osInfo += " (" + os.getArch() + ")";

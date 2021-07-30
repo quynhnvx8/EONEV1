@@ -11,7 +11,7 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 
-import org.compiere.Adempiere;
+import org.compiere.EONE;
 import org.compiere.util.CLogger;
 import org.compiere.util.DB;
 import org.compiere.util.Ini;
@@ -69,9 +69,9 @@ public class LoggedSessionListener implements HttpSessionListener, ServletContex
         {
         	throw new IllegalStateException("eone.properties is not setup. PropertyFile="+propertyFile);
         }
-        if (!Adempiere.isStarted())
+        if (!EONE.isStarted())
         {
-	        boolean started = Adempiere.startup(false);
+	        boolean started = EONE.startup(false);
 	        if(!started)
 	        {
 	            throw new EONEException("Could not start iDempiere");
@@ -85,9 +85,9 @@ public class LoggedSessionListener implements HttpSessionListener, ServletContex
 	}
 	
 	public void DestroyAllSession() {
-		if (!Adempiere.isStarted())
+		if (!EONE.isStarted())
 		{
-			Adempiere.addServerStateChangeListener(this);
+			EONE.addServerStateChangeListener(this);
 			return;
 		}
 
@@ -98,7 +98,7 @@ public class LoggedSessionListener implements HttpSessionListener, ServletContex
 			throw new EONEException("UpdateSession: Cannot Destroy All Session");
 		}
 		
-		Adempiere.removeServerStateChangeListener(this);
+		EONE.removeServerStateChangeListener(this);
 	}
 	
 	public void removeADSession(String sessionID, String serverName) {

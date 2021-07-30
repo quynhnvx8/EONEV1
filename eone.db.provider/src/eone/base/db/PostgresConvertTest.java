@@ -18,7 +18,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 
-import org.compiere.Adempiere;
+import org.compiere.EONE;
 import org.compiere.util.CLogMgt;
 import org.compiere.util.CLogger;
 import org.compiere.util.DB;
@@ -49,7 +49,7 @@ public class PostgresConvertTest
 	 */
 	public static void main (String[] args)
 	{
-		Adempiere.startup(true);
+		EONE.startup(true);
 		CLogMgt.setLoggerLevel(Level.INFO, null);
 		CLogMgt.setLevel(Level.INFO);
 		//

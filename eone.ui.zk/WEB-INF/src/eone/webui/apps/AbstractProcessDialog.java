@@ -12,7 +12,7 @@ import java.util.Properties;
 import java.util.concurrent.Future;
 import java.util.logging.Level;
 
-import org.compiere.Adempiere;
+import org.compiere.EONE;
 import org.compiere.util.CLogger;
 import org.compiere.util.Callback;
 import org.compiere.util.ContextRunnable;
@@ -419,7 +419,7 @@ public abstract class AbstractProcessDialog extends Window implements IProcessUI
 	public void runProcess() 
 	{
 		Events.sendEvent(DialogEvents.ON_BEFORE_RUN_PROCESS, this, null);
-		future = Adempiere.getThreadPoolExecutor().submit(new DesktopRunnable(new ProcessDialogRunnable(null), getDesktop()));
+		future = EONE.getThreadPoolExecutor().submit(new DesktopRunnable(new ProcessDialogRunnable(null), getDesktop()));
 	}
 
 	

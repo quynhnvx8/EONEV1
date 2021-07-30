@@ -34,7 +34,7 @@ import eone.base.model.ServerStateChangeEvent;
 import eone.base.model.ServerStateChangeListener;
 
 
-public final class Adempiere
+public final class EONE
 {
 	static public final String	ID				= "EOne java 11, maven 3.6.3, ERP - CRM";
 	static public String	MAIN_VERSION	= "Version 1.0";
@@ -76,7 +76,7 @@ public final class Adempiere
     private static EventListenerList m_listenerList = new EventListenerList();
 
 	static {
-		ClassLoader loader = Adempiere.class.getClassLoader();
+		ClassLoader loader = EONE.class.getClassLoader();
 		InputStream inputStream = loader.getResourceAsStream("org/adempiere/version.properties");
 		if (inputStream != null)
 		{
@@ -447,7 +447,7 @@ public final class Adempiere
 		
 		if (! isClient)  
 			CLogMgt.initialize(isClient);
-		log = CLogger.getCLogger(Adempiere.class);
+		log = CLogger.getCLogger(EONE.class);
 		if (log.isLoggable(Level.INFO)) log.info(getSummaryAscii());
 		Ini.loadProperties (false);
 

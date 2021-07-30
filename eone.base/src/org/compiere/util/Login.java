@@ -47,7 +47,7 @@ public class Login
 		//
 		if (isClient)
 			JOptionPane.showMessageDialog(null, msg.toString(),
-				org.compiere.Adempiere.getName() + " - Java Version Check",
+				org.compiere.EONE.getName() + " - Java Version Check",
 				JOptionPane.ERROR_MESSAGE);
 		else
 			log.severe(msg.toString());

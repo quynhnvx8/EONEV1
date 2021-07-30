@@ -15,7 +15,7 @@ package org.adempiere.base;
 
 import java.util.logging.Level;
 
-import org.compiere.Adempiere;
+import org.compiere.EONE;
 import org.compiere.util.CLogMgt;
 import org.compiere.util.Env;
 import org.compiere.util.ProcessUtil;
@@ -35,7 +35,7 @@ public class PostMigrationApplication implements IApplication {
 	 */
 	@Override
 	public Object start(IApplicationContext context) throws Exception {
-		Adempiere.startup(false);
+		EONE.startup(false);
 		CLogMgt.setLevel(Level.FINE);
 		addMissingTranslation();
 		roleAccessUpdate();

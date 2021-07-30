@@ -229,7 +229,7 @@ public class MPrintFont extends X_AD_PrintFont
 		for (int i = 0; i < family.length; i++)
 			System.out.println(" - " + family[i]);
 
-		org.compiere.Adempiere.startup(true);
+		org.compiere.EONE.startup(true);
 		MPrintFont pf = new MPrintFont(Env.getCtx(), 100, null);
 		dump( pf.getFont() );
 

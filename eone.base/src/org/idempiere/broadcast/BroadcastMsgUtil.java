@@ -23,7 +23,7 @@ import java.util.logging.Level;
 
 import org.adempiere.base.event.EventManager;
 import org.adempiere.base.event.IEventTopics;
-import org.compiere.Adempiere;
+import org.compiere.EONE;
 import org.compiere.util.CLogger;
 import org.compiere.util.DB;
 import org.compiere.util.Env;
@@ -126,7 +126,7 @@ public class BroadcastMsgUtil
 				}
 			};
 
-			ScheduledThreadPoolExecutor executer = Adempiere
+			ScheduledThreadPoolExecutor executer = EONE
 					.getThreadPoolExecutor();
 			executer.schedule(runnable, 0, TimeUnit.MILLISECONDS);
 		}

@@ -40,7 +40,7 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
 import org.adempiere.base.Core;
-import org.compiere.Adempiere;
+import org.compiere.EONE;
 import org.compiere.util.CLogger;
 import org.compiere.util.DB;
 import org.compiere.util.Env;
@@ -204,7 +204,7 @@ public class Translation implements IApplication
 			//	<!DOCTYPE idempiereTrl SYSTEM "http://www.idempiere.org/dtd/idempiereTrl.dtd">
 			//	<!DOCTYPE idempiereTrl PUBLIC "-//ComPiere, Inc.//DTD iDempiere Translation 1.0//EN" "http://www.idempiere.com/dtd/idempiereTrl.dtd">
 			Document document = builder.newDocument();
-			document.appendChild(document.createComment(Adempiere.getSummaryAscii()));
+			document.appendChild(document.createComment(EONE.getSummaryAscii()));
 			document.appendChild(document.createComment(DTD));
 
 			//	Root
@@ -510,7 +510,7 @@ public class Translation implements IApplication
 	 */
 	@Override
 	public Object start(IApplicationContext context) throws Exception {
-		Adempiere.startup(false);
+		EONE.startup(false);
 		Map<?, ?> args = context.getArguments();
 		String commandlineArgs[] = (String[]) args.get("application.args");
 		if (commandlineArgs.length == 3

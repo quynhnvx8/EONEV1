@@ -34,7 +34,7 @@ import java.util.logging.Level;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.AbstractTableModel;
 
-import org.compiere.Adempiere;
+import org.compiere.EONE;
 import org.compiere.util.CLogger;
 import org.compiere.util.CacheMgt;
 import org.compiere.util.DB;
@@ -591,7 +591,7 @@ public class GridTable extends AbstractTableModel
 		if (m_rowCount > 0)
 		{
 			m_loader.setContext(ServerContext.getCurrentInstance());
-			m_loaderFuture = Adempiere.getThreadPoolExecutor().submit(m_loader);
+			m_loaderFuture = EONE.getThreadPoolExecutor().submit(m_loader);
 		}
 		else
 			m_loader.close();

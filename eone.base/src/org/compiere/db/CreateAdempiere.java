@@ -31,7 +31,7 @@ import java.util.ArrayList;
 import java.util.Properties;
 import java.util.logging.Level;
 
-import org.compiere.Adempiere;
+import org.compiere.EONE;
 import org.compiere.util.CLogMgt;
 import org.compiere.util.CLogger;
 import org.compiere.util.DB;
@@ -813,7 +813,7 @@ public class CreateAdempiere
 	 */
 	public static void main (String[] args)
 	{
-		Adempiere.startup(true);
+		EONE.startup(true);
 		CLogMgt.setLevel(Level.FINE);
 		CLogMgt.setLoggerLevel(Level.FINE,null);
 

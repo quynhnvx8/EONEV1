@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import org.compiere.Adempiere;
+import org.compiere.EONE;
 import org.compiere.print.CPaper;
 import org.compiere.print.MPrintFormat;
 import org.compiere.print.MPrintFormatItem;
@@ -69,7 +69,7 @@ public class WritePDF {
 		
 	}
 	
-	public static final String FONT = Adempiere.getAdempiereHome() + File.separator + "arial.ttf";
+	public static final String FONT = EONE.getAdempiereHome() + File.separator + "arial.ttf";
 
 	
 	//Create Header

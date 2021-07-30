@@ -20,7 +20,7 @@ import java.util.Properties;
 import java.util.Vector;
 import java.util.logging.Level;
 
-import org.compiere.Adempiere;
+import org.compiere.EONE;
 import org.compiere.minigrid.IDColumn;
 import org.compiere.util.CLogErrorBuffer;
 import org.compiere.util.CLogMgt;
@@ -663,11 +663,11 @@ public class AboutWindow extends Window implements EventListener<Event> {
 		vbox.setAlign("center");
 		vbox.setParent(vb);
 		
-		Text text = new Text(Adempiere.getSubtitle());
+		Text text = new Text(EONE.getSubtitle());
 		text.setParent(vbox);
 		Separator separator = new Separator();
 		separator.setParent(vbox);
-		text = new Text(Adempiere.getVersion());
+		text = new Text(EONE.getVersion());
 		text.setParent(vbox);
 	
 		

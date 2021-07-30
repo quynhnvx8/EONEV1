@@ -23,7 +23,7 @@ import java.sql.ResultSet;
 import java.sql.Timestamp;
 import java.util.logging.Level;
 
-import org.compiere.Adempiere;
+import org.compiere.EONE;
 
 /**
  *  Generate Model Classes extending PO.
@@ -141,7 +141,7 @@ public class GenerateModelJPA
 			//	Class
 			+ "/** Generated Model for ").append(tableName).append("\n"
 			+ " *  @author Victor Perez (generated) \n"
-			+ " *  @version ").append(Adempiere.MAIN_VERSION).append(" - ").append(s_run).append(" */\n"
+			+ " *  @version ").append(EONE.MAIN_VERSION).append(" - ").append(s_run).append(" */\n"
                         + " @Entity"
                         + "@Table(name=\""+ tableName +"\")" 
 			+ "public class ").append(className).append(" extends PO"
@@ -725,7 +725,7 @@ public class GenerateModelJPA
 	 */
 	public static void main (String[] args)
 	{
-		org.compiere.Adempiere.startupEnvironment(true);
+		org.compiere.EONE.startupEnvironment(true);
 		CLogMgt.setLevel(Level.FINE);
 	//	CLogMgt.setLevel(Level.ALL);
 		log.info("Generate Model   $Revision: 1.5 $");

@@ -27,7 +27,7 @@ import java.util.Locale;
 import java.util.Properties;
 import java.util.logging.Level;
 
-import org.compiere.Adempiere;
+import org.compiere.EONE;
 import org.compiere.util.DB;
 import org.compiere.util.Env;
 import org.compiere.util.Language;
@@ -491,7 +491,7 @@ public class MLanguage extends X_AD_Language
 	public static void main(String[] args)
 	{
 		System.out.println("Language");
-		Adempiere.startup(true);
+		EONE.startup(true);
 
 		System.out.println(MLanguage.get(Env.getCtx(), "de_DE"));
 		System.out.println(MLanguage.get(Env.getCtx(), "en_US"));

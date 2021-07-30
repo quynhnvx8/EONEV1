@@ -22,7 +22,7 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
 import org.adempiere.base.equinox.EquinoxExtensionLocator;
-import org.compiere.Adempiere;
+import org.compiere.EONE;
 import org.compiere.db.CConnection;
 import org.compiere.db.Database;
 import org.compiere.util.CLogger;
@@ -544,9 +544,9 @@ public class ConfigurationData
 	public boolean save()
 	{
 		//	Add
-		p_properties.setProperty("EONE_MAIN_VERSION", Adempiere.MAIN_VERSION);
-		p_properties.setProperty("EONE_DATE_VERSION", Adempiere.DATE_VERSION);
-		p_properties.setProperty("EONE_DB_VERSION", Adempiere.DB_VERSION);
+		p_properties.setProperty("EONE_MAIN_VERSION", EONE.MAIN_VERSION);
+		p_properties.setProperty("EONE_DATE_VERSION", EONE.DATE_VERSION);
+		p_properties.setProperty("EONE_DB_VERSION", EONE.DB_VERSION);
 
 		if (log.isLoggable(Level.FINEST)) log.finest(p_properties.toString());
 

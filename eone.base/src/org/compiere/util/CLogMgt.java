@@ -36,7 +36,7 @@ import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
 import org.adempiere.base.Core;
-import org.compiere.Adempiere;
+import org.compiere.EONE;
 import org.compiere.db.CConnection;
 import org.idempiere.distributed.IClusterMember;
 import org.idempiere.distributed.IClusterService;
@@ -540,9 +540,9 @@ public class CLogMgt
 		*/
 		sb.append("BaseLanguage = ").append(Env.isBaseLanguage(Env.getCtx(), "AD_Window"))
 			.append("/").append(Env.isBaseLanguage(Env.getCtx(), "C_UOM")).append(NL);
-		sb.append(Adempiere.getJavaInfo()).append(NL);
+		sb.append(EONE.getJavaInfo()).append(NL);
 		sb.append("java.io.tmpdir="+System.getProperty("java.io.tmpdir")).append(NL);
-		sb.append(Adempiere.getOSInfo()).append(NL);
+		sb.append(EONE.getOSInfo()).append(NL);
 
 		//report memory info
 		Runtime runtime = Runtime.getRuntime();
@@ -609,8 +609,8 @@ public class CLogMgt
 		CConnection cc = CConnection.get();
 		sb.append(NL).append(NL)
 			.append("=== Environment === ").append(NL)
-			.append(Adempiere.getCheckSum()).append(NL)
-			.append(Adempiere.getSummaryAscii()).append(NL)
+			.append(EONE.getCheckSum()).append(NL)
+			.append(EONE.getSummaryAscii()).append(NL)
 			.append(getLocalHost()).append(NL)
 			.append(cc.getName() + " " + cc.getDbUid() + "@" + cc.getConnectionURL()).append(NL)
 			.append(cc.getInfo()).append(NL);

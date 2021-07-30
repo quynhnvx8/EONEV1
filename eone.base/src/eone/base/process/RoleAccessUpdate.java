@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 
-import org.compiere.Adempiere;
+import org.compiere.EONE;
 import org.compiere.util.CLogMgt;
 import org.compiere.util.CLogger;
 import org.compiere.util.Env;
@@ -129,7 +129,7 @@ public class RoleAccessUpdate extends SvrProcess
 	//add main method, preparing for nightly build
 	public static void main(String[] args) 
 	{
-		Adempiere.startupEnvironment(false);
+		EONE.startupEnvironment(false);
 		CLogMgt.setLevel(Level.FINE);
 		s_log.info("Role Access Update");
 		s_log.info("------------------");

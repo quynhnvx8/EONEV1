@@ -31,7 +31,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 
-import org.compiere.Adempiere;
+import org.compiere.EONE;
 
 import eone.base.model.MSysConfig;
 import eone.base.model.PO;
@@ -95,7 +95,7 @@ public class Trx
 
 	public static void startTrxMonitor()
 	{
-		Adempiere.getThreadPoolExecutor().scheduleWithFixedDelay(s_monitor, 5, 5, TimeUnit.MINUTES);
+		EONE.getThreadPoolExecutor().scheduleWithFixedDelay(s_monitor, 5, 5, TimeUnit.MINUTES);
 	}
 
 	/**
@@ -739,7 +739,7 @@ public class Trx
 	protected void finalize() throws Throwable {
 		if (m_connection != null && trace != null) {
 			final Trx me = this;
-			Adempiere.getThreadPoolExecutor().schedule(new Runnable() {					
+			EONE.getThreadPoolExecutor().schedule(new Runnable() {					
 				@Override
 				public void run() {
 					if (me.m_connection != null && me.trace != null) {

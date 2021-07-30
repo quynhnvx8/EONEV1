@@ -28,7 +28,7 @@ import java.util.Map;
 import java.util.Properties;
 
 import org.adempiere.base.equinox.StackTraceCommand;
-import org.compiere.Adempiere;
+import org.compiere.EONE;
 import org.eclipse.osgi.framework.console.CommandProvider;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
@@ -56,7 +56,7 @@ public class BaseActivator implements BundleActivator {
 	@Override
 	public void start(BundleContext context) throws Exception {
 		//Load Init Properties 
-		loadInitProperties(Adempiere.getAdempiereHome());
+		loadInitProperties(EONE.getAdempiereHome());
 		bundleContext = context;
 		context.registerService(CommandProvider.class.getName(), new StackTraceCommand(), null);
 		
@@ -121,7 +121,7 @@ public class BaseActivator implements BundleActivator {
 			blacklistService.stop(context);
 			blacklistService = null;
 		}
-		Adempiere.stop();
+		EONE.stop();
 	}
 
 	/**

@@ -13,7 +13,7 @@ import java.util.StringTokenizer;
 import java.util.TreeSet;
 import java.util.logging.Level;
 
-import org.compiere.Adempiere;
+import org.compiere.EONE;
 
 import eone.base.model.MEntityType;
 import eone.base.model.MQuery;
@@ -126,7 +126,7 @@ public class ModelInterfaceGenerator
 		// Interface
 		start.append("/** Generated Interface for ").append(tableName).append("\n")
 			 .append(" *  @author EOne (generated) \n")
-			 .append(" *  @version ").append(Adempiere.MAIN_VERSION).append(NL) //.append(" - ").append(s_run).append("\n")
+			 .append(" *  @version ").append(EONE.MAIN_VERSION).append(NL) //.append(" - ").append(s_run).append("\n")
 			 .append(" */\n");
 		if (!packageName.equals("eone.base.model")) {
 			 start.append("@SuppressWarnings(\"all\")\n");

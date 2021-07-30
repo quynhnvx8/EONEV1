@@ -17,7 +17,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.logging.Level;
 
-import org.compiere.Adempiere;
+import org.compiere.EONE;
 import org.compiere.util.CLogMgt;
 import org.compiere.util.CLogger;
 import org.compiere.util.DB;
@@ -731,7 +731,7 @@ public class SynchronizeTerminology extends SvrProcess
 	//add main method, preparing for nightly build
 	public static void main(String[] args) 
 	{
-		Adempiere.startupEnvironment(false);
+		EONE.startupEnvironment(false);
 		CLogMgt.setLevel(Level.FINE);
 		s_log.info("Synchronize Terminology");
 		s_log.info("-----------------------");

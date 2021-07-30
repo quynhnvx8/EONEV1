@@ -46,7 +46,7 @@ public class MRoleTest extends TestCase
 	 */
 	protected void setUp() throws Exception, Exception
 	{
-		org.compiere.Adempiere.startupEnvironment(true);
+		org.compiere.EONE.startupEnvironment(true);
 		m_role = MRole.getDefault(Env.getCtx(), false);
 		super.setUp();
 	}

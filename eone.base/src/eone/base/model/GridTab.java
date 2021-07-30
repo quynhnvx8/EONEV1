@@ -22,7 +22,7 @@ import javax.swing.event.EventListenerList;
 
 import org.adempiere.base.Core;
 import org.adempiere.base.IColumnCallout;
-import org.compiere.Adempiere;
+import org.compiere.EONE;
 import org.compiere.util.CCache;
 import org.compiere.util.CLogMgt;
 import org.compiere.util.CLogger;
@@ -205,7 +205,7 @@ public class GridTab implements DataStatusListener, Evaluatee, Serializable
 		if (async)
 		{
 			m_loader = new Loader();
-			m_loaderFuture = Adempiere.getThreadPoolExecutor().submit(m_loader);
+			m_loaderFuture = EONE.getThreadPoolExecutor().submit(m_loader);
 			return false;
 		}
 		else

@@ -223,7 +223,7 @@ public class MPrintColor extends X_AD_PrintColor
 	 */
 	public static void main(String[] args)
 	{
-		org.compiere.Adempiere.startupEnvironment(true);
+		org.compiere.EONE.startupEnvironment(true);
 		Color[] colors = new Color[]
 			{Color.black, Color.red, Color.green, Color.blue,
 			Color.darkGray, Color.gray, Color.lightGray, Color.white,
