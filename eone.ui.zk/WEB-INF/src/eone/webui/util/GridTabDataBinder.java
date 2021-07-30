@@ -16,7 +16,6 @@ import java.util.Properties;
 import java.util.logging.Level;
 
 import org.adempiere.base.Core;
-import org.adempiere.exceptions.AdempiereException;
 import org.compiere.util.CLogger;
 import org.compiere.util.Env;
 import org.compiere.util.Trx;
@@ -24,6 +23,7 @@ import org.compiere.util.Trx;
 import eone.base.model.GridField;
 import eone.base.model.GridTab;
 import eone.base.model.GridTable;
+import eone.exceptions.EONEException;
 import eone.webui.editor.WEditor;
 import eone.webui.event.ValueChangeEvent;
 import eone.webui.event.ValueChangeListener;
@@ -143,7 +143,7 @@ public class GridTabDataBinder implements ValueChangeListener {
 				// Save data, since record need to be used for generating clones.
 				if (!gridTab.dataSave(false))
 				{
-					throw new AdempiereException("SaveError");
+					throw new EONEException("SaveError");
 				}
 				
 				// Retrieve the current record ID
@@ -162,7 +162,7 @@ public class GridTabDataBinder implements ValueChangeListener {
 				{
 					trx.rollback();
 					logger.severe(ex.getMessage());
-					throw new AdempiereException("SaveError");
+					throw new EONEException("SaveError");
 				}
 				finally
 				{

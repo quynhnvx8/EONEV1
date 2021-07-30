@@ -26,7 +26,6 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 
-import org.adempiere.exceptions.AdempiereException;
 import org.compiere.util.DB;
 import org.compiere.util.Env;
 import org.compiere.util.KeyNamePair;
@@ -47,6 +46,7 @@ import org.zkoss.zul.Vlayout;
 import eone.base.model.MDashboardContent;
 import eone.base.model.MDashboardPreference;
 import eone.base.model.Query;
+import eone.exceptions.EONEException;
 import eone.webui.component.Button;
 import eone.webui.component.ConfirmPanel;
 import eone.webui.component.Label;
@@ -294,7 +294,7 @@ public class WGadgets extends Window implements  EventListener<Event>{
 				}					
 			}		
 		} catch (Exception e) {
-			throw new AdempiereException( "Error while loading dashboard contents"+e.getMessage());
+			throw new EONEException( "Error while loading dashboard contents"+e.getMessage());
 			
 		} finally {
 		   DB.close(rs, pstmt);

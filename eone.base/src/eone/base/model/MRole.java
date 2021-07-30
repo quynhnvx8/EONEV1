@@ -18,7 +18,6 @@ import java.util.Properties;
 import java.util.Set;
 import java.util.logging.Level;
 
-import org.adempiere.exceptions.AdempiereException;
 import org.compiere.util.CCache;
 import org.compiere.util.CLogger;
 import org.compiere.util.DB;
@@ -26,6 +25,8 @@ import org.compiere.util.Env;
 import org.compiere.util.Ini;
 import org.compiere.util.Msg;
 import org.compiere.util.Trace;
+
+import eone.exceptions.EONEException;
 
 public final class MRole extends X_AD_Role
 {
@@ -1755,7 +1756,7 @@ public final class MRole extends X_AD_Role
 				
 				else
 				{
-					throw new AdempiereException("Not supported objects - "+o1+", "+o2);
+					throw new EONEException("Not supported objects - "+o1+", "+o2);
 				}
 				//
 				if (found)

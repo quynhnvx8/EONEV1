@@ -11,22 +11,22 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,    *
  * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.                     *
  *****************************************************************************/
-package org.adempiere.exceptions;
+package eone.exceptions;
 
 import java.util.logging.Level;
 
-import org.adempiere.exceptions.AdempiereException;
 import org.compiere.util.CLogger;
 import org.compiere.util.Msg;
 
 import eone.base.model.PO;
+import eone.exceptions.EONEException;
 
 /**
  * 
  * @author Tobias Schoeneberg, www.metas.de - FR [ 2897194 ] Advanced Zoom and
  *         RelationTypes
  */
-public class PORelationException extends AdempiereException {
+public class PORelationException extends EONEException {
 
 	private static final CLogger logger = CLogger
 			.getCLogger(PORelationException.class);

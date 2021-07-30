@@ -3,7 +3,6 @@ package eone.webui.panel;
 import java.util.ArrayList;
 import java.util.Properties;
 
-import org.adempiere.exceptions.AdempiereException;
 import org.compiere.util.CLogger;
 import org.compiere.util.Callback;
 import org.compiere.util.Env;
@@ -22,6 +21,7 @@ import eone.base.model.MPasswordHistory;
 import eone.base.model.MPasswordRule;
 import eone.base.model.MSysConfig;
 import eone.base.model.MUser;
+import eone.exceptions.EONEException;
 import eone.webui.LayoutUtils;
 import eone.webui.apps.AEnv;
 import eone.webui.component.Combobox;
@@ -290,7 +290,7 @@ public class ChangePasswordPanel extends Window implements EventListener<Event>
 	    		{
 	    			trx.rollback();
 	    			logger.severe("Could not find user '" + m_userName + "'");
-	    			throw new AdempiereException("Could not find user");
+	    			throw new EONEException("Could not find user");
 	    		}
 
 				//user.set_ValueOfColumn("Password", newPassword);//08/03/2021: Bo phan nay set mat khau theo cach moi
@@ -301,7 +301,7 @@ public class ChangePasswordPanel extends Window implements EventListener<Event>
 	    	
 	    	trx.commit();	    	
     	}
-    	catch (AdempiereException e)
+    	catch (EONEException e)
     	{
     		if (trx != null)
     			trx.rollback();

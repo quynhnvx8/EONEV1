@@ -567,7 +567,6 @@ public class GridView extends Vlayout implements EventListener<Event>, IdSpace, 
 		
 		for (int i = 0; i < numColumns; i++)
 		{
-			// IDEMPIERE-2148: when has tab customize, ignore check properties isDisplayedGrid
 			if ((isHasCustomizeData || gridField[i].isDisplayedGrid()) && !gridField[i].isToolbarOnlyButton())
 			{
 				colnames.put(index, gridField[i].getHeader());
@@ -892,11 +891,6 @@ public class GridView extends Vlayout implements EventListener<Event>, IdSpace, 
 				listbox.renderRow(row);
 			} else {
 				renderer.setCurrentRow(row);
-				//remark: following 3 line cause the previously selected row being render twice
-//				if (old != null && old != row && oldIndex >= 0 && oldIndex != gridTab.getCurrentRow())
-//				{
-//					listModel.updateComponent(oldIndex % pageSize);
-//				}
 			}
 			if (modeless && !renderer.isEditing()) {
 				renderer.editCurrentRow();
@@ -915,11 +909,6 @@ public class GridView extends Vlayout implements EventListener<Event>, IdSpace, 
 				listbox.renderRow(row);
 			} else {
 				renderer.setCurrentRow(row);
-				//remark: following 3 line cause the previously selected row being render twice
-//				if (old != null && old != row && oldIndex >= 0 && oldIndex != gridTab.getCurrentRow())
-//				{
-//					listModel.updateComponent(oldIndex);
-//				}
 			}
 			if (modeless && !renderer.isEditing()) {
 				renderer.editCurrentRow();
@@ -1092,7 +1081,7 @@ public class GridView extends Vlayout implements EventListener<Event>, IdSpace, 
                 else
                 {
                     boolean rw = mField.isEditable(true);   //  r/w - check Context
-                    if (rw && !comp.isReadWrite()) // IDEMPIERE-3421 - if it was read-only the list can contain direct values
+                    if (rw && !comp.isReadWrite())
                     	mField.refreshLookup();
                     comp.setReadWrite(rw);
                     comp.setMandatory(mField.isMandatory(true));    //  check context

@@ -21,7 +21,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.logging.Level;
 
-import org.adempiere.exceptions.DBException;
 import org.compiere.util.CLogger;
 import org.compiere.util.Env;
 import org.compiere.util.Msg;
@@ -235,39 +234,35 @@ public class QuickCustomizeGridViewPanel extends Panel {
 		query.setParameters(new Object[] { m_AD_Tab_ID });
 		query.setApplyAccessFilter(true);
 
-		try {
-			List<MField> lsFieldsOfGrid = query.list();
-			HashMap<Integer, ListElement> curTabSel = new HashMap<Integer, QuickCustomizeGridViewPanel.ListElement>();
-			MTab tab = new MTab(Env.getCtx(), m_AD_Tab_ID, null);
+		List<MField> lsFieldsOfGrid = query.list();
+		HashMap<Integer, ListElement> curTabSel = new HashMap<Integer, QuickCustomizeGridViewPanel.ListElement>();
+		MTab tab = new MTab(Env.getCtx(), m_AD_Tab_ID, null);
 
-			for (MField field : lsFieldsOfGrid) {
-				if (!MRole.getDefault(Env.getCtx(), false).isColumnAccess(tab.getAD_Table_ID(), field.getAD_Column_ID(),
-						true))
-					continue;
+		for (MField field : lsFieldsOfGrid) {
+			if (!MRole.getDefault(Env.getCtx(), false).isColumnAccess(tab.getAD_Table_ID(), field.getAD_Column_ID(),
+					true))
+				continue;
 
-				int key = field.get_ID();
-				String name = null;
-				if (baseLanguage)
-					name = field.getName();
-				else
-					name = field.get_Translation(I_AD_Field.COLUMNNAME_Name);
+			int key = field.get_ID();
+			String name = null;
+			if (baseLanguage)
+				name = field.getName();
+			else
+				name = field.get_Translation(I_AD_Field.COLUMNNAME_Name);
 
-				ListElement pp = new ListElement(key, name);
-				if (tableSeqs != null && tableSeqs.size() > 0) {
-					if (tableSeqs.contains(key)) {
-						curTabSel.put(key, pp);
-					}
+			ListElement pp = new ListElement(key, name);
+			if (tableSeqs != null && tableSeqs.size() > 0) {
+				if (tableSeqs.contains(key)) {
+					curTabSel.put(key, pp);
 				}
 			}
-			if (tableSeqs != null) {
-				for (int key : tableSeqs) {
-					if (curTabSel.get(key) != null) {
-						yesModel.addElement(curTabSel.get(key));
-					}
+		}
+		if (tableSeqs != null) {
+			for (int key : tableSeqs) {
+				if (curTabSel.get(key) != null) {
+					yesModel.addElement(curTabSel.get(key));
 				}
 			}
-		} catch (DBException e) {
-			log.log(Level.SEVERE, e.getMessage(), e);
 		}
 
 		bUp.setEnabled(true);

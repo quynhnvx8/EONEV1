@@ -24,7 +24,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.logging.Level;
 
-import org.adempiere.exceptions.DBException;
 import org.compiere.util.CLogger;
 import org.compiere.util.Env;
 import org.compiere.util.Msg;
@@ -50,6 +49,7 @@ import eone.base.model.MTab;
 import eone.base.model.MTabCustomization;
 import eone.base.model.Query;
 import eone.base.model.X_AD_Tab_Customization;
+import eone.exceptions.DBException;
 import eone.webui.ClientInfo;
 import eone.webui.LayoutUtils;
 import eone.webui.adwindow.GridView;

@@ -18,7 +18,6 @@ import java.util.Map;
 import java.util.logging.Level;
 
 import org.adempiere.base.IGridTabExporter;
-import org.adempiere.exceptions.AdempiereException;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.usermodel.HSSFDataFormat;
@@ -56,6 +55,7 @@ import eone.base.model.MRefList;
 import eone.base.model.MTab;
 import eone.base.model.MTabCustomization;
 import eone.base.model.MTable;
+import eone.exceptions.EONEException;
 
 public class GridTabXLSExporter implements IGridTabExporter
 {
@@ -97,12 +97,12 @@ public class GridTabXLSExporter implements IGridTabExporter
 			
 			String isValidTab = isValidTabToExport(gridTab);
 			if(isValidTab!=null){
-			   throw new AdempiereException(isValidTab);
+			   throw new EONEException(isValidTab);
 			}
 			GridTable gt = gridTab.getTableModel();
 			GridField[] gridFields = getFields(gridTab);
 			if(gridFields.length==0) 
-			   throw new AdempiereException(gridTab.getName()+": Did not find any available field to be exported.");
+			   throw new EONEException(gridTab.getName()+": Did not find any available field to be exported.");
 			
 			List<String> headArray = new ArrayList<String>();
 			List<String> headNameArray = new ArrayList<String>();
@@ -277,7 +277,7 @@ public class GridTabXLSExporter implements IGridTabExporter
 				m_mapWriter.write(m_outWriter);
 			}
 		} catch (IOException e) {
-			throw new AdempiereException(e);
+			throw new EONEException(e);
 		} finally {
 			if (m_outWriter != null) {
 				try {

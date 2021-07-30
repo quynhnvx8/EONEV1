@@ -25,7 +25,6 @@ import java.util.logging.Level;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.adempiere.exceptions.AdempiereException;
 import org.apache.ecs.XhtmlDocument;
 import org.apache.ecs.xhtml.a;
 import org.apache.ecs.xhtml.script;
@@ -87,6 +86,7 @@ import eone.base.model.MClient;
 import eone.base.model.MLanguage;
 import eone.base.model.MQuery;
 import eone.base.process.ProcessInfo;
+import eone.exceptions.EONEException;
 import eone.webui.ClientInfo;
 import eone.webui.LayoutUtils;
 import eone.webui.acct.WAcctViewer;
@@ -1102,7 +1102,7 @@ public class ZkReportViewer extends Window implements EventListener<Event>, ITab
 			catch (Exception e)
 			{
 				log.log(Level.SEVERE, "(w)", e);
-				throw new AdempiereException(e);
+				throw new EONEException(e);
 			}
 			return true;
 		}

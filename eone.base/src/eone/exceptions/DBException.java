@@ -14,7 +14,7 @@
  * ComPiere, Inc., 2620 Augustine Dr. #245, Santa Clara, CA 95054, USA        *
  * or via info@compiere.org or http://www.compiere.org/license.html           *
  *****************************************************************************/
-package org.adempiere.exceptions;
+package eone.exceptions;
 
 import java.sql.SQLException;
 
@@ -34,7 +34,7 @@ import org.compiere.util.DB;
  * 		FR [2789943] Better DBException handling for PostgreSQL
  * 		https://sourceforge.net/tracker/?func=detail&aid=2789943&group_id=176962&atid=879335
  */
-public class DBException extends AdempiereException
+public class DBException extends EONEException
 {
 	public static final String DATABASE_OPERATION_TIMEOUT_MSG = "DatabaseOperationTimeout";
 	public static final String DELETE_ERROR_DEPENDENT_MSG = "DeleteErrorDependent";

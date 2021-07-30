@@ -22,8 +22,9 @@ import java.util.Properties;
 import org.adempiere.base.IServiceReferenceHolder;
 import org.adempiere.base.Service;
 import org.adempiere.base.ServiceQuery;
-import org.adempiere.exceptions.AdempiereException;
 import org.compiere.util.CCache;
+
+import eone.exceptions.EONEException;
 
 public class MStorageProvider extends X_AD_StorageProvider {
 	/**
@@ -47,7 +48,7 @@ public class MStorageProvider extends X_AD_StorageProvider {
 		query.put("method", method);
 		IAttachmentStore store = getAttachmentStoreService(query);	//Service.locator().locate(IAttachmentStore.class, query).getService();			
 		if (store == null) {
-			throw new AdempiereException("No attachment storage provider found");
+			throw new EONEException("No attachment storage provider found");
 		}
 		return store;
 	}
@@ -87,7 +88,7 @@ public class MStorageProvider extends X_AD_StorageProvider {
 		IArchiveStore store = getArchiveStoreService(query);
 		//IArchiveStore store = Service.locator().locate(IArchiveStore.class, query).getService();
 		if (store == null) {
-			throw new AdempiereException("No archive storage provider found");
+			throw new EONEException("No archive storage provider found");
 		}
 		return store;
 	}
@@ -128,7 +129,7 @@ public class MStorageProvider extends X_AD_StorageProvider {
 		//IImageStore store = Service.locator().locate(IImageStore.class, query).getService();
 		IImageStore store = getImageStoreService(query);
 		if (store == null) {
-			throw new AdempiereException("No image storage provider found");
+			throw new EONEException("No image storage provider found");
 		}
 		return store;
 	}

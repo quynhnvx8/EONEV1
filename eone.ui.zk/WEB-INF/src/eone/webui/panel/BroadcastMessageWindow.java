@@ -19,7 +19,6 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.logging.Level;
 
-import org.adempiere.exceptions.DBException;
 import org.compiere.util.CLogger;
 import org.compiere.util.DB;
 import org.compiere.util.Env;
@@ -41,6 +40,7 @@ import org.zkoss.zul.South;
 
 import eone.base.model.MBroadcastMessage;
 import eone.base.model.MNote;
+import eone.exceptions.DBException;
 import eone.webui.component.Button;
 import eone.webui.component.Checkbox;
 import eone.webui.component.Label;

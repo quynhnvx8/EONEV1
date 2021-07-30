@@ -21,7 +21,6 @@ import java.util.Map.Entry;
 import java.util.Vector;
 import java.util.logging.Level;
 
-import org.adempiere.exceptions.AdempiereException;
 import org.compiere.minigrid.ColumnInfo;
 import org.compiere.minigrid.IDColumn;
 import org.compiere.util.CLogger;
@@ -53,6 +52,7 @@ import eone.base.model.MInfoWindow;
 import eone.base.model.MRole;
 import eone.base.model.MSysConfig;
 import eone.base.model.MTable;
+import eone.exceptions.EONEException;
 import eone.webui.AdempiereWebUI;
 import eone.webui.ClientInfo;
 import eone.webui.LayoutUtils;
@@ -1029,7 +1029,7 @@ public abstract class InfoPanel extends Window implements EventListener<Event>, 
 	
 	protected boolean isIDColumn(Object keyData, boolean isCheckNull){
 		if (isCheckNull && keyData == null){
-			AdempiereException ex = getKeyNullException();
+			EONEException ex = getKeyNullException();
 			log.severe(ex.getMessage());
 			throw ex;
 		}
@@ -1120,10 +1120,10 @@ public abstract class InfoPanel extends Window implements EventListener<Event>, 
 		return true;
 	}
 		
-	protected AdempiereException getKeyNullException (){
+	protected EONEException getKeyNullException (){
 		String errorMessage = String.format("has null value at column %1$s use as key of view in info window %2$s", 
 				keyColumnOfView == null ? p_keyColumn : keyColumnOfView, infoWindow.getName());
-		return new AdempiereException(errorMessage);
+		return new EONEException(errorMessage);
 	}
 	
 	protected Integer getColumnValue (int rowIndex){
@@ -1134,7 +1134,7 @@ public abstract class InfoPanel extends Window implements EventListener<Event>, 
 		Object keyColumValue = contentPanel.getModel().getDataAt(rowIndex, keyIndex);
 		// throw exception when value is null
 		if (keyColumValue == null){
-			AdempiereException ex = getKeyNullException();
+			EONEException ex = getKeyNullException();
 			log.severe(ex.getMessage());
 			throw ex;
 		}
@@ -1148,7 +1148,7 @@ public abstract class InfoPanel extends Window implements EventListener<Event>, 
 			keyValue = (Integer)keyColumValue;
 		}else {
 			String msg = "keyView column must be integer";
-			AdempiereException ex = new AdempiereException (msg);
+			EONEException ex = new EONEException (msg);
 			log.severe(msg);
 			throw ex;
 		}

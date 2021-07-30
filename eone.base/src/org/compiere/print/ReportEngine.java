@@ -25,7 +25,6 @@ import java.util.logging.Level;
 import javax.print.event.PrintServiceAttributeEvent;
 import javax.print.event.PrintServiceAttributeListener;
 
-import org.adempiere.exceptions.AdempiereException;
 import org.adempiere.pdf.WritePDF;
 import org.apache.ecs.XhtmlDocument;
 import org.apache.ecs.xhtml.a;
@@ -45,6 +44,7 @@ import eone.base.model.I_AD_PrintFormat;
 import eone.base.model.MProcess;
 import eone.base.model.PrintInfo;
 import eone.base.process.ProcessInfo;
+import eone.exceptions.EONEException;
 
 public class ReportEngine implements PrintServiceAttributeListener
 {
@@ -385,7 +385,7 @@ public class ReportEngine implements PrintServiceAttributeListener
 		catch (Exception e)
 		{
 			log.log(Level.SEVERE, "(f)", e);
-			throw new AdempiereException(e);
+			throw new EONEException(e);
 		}
 		return false;
 	}	//	createHTML
@@ -566,7 +566,7 @@ public class ReportEngine implements PrintServiceAttributeListener
 		catch (Exception e)
 		{
 			log.log(Level.SEVERE, "(w)", e);
-			throw new AdempiereException(e);
+			throw new EONEException(e);
 		}
 		return true;
 	}
@@ -685,7 +685,7 @@ public class ReportEngine implements PrintServiceAttributeListener
 		catch (Exception e)
 		{
 			log.log(Level.SEVERE, "PDF", e);
-			throw new AdempiereException(e);
+			throw new EONEException(e);
 		}
 
 		File file2 = new File(fileName);

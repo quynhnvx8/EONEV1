@@ -21,7 +21,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.logging.Level;
 
-import org.adempiere.exceptions.DBException;
 import org.compiere.util.CLogger;
 import org.compiere.util.DB;
 import org.compiere.util.Env;
@@ -57,6 +56,7 @@ import eone.base.model.MQuery;
 import eone.base.model.MRole;
 import eone.base.model.MTable;
 import eone.base.model.X_AD_Chart;
+import eone.exceptions.DBException;
 
 /**
  * @author Paul Bowden, Adaxa Pty Ltd 

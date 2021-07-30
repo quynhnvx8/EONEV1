@@ -4,10 +4,9 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 
-import org.adempiere.exceptions.AdempiereException;
-
 import eone.base.model.MProductBOM;
 import eone.base.model.Query;
+import eone.exceptions.EONEException;
 
 public class UniversalSubstitution extends SvrProcess {
 
@@ -33,7 +32,7 @@ public class UniversalSubstitution extends SvrProcess {
 	protected String doIt() throws SQLException {
 
 		if ( productId == 0 || replacementId == 0 )
-			throw new AdempiereException("Product and replacement product required");
+			throw new EONEException("Product and replacement product required");
 		
 		List<MProductBOM> boms = new Query(getCtx(), MProductBOM.Table_Name, "M_ProductBOM_ID=?", get_TrxName())
 			.setParameters(productId)

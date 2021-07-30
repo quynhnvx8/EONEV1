@@ -30,7 +30,6 @@ import javax.xml.ws.handler.MessageContext;
 
 import org.adempiere.base.ServiceQuery;
 import org.adempiere.base.equinox.EquinoxExtensionLocator;
-import org.adempiere.exceptions.AdempiereException;
 import org.apache.commons.codec.binary.Base64;
 import org.compiere.model.MWebService;
 import org.compiere.model.MWebServiceType;
@@ -57,6 +56,7 @@ import eone.base.model.POInfo;
 import eone.base.model.Query;
 import eone.base.model.X_WS_WebServiceMethod;
 import eone.base.model.X_WS_WebServiceTypeAccess;
+import eone.exceptions.EONEException;
 
 
 
@@ -373,14 +373,14 @@ public class AbstractService {
 	 * @param po
 	 * @param requestCtx
 	 * @return
-	 * @throws AdempiereException
+	 * @throws EONEException
 	 */
-	protected String parseSQL(String sql, ArrayList<Object> sqlParas, PO po,POInfo poInfo, Map<String, Object> requestCtx) throws AdempiereException {
+	protected String parseSQL(String sql, ArrayList<Object> sqlParas, PO po,POInfo poInfo, Map<String, Object> requestCtx) throws EONEException {
 		if (sql.startsWith("@SQL="))
 			sql = sql.substring(5);
 
 		if (sql.toLowerCase().indexOf(" where ") == -1)
-			throw new AdempiereException("Invalid SQL: Query do not have any filetering criteria");
+			throw new EONEException("Invalid SQL: Query do not have any filetering criteria");
 
 		StringBuilder sqlBuilder = new StringBuilder();
 
@@ -396,7 +396,7 @@ public class AbstractService {
 
 				firstInd = sql.indexOf('@');
 				if (firstInd == -1) {
-					throw new AdempiereException("Missing closing '@' in SQL");
+					throw new EONEException("Missing closing '@' in SQL");
 				}
 
 				String token = sql.substring(0, firstInd);
@@ -413,7 +413,7 @@ public class AbstractService {
 					int ind = sqlBuilder.lastIndexOf("=");
 					sqlBuilder.replace(ind, sqlBuilder.length(), " Is Null ");
 				}else if (val == null)
-					throw new AdempiereException("Can not resolve varialbe '" + token + "' in sql");
+					throw new EONEException("Can not resolve varialbe '" + token + "' in sql");
 				else{
 					sqlBuilder.append(" ? ");
 					sqlParas.add(val);

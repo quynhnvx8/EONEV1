@@ -27,7 +27,6 @@ import java.util.Locale;
 import java.util.Properties;
 import java.util.logging.Level;
 
-import org.adempiere.exceptions.DBException;
 import org.compiere.Adempiere;
 import org.compiere.util.DB;
 import org.compiere.util.Env;
@@ -35,6 +34,7 @@ import org.compiere.util.Language;
 import org.compiere.util.Msg;
 
 import eone.base.process.UUIDGenerator;
+import eone.exceptions.DBException;
 
 /**
  * 	Language Model

@@ -17,7 +17,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 
-import org.adempiere.exceptions.DBException;
 import org.compiere.util.DB;
 import org.compiere.util.DisplayType;
 
@@ -29,6 +28,7 @@ import eone.base.model.I_AD_Column;
 import eone.base.model.MColumn;
 import eone.base.model.M_Element;
 import eone.base.model.PO;
+import eone.exceptions.DBException;
 
 /**
  * @author teo_sarca

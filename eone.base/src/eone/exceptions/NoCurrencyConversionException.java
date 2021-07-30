@@ -11,7 +11,7 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,    *
  * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.                     *
  *****************************************************************************/
-package org.adempiere.exceptions;
+package eone.exceptions;
 
 import java.sql.Timestamp;
 import java.text.DateFormat;
@@ -27,7 +27,7 @@ import eone.base.model.MCurrency;
  * Any exception that occurs when no currency conversion rate was found
  * @author Teo Sarca, http://www.arhipac.ro
  */
-public class NoCurrencyConversionException extends AdempiereException
+public class NoCurrencyConversionException extends EONEException
 {
 
 	/**

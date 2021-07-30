@@ -20,8 +20,9 @@ import java.sql.ResultSet;
 import java.util.List;
 import java.util.Properties;
 
-import org.adempiere.exceptions.AdempiereException;
 import org.compiere.util.DB;
+
+import eone.exceptions.EONEException;
 
 
 public class MViewComponent extends X_AD_ViewComponent {
@@ -119,7 +120,7 @@ public class MViewComponent extends X_AD_ViewComponent {
 				}
 			}
 			if (vc == null) {
-				throw new AdempiereException("Cannot find element for " + colName + ".  Tip: all components must have the same number and names of columns");
+				throw new EONEException("Cannot find element for " + colName + ".  Tip: all components must have the same number and names of columns");
 			}
 			if (i>0)
 				sb.append(", ");

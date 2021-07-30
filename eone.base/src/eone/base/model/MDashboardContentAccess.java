@@ -9,9 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-import org.adempiere.exceptions.AdempiereException;
 import org.compiere.util.DB;
 import org.compiere.util.Env;
+
+import eone.exceptions.EONEException;
 
 /**
  * @author juliana
@@ -123,7 +124,7 @@ public class MDashboardContentAccess extends X_PA_DashboardContent_Access {
         	}
         	
         }catch (Exception e) {
-			throw new AdempiereException(e.getLocalizedMessage());
+			throw new EONEException(e.getLocalizedMessage());
 		}finally{
 			DB.close(rs, pstmt);
 		}

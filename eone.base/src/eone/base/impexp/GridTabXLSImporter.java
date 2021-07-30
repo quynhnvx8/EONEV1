@@ -30,7 +30,6 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Level;
 
 import org.adempiere.base.IGridTabImporter;
-import org.adempiere.exceptions.AdempiereException;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -57,6 +56,7 @@ import eone.base.model.MQuery;
 import eone.base.model.MRefList;
 import eone.base.model.MTable;
 import eone.base.model.PO;
+import eone.exceptions.EONEException;
 
 public class GridTabXLSImporter implements IGridTabImporter {
 	private static final String ERROR_HEADER = "_ERROR_";
@@ -125,7 +125,7 @@ public class GridTabXLSImporter implements IGridTabImporter {
 		PO masterRecord = null;
 		PO parentRecord = null;
 		if(!gridTab.isInsertRecord() && isInsertMode())
-        	throw new AdempiereException("Insert record disabled for Tab");
+        	throw new EONEException("Insert record disabled for Tab");
 		Map<String, Object> mapDefaultValue = new HashMap<String, Object>();
 		LinkedHashMap<Integer, List<List<Object>>> mapValues = new LinkedHashMap<Integer, List<List<Object>>>();
 		HashMap<Integer, Integer> mapSequence = new HashMap<Integer, Integer>();
@@ -138,7 +138,7 @@ public class GridTabXLSImporter implements IGridTabImporter {
 			mapReader.close();
 			if (sheetReader == null) {
 				errFileW.close();
-				throw new AdempiereException("Sheet cannot be empty!");
+				throw new EONEException("Sheet cannot be empty!");
 			}
 			int maxRow = sheetReader.getLastRowNum();
 			boolean isUseBatch = maxRow >= BATCH_SIZE ? true : false;
@@ -158,7 +158,7 @@ public class GridTabXLSImporter implements IGridTabImporter {
 				String headName = header.get(idx);
 				if (headName==null) {
 					errFileW.close();
-					throw new AdempiereException("Header column cannot be empty, Col: " + (idx + 1));
+					throw new EONEException("Header column cannot be empty, Col: " + (idx + 1));
 				}
 				
 				if (headName.equals(ERROR_HEADER) || headName.equals(LOG_HEADER)){
@@ -169,7 +169,7 @@ public class GridTabXLSImporter implements IGridTabImporter {
 				if (headName.indexOf(">") > 0) {
 					if(idx==0){
 						errFileW.close();
-					   throw new AdempiereException(Msg.getMsg(Env.getCtx(),"WrongHeader", new Object[] {headName}));
+					   throw new EONEException(Msg.getMsg(Env.getCtx(),"WrongHeader", new Object[] {headName}));
 				    }else
 					   break;
 				    
@@ -181,7 +181,7 @@ public class GridTabXLSImporter implements IGridTabImporter {
 					
 					if (field == null) {
 						errFileW.close();
-						throw new AdempiereException(Msg.getMsg(Env.getCtx(), "FieldNotFound" , new Object[] {columnName}) );
+						throw new EONEException(Msg.getMsg(Env.getCtx(), "FieldNotFound" , new Object[] {columnName}) );
 					}
 					else if(isKeyColumn && !isThereKey)
 						isThereKey =true;
@@ -195,7 +195,7 @@ public class GridTabXLSImporter implements IGridTabImporter {
 			//TODO: Sau doan code nay lay ve het column duoc khong?
 			
 			if(isUpdateOrMergeMode() && !isThereKey)
-			    throw new AdempiereException(gridTab.getTableName()+": "+Msg.getMsg(Env.getCtx(), "NoKeyFound"));
+			    throw new EONEException(gridTab.getTableName()+": "+Msg.getMsg(Env.getCtx(), "NoKeyFound"));
 			
 			tabMapIndexes.put(gridTab,indxDetail-1);
 			String  childTableName   = null;
@@ -215,7 +215,7 @@ public class GridTabXLSImporter implements IGridTabImporter {
 		    			 //check out key per Tab   
 		   		    	 if(isUpdateOrMergeMode() && !isThereKey){ 
 		   		    		errFileW.close();
-		 				    throw new AdempiereException(currentDetailTab.getTableName()+": "+Msg.getMsg(Env.getCtx(), "NoKeyFound"));
+		 				    throw new EONEException(currentDetailTab.getTableName()+": "+Msg.getMsg(Env.getCtx(), "NoKeyFound"));
 		   		    	 }else{
 		   		    	    tabMapIndexes.put(currentDetailTab,idx-1);
 			    			isThereKey =false; 
@@ -235,7 +235,7 @@ public class GridTabXLSImporter implements IGridTabImporter {
 		    	   
 				   if(currentDetailTab == null) {
 					  errFileW.close(); 
-					  throw new AdempiereException(Msg.getMsg(Env.getCtx(),"NoChildTab",new Object[] {childTableName}));
+					  throw new EONEException(Msg.getMsg(Env.getCtx(),"NoChildTab",new Object[] {childTableName}));
 				   }
 		    	   
 				   String columnName = detailName;
@@ -246,7 +246,7 @@ public class GridTabXLSImporter implements IGridTabImporter {
 				  
 				   if(field == null) {
 					  errFileW.close();
-					  throw new AdempiereException(Msg.getMsg(Env.getCtx(), "FieldNotFound",new Object[] {detailName}));
+					  throw new EONEException(Msg.getMsg(Env.getCtx(), "FieldNotFound",new Object[] {detailName}));
 				   }
 				   else if(isKeyColumn && !isThereKey)
 					  isThereKey =true;
@@ -255,7 +255,7 @@ public class GridTabXLSImporter implements IGridTabImporter {
 //				   }				   
 		    	}else {
 		    	   errFileW.close();
-		    	   throw new AdempiereException(Msg.getMsg(Env.getCtx(),"WrongDetailName",new Object[] {" col("+idx+") ",detailName}));
+		    	   throw new EONEException(Msg.getMsg(Env.getCtx(),"WrongDetailName",new Object[] {" col("+idx+") ",detailName}));
 		    	}		    	
 		    }
 		    
@@ -263,7 +263,7 @@ public class GridTabXLSImporter implements IGridTabImporter {
 		    
 		    if(currentDetailTab!=null){
 		    	if(isUpdateOrMergeMode() && !isThereKey)
-				   throw new AdempiereException(currentDetailTab.getTableName()+": "+Msg.getMsg(Env.getCtx(), "NoKeyFound"));
+				   throw new EONEException(currentDetailTab.getTableName()+": "+Msg.getMsg(Env.getCtx(), "NoKeyFound"));
 
 			    tabMapIndexes.put(currentDetailTab,header.size()-1); 	   
 		    }
@@ -723,7 +723,7 @@ public class GridTabXLSImporter implements IGridTabImporter {
 			tabMapIndexes = null;
 			
 		} catch (IOException e) {
-	      throw new AdempiereException(e);
+	      throw new EONEException(e);
 		}
 		finally {
 			try {

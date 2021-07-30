@@ -1,7 +1,6 @@
 /******************************************************************************
- * Product: iDempiere ERP & CRM Smart Business Solution                       *
- * Copyright (C) 2012 Heng Sin Low                							  *
- * Copyright (C) 2012 www.iDempiere.org                							  *
+ * Product: Adempiere ERP & CRM Smart Business Solution                       *
+ * Copyright (C) 2008 SC ARHIPAC SERVICE SRL. All Rights Reserved.            *
  * This program is free software; you can redistribute it and/or modify it    *
  * under the terms version 2 of the GNU General Public License as published   *
  * by the Free Software Foundation. This program is distributed in the hope   *
@@ -12,25 +11,32 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,    *
  * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.                     *
  *****************************************************************************/
-package org.adempiere.exceptions;
+package eone.exceptions;
 
 /**
- * 
- * @author hengsin
- *
+ * Throwed when there are some fields that are mandatory but unfilled.
+ * @author Teo Sarca, SC ARHIPAC SERVICE SRL
  */
-public class AverageCostingNegativeQtyException extends AdempiereException {
-
+public class FillMandatoryException extends EONEException
+{
 	/**
-	 * generated serial version id
+	 * 
 	 */
-	private static final long serialVersionUID = 4165497320719149773L;
+	private static final long serialVersionUID = 9074980284529933724L;
 
-	public AverageCostingNegativeQtyException() {
-		super();
+	public FillMandatoryException(String...fields)
+	{
+		super("@FillMandatory@ "+buildMessage(fields));
 	}
-
-	public AverageCostingNegativeQtyException(String message) {
-		super(message);
+	
+	private static final String buildMessage(String...fields)
+	{
+		StringBuilder sb = new StringBuilder();
+		for (String f : fields) {
+			if (sb.length() > 0)
+				sb.append(", ");
+			sb.append("@").append(f).append("@");
+		}
+		return sb.toString();
 	}
 }

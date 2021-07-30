@@ -15,7 +15,6 @@ import java.util.logging.Level;
 import org.adempiere.base.event.EventManager;
 import org.adempiere.base.event.EventProperty;
 import org.adempiere.base.event.IEventTopics;
-import org.adempiere.exceptions.AdempiereException;
 import org.compiere.util.CLogger;
 import org.compiere.util.DB;
 import org.compiere.util.Env;
@@ -27,6 +26,7 @@ import eone.base.model.MColumn;
 import eone.base.model.MTable;
 import eone.base.model.PO;
 import eone.base.model.SystemIDs;
+import eone.exceptions.EONEException;
 
 
 public class DocumentEngine implements DocAction
@@ -363,7 +363,7 @@ public class DocumentEngine implements DocAction
 	 * 	Save Document
 	 *	@return throw exception
 	 */
-	public void saveEx() throws AdempiereException
+	public void saveEx() throws EONEException
 	{
 		throw new IllegalStateException(EXCEPTION_MSG);
 	}

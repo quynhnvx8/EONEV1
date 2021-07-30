@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 
-import org.adempiere.exceptions.AdempiereException;
 import org.compiere.util.CLogger;
 import org.compiere.util.Callback;
 import org.compiere.util.Env;
@@ -38,6 +37,7 @@ import org.zkoss.zul.Vlayout;
 import eone.base.model.MAttachment;
 import eone.base.model.MAttachmentEntry;
 import eone.base.model.MTable;
+import eone.exceptions.EONEException;
 import eone.webui.AdempiereWebUI;
 import eone.webui.ClientInfo;
 import eone.webui.apps.AEnv;
@@ -743,7 +743,7 @@ public class WAttachment extends Window implements EventListener<Event>
 			try {
 				media = new AMedia(name, null, "application/zip", zipFile, true);
 			} catch (Exception e) {
-				throw new AdempiereException("Error when converting zip file to media : " + e);
+				throw new EONEException("Error when converting zip file to media : " + e);
 			}			
 			Filedownload.save(media);
 		}

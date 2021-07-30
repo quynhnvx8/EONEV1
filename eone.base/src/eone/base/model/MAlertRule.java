@@ -23,9 +23,10 @@ import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Properties;
 
-import org.adempiere.exceptions.AdempiereException;
 import org.compiere.util.DB;
 import org.compiere.util.Util;
+
+import eone.exceptions.EONEException;
 
 
 /**
@@ -163,7 +164,7 @@ public class MAlertRule extends X_AD_AlertRule
 		}
 		catch (IOException e)
 		{
-			throw new AdempiereException(e);
+			throw new EONEException(e);
 		}
 		return file;
 	}

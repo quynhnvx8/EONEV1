@@ -11,7 +11,6 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 
-import org.adempiere.exceptions.AdempiereException;
 import org.compiere.Adempiere;
 import org.compiere.util.CLogger;
 import org.compiere.util.DB;
@@ -22,6 +21,7 @@ import org.compiere.util.WebUtil;
 
 import eone.base.model.ServerStateChangeEvent;
 import eone.base.model.ServerStateChangeListener;
+import eone.exceptions.EONEException;
 import eone.webui.session.SessionManager;
 
 public class LoggedSessionListener implements HttpSessionListener, ServletContextListener, ServerStateChangeListener{
@@ -74,7 +74,7 @@ public class LoggedSessionListener implements HttpSessionListener, ServletContex
 	        boolean started = Adempiere.startup(false);
 	        if(!started)
 	        {
-	            throw new AdempiereException("Could not start iDempiere");
+	            throw new EONEException("Could not start iDempiere");
 	        }
         }
 
@@ -95,7 +95,7 @@ public class LoggedSessionListener implements HttpSessionListener, ServletContex
 		String sql = "UPDATE AD_Session SET Processed='Y' WHERE Processed='N' AND ServerName=?";
 		int no = DB.executeUpdate(sql, new Object[] {serverName}, false, null);
 		if (no < 0) {
-			throw new AdempiereException("UpdateSession: Cannot Destroy All Session");
+			throw new EONEException("UpdateSession: Cannot Destroy All Session");
 		}
 		
 		Adempiere.removeServerStateChangeListener(this);
@@ -105,7 +105,7 @@ public class LoggedSessionListener implements HttpSessionListener, ServletContex
 		String sql = "UPDATE AD_Session SET Processed='Y' WHERE WebSession=? AND ServerName=? AND Processed='N'";
 		int no = DB.executeUpdate(sql, new Object[] {sessionID, serverName}, false, null);
 		if (no < 0) {
-			throw new AdempiereException("UpdateSession: Cannot Destroy Session");
+			throw new EONEException("UpdateSession: Cannot Destroy Session");
 		}
 	}
 

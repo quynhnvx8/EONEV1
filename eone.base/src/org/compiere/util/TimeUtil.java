@@ -188,7 +188,7 @@ public class TimeUtil
 		cal.set(Calendar.SECOND, 0);
 		cal.set(Calendar.MILLISECOND, 0);
 		//
-		cal.add(Calendar.MONTH, 11);			//	next
+		cal.set(Calendar.MONTH, 11);			//	next
 		cal.set(Calendar.DAY_OF_MONTH, 31);	//	first
 		return new Timestamp (cal.getTimeInMillis());
 	}

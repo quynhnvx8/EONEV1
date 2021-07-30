@@ -28,7 +28,6 @@ import java.util.Set;
 
 import org.adempiere.base.IGridTabImporter;
 import org.adempiere.base.equinox.EquinoxExtensionLocator;
-import org.adempiere.exceptions.AdempiereException;
 import org.compiere.util.Env;
 import org.compiere.util.Ini;
 import org.compiere.util.Msg;
@@ -49,6 +48,7 @@ import eone.base.model.GridTab;
 import eone.base.model.MLookup;
 import eone.base.model.MLookupFactory;
 import eone.base.model.MLookupInfo;
+import eone.exceptions.EONEException;
 import eone.webui.AdempiereWebUI;
 import eone.webui.LayoutUtils;
 import eone.webui.adwindow.AbstractADWindowContent;
@@ -335,7 +335,7 @@ public class FileImportAction implements EventListener<Event>
 			Filedownload.save(media);
 
 		} catch (Exception e) {
-			throw new AdempiereException(e);
+			throw new EONEException(e);
 		} finally {
 			if (winImportFile != null)
 				winImportFile.onClose();

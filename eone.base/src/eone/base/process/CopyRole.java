@@ -21,12 +21,12 @@ package eone.base.process;
 
 import java.math.BigDecimal;
 
-import org.adempiere.exceptions.AdempiereException;
 import org.compiere.util.DB;
 import org.compiere.util.Env;
 
 import eone.base.model.I_AD_Role_Included;
 import eone.base.model.MRole;
+import eone.exceptions.EONEException;
 
 
 /**
@@ -80,7 +80,7 @@ public class CopyRole extends SvrProcess
 		}
 
 		if (m_AD_Role_ID_From == m_AD_Role_ID_To)
-			throw new AdempiereException("Roles must be different");
+			throw new EONEException("Roles must be different");
 
 		String[] tables = new String[] {"AD_Window_Access", "AD_Process_Access", "AD_Form_Access",
 				"AD_Task_Access", "AD_InfoWindow_Access",

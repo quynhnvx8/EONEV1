@@ -22,11 +22,11 @@ package org.compiere.util;
  * 
  * @author Teo Sarca, SC ARHIPAC SERVICE SRL
  *
- * @deprecated This class was moved to {@link org.adempiere.exceptions.DBException}
+ * @deprecated This class was moved to {@link eone.exceptions.DBException}
  * 				and will be removed in future. 
  */
 @Deprecated
-public class DBException extends org.adempiere.exceptions.DBException {
+public class DBException extends eone.exceptions.DBException {
 	/**
 	 * 
 	 */

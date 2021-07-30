@@ -28,7 +28,6 @@ import java.util.logging.Level;
 import javax.script.ScriptEngine;
 
 import org.adempiere.apps.graph.GraphColumn;
-import org.adempiere.exceptions.AdempiereException;
 import org.compiere.util.CCache;
 import org.compiere.util.DB;
 import org.compiere.util.Env;
@@ -36,6 +35,8 @@ import org.compiere.util.MeasureInterface;
 import org.compiere.util.Msg;
 import org.compiere.util.TimeUtil;
 import org.compiere.util.Util;
+
+import eone.exceptions.EONEException;
 
 
 /**
@@ -507,7 +508,7 @@ public class MMeasure extends X_PA_Measure
 					}
 					ScriptEngine engine = rule.getScriptEngine();
 					if (engine == null) {
-						throw new AdempiereException("Engine not found: " + rule.getEngineName());
+						throw new EONEException("Engine not found: " + rule.getEngineName());
 					}
 					MRule.setContext(engine, po.getCtx(), 0);
 					engine.put(MRule.ARGUMENTS_PREFIX + "Ctx", po.getCtx());

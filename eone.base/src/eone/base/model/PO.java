@@ -37,8 +37,6 @@ import javax.xml.transform.stream.StreamResult;
 
 import org.adempiere.base.event.EventManager;
 import org.adempiere.base.event.IEventTopics;
-import org.adempiere.exceptions.AdempiereException;
-import org.adempiere.exceptions.DBException;
 import org.compiere.Adempiere;
 import org.compiere.util.AdempiereUserError;
 import org.compiere.util.CCache;
@@ -62,6 +60,8 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import eone.base.acct.Doc;
+import eone.exceptions.EONEException;
+import eone.exceptions.DBException;
 
 
 public abstract class PO
@@ -2168,10 +2168,10 @@ public abstract class PO
 
 	/**
 	 * Update Value or create new record.
-	 * @throws AdempiereException
+	 * @throws EONEException
 	 * @see #save()
 	 */
-	public void saveEx() throws AdempiereException
+	public void saveEx() throws EONEException
 	{
 		if (!save()) {
 			String msg = null;
@@ -2182,7 +2182,7 @@ public abstract class PO
 			if (msg == null || msg.length() == 0)
 				msg = "SaveError";
 			Exception ex = CLogger.retrieveException();
-			throw new AdempiereException(msg, ex);
+			throw new EONEException(msg, ex);
 		}
 	}
 
@@ -2295,7 +2295,7 @@ public abstract class PO
 		return save();
 	}	//	save
 
-	public void saveReplica (boolean isFromReplication) throws AdempiereException
+	public void saveReplica (boolean isFromReplication) throws EONEException
 	{
 		setReplication(isFromReplication);
 		saveEx();
@@ -2304,10 +2304,10 @@ public abstract class PO
 	/**
 	 * Update Value or create new record.
 	 * @param trxName transaction
-	 * @throws AdempiereException
+	 * @throws EONEException
 	 * @see #saveEx(String)
 	 */
-	public void saveEx(String trxName) throws AdempiereException
+	public void saveEx(String trxName) throws EONEException
 	{
 		set_TrxName(trxName);
 		saveEx();
@@ -3433,10 +3433,10 @@ public abstract class PO
 	/**
 	 * Delete Current Record
 	 * @param force delete also processed records
-	 * @throws AdempiereException
+	 * @throws EONEException
 	 * @see #delete(boolean)
 	 */
-	public void deleteEx(boolean force) throws AdempiereException
+	public void deleteEx(boolean force) throws EONEException
 	{
 		if (!delete(force)) {
 			String msg = null;
@@ -3446,7 +3446,7 @@ public abstract class PO
 			if (msg == null || msg.length() == 0)
 				msg = "DeleteError";
 			Exception ex = CLogger.retrieveException();
-			throw new AdempiereException(msg, ex);
+			throw new EONEException(msg, ex);
 		}
 	}
 
@@ -3466,10 +3466,10 @@ public abstract class PO
 	 * Delete Current Record
 	 * @param force delete also processed records
 	 * @param trxName transaction
-	 * @throws AdempiereException
+	 * @throws EONEException
 	 * @see {@link #deleteEx(boolean)}
 	 */
-	public void deleteEx(boolean force, String trxName) throws AdempiereException
+	public void deleteEx(boolean force, String trxName) throws EONEException
 	{
 		set_TrxName(trxName);
 		deleteEx(force);
@@ -4614,7 +4614,7 @@ public abstract class PO
 
 	private void checkValidContext() {
 		if (getCtx().isEmpty() && getCtx().getProperty("#AD_Client_ID") == null)
-			throw new AdempiereException("Context lost");
+			throw new EONEException("Context lost");
 	}
 	
 	public boolean reActivate()

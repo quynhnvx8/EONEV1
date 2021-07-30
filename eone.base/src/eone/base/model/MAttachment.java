@@ -29,7 +29,6 @@ import java.util.Properties;
 import java.util.logging.Level;
 import java.util.stream.Collectors;
 
-import org.adempiere.exceptions.AdempiereException;
 import org.apache.tools.ant.Project;
 import org.apache.tools.ant.Target;
 import org.apache.tools.ant.taskdefs.Zip;
@@ -39,6 +38,8 @@ import org.compiere.util.DB;
 import org.compiere.util.Env;
 import org.compiere.util.MimeType;
 import org.compiere.util.Util;
+
+import eone.exceptions.EONEException;
 
 
 /**
@@ -645,14 +646,14 @@ public class MAttachment extends X_AD_Attachment
 			Path tempPath = Files.createTempDirectory(name);
 			tempfolder = tempPath.toFile();
 		} catch (IOException e1) {
-			throw new AdempiereException("Unable to create temp folder", e1);
+			throw new EONEException("Unable to create temp folder", e1);
 		}
 
 		File destZipFile = null;
 		try {
 			destZipFile = File.createTempFile(name, ".zip");
 		} catch (Throwable e) {
-			throw new AdempiereException("Unable to create temp file", e);
+			throw new EONEException("Unable to create temp file", e);
 		}
 		destZipFile.delete();
 

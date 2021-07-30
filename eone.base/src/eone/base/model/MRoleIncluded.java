@@ -10,9 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-import org.adempiere.exceptions.AdempiereException;
-import org.adempiere.exceptions.DBException;
 import org.compiere.util.DB;
+
+import eone.exceptions.EONEException;
+import eone.exceptions.DBException;
 
 /**
  * Included Role Model
@@ -40,7 +41,7 @@ public class MRoleIncluded extends X_AD_Role_Included
 	{
 		if (getAD_Role_ID() == getIncluded_Role_ID())
 		{
-			throw new AdempiereException("@AD_Role_ID@ == @Included_Role_ID@");
+			throw new EONEException("@AD_Role_ID@ == @Included_Role_ID@");
 		}
 		return true;
 	}
@@ -64,7 +65,7 @@ public class MRoleIncluded extends X_AD_Role_Included
 						roles.append(" - ");
 					roles.append(role.getName());
 				}
-				throw new AdempiereException("Loop has detected "+roles);
+				throw new EONEException("Loop has detected "+roles);
 			}
 		}
 		//

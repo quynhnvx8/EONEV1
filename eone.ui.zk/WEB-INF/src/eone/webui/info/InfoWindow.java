@@ -15,7 +15,6 @@ import java.util.Properties;
 import java.util.TreeMap;
 import java.util.logging.Level;
 
-import org.adempiere.exceptions.AdempiereException;
 import org.compiere.minigrid.ColumnInfo;
 import org.compiere.minigrid.EmbedWinInfo;
 import org.compiere.minigrid.IDColumn;
@@ -50,6 +49,7 @@ import org.zkoss.zul.Vbox;
 import eone.base.impexp.AbstractExcelExporter;
 import eone.base.model.AccessSqlParser;
 import eone.base.model.AccessSqlParser.TableInfo;
+import eone.exceptions.EONEException;
 import eone.base.model.GridField;
 import eone.base.model.GridFieldVO;
 import eone.base.model.GridWindow;
@@ -2009,7 +2009,7 @@ public class InfoWindow extends InfoPanel implements ValueChangeListener, EventL
 				}
 				catch(SQLException e)
 				{
-					throw new AdempiereException(e);
+					throw new EONEException(e);
 				}
 			}
 		}
@@ -2074,7 +2074,7 @@ public class InfoWindow extends InfoPanel implements ValueChangeListener, EventL
 			}
 			catch(SQLException e)
 			{
-				throw new AdempiereException(e);
+				throw new EONEException(e);
 			}
 			
 			if(val != null && !columnInfos[col].isKeyPairCol() 

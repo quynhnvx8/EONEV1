@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.Properties;
 import java.util.logging.Level;
 
-import org.adempiere.exceptions.AdempiereException;
 import org.compiere.util.AdempiereUserError;
 import org.compiere.util.CLogger;
 import org.compiere.util.DB;
@@ -18,6 +17,7 @@ import org.compiere.util.Util;
 
 import eone.base.process.DocAction;
 import eone.base.process.DocumentEngine;
+import eone.exceptions.EONEException;
 
 public class MProduction extends X_M_Production implements DocAction {
 	/**
@@ -97,7 +97,7 @@ public class MProduction extends X_M_Production implements DocAction {
 		}
 		catch (SQLException ex)
 		{
-			throw new AdempiereException("Unable to load production lines", ex);
+			throw new EONEException("Unable to load production lines", ex);
 		}
 		finally
 		{
@@ -174,7 +174,7 @@ public class MProduction extends X_M_Production implements DocAction {
 				
 			} // for all bom products
 		} catch (Exception e) {
-			throw new AdempiereException("Failed to create production lines", e);
+			throw new EONEException("Failed to create production lines", e);
 		}
 		finally {
 			DB.close(rs, pstmt);

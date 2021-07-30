@@ -19,7 +19,7 @@ package eone.base.model;
 import java.sql.Timestamp;
 import java.util.Properties;
 
-import org.adempiere.exceptions.AdempiereException;
+import eone.exceptions.EONEException;
 
 /**
  *	Processor Interface
@@ -117,10 +117,10 @@ public interface AdempiereProcessor
 
 	/**
 	 * 	Save throwing exception
-	 * @throws AdempiereException
+	 * @throws EONEException
 	 * @see #save()
 	 */
-	public void saveEx() throws AdempiereException;
+	public void saveEx() throws EONEException;
 	
 	/**
 	 * 	Get Processor Logs

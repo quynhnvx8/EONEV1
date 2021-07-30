@@ -167,6 +167,6 @@ Eclipse-ExtensibleAPI: true
 Web-ContextPath: webui
 Service-Component: OSGI-INF/*.xml
 Bundle-ActivationPolicy: lazy
-Automatic-Module-Name: org.adempiere.ui.zk
+Automatic-Module-Name: eone.ui.zk
 Bundle-Vendor: EONE Community
 

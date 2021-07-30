@@ -29,8 +29,6 @@ import java.util.List;
 import java.util.Properties;
 import java.util.logging.Level;
 
-import org.adempiere.exceptions.AdempiereException;
-import org.adempiere.exceptions.DBException;
 import org.compiere.db.CConnection;
 import org.compiere.db.Database;
 import org.compiere.db.LDAP;
@@ -41,6 +39,9 @@ import org.compiere.util.DisplayType;
 import org.compiere.util.Env;
 import org.compiere.util.Ini;
 import org.compiere.util.TimeUtil;
+
+import eone.exceptions.EONEException;
+import eone.exceptions.DBException;
 
 /**
  * 	System Record (just one)
@@ -235,15 +236,15 @@ public class MSystem extends X_AD_System
 			String name = getName();
 			if (name.equals("?") || name.length() < 2)
 			{
-				throw new AdempiereException("Define a unique System name (e.g. Company name) not " + name);
+				throw new EONEException("Define a unique System name (e.g. Company name) not " + name);
 			}
 			if (getUserName().equals("?") || getUserName().length() < 2)
 			{
-				throw new AdempiereException("Use the same EMail address as in the Adempiere Web Store");
+				throw new EONEException("Use the same EMail address as in the Adempiere Web Store");
 			}
 			if (getPassword().equals("?") || getPassword().length() < 2)
 			{
-				throw new AdempiereException("Use the same Password as in the Adempiere Web Store");
+				throw new EONEException("Use the same Password as in the Adempiere Web Store");
 			}
 		}
 		//

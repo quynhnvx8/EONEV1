@@ -22,7 +22,6 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Properties;
 
-import org.adempiere.exceptions.AdempiereException;
 import org.compiere.util.DB;
 import org.compiere.util.Msg;
 import org.compiere.util.Trx;
@@ -30,6 +29,7 @@ import org.compiere.util.Trx;
 import eone.base.model.MTable;
 import eone.base.model.MViewColumn;
 import eone.base.model.MViewComponent;
+import eone.exceptions.EONEException;
 
 public class DatabaseViewValidate extends SvrProcess {
 
@@ -47,7 +47,7 @@ public class DatabaseViewValidate extends SvrProcess {
 		MTable table = new MTable(getCtx(), p_AD_Table_ID, get_TrxName());
 		log.info(table.toString());
 		if (!table.isView() || !table.isActive())
-			throw new AdempiereException(Msg.getMsg(getCtx(), "NotActiveDatabaseView"));
+			throw new EONEException(Msg.getMsg(getCtx(), "NotActiveDatabaseView"));
 		
 		return validateDatabaseView(getCtx(), table, get_TrxName(), getProcessInfo());
 	}
@@ -91,7 +91,7 @@ public class DatabaseViewValidate extends SvrProcess {
 		//
 		MViewComponent[] m_vcs = table.getViewComponent(true);
 		if (m_vcs == null || m_vcs.length == 0)
-			throw new AdempiereException(Msg.getMsg(ctx, "NoViewComponentsSpecified"));
+			throw new EONEException(Msg.getMsg(ctx, "NoViewComponentsSpecified"));
 
 		boolean modified = false;
 		MViewColumn[] vCols = null;
@@ -104,7 +104,7 @@ public class DatabaseViewValidate extends SvrProcess {
 			{
 				vCols = vc.getColumns(true);
 				if (vCols == null || vCols.length == 0)
-					throw new AdempiereException(Msg.getMsg(ctx, "NoViewColumnsSpecified"));
+					throw new EONEException(Msg.getMsg(ctx, "NoViewColumnsSpecified"));
 				
 				if (viewColumnNames.size() > vCols.length)
 					modified = true;
@@ -153,7 +153,7 @@ public class DatabaseViewValidate extends SvrProcess {
 		if (pi != null)
 			pi.addLog(0, null, new BigDecimal(rvalue), sql);
 		if(rvalue == -1)
-			throw new AdempiereException(Msg.getMsg(ctx, "FailedCreateOrReplaceView"));
+			throw new EONEException(Msg.getMsg(ctx, "FailedCreateOrReplaceView"));
 		else
 			return Msg.getMsg(ctx, "CreatedOrReplacedViewSuccess");
 	}

@@ -3,10 +3,10 @@ package eone.base.process;
 
 import java.util.Properties;
 
-import org.adempiere.exceptions.AdempiereException;
 import org.compiere.util.CLogger;
 
 import eone.base.model.SystemIDs;
+import eone.exceptions.EONEException;
 
 
 public interface DocAction
@@ -41,7 +41,7 @@ public interface DocAction
 	
 	public boolean save();
 	
-	public void saveEx() throws AdempiereException;
+	public void saveEx() throws EONEException;
 	
 	public Properties getCtx();
 	

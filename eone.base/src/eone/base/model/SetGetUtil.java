@@ -30,13 +30,14 @@ import java.util.Collection;
 import java.util.Properties;
 import java.util.logging.Level;
 
-import org.adempiere.exceptions.AdempiereException;
-import org.adempiere.exceptions.DBException;
 import org.compiere.util.CLogger;
 import org.compiere.util.DB;
 import org.compiere.util.Env;
 import org.compiere.util.Language;
 import org.compiere.util.Util;
+
+import eone.exceptions.EONEException;
+import eone.exceptions.DBException;
 
 
 public class SetGetUtil
@@ -450,12 +451,12 @@ public class SetGetUtil
 	 * @param model
 	 * @param name
 	 * @param value
-	 * @throws AdempiereException if it can not be set (error setting, attribute/column name not found).
+	 * @throws EONEException if it can not be set (error setting, attribute/column name not found).
 	 */
 	public static void set_AttrValueEx(SetGetModel model, String name, Object value)
 	{
 		if (!model.set_AttrValue(name, value))
-			throw new AdempiereException("Value not set "+name+"="+value);
+			throw new EONEException("Value not set "+name+"="+value);
 	}
 	
 	/**
@@ -574,7 +575,7 @@ public class SetGetUtil
 	 * Get Table_Name for given PO class
 	 * @param clazz
 	 * @return tableName
-	 * @throws AdempiereException if no table name found or any other exception occurs
+	 * @throws EONEException if no table name found or any other exception occurs
 	 */
 	public static String getTableName(Class<? extends PO> clazz)
 	{
@@ -584,7 +585,7 @@ public class SetGetUtil
 		}
 		catch (Exception e)
 		{
-			throw new AdempiereException(e);
+			throw new EONEException(e);
 		}
 	}
 
@@ -689,7 +690,7 @@ public class SetGetUtil
 		}
 		catch(Exception e)
 		{
-			throw new AdempiereException(e);
+			throw new EONEException(e);
 		}
 	}
 

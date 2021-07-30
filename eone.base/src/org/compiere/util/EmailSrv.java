@@ -53,7 +53,7 @@ import javax.mail.StoreClosedException;
 import javax.mail.internet.ContentType;
 import javax.mail.internet.MimeUtility;
 
-import org.adempiere.exceptions.AdempiereException;
+import eone.exceptions.EONEException;
 
 /**
  * provide function for sent, receive email in imap protocol
@@ -204,7 +204,7 @@ public class EmailSrv {
 	 */
 	public static Folder getFolder (Store mailStore, String folderName, Boolean isNestInbox, boolean createWhenNonExists) throws MessagingException{
 		if (folderName == null || "".equals(folderName.trim())){
-			throw new AdempiereException("Can't open a folder with empty name");
+			throw new EONEException("Can't open a folder with empty name");
 		}
 		
 		char folderSeparate = '\\';
@@ -212,7 +212,7 @@ public class EmailSrv {
 		if (isNestInbox){
 			Folder inboxFolder = mailStore.getDefaultFolder();
 			if (!inboxFolder.exists()){
-				throw new AdempiereException("This mail account hasn't an inbox folder");
+				throw new EONEException("This mail account hasn't an inbox folder");
 			}
 			folderSeparate = inboxFolder.getSeparator();
 			openFolder = inboxFolder.getFolder(folderName.replace('\\', folderSeparate));
@@ -231,10 +231,10 @@ public class EmailSrv {
 		if (!openFolder.exists()){
 			if (createWhenNonExists){
 				if (!openFolder.create(Folder.HOLDS_MESSAGES)){
-					throw new AdempiereException("folder doesn't exist and can't create:" + folderName);
+					throw new EONEException("folder doesn't exist and can't create:" + folderName);
 				}
 			}else{
-				throw new AdempiereException("doesn't exists folder:" + folderName);
+				throw new EONEException("doesn't exists folder:" + folderName);
 			}
 		}
 		
@@ -270,13 +270,13 @@ public class EmailSrv {
 			} catch (MessagingException e) {
 				e.printStackTrace();
 				emailSrv.clearResource();
-				throw new AdempiereException(e.getMessage());
-			}catch (AdempiereException appEx){
+				throw new EONEException(e.getMessage());
+			}catch (EONEException appEx){
 				throw appEx;
 			} catch (Exception e) {
 				e.printStackTrace();
 				emailSrv.clearResource();
-				throw new AdempiereException(e.getMessage());
+				throw new EONEException(e.getMessage());
 			}
 			
 			int numOfTry = 0;
@@ -331,13 +331,13 @@ public class EmailSrv {
 						}
 						
 						if (e instanceof FolderClosedException || e instanceof StoreClosedException || e instanceof IOException){
-							throw new AdempiereException("can't reopen email store for process after three tries");
+							throw new EONEException("can't reopen email store for process after three tries");
 						}
 						
 						// stop when has more 5 continue message error
 						if (numeOfContinueErrorEmail > 5){
 							emailSrv.clearResource();
-							throw new AdempiereException("have 5 email errors when process");
+							throw new EONEException("have 5 email errors when process");
 						}
 					}
 				}

@@ -570,22 +570,6 @@ public final class Adempiere
 			log.warning("Environment problems: " + e.toString());
 		}
 
-		//	Start Workflow Document Manager (in other package) for PO
-		/*Quynhnv.x8: Bo workflow roi
-		String className = null;
-		try
-		{
-			className = "org.compiere.wf.DocWorkflowManager";
-			Class.forName(className);
-			//	Initialize Archive Engine
-			className = "org.compiere.print.ArchiveEngine";
-			Class.forName(className);
-		}
-		catch (Exception e)
-		{
-			log.warning("Not started: " + className + " - " + e.getMessage());
-		}
-		*/
 		if (!isClient)
 			DB.updateMail();
 				

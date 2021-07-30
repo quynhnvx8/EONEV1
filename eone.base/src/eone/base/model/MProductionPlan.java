@@ -10,8 +10,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
 
-import org.adempiere.exceptions.AdempiereException;
 import org.compiere.util.DB;
+
+import eone.exceptions.EONEException;
 
 /**
  * @author hengsin
@@ -62,7 +63,7 @@ public class MProductionPlan extends X_M_ProductionPlan {
 		}
 		catch (SQLException ex)
 		{
-			throw new AdempiereException("Unable to load production lines", ex);
+			throw new EONEException("Unable to load production lines", ex);
 		}
 		finally
 		{

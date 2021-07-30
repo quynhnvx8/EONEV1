@@ -13,13 +13,13 @@
  *****************************************************************************/
 package eone.webui.util;
 
-import org.adempiere.exceptions.AdempiereException;
 import org.zkoss.zk.ui.Desktop;
 import org.zkoss.zk.ui.DesktopUnavailableException;
 import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.EventListener;
 
+import eone.exceptions.EONEException;
 import eone.webui.session.SessionContextListener;
 
 /**
@@ -60,7 +60,7 @@ public class ServerPushTemplate {
 		} catch (DesktopUnavailableException de) {
 			throw de;
     	} catch (Exception e) {
-    		throw new AdempiereException("Failed to update client in server push worker thread.", e);
+    		throw new EONEException("Failed to update client in server push worker thread.", e);
 		}
 	}
 
@@ -88,7 +88,7 @@ public class ServerPushTemplate {
 		} catch (DesktopUnavailableException de) {
 			throw de;
     	} catch (Exception e) {
-    		throw new AdempiereException("Failed to update client in server push worker thread.", e);
+    		throw new EONEException("Failed to update client in server push worker thread.", e);
     	} finally {
     		if (!inUIThread && desktopActivated) {
     			Executions.deactivate(desktop);

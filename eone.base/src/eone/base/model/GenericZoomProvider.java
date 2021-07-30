@@ -23,11 +23,12 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.logging.Level;
 
-import org.adempiere.exceptions.AdempiereException;
 import org.compiere.util.CLogger;
 import org.compiere.util.DB;
 import org.compiere.util.Env;
 import org.compiere.util.Util;
+
+import eone.exceptions.EONEException;
 
 /**
  * Generic provider of zoom targets. Contains pieces of {@link org.compiere.apps.AZoomAcross}
@@ -147,7 +148,7 @@ public class GenericZoomProvider implements IZoomProvider {
 
 		} catch (SQLException e) {
 			logger.log(Level.SEVERE, sqlb.toString(), e);
-			throw new AdempiereException(e);
+			throw new EONEException(e);
 		} finally {
 			DB.close(rs, pstmt);
 		}

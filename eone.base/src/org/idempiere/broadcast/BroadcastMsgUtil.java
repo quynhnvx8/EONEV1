@@ -23,7 +23,6 @@ import java.util.logging.Level;
 
 import org.adempiere.base.event.EventManager;
 import org.adempiere.base.event.IEventTopics;
-import org.adempiere.exceptions.DBException;
 import org.compiere.Adempiere;
 import org.compiere.util.CLogger;
 import org.compiere.util.DB;
@@ -33,6 +32,7 @@ import org.compiere.util.WebUtil;
 import eone.base.model.MBroadcastMessage;
 import eone.base.model.MNote;
 import eone.base.model.MUser;
+import eone.exceptions.DBException;
 
 /**
  * 

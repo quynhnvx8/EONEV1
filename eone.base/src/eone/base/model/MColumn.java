@@ -31,7 +31,6 @@ import java.util.Locale;
 import java.util.Properties;
 import java.util.logging.Level;
 
-import org.adempiere.exceptions.DBException;
 import org.compiere.db.AdempiereDatabase;
 import org.compiere.db.Database;
 import org.compiere.util.CCache;
@@ -41,6 +40,8 @@ import org.compiere.util.DisplayType;
 import org.compiere.util.Env;
 import org.compiere.util.Msg;
 import org.compiere.util.Util;
+
+import eone.exceptions.DBException;
 
 /**
  *	Persistent Column Model

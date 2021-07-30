@@ -2,13 +2,13 @@ package eone.base.process;
 
 import java.util.logging.Level;
 
-import org.adempiere.exceptions.AdempiereException;
 import org.compiere.util.DB;
 import org.compiere.util.Env;
 import org.compiere.util.Msg;
 
 import eone.base.model.MSysConfig;
 import eone.base.model.MUser;
+import eone.exceptions.EONEException;
 
 public class ResetLockedAccount extends SvrProcess {
 
@@ -45,14 +45,14 @@ public class ResetLockedAccount extends SvrProcess {
 			MUser user = new MUser(getCtx(), p_AD_User_ID, null);
 			
 			if (!user.isLocked())
-				throw new AdempiereException(Msg.getMsg(getCtx(), "UserIsNotLocked", new Object[] {user.getName()}));
+				throw new EONEException(Msg.getMsg(getCtx(), "UserIsNotLocked", new Object[] {user.getName()}));
 
 			StringBuilder sql = new StringBuilder ("UPDATE AD_User SET IsLocked = 'N', DateAccountLocked=NULL, FailedLoginCount=0, DateLastLogin=NULL, Updated=getDate() ")
 					.append(" WHERE IsLocked='Y' AND AD_Client_ID = ? ")
 					.append(" AND AD_User_ID = " + user.getAD_User_ID());
 			int no = DB.executeUpdate(sql.toString(), new Object[] { p_AD_Client_ID }, false, get_TrxName());
 			if (no <= 0)
-				throw new AdempiereException(Msg.getMsg(getCtx(), "CouldNotUnlockAccount") + user.toString());
+				throw new EONEException(Msg.getMsg(getCtx(), "CouldNotUnlockAccount") + user.toString());
 
 			StringBuilder msgreturn = new StringBuilder(Msg.getMsg(getCtx(), "ProcessOK")).append(" - ").append(Msg.getMsg(getCtx(), "UserUnlocked", new Object[] {user.getName()}));
 			return msgreturn.toString();
@@ -82,7 +82,7 @@ public class ResetLockedAccount extends SvrProcess {
 			
 			int no = DB.executeUpdate(sql.toString(), p_AD_Client_ID, get_TrxName());
 			if (no < 0)
-				throw new AdempiereException(Msg.getMsg(getCtx(), "CouldNotUnlockAccount"));
+				throw new EONEException(Msg.getMsg(getCtx(), "CouldNotUnlockAccount"));
 			StringBuilder msgreturn = new StringBuilder().append(no).append(" ").append(Msg.getMsg(getCtx(), "LockedAccountResetted"));
 			return msgreturn.toString();
 		}

@@ -21,7 +21,6 @@ import java.sql.Timestamp;
 import java.util.Vector;
 import java.util.logging.Level;
 
-import org.adempiere.exceptions.AdempiereException;
 import org.compiere.minigrid.IDColumn;
 import org.compiere.minigrid.IMiniTable;
 import org.compiere.util.CLogger;
@@ -33,6 +32,7 @@ import org.compiere.util.Trx;
 
 import eone.base.model.MInvoiceLine;
 import eone.base.model.MRole;
+import eone.exceptions.EONEException;
 
 public class Match
 {
@@ -208,7 +208,7 @@ public class Match
 						innerTrx.rollback();
 				}catch(Exception ex){
 					innerTrx.rollback();
-					throw new AdempiereException(ex);
+					throw new EONEException(ex);
 				}finally{
 					innerTrx.close();
 					innerTrx = null;

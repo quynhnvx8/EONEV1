@@ -18,7 +18,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.adempiere.base.IGridTabExporter;
-import org.adempiere.exceptions.AdempiereException;
 import org.compiere.util.DisplayType;
 import org.compiere.util.Env;
 import org.compiere.util.Msg;
@@ -28,6 +27,7 @@ import eone.base.model.GridTab;
 import eone.base.model.Lookup;
 import eone.base.model.MLookup;
 import eone.base.model.MLookupFactory;
+import eone.exceptions.EONEException;
 
 /**
  * Excel Exporter Adapter for GridTab
@@ -160,7 +160,7 @@ public class GridTabExcelExporter extends AbstractExcelExporter implements IGrid
 		try {
 			export(file, null);
 		} catch (Exception e) {
-			throw new AdempiereException(e);
+			throw new EONEException(e);
 		}
 	}
 

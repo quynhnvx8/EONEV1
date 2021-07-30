@@ -18,13 +18,13 @@ package eone.base.process;
 
 import java.util.List;
 
-import org.adempiere.exceptions.AdempiereException;
 import org.compiere.util.CacheMgt;
 
 import eone.base.model.MSysConfig;
 import eone.base.model.MTable;
 import eone.base.model.MUser;
 import eone.base.model.SystemIDs;
+import eone.exceptions.EONEException;
 
 /**
  *	Hash existing passwords
@@ -48,7 +48,7 @@ public class HashPasswords extends SvrProcess
 	{
 		boolean hash_password = MSysConfig.getBooleanValue(MSysConfig.USER_PASSWORD_HASH, false);
 		if (hash_password)
-			throw new AdempiereException("Passwords already hashed");
+			throw new EONEException("Passwords already hashed");
 		
 		String where = " Password IS NOT NULL ";// AND Salt IS NULL
 		

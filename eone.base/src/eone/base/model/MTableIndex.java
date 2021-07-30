@@ -20,10 +20,11 @@ import java.sql.ResultSet;
 import java.util.List;
 import java.util.Properties;
 
-import org.adempiere.exceptions.AdempiereException;
 import org.compiere.db.Database;
 import org.compiere.util.Msg;
 import org.compiere.util.Util;
+
+import eone.exceptions.EONEException;
 
 public class MTableIndex extends X_AD_TableIndex {
 	/**
@@ -189,7 +190,7 @@ public class MTableIndex extends X_AD_TableIndex {
 		{
 			String errMsg = Msg.getMsg(getCtx(), "NeitherTableIndexNorUniqueConstraint", new Object[] { getTableName() });
 			log.severe(errMsg);
-			throw new AdempiereException(errMsg);
+			throw new EONEException(errMsg);
 		}
 			
 		return sql.toString();

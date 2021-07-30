@@ -15,9 +15,10 @@ package org.compiere.db;
 import java.sql.Connection;
 import java.util.logging.Level;
 
-import org.adempiere.exceptions.DBException;
 import org.compiere.util.CStatementVO;
 import org.compiere.util.Trx;
+
+import eone.exceptions.DBException;
 
 /**
  * Dynamic proxy for the CCallableStatement

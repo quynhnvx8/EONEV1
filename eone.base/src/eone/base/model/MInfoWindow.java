@@ -8,13 +8,13 @@ import java.util.List;
 import java.util.Properties;
 import java.util.logging.Level;
 
-import org.adempiere.exceptions.AdempiereException;
 import org.compiere.util.CCache;
 import org.compiere.util.DB;
 import org.compiere.util.Env;
 import org.compiere.util.Msg;
 
 import eone.base.model.AccessSqlParser.TableInfo;
+import eone.exceptions.EONEException;
 
 
 public class MInfoWindow extends X_AD_InfoWindow
@@ -320,7 +320,7 @@ public class MInfoWindow extends X_AD_InfoWindow
 			pstmt.executeQuery();
 		}catch (Exception ex){
 			log.log(Level.WARNING, ex.getMessage());
-			throw new AdempiereException(ex);
+			throw new EONEException(ex);
 		} finally {
 			DB.close(pstmt);
 		}

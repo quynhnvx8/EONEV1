@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Properties;
 
-import org.adempiere.exceptions.AdempiereException;
+import eone.exceptions.EONEException;
 
 /**
  * Arhipac Runtime exception
@@ -17,7 +17,7 @@ import org.adempiere.exceptions.AdempiereException;
  *
  */
 public class ArhRuntimeException
-	extends AdempiereException
+	extends EONEException
 {
 	/**
 	 * 

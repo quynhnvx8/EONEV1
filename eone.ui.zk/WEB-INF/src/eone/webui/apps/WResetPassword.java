@@ -17,7 +17,6 @@ package eone.webui.apps;
 import java.util.ArrayList;
 import java.util.logging.Level;
 
-import org.adempiere.exceptions.AdempiereException;
 import org.compiere.util.CLogger;
 import org.compiere.util.DisplayType;
 import org.compiere.util.Env;
@@ -38,6 +37,7 @@ import eone.base.model.MPasswordHistory;
 import eone.base.model.MPasswordRule;
 import eone.base.model.MSysConfig;
 import eone.base.model.MUser;
+import eone.exceptions.EONEException;
 import eone.webui.component.Checkbox;
 import eone.webui.component.Column;
 import eone.webui.component.ConfirmPanel;
@@ -305,7 +305,7 @@ public class WResetPassword implements IFormController, EventListener<Event>, Va
 		try {
 			user.saveEx();
 		}
-		catch(AdempiereException e)
+		catch(EONEException e)
 		{
 			user.load(user.get_TrxName());
 			throw e;

@@ -33,11 +33,11 @@ import java.nio.file.attribute.BasicFileAttributes;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-import org.adempiere.exceptions.AdempiereException;
 import org.compiere.util.Env;
 import org.compiere.util.Util;
 
 import eone.base.model.MAttachment;
+import eone.exceptions.EONEException;
 
 /**
  *  File Utilities
@@ -473,16 +473,16 @@ public class FileUtil
 			destinationFileOutputStream.write(buffer);
 		} 
 		catch( java.io.FileNotFoundException f ) {
-			throw new AdempiereException("File not found exception : " + destinationFile.getName() + " : " + f);
+			throw new EONEException("File not found exception : " + destinationFile.getName() + " : " + f);
 		} 
 		catch( java.io.IOException e ) {
-			throw new AdempiereException("IOException : " + e);
+			throw new EONEException("IOException : " + e);
 		} finally {
 			try {
 				if (destinationFileOutputStream != null)
 					destinationFileOutputStream.close();
 			} catch(Exception e) { 
-				throw new AdempiereException("Exception : " + e);
+				throw new EONEException("Exception : " + e);
 			}
 		}
 	}

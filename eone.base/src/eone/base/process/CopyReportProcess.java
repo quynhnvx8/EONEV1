@@ -17,10 +17,10 @@ package eone.base.process;
 
 import java.util.logging.Level;
 
-import org.adempiere.exceptions.AdempiereException;
 import org.compiere.util.Msg;
 
 import eone.base.model.MProcess;
+import eone.exceptions.EONEException;
 
 /**
  * 
@@ -42,7 +42,7 @@ public class CopyReportProcess extends SvrProcess {
 		MProcess target = new MProcess(getCtx(), targetId, get_TrxName());
 		
 		if ( sourceId <= 0 || targetId <= 0 || source == null || target == null )
-			throw new AdempiereException(Msg.getMsg(getCtx(), "CopyProcessRequired"));
+			throw new EONEException(Msg.getMsg(getCtx(), "CopyProcessRequired"));
 		
 		target.copyFrom(source);  // saves automatically
 		

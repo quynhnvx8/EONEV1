@@ -11,7 +11,6 @@ import java.util.logging.Level;
 import javax.script.ScriptEngine;
 
 import org.adempiere.base.Core;
-import org.adempiere.exceptions.AdempiereException;
 
 import eone.base.model.MProcess;
 import eone.base.model.MRule;
@@ -19,6 +18,7 @@ import eone.base.process.ProcessCall;
 import eone.base.process.ProcessInfo;
 import eone.base.process.ProcessInfoParameter;
 import eone.base.process.ProcessInfoUtil;
+import eone.exceptions.EONEException;
 
 /**
  *
@@ -182,7 +182,7 @@ public final class ProcessUtil {
 
 			ScriptEngine engine = rule.getScriptEngine();
 			if (engine == null) {
-				throw new AdempiereException("Engine not found: " + rule.getEngineName());
+				throw new EONEException("Engine not found: " + rule.getEngineName());
 			}
 
 			// Window context are    W_

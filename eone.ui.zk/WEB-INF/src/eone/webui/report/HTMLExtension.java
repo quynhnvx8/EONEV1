@@ -19,7 +19,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 
-import org.adempiere.exceptions.AdempiereException;
 import org.apache.ecs.ConcreteElement;
 import org.apache.ecs.xhtml.a;
 import org.apache.ecs.xhtml.body;
@@ -29,6 +28,7 @@ import org.compiere.util.Env;
 import org.compiere.util.Msg;
 
 import eone.base.model.MSysConfig;
+import eone.exceptions.EONEException;
 import eone.webui.apps.AEnv;
 import eone.webui.theme.ThemeManager;
 
@@ -119,7 +119,7 @@ public class HTMLExtension implements IHTMLExtension {
 			    	cssStream.write(buffer, 0, read);
 			    }
 			} catch (IOException e) {
-				throw new AdempiereException(e);
+				throw new EONEException(e);
 			} finally{
 				if (cssStream != null) {
 					try {

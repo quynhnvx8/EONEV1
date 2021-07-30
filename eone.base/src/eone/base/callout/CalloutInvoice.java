@@ -49,12 +49,16 @@ public class CalloutInvoice extends CalloutEngine
 		
 		//Doi thue
 		if ("C_Tax_ID".equalsIgnoreCase(mField.getColumnName())) {
-			C_Tax_ID = new BigDecimal(mTab.getValue("C_Tax_ID").toString());
-			tax = MTax.get(ctx, C_Tax_ID.intValue());
-			if (tax != null) {
-				rate = tax.getRate();
-			} else {
-				rate = Env.ZERO;
+			Object objTax = mTab.getValue("C_Tax_ID");
+			if (objTax != null)
+			{
+				C_Tax_ID = new BigDecimal(mTab.getValue("C_Tax_ID").toString());
+				tax = MTax.get(ctx, C_Tax_ID.intValue());
+				if (tax != null) {
+					rate = tax.getRate();
+				} else {
+					rate = Env.ZERO;
+				}
 			}
 			objAmount = mTab.getValue("Amount");
 			if (objAmount == null) {

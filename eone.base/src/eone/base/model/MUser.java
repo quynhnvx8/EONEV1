@@ -29,7 +29,6 @@ import java.util.logging.Level;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 
-import org.adempiere.exceptions.DBException;
 import org.compiere.util.AesBase64Wrapper;
 import org.compiere.util.CCache;
 import org.compiere.util.CLogger;
@@ -39,6 +38,8 @@ import org.compiere.util.Env;
 import org.compiere.util.Msg;
 import org.compiere.util.SecureEngine;
 import org.compiere.util.Util;
+
+import eone.exceptions.DBException;
 
 /**
  *  User Model

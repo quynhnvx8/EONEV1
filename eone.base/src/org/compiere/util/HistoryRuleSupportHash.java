@@ -14,10 +14,11 @@
 
 package org.compiere.util;
 
-import org.adempiere.exceptions.AdempiereException;
 import org.passay.HistoryRule;
 import org.passay.PasswordData.HistoricalReference;
 import org.passay.PasswordData.Reference;
+
+import eone.exceptions.EONEException;
 
 /**
  * implement history password rule support hash password
@@ -38,7 +39,7 @@ public class HistoryRuleSupportHash extends HistoryRule {
 				return reference.getPassword().equals(password);
 			}
 		}else{
-			throw new AdempiereException("Wrong sub type of org.passay.PasswordData.Reference");
+			throw new EONEException("Wrong sub type of org.passay.PasswordData.Reference");
 		}
 	}
 }

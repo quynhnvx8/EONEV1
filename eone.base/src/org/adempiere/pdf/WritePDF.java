@@ -1,5 +1,7 @@
 package org.adempiere.pdf;
 
+import java.awt.Graphics2D;
+import java.awt.geom.Rectangle2D;
 import java.awt.print.PageFormat;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -12,7 +14,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import org.adempiere.exceptions.AdempiereException;
 import org.compiere.Adempiere;
 import org.compiere.print.CPaper;
 import org.compiere.print.MPrintFormat;
@@ -21,7 +22,13 @@ import org.compiere.print.MPrintPaper;
 import org.compiere.print.PrintDataItem;
 import org.compiere.util.Env;
 import org.compiere.util.Language;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.data.general.DefaultPieDataset;
 
+import com.itextpdf.awt.DefaultFontMapper;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -45,6 +52,7 @@ import com.itextpdf.text.pdf.PdfWriter;
 import eone.base.model.MConfigSignReport;
 import eone.base.process.ProcessInfo;
 import eone.base.process.ProcessInfoParameter;
+import eone.exceptions.EONEException;
 
 
 /**
@@ -297,7 +305,7 @@ public class WritePDF {
         try {
         	writePDF(new FileOutputStream(result), m_printFormat, m_params);//pageable, 
         } catch (Exception e) {
-            throw new AdempiereException(e);
+            throw new EONEException(e);
         }
         
         return result;
@@ -529,6 +537,7 @@ public class WritePDF {
             //End For all row
     		document.add(table);
     		
+    		writeChartToPDF(writer, generatePieChart(), 300, 300, pf);
             //Create Footer
     		
     		table = createFooter(m_params, format, courier, items);
@@ -536,7 +545,7 @@ public class WritePDF {
     			document.add(table);
     		document.close();
         } catch (Exception e) {
-            throw new AdempiereException(e);
+            throw new EONEException(e);
         }
 	}
     
@@ -544,6 +553,58 @@ public class WritePDF {
     	
         return name;
     }
+    
+    //Hàm tạo chart theo hình tròn
+    
+    public static JFreeChart generatePieChart() {
+		DefaultPieDataset dataSet = new DefaultPieDataset();
+		dataSet.setValue("China", 19.64);
+		dataSet.setValue("India", 17.3);
+		dataSet.setValue("United States", 4.54);
+		dataSet.setValue("Indonesia", 3.4);
+		dataSet.setValue("Brazil", 2.83);
+		dataSet.setValue("Pakistan", 2.48);
+		dataSet.setValue("Bangladesh", 2.38);
+
+		JFreeChart chart = ChartFactory.createPieChart(
+				"World Population by countries", dataSet, true, true, false);
+
+		return chart;
+	}
+
+    //Hàm tạo chart theo hình cột
+	public static JFreeChart generateBarChart() {
+		DefaultCategoryDataset dataSet = new DefaultCategoryDataset();
+		dataSet.setValue(791, "Population", "1750 AD");
+		dataSet.setValue(978, "Population", "1800 AD");
+		dataSet.setValue(1262, "Population", "1850 AD");
+		dataSet.setValue(1650, "Population", "1900 AD");
+		dataSet.setValue(2519, "Population", "1950 AD");
+		dataSet.setValue(6070, "Population", "2000 AD");
+
+		JFreeChart chart = ChartFactory.createBarChart(
+				"World Population growth", "Year", "Population in millions",
+				dataSet, PlotOrientation.VERTICAL, false, true, false);
+
+		return chart;
+	}
+	
+	//Hàm writechart to PDF
+	public static void writeChartToPDF(PdfWriter writer, JFreeChart chart, int width, int height, PageFormat pf) {
+
+		PdfContentByte contentByte = writer.getDirectContent();
+		PdfTemplate template = contentByte.createTemplate(width + 100, height + 100);
+		
+		@SuppressWarnings("deprecation")
+		Graphics2D graphics2d = template.createGraphics(width, height, new DefaultFontMapper());
+		Rectangle2D rectangle2d = new Rectangle2D.Double(100, 100, width+100, height+100);
+
+		chart.draw(graphics2d, rectangle2d);
+		
+		graphics2d.dispose();
+		contentByte.addTemplate(template, 0, 0);
+		
+	}
     
     static class Background extends PdfPageEventHelper {
         Font font;

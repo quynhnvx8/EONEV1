@@ -34,8 +34,6 @@ import java.util.logging.Level;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.AbstractTableModel;
 
-import org.adempiere.exceptions.AdempiereException;
-import org.adempiere.exceptions.DBException;
 import org.compiere.Adempiere;
 import org.compiere.util.CLogger;
 import org.compiere.util.CacheMgt;
@@ -50,6 +48,9 @@ import org.compiere.util.ServerContext;
 import org.compiere.util.Trx;
 import org.compiere.util.Util;
 import org.compiere.util.ValueNamePair;
+
+import eone.exceptions.EONEException;
+import eone.exceptions.DBException;
 
 
 public class GridTable extends AbstractTableModel
@@ -2515,18 +2516,11 @@ public class GridTable extends AbstractTableModel
 			return false;
 		}
 
-		/** @todo No TableLevel */
-		//  || !Access.canViewInsert(m_ctx, m_WindowNo, tableLevel, true, true))
-		//  fireDataStatusEvent(Log.retrieveError());
-
-		//  see if we need to save
 		dataSave(-2, false);
 
 
 		m_inserting = true;
 		
-		// Setup the buffer first so that event will be handle properly
-		// Create default data
 		int size = m_fields.size();
 		m_rowData = new Object[size];	//	"original" data
 		Object[] rowData = new Object[size];
@@ -2557,7 +2551,6 @@ public class GridTable extends AbstractTableModel
 		//	fill data
 		if (copyCurrent)
 		{
-			boolean hasDocTypeTargetField = (getField("C_DocTypeTarget_ID") != null);
 			Object[] origData = getDataAtRow(currentRow);
 			for (int i = 0; i < size; i++)
 			{
@@ -2568,10 +2561,8 @@ public class GridTable extends AbstractTableModel
 				if (field.isVirtualColumn())
 					;
 				else if (   field.isKey()		//	KeyColumn
-						  || (column != null && column.isUUIDColumn()) // IDEMPIERE-67
+						  || (column != null && column.isUUIDColumn()) 
 						  || (column != null && column.isStandardColumn() && !column.getColumnName().equals("AD_Org_ID")) // AD_Org_ID can be copied
-						  // Bug [ 1807947 ]
-						  || (hasDocTypeTargetField && field.getColumnName().equals("C_DocType_ID"))
 						  || ! field.isAllowCopy())
 				{
 					Object value = field.getDefault();
@@ -2647,8 +2638,6 @@ public class GridTable extends AbstractTableModel
 				return false;
 			}
 		}
-		// Carlos Ruiz - globalqss - IDEMPIERE-111
-		// Check if the role has access to this client
 		//	Can we change?
 		int[] co = getClientOrg(row);
 		int AD_Client_ID = co[0];
@@ -3499,7 +3488,7 @@ public class GridTable extends AbstractTableModel
 				if (DBException.isInvalidIdentifierError(e0))
 					log.warning("Count - " + e0.getLocalizedMessage() + "\nSQL=" + m_SQL_Count);
 				else
-					throw new AdempiereException(e0);
+					throw new EONEException(e0);
 				return 0;
 			}
 			finally

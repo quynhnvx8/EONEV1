@@ -604,7 +604,7 @@ public class RolePanel extends Window implements EventListener<Event>, Deferrabl
 		Env.setContext(m_ctx, "#Month", new SimpleDateFormat("MM").format(ts));
 		Env.setContext(m_ctx, "#Year", new SimpleDateFormat("yyyy").format(ts));
 		Env.setContext(m_ctx, "#FDate", TimeUtil.getDayFirstMonth(ts));
-		Env.setContext(m_ctx, "#TDate", TimeUtil.getDayLastMonth(ts));
+		Env.setContext(m_ctx, "#LDate", TimeUtil.getDayLastMonth(ts));
 		Env.setContext(m_ctx, "#FYDate", TimeUtil.getDayFirstYear(ts));
 		Env.setContext(m_ctx, "#LYDate", TimeUtil.getDayLastYear(ts));
 		

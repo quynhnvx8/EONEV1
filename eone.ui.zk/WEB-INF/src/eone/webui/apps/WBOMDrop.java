@@ -29,7 +29,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Level;
 
-import org.adempiere.exceptions.AdempiereException;
 import org.compiere.util.CLogger;
 import org.compiere.util.DB;
 import org.compiere.util.Env;
@@ -62,6 +61,7 @@ import eone.base.model.MProductBOM;
 import eone.base.model.MProject;
 import eone.base.model.MProjectLine;
 import eone.base.model.MRole;
+import eone.exceptions.EONEException;
 import eone.webui.component.Checkbox;
 import eone.webui.component.ConfirmPanel;
 import eone.webui.component.Grid;
@@ -930,7 +930,7 @@ public class WBOMDrop extends ADForm implements EventListener<Event>
 			{
 				trx.rollback();
 			}
-			throw new AdempiereException(e.getMessage());
+			throw new EONEException(e.getMessage());
 		}				
 		
 		FDialog.info(-1, this, Msg.translate(Env.getCtx(), "C_Order_ID")+ " : " + order.getDocumentInfo() + " , " + Msg.translate(Env.getCtx(), "NoOfLines") + " " + Msg.translate(Env.getCtx(), "Inserted") + " = " + lineCount);
@@ -979,7 +979,7 @@ public class WBOMDrop extends ADForm implements EventListener<Event>
 			{
 				trx.rollback();
 			}
-			throw new AdempiereException(e.getMessage());
+			throw new EONEException(e.getMessage());
 		}		
 		
 		FDialog.info(-1, this, Msg.translate(Env.getCtx(), "C_Invoice_ID")+ " : " + invoice.getDocumentInfo() +  " , " + Msg.translate(Env.getCtx(), "NoOfLines") + " " + Msg.translate(Env.getCtx(), "Inserted") + " = " + lineCount);
@@ -1026,7 +1026,7 @@ public class WBOMDrop extends ADForm implements EventListener<Event>
 			{
 				trx.rollback();
 			}
-			throw new AdempiereException(e.getMessage());
+			throw new EONEException(e.getMessage());
 		}		
 		
 		FDialog.info(-1, this, Msg.translate(Env.getCtx(), "C_Project_ID")+ " : " + project.getName() + " , " + Msg.translate(Env.getCtx(), "NoOfLines") + " " + Msg.translate(Env.getCtx(), "Inserted") + " = " + lineCount);

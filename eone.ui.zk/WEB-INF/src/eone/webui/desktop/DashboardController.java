@@ -10,7 +10,6 @@ import java.util.Properties;
 import java.util.logging.Level;
 
 import org.adempiere.base.Service;
-import org.adempiere.exceptions.AdempiereException;
 import org.compiere.util.CLogger;
 import org.compiere.util.Env;
 import org.zkoss.zk.ui.Component;
@@ -41,6 +40,7 @@ import eone.base.model.MDashboardContentAccess;
 import eone.base.model.MDashboardPreference;
 import eone.base.model.MGoal;
 import eone.base.model.MSysConfig;
+import eone.exceptions.EONEException;
 import eone.webui.ClientInfo;
 import eone.webui.apps.ChartModel;
 import eone.webui.apps.IChartRendererService;
@@ -453,7 +453,7 @@ public class DashboardController implements EventListener<Event> {
                 }
 			} catch (Exception e) {
 				logger.log(Level.WARNING, "Failed to create components. zul="+url, e);
-				throw new AdempiereException(e);
+				throw new EONEException(e);
 			}
     	}
 

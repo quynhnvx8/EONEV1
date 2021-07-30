@@ -27,7 +27,7 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 
-import org.adempiere.exceptions.AdempiereException;
+import eone.exceptions.EONEException;
 
 /**
  * @author hengsin
@@ -78,7 +78,7 @@ public class ServerContextPropertiesWrapper extends Properties {
 		try {
 			ServerContext.getCurrentInstance().store(out, comments);
 		} catch (IOException e) {
-			throw new AdempiereException(e);
+			throw new EONEException(e);
 		}
 	}
 

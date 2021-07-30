@@ -24,13 +24,14 @@ import java.util.logging.Level;
 
 import javax.sql.RowSet;
 
-import org.adempiere.exceptions.DBException;
 import org.compiere.util.CCachedRowSet;
 import org.compiere.util.CLogger;
 import org.compiere.util.CStatementVO;
 import org.compiere.util.DB;
 import org.compiere.util.DisplayType;
 import org.compiere.util.Trx;
+
+import eone.exceptions.DBException;
 
 /**
  *

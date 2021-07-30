@@ -13,12 +13,12 @@ import java.util.StringTokenizer;
 import java.util.TreeSet;
 import java.util.logging.Level;
 
-import org.adempiere.exceptions.DBException;
 import org.compiere.Adempiere;
 
 import eone.base.model.MEntityType;
 import eone.base.model.MQuery;
 import eone.base.model.MTable;
+import eone.exceptions.DBException;
 
 public class ModelInterfaceGenerator
 {

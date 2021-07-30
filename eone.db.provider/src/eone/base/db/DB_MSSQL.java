@@ -27,7 +27,6 @@ import javax.sql.ConnectionPoolDataSource;
 import javax.sql.DataSource;
 import javax.sql.RowSet;
 
-import org.adempiere.exceptions.DBException;
 import org.compiere.db.AdempiereDatabase;
 import org.compiere.db.CConnection;
 import org.compiere.db.Convert;
@@ -46,6 +45,7 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 import eone.base.model.MColumn;
 import eone.base.model.MTable;
 import eone.base.model.PO;
+import eone.exceptions.DBException;
 
 /**
  *  @author QuynhNV.X8

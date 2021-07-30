@@ -8,7 +8,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 
-import org.adempiere.exceptions.AdempiereException;
 import org.compiere.tools.FileUtil;
 import org.compiere.util.CLogger;
 import org.compiere.util.Env;
@@ -38,6 +37,7 @@ import eone.base.model.MArchive;
 import eone.base.model.MRole;
 import eone.base.model.MSysConfig;
 import eone.base.model.PrintInfo;
+import eone.exceptions.EONEException;
 import eone.webui.ClientInfo;
 import eone.webui.LayoutUtils;
 import eone.webui.component.Listbox;
@@ -242,7 +242,7 @@ public class ZkJRViewer extends Window implements EventListener<Event>, ITabOnCl
 			renderReport();
 		} catch (Exception e) {
 			log.log(Level.SEVERE, e.getLocalizedMessage(), e);
-			throw new AdempiereException("Failed to render report.", e);
+			throw new EONEException("Failed to render report.", e);
 		}
 		center.appendChild(iframe);
 
@@ -280,7 +280,7 @@ public class ZkJRViewer extends Window implements EventListener<Event>, ITabOnCl
 		try {
 			renderReport();
 		} catch (Exception e) {
-			throw new AdempiereException("Failed to render report", e);
+			throw new EONEException("Failed to render report", e);
 		}
 	}
 

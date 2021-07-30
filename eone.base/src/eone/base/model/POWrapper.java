@@ -19,8 +19,9 @@ import java.lang.reflect.Proxy;
 import java.math.BigDecimal;
 import java.util.logging.Level;
 
-import org.adempiere.exceptions.AdempiereException;
 import org.compiere.util.CLogger;
+
+import eone.exceptions.EONEException;
 
 /**
  * Wrap a PO object to a given bean interface.
@@ -49,7 +50,7 @@ public class POWrapper implements InvocationHandler
 	{
 		if (!(po instanceof PO))
 		{
-			throw new AdempiereException("Not a PO object - "+po);
+			throw new EONEException("Not a PO object - "+po);
 		}
 		if (cl.isInstance(po))
 		{

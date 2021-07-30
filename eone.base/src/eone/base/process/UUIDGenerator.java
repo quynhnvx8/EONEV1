@@ -24,7 +24,6 @@ import java.util.List;
 import java.util.UUID;
 import java.util.logging.Level;
 
-import org.adempiere.exceptions.DBException;
 import org.compiere.util.AdempiereUserError;
 import org.compiere.util.CLogger;
 import org.compiere.util.DB;
@@ -39,6 +38,7 @@ import eone.base.model.MColumn;
 import eone.base.model.MTable;
 import eone.base.model.M_Element;
 import eone.base.model.PO;
+import eone.exceptions.DBException;
 
 /**
  * Add UUID column (tableName_UU) to table and update existing records with new UUID.

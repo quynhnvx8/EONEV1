@@ -33,11 +33,10 @@ import java.util.Collections;
 import java.util.List;
 import java.util.logging.Level;
 
-import org.adempiere.exceptions.AdempiereException;
-import org.adempiere.exceptions.DBException;
-
 import eone.base.model.MSysConfig;
 import eone.base.model.MSystem;
+import eone.exceptions.EONEException;
+import eone.exceptions.DBException;
 
 public class DBReadReplica {
 
@@ -72,7 +71,7 @@ public class DBReadReplica {
 			} catch (SQLException e) {
 				log.warning("Error preparing statement in replica -> SQL = " + sql);
 				statementToReturn = null;
-				throw new AdempiereException(e);
+				throw new EONEException(e);
 			}
 		}
 		return statementToReturn;

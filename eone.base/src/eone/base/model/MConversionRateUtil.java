@@ -9,10 +9,11 @@ import java.sql.Timestamp;
 import java.util.Properties;
 import java.util.logging.Level;
 
-import org.adempiere.exceptions.NoCurrencyConversionException;
 import org.compiere.util.CLogger;
 import org.compiere.util.Env;
 import org.compiere.util.Msg;
+
+import eone.exceptions.NoCurrencyConversionException;
 
 /**
  * @author Teo Sarca, SC ARHIPAC SERVICE SRL

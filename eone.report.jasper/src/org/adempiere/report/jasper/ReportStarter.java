@@ -35,8 +35,6 @@ import javax.print.attribute.standard.Copies;
 
 import org.adempiere.base.IServiceReferenceHolder;
 import org.adempiere.base.Service;
-import org.adempiere.exceptions.AdempiereException;
-import org.adempiere.exceptions.DBException;
 import org.compiere.print.PrintUtil;
 import org.compiere.print.ServerReportCtl;
 import org.compiere.util.CLogger;
@@ -61,6 +59,8 @@ import eone.base.process.ClientProcess;
 import eone.base.process.ProcessCall;
 import eone.base.process.ProcessInfo;
 import eone.base.process.ProcessInfoParameter;
+import eone.exceptions.EONEException;
+import eone.exceptions.DBException;
 import net.sf.jasperreports.engine.DefaultJasperReportsContext;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JRParameter;
@@ -158,7 +158,7 @@ public class ReportStarter implements ProcessCall, ClientProcess
     	} catch (FileNotFoundException e) {
     		return null;
     	} catch (IOException e) {
-			throw new AdempiereException("I/O error when trying to download (sub)report from server "+ e.getLocalizedMessage());
+			throw new EONEException("I/O error when trying to download (sub)report from server "+ e.getLocalizedMessage());
     	}
     }
 
@@ -263,7 +263,7 @@ public class ReportStarter implements ProcessCall, ClientProcess
 
     	}
     	catch (Exception e) {
-			throw new AdempiereException("Unknown exception: "+ e.getLocalizedMessage());
+			throw new EONEException("Unknown exception: "+ e.getLocalizedMessage());
     	}    	
     }
 
@@ -656,7 +656,7 @@ public class ReportStarter implements ProcessCall, ClientProcess
 	                		if (idx+1 == reportPathList.length) {
 			                    JRViewerProviderList viewerLauncher = getViewerProviderList();//Service.locator().locate(JRViewerProviderList.class).getService();
 			                    if (viewerLauncher == null) {
-			                    	throw new AdempiereException("Can not find a viewer provider for multiple jaspers");
+			                    	throw new EONEException("Can not find a viewer provider for multiple jaspers");
 			                    }
 			                    viewerLauncher.openViewer(jasperPrintList, pi.getTitle(), printInfo);
 	                		}
@@ -736,7 +736,7 @@ public class ReportStarter implements ProcessCall, ClientProcess
                 	}
                 }
             } catch (JRException e) {
-                throw new AdempiereException(e.getLocalizedMessage() + (e.getCause() != null ? " -> " + e.getCause().getLocalizedMessage() : ""));
+                throw new EONEException(e.getLocalizedMessage() + (e.getCause() != null ? " -> " + e.getCause().getLocalizedMessage() : ""));
             } finally {
             	if (conn != null) {
 					try {
@@ -1088,10 +1088,10 @@ public class ReportStarter implements ProcessCall, ClientProcess
 				File downloadedFile = new File(downloadedLocalFile);
 				entry.getFile(downloadedFile);
 				if (! reportFile.delete()) {
-					throw new AdempiereException("Cannot delete temporary file " + reportFile.toString());
+					throw new EONEException("Cannot delete temporary file " + reportFile.toString());
 				}
 				if (! downloadedFile.renameTo(reportFile)) {
-					throw new AdempiereException("Cannot rename temporary file " + downloadedFile.toString() + " to " + reportFile.toString());
+					throw new EONEException("Cannot rename temporary file " + downloadedFile.toString() + " to " + reportFile.toString());
 				}
 			}
 		} else {
@@ -1147,7 +1147,7 @@ public class ReportStarter implements ProcessCall, ClientProcess
             jasperFile.setLastModified( reportFile.lastModified()); //Synchronize Dates
             compiledJasperReport =  (JasperReport)JRLoader.loadObject(jasperFile);
         } catch (JRException e) {
-            throw new AdempiereException(e);
+            throw new EONEException(e);
         }
         return compiledJasperReport;                
     }

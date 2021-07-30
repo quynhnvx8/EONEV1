@@ -31,12 +31,12 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 
-import org.adempiere.exceptions.AdempiereException;
-import org.adempiere.exceptions.DBException;
 import org.compiere.Adempiere;
 
 import eone.base.model.MSysConfig;
 import eone.base.model.PO;
+import eone.exceptions.EONEException;
+import eone.exceptions.DBException;
 
 /**
  *	Transaction Management.
@@ -590,7 +590,7 @@ public class Trx
 	 * 
 	 * @param trxName transaction name (if null, a new transaction will be created)
 	 * @param r runnable object
-	 * @throws RuntimeException or {@link AdempiereException}
+	 * @throws RuntimeException or {@link EONEException}
 	 */
 	public static void run(String trxName, TrxRunnable r)
 	{
@@ -632,7 +632,7 @@ public class Trx
 			}
 			else
 			{
-				throw new AdempiereException(e);
+				throw new EONEException(e);
 			}
 		}
 		finally {

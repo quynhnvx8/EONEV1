@@ -12,7 +12,6 @@ import java.util.Map.Entry;
 import java.util.logging.Level;
 
 import org.adempiere.base.Core;
-import org.adempiere.exceptions.AdempiereException;
 import org.compiere.util.CCache;
 import org.compiere.util.CLogger;
 import org.compiere.util.Callback;
@@ -69,6 +68,7 @@ import eone.base.model.PO;
 import eone.base.model.Query;
 import eone.base.model.X_AD_FieldGroup;
 import eone.base.model.X_AD_ToolBarButton;
+import eone.exceptions.EONEException;
 import eone.webui.AdempiereIdGenerator;
 import eone.webui.AdempiereWebUI;
 import eone.webui.ClientInfo;
@@ -1395,7 +1395,7 @@ DataStatusListener, IADTabpanel, IdSpace, IFieldEditorContainer
 			{
 				gridTab.setCurrentRow(gridTab.getCurrentRow(), true);
 			}
-			throw new AdempiereException(Msg.getMsg(Env.getCtx(),"RecordIsNotInCurrentSearch"));
+			throw new EONEException(Msg.getMsg(Env.getCtx(),"RecordIsNotInCurrentSearch"));
 		}
 
 		windowPanel.onTreeNavigate(gridTab, row);				

@@ -21,7 +21,6 @@ import java.util.StringTokenizer;
 import java.util.logging.Level;
 
 import org.adempiere.base.LookupFactoryHelper;
-import org.adempiere.exceptions.AdempiereException;
 import org.compiere.util.CCache;
 import org.compiere.util.CLogMgt;
 import org.compiere.util.CLogger;
@@ -33,6 +32,8 @@ import org.compiere.util.Evaluator;
 import org.compiere.util.NamePair;
 import org.compiere.util.ParseSeq;
 import org.compiere.util.Util;
+
+import eone.exceptions.EONEException;
 
 public class GridField 
 	implements Serializable, Evaluatee, Cloneable
@@ -492,7 +493,7 @@ public class GridField
 		ParseSeq seqGetDefaultValue = ParseSeq.getNumberOrder(seqGetDefaultValueStr);
 		
 		if (seqGetDefaultValue == null)
-			throw new AdempiereException ("seq define for get default value has wrong value");
+			throw new EONEException ("seq define for get default value has wrong value");
 
 		return getDefault (seqGetDefaultValue);
 	}
@@ -1451,6 +1452,7 @@ public class GridField
 			|| colname.equals("TotalCr")
 			|| colname.equals("TotalDr")
 			|| colname.equals("TotalLines")
+			|| colname.equals("AD_Image_ID")
 			|| colname.startsWith("Ref_"))
 			return false;
 		return m_vo.IsAllowCopy;

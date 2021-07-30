@@ -422,13 +422,15 @@ public abstract class AbstractProcessCtl implements Runnable
 				/*=========================================================*/
 				//Process Content
 				//Đang cấu hình chỉ 1 group
-				MPrintFormatItem itemG = itemsG[0];
+				MPrintFormatItem itemG = null;
+				if(itemsG != null && itemsG.length > 0)
+					itemG = itemsG[0];
 				
 				ResultSet rsC = (ResultSet) rs.getObject(2);
 				while (rsC.next()) {
-					//Neu group by
+					
+					//add group
 					int nextcol = 0;
-
 					if (itemsG != null && itemsG.length > 0) {
 						itemG = itemsG[nextcol];
 						element = (Serializable)rsC.getString(itemG.getName());
@@ -462,7 +464,7 @@ public abstract class AbstractProcessCtl implements Runnable
 							arrsC.add(arrG);
 							countGroup++;
 						}								
-					}
+					}//End add group
 					
 					
 					arrC = new ArrayList<PrintDataItem>();

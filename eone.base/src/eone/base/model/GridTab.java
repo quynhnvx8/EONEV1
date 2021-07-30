@@ -9,7 +9,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
@@ -776,14 +775,11 @@ public class GridTab implements DataStatusListener, Evaluatee, Serializable
 		//	Special Reference Handling
 		if (tabKeyColumn.equals("AD_Reference_ID"))
 		{
-			//	Column=AccessLevel, Key=AD_Reference_ID, Query=AccessLevel='6'
 			sql = "SELECT AD_Reference_ID FROM AD_Column WHERE ColumnName=?";
 			int AD_Reference_ID = DB.getSQLValue(null, sql, colName);
 			return "AD_Reference_ID=" + AD_Reference_ID;
 		}
 
-		//	Causes could be functions in query
-		//	e.g. Column=UPPER(Name), Key=AD_Element_ID, Query=UPPER(AD_Element.Name) LIKE '%CUSTOMER%'
 		if (tableName == null)
 		{
 			if (log.isLoggable(Level.INFO)) log.info ("Not successfull - Column="
@@ -1054,35 +1050,13 @@ public class GridTab implements DataStatusListener, Evaluatee, Serializable
 			log.warning ("Insert Not allowed in TabNo=" + m_vo.TabNo);
 			return false;
 		}
-		//	Prevent New Where Main Record is processed
-		//	but not apply for TabLevel=0 - teo_sarca [ 1673902 ]
-		//  hengsin: together with readonly logic, the following validation create confusing situation for user.
-		//  i.e, if readonly logic enable the new button on toolbar, it will just does nothing due to the validation below.
-		//  better let everything decide using just the tab's readonly logic instead.
-		/*
-		if (m_vo.TabLevel > 0 && m_vo.TabNo > 0)
-		{
-			boolean processed = isProcessed();
-		//	boolean active = "Y".equals(Env.getContext(m_vo.ctx, m_vo.WindowNo, "IsActive"));
-			if (processed)
-			{
-				log.warning ("Not allowed in TabNo=" + m_vo.TabNo + " -> Processed=" + processed);
-				return false;
-			}
-			if (log.isLoggable(Level.FINEST)) log.finest("Processed=" + processed);
-		}*/
-
-		//hengsin, don't create new when parent is empty
+		
 		if (isDetail() && m_parentNeedSave)
 			return false;
 
 		if (!selection.isEmpty())
 			clearSelection();
 		
-		/**
-		 * temporary set currentrow to point to the new row to ensure even cause by m_mTable.dataNew
-		 * is handle properly.
-		 */
 		int oldCurrentRow = m_currentRow;
 		m_currentRow = m_currentRow + 1;
 		boolean retValue = m_mTable.dataNew (oldCurrentRow, copy);
@@ -1091,7 +1065,6 @@ public class GridTab implements DataStatusListener, Evaluatee, Serializable
 			return retValue;
 		setCurrentRow(m_currentRow + 1, true);
 
-		//  process all Callouts (no dependency check - assumed that settings are valid)
 		for (int i = 0; i < getFieldCount(); i++)
 			processCallout(getField(i));
 		m_mTable.setChanged(false);		
@@ -1332,32 +1305,6 @@ public class GridTab implements DataStatusListener, Evaluatee, Serializable
 	{
 		return m_parents;
 	}	//	getParentColumnNames
-
-	/**
-	 *	Get Tree ID of this tab
-	 *  @return ID
-	 */
-	/*private int getTreeID()
-	{
-		if (log.isLoggable(Level.FINE)) log.fine(m_vo.TableName);
-		String SQL = "SELECT * FROM AD_ClientInfo WHERE AD_Client="
-			+ Env.getContext(m_vo.ctx, m_vo.WindowNo, "AD_Client_ID")
-			+ " ORDER BY AD_Org DESC";
-		//
-		if (m_vo.TableName.equals("AD_Menu"))
-			return 10;		//	MM
-		else if (m_vo.TableName.equals("C_ElementValue"))
-			return 20;		//	EV
-		else if (m_vo.TableName.equals("M_Product"))
-			return 30;     	//	PR
-		else if (m_vo.TableName.equals("C_BPartner"))
-			return 40;    	//	BP
-		else if (m_vo.TableName.equals("AD_Org"))
-			return 50;     	//	OO
-		else if (m_vo.TableName.equals("C_Project"))
-			return 60;		//	PJ
-		return 0;
-	}	//	getTreeID*/
 
 	/**
 	 *	Returns true if this is a detail record
@@ -1680,251 +1627,6 @@ public class GridTab implements DataStatusListener, Evaluatee, Serializable
 	}	//	getOrderByClause
 
 
-	/**************************************************************************
-	 *	Transaction support.
-	 *	Depending on Table returns transaction info
-	 *  @return info
-	 *  @deprecated use getStatusLine and configure Status Line instead
-	 */
-	public String getTrxInfo()
-	{
-		//	InvoiceBatch
-		if (m_vo.TableName.startsWith("C_InvoiceBatch"))
-		{
-			int Record_ID = Env.getContextAsInt(m_vo.ctx, m_vo.WindowNo, "C_InvoiceBatch_ID");
-			if (log.isLoggable(Level.FINE)) log.fine(m_vo.TableName + " - " + Record_ID);
-			MessageFormat mf = null;
-			try
-			{
-				mf = new MessageFormat(Msg.getMsg(Env.getAD_Language(m_vo.ctx), "InvoiceBatchSummary"), Env.getLanguage(m_vo.ctx).getLocale());
-			}
-			catch (Exception e)
-			{
-				log.log(Level.SEVERE, "InvoiceBatchSummary=" + Msg.getMsg(Env.getAD_Language(m_vo.ctx), "InvoiceBatchSummary"), e);
-			}
-			if (mf == null)
-				return " ";
-			/**********************************************************************
-			 *	** Message: ExpenseSummary **
-			 *	{0} Line(s) {1,number,#,##0.00}  - Total: {2,number,#,##0.00}
-			 *
-			 *	{0} - Number of lines
-			 *	{1} - Total
-			 *	{2} - Currency
-			 */
-			Object[] arguments = new Object[3];
-			boolean filled = false;
-			//
-			String sql = "SELECT COUNT(*), NVL(SUM(LineNetAmt),0), NVL(SUM(LineTotalAmt),0) "
-				+ "FROM C_InvoiceBatchLine "
-				+ "WHERE C_InvoiceBatch_ID=? AND IsActive='Y'";
-			//
-			PreparedStatement pstmt = null;
-			ResultSet rs = null;
-			try
-			{
-				pstmt = DB.prepareStatement(sql, null);
-				pstmt.setInt(1, Record_ID);
-				rs = pstmt.executeQuery();
-				if (rs.next())
-				{
-					//	{0} - Number of lines
-					Integer lines = Integer.valueOf(rs.getInt(1));
-					arguments[0] = lines;
-					//	{1} - Line net
-					Double net = Double.valueOf(rs.getDouble(2));
-					arguments[1] = net;
-					//	{2} - Line net
-					Double total = Double.valueOf(rs.getDouble(3));
-					arguments[2] = total;
-					filled = true;
-				}
-			}
-			catch (SQLException e)
-			{
-				log.log(Level.SEVERE, m_vo.TableName + "\nSQL=" + sql, e);
-			}
-			finally
-			{
-				DB.close(rs, pstmt);
-				rs = null;
-				pstmt = null;
-			}
-			if (filled)
-				return mf.format (arguments);
-			return " ";
-		}	//	InvoiceBatch
-
-		//	Order || Invoice
-		else if (m_vo.TableName.startsWith("C_Order") || m_vo.TableName.startsWith("C_Invoice"))
-		{
-			int Record_ID;
-			boolean isOrder = m_vo.TableName.startsWith("C_Order");
-			//
-			StringBuilder sql = new StringBuilder("SELECT COUNT(*) AS Lines,c.ISO_Code,o.TotalLines,o.GrandTotal,"
-				+ "currencyBase(o.GrandTotal,o.C_Currency_ID,o.DateAcct, o.AD_Client_ID,o.AD_Org_ID) AS ConvAmt ");
-			if (isOrder)
-			{
-				Record_ID = Env.getContextAsInt(m_vo.ctx, m_vo.WindowNo, "C_Order_ID");
-				sql.append("FROM C_Order o"
-					+ " INNER JOIN C_Currency c ON (o.C_Currency_ID=c.C_Currency_ID)"
-					+ " INNER JOIN C_OrderLine l ON (o.C_Order_ID=l.C_Order_ID) "
-					+ "WHERE o.C_Order_ID=? ");
-			}
-			else
-			{
-				Record_ID = Env.getContextAsInt(m_vo.ctx, m_vo.WindowNo, "C_Invoice_ID");
-				sql.append("FROM C_Invoice o"
-					+ " INNER JOIN C_Currency c ON (o.C_Currency_ID=c.C_Currency_ID)"
-					+ " INNER JOIN C_InvoiceLine l ON (o.C_Invoice_ID=l.C_Invoice_ID) "
-					+ "WHERE o.C_Invoice_ID=? ");
-			}
-			sql.append("GROUP BY o.C_Currency_ID, c.ISO_Code, o.TotalLines, o.GrandTotal, o.DateAcct, o.AD_Client_ID, o.AD_Org_ID");
-
-			if (log.isLoggable(Level.FINE)) log.fine(m_vo.TableName + " - " + Record_ID);
-			MessageFormat mf = null;
-			try
-			{
-				mf = new MessageFormat(Msg.getMsg(Env.getAD_Language(m_vo.ctx), "OrderSummary"), Env.getLanguage(m_vo.ctx).getLocale());
-			}
-			catch (Exception e)
-			{
-				log.log(Level.SEVERE, "OrderSummary=" + Msg.getMsg(Env.getAD_Language(m_vo.ctx), "OrderSummary"), e);
-			}
-			if (mf == null)
-				return " ";
-			/**********************************************************************
-			 *	** Message: OrderSummary **
-			 *	{0} Line(s) - {1,number,#,##0.00} - Total: {2,number,#,##0.00} {3} = {4,number,#,##0.00}
-			 *
-			 *	{0} - Number of lines
-			 *	{1} - Line total
-			 *	{2} - Grand total (including tax, etc.)
-			 *	{3} - Currency
-			 *	(4) - Grand total converted to local currency
-			 */
-			Object[] arguments = new Object[5];
-			boolean filled = false;
-			PreparedStatement pstmt = null;
-			ResultSet rs = null;
-			//
-			try
-			{
-				pstmt = DB.prepareStatement(sql.toString(), null);
-				pstmt.setInt(1, Record_ID);
-				rs = pstmt.executeQuery();
-				if (rs.next())
-				{
-					//	{0} - Number of lines
-					Integer lines = Integer.valueOf(rs.getInt(1));
-					arguments[0] = lines;
-					//	{1} - Line toral
-					Double lineTotal = Double.valueOf(rs.getDouble(3));
-					arguments[1] = lineTotal;
-					//	{2} - Grand total (including tax, etc.)
-					Double grandTotal = Double.valueOf(rs.getDouble(4));
-					arguments[2] = grandTotal;
-					//	{3} - Currency
-					String currency = rs.getString(2);
-					arguments[3] = currency;
-					//	(4) - Grand total converted to Euro
-					Double grandEuro = Double.valueOf(rs.getDouble(5));
-					arguments[4] = grandEuro;
-					filled = true;
-				}
-			}
-			catch (SQLException e)
-			{
-				log.log(Level.SEVERE, m_vo.TableName + "\nSQL=" + sql, e);
-			}
-			finally
-			{
-				DB.close(rs, pstmt);
-				rs = null; pstmt = null;
-			}
-
-			if (filled)
-				return mf.format (arguments);
-			return " ";
-		}	//	Order || Invoice
-
-		//	Expense Report
-		else if (m_vo.TableName.startsWith("S_TimeExpense") && m_vo.TabNo == 0)
-		{
-			int Record_ID = Env.getContextAsInt(m_vo.ctx, m_vo.WindowNo, "S_TimeExpense_ID");
-			if (log.isLoggable(Level.FINE)) log.fine(m_vo.TableName + " - " + Record_ID);
-			MessageFormat mf = null;
-			try
-			{
-				mf = new MessageFormat(Msg.getMsg(Env.getAD_Language(m_vo.ctx), "ExpenseSummary"), Env.getLanguage(m_vo.ctx).getLocale());
-			}
-			catch (Exception e)
-			{
-				log.log(Level.SEVERE, "ExpenseSummary=" + Msg.getMsg(Env.getAD_Language(m_vo.ctx), "ExpenseSummary"), e);
-			}
-			if (mf == null)
-				return " ";
-			/**********************************************************************
-			 *	** Message: ExpenseSummary **
-			 *	{0} Line(s) - Total: {1,number,#,##0.00} {2}
-			 *
-			 *	{0} - Number of lines
-			 *	{1} - Total
-			 *	{2} - Currency
-			 */
-			Object[] arguments = new Object[3];
-			boolean filled = false;
-			//
-			String SQL = "SELECT COUNT(*) AS Lines, SUM(ConvertedAmt*Qty) "
-				+ "FROM S_TimeExpenseLine "
-				+ "WHERE S_TimeExpense_ID=?";
-
-			//
-			PreparedStatement pstmt = null;
-			ResultSet rs = null;
-			try
-			{
-				pstmt = DB.prepareStatement(SQL, null);
-				pstmt.setInt(1, Record_ID);
-				rs = pstmt.executeQuery();
-				if (rs.next())
-				{
-					//	{0} - Number of lines
-					Integer lines = Integer.valueOf(rs.getInt(1));
-					arguments[0] = lines;
-					//	{1} - Line total
-					Double total = Double.valueOf(rs.getDouble(2));
-					arguments[1] = total;
-					//	{3} - Currency
-					arguments[2] = " ";
-					filled = true;
-				}
-			}
-			catch (SQLException e)
-			{
-				log.log(Level.SEVERE, m_vo.TableName + "\nSQL=" + SQL, e);
-			}
-			finally
-			{
-				DB.close(rs, pstmt);
-				rs = null; pstmt = null;
-			}
-
-			if (filled)
-				return mf.format (arguments);
-			return " ";
-		}	//	S_TimeExpense
-
-
-		//	Default - No Trx Info
-		return null;
-	}	//	getTrxInfo
-
-	
-
-	/**
-	 *  Load Dependent Information
-	 */
 	private void loadDependentInfo()
 	{
 		/**
@@ -2603,9 +2305,6 @@ public class GridTab implements DataStatusListener, Evaluatee, Serializable
 				if (activeCallouts.contains(cmd)) continue;
 	
 				String retValue = "";
-				// FR [1877902]
-				// CarlosRuiz - globalqss - implement beanshell callout
-				// Victor Perez  - vpj-cd implement JSR 223 Scripting
 				if (cmd.toLowerCase().startsWith(MRule.SCRIPT_PREFIX)) {
 	
 					MRule rule = MRule.get(m_vo.ctx, cmd.substring(MRule.SCRIPT_PREFIX.length()));
@@ -2667,11 +2366,9 @@ public class GridTab implements DataStatusListener, Evaluatee, Serializable
 						if (methodStart != -1)      //  no class
 						{
 							String className = cmd.substring(0,methodStart);
-							// IDEMPIERE-2732
 							method = cmd.substring(methodStart+1);
 							// get corresponding callout
 							call = Core.getCallout(className, method);
-							// end IDEMPIERE-2732
 							if (call == null) {
 								//no match from factory, check java classpath
 								Class<?> cClass = Class.forName(className);

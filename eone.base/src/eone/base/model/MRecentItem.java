@@ -26,7 +26,6 @@ import java.util.logging.Level;
 
 import org.adempiere.base.Service;
 import org.adempiere.base.event.EventManager;
-import org.adempiere.exceptions.AdempiereException;
 import org.compiere.util.CCache;
 import org.compiere.util.CLogger;
 import org.compiere.util.DB;
@@ -35,6 +34,8 @@ import org.compiere.util.Util;
 import org.idempiere.distributed.IMessageService;
 import org.idempiere.distributed.ITopic;
 import org.osgi.service.event.Event;
+
+import eone.exceptions.EONEException;
 
 /**
  *	Recent Item model
@@ -93,7 +94,7 @@ public class MRecentItem extends X_AD_RecentItem
 		try {
 			key = getCacheKey(rs.getInt("AD_RecentItem_ID"), ctx);
 		} catch (SQLException e) {
-			throw new AdempiereException(e);
+			throw new EONEException(e);
 		}
 		synchronized (MRecentItem.class) {
 			if (key != null && !s_cache.containsKey(key))
@@ -154,7 +155,7 @@ public class MRecentItem extends X_AD_RecentItem
 				retValue = new MRecentItem (ctx, rs, null);
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new AdempiereException(e);
+			throw new EONEException(e);
 		}
 		finally
 		{
@@ -264,7 +265,7 @@ public class MRecentItem extends X_AD_RecentItem
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
-				throw new AdempiereException(e);
+				throw new EONEException(e);
 			}
 			finally
 			{

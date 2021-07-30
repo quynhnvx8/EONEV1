@@ -20,7 +20,6 @@ import java.security.SecureRandom;
 import java.util.List;
 import java.util.Properties;
 
-import org.adempiere.exceptions.AdempiereException;
 import org.compiere.util.Callback;
 import org.compiere.util.DB;
 import org.compiere.util.Env;
@@ -40,6 +39,7 @@ import eone.base.model.MPasswordRule;
 import eone.base.model.MSysConfig;
 import eone.base.model.MUser;
 import eone.base.model.Query;
+import eone.exceptions.EONEException;
 import eone.webui.LayoutUtils;
 import eone.webui.apps.AEnv;
 import eone.webui.component.ConfirmPanel;
@@ -355,7 +355,7 @@ public class ResetPasswordPanel extends Window implements EventListener<Event>
 			.list();
 		
 		if (users.size() == 0)
-			throw new AdempiereException(Msg.getMsg(m_ctx, "InvalidUserNameAndEmail"));
+			throw new EONEException(Msg.getMsg(m_ctx, "InvalidUserNameAndEmail"));
 		
 		loadSecurityQuestion();
     }
@@ -425,7 +425,7 @@ public class ResetPasswordPanel extends Window implements EventListener<Event>
 				SessionManager.logoutSession();
 		    	wndLogin.loginCancelled();
 			}			
-			throw new AdempiereException(errMsg);
+			throw new EONEException(errMsg);
 		}
 		
 		String newPassword;
@@ -470,7 +470,7 @@ public class ResetPasswordPanel extends Window implements EventListener<Event>
     	}
 
     	if (errorMsg.length() > 0)
-			throw new AdempiereException(Msg.getMsg(m_ctx, "RequestActionEMailError") + ": " + errorMsg);
+			throw new EONEException(Msg.getMsg(m_ctx, "RequestActionEMailError") + ": " + errorMsg);
     	else
     	{
     		// Passwords for all tenants using ({0}) as email have been reset

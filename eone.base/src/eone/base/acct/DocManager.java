@@ -12,8 +12,6 @@ import org.adempiere.base.IDocFactory;
 import org.adempiere.base.IServiceReferenceHolder;
 import org.adempiere.base.Service;
 import org.adempiere.base.ServiceQuery;
-import org.adempiere.exceptions.AdempiereException;
-import org.adempiere.exceptions.DBException;
 import org.compiere.util.CCache;
 import org.compiere.util.CLogger;
 import org.compiere.util.DB;
@@ -22,6 +20,8 @@ import org.compiere.util.Trx;
 import org.compiere.util.ValueNamePair;
 
 import eone.base.model.MTable;
+import eone.exceptions.EONEException;
+import eone.exceptions.DBException;
 
 
 public class DocManager {
@@ -272,7 +272,7 @@ public class DocManager {
 			if (e instanceof RuntimeException)
 				throw (RuntimeException)e;
 			else
-				throw new AdempiereException(e);
+				throw new EONEException(e);
 		}
 		finally
 		{
@@ -381,7 +381,7 @@ public class DocManager {
 			if (e instanceof RuntimeException)
 				throw (RuntimeException) e;
 			else
-				throw new AdempiereException(e);
+				throw new EONEException(e);
 		}
 		finally
 		{

@@ -23,7 +23,6 @@ import java.util.Set;
 
 import org.adempiere.base.IGridTabExporter;
 import org.adempiere.base.equinox.EquinoxExtensionLocator;
-import org.adempiere.exceptions.AdempiereException;
 import org.compiere.util.Env;
 import org.compiere.util.Msg;
 import org.zkoss.util.media.AMedia;
@@ -36,6 +35,7 @@ import org.zkoss.zul.Vbox;
 import org.zkoss.zul.Vlayout;
 
 import eone.base.model.GridTab;
+import eone.exceptions.EONEException;
 import eone.webui.AdempiereWebUI;
 import eone.webui.LayoutUtils;
 import eone.webui.adwindow.AbstractADWindowContent;
@@ -337,7 +337,7 @@ public class ExportAction implements EventListener<Event>
 			media = new AMedia(exporter.getSuggestedFileName(panel.getActiveGridTab()), null, exporter.getContentType(), file, true);
 			Filedownload.save(media);
 		} catch (Exception e) {
-			throw new AdempiereException(e);
+			throw new EONEException(e);
 		} finally {
 			if (winExportFile != null)
 				winExportFile.onClose();

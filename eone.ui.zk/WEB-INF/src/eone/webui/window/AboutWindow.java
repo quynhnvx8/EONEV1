@@ -20,7 +20,6 @@ import java.util.Properties;
 import java.util.Vector;
 import java.util.logging.Level;
 
-import org.adempiere.exceptions.AdempiereException;
 import org.compiere.Adempiere;
 import org.compiere.minigrid.IDColumn;
 import org.compiere.util.CLogErrorBuffer;
@@ -55,6 +54,7 @@ import org.zkoss.zul.Space;
 import org.zkoss.zul.Vbox;
 
 import eone.base.model.MUser;
+import eone.exceptions.EONEException;
 import eone.webui.LayoutUtils;
 import eone.webui.WebUIActivator;
 import eone.webui.apps.AEnv;
@@ -506,13 +506,13 @@ public class AboutWindow extends Window implements EventListener<Event> {
 				try {
 					bundle.stop();
 				} catch (BundleException e) {
-					throw new AdempiereException(e);
+					throw new EONEException(e);
 				}
 			} else if (action == PLUGIN_ACTION_START && bundle != null) {
 				try {
 					bundle.start();
 				} catch (BundleException e) {
-					throw new AdempiereException(e);
+					throw new EONEException(e);
 				}
 			} else if (action == PLUGIN_ACTION_UPDATE && bundle != null) {
 				// PLUGIN_ACTION_UPDATE not implemented yet
@@ -708,7 +708,7 @@ public class AboutWindow extends Window implements EventListener<Event> {
 			fis = new FileInputStream(propertyFileName);
 			props.load(fis);
 		} catch (Exception e) {
-			throw new AdempiereException("Could not load properties file, cause: " + e.getLocalizedMessage());
+			throw new EONEException("Could not load properties file, cause: " + e.getLocalizedMessage());
 		} finally {
 			if (fis != null) {
 				try {

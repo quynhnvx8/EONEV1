@@ -26,14 +26,14 @@ import java.util.Properties;
 import java.util.Set;
 import java.util.logging.Level;
 
-import org.adempiere.exceptions.AdempiereException;
-import org.adempiere.exceptions.PORelationException;
 import org.compiere.util.CLogger;
 import org.compiere.util.DB;
 import org.compiere.util.Env;
 import org.compiere.util.Util;
 
 import eone.base.model.ZoomInfoFactory.ZoomInfo;
+import eone.exceptions.EONEException;
+import eone.exceptions.PORelationException;
 
 /**
  * Formal definition for a set of data record pairs
@@ -141,7 +141,7 @@ public class MRelationType extends X_AD_RelationType implements IZoomProvider {
 
 		} catch (SQLException e) {
 			logger.severe(e.getMessage());
-			throw new AdempiereException(e);
+			throw new EONEException(e);
 		} finally {
 			DB.close(rs, pstmt);
 		}
@@ -206,7 +206,7 @@ public class MRelationType extends X_AD_RelationType implements IZoomProvider {
 			}
 			return null;
 		} catch (SQLException e) {
-			throw new AdempiereException(e);
+			throw new EONEException(e);
 		} finally {
 			DB.close(rs, pstmt);
 		}

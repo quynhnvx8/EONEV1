@@ -23,9 +23,10 @@ import java.util.ArrayList;
 import java.util.Properties;
 import java.util.logging.Level;
 
-import org.adempiere.exceptions.FillMandatoryException;
 import org.compiere.util.CLogger;
 import org.compiere.util.DB;
+
+import eone.exceptions.FillMandatoryException;
 
 /**
  *	Tab Model

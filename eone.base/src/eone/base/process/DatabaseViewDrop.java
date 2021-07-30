@@ -12,11 +12,11 @@
  *****************************************************************************/
 package eone.base.process;
 
-import org.adempiere.exceptions.AdempiereException;
 import org.compiere.util.DB;
 import org.compiere.util.Msg;
 
 import eone.base.model.MTable;
+import eone.exceptions.EONEException;
 
 public class DatabaseViewDrop extends SvrProcess {
 
@@ -34,7 +34,7 @@ public class DatabaseViewDrop extends SvrProcess {
 		MTable table = new MTable(getCtx(), p_AD_Table_ID, get_TrxName());
 		log.info(table.toString());
 		if (!table.isView() || !table.isActive())
-			throw new AdempiereException(Msg.getMsg(getCtx(), "NotActiveDatabaseView"));
+			throw new EONEException(Msg.getMsg(getCtx(), "NotActiveDatabaseView"));
 
 		String sql = "DROP VIEW " + table.getTableName();
 		int rvalue = DB.executeUpdateEx(sql, get_TrxName());

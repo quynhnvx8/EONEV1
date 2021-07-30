@@ -21,7 +21,6 @@ import java.util.logging.Level;
 
 import javax.sql.RowSet;
 
-import org.adempiere.exceptions.DBException;
 import org.compiere.db.AdempiereDatabase;
 import org.compiere.db.CConnection;
 import org.compiere.db.Database;
@@ -30,6 +29,7 @@ import org.compiere.db.ProxyFactory;
 import eone.base.model.MTable;
 import eone.base.model.PO;
 import eone.base.model.POResultSet;
+import eone.exceptions.DBException;
 
 
 public final class DB

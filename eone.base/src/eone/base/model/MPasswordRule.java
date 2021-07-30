@@ -27,7 +27,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-import org.adempiere.exceptions.AdempiereException;
 import org.compiere.util.Env;
 import org.compiere.util.HistoryRuleSupportHash;
 import org.compiere.util.Msg;
@@ -53,6 +52,8 @@ import org.passay.dictionary.ArrayWordList;
 import org.passay.dictionary.WordListDictionary;
 import org.passay.dictionary.WordLists;
 import org.passay.dictionary.sort.ArraysSort;
+
+import eone.exceptions.EONEException;
 
 
 /**
@@ -109,7 +110,7 @@ public class MPasswordRule extends X_AD_PasswordRule {
 		return true;
 	}
 
-	public void validate(String username, String newPassword, List<MPasswordHistory> passwordHistorys) throws AdempiereException {
+	public void validate(String username, String newPassword, List<MPasswordHistory> passwordHistorys) throws EONEException {
 
 		ArrayList<Rule> ruleList =  new ArrayList<Rule>();
 
@@ -198,9 +199,9 @@ public class MPasswordRule extends X_AD_PasswordRule {
 					ruleList.add(dictRule);
 
 				} catch (FileNotFoundException e) {
-					throw new AdempiereException("Could not find dictionary file: " + e.getMessage());
+					throw new EONEException("Could not find dictionary file: " + e.getMessage());
 				} catch (IOException e) {
-					throw new AdempiereException("Could not find dictionary file: " + e.getMessage());
+					throw new EONEException("Could not find dictionary file: " + e.getMessage());
 				}
 
 			}
@@ -227,7 +228,7 @@ public class MPasswordRule extends X_AD_PasswordRule {
 					error.append(" ").append(msg);
 				}
 				error.append(" ]");
-				throw new AdempiereException(error.toString());
+				throw new EONEException(error.toString());
 			}
 		}
 	}

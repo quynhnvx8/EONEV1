@@ -21,13 +21,13 @@ import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
 import java.util.Properties;
 
-import org.adempiere.exceptions.AdempiereException;
 import org.compiere.util.DB;
 import org.compiere.util.Msg;
 import org.compiere.util.Trx;
 
 import eone.base.model.MIndexColumn;
 import eone.base.model.MTableIndex;
+import eone.exceptions.EONEException;
 
 public class TableIndexValidate extends SvrProcess {
 
@@ -92,7 +92,7 @@ public class TableIndexValidate extends SvrProcess {
 		boolean modified = false;
 		
 		if (indexCols.length <= 0)
-			throw new AdempiereException(Msg.getMsg(ctx, "NoIndexColumnsSpecified"));
+			throw new EONEException(Msg.getMsg(ctx, "NoIndexColumnsSpecified"));
 		else if (!found)
 		{
 			String sql = index.getDDL();
@@ -166,7 +166,7 @@ public class TableIndexValidate extends SvrProcess {
 				if (pi != null)
 					pi.addLog(0, null, new BigDecimal(rvalue), sql);
 				if(rvalue == -1)
-					throw new AdempiereException(Msg.getMsg(ctx, "FailedModifyIndex"));
+					throw new EONEException(Msg.getMsg(ctx, "FailedModifyIndex"));
 				else
 					return Msg.getMsg(ctx, "ModifiedIndexSuccess");
 			}

@@ -34,7 +34,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 
-import org.adempiere.exceptions.AdempiereException;
 import org.compiere.db.CConnection;
 import org.compiere.util.AdempiereUserError;
 import org.compiere.util.DB;
@@ -44,6 +43,7 @@ import org.compiere.util.Util;
 import eone.base.model.MColumn;
 import eone.base.model.MTable;
 import eone.base.model.Query;
+import eone.exceptions.EONEException;
 
 public class MoveClient extends SvrProcess {
 
@@ -117,20 +117,20 @@ public class MoveClient extends SvrProcess {
 		// validate parameters
 		if (p_IsCopyClient) {
 			if (! Util.isEmpty(p_ClientsToExclude, true))
-				throw new AdempiereException("Clients to exclude must be empty when copying from template");
+				throw new EONEException("Clients to exclude must be empty when copying from template");
 			if (! Util.isEmpty(p_TablesToPreserveIDs, true))
-				throw new AdempiereException("Preserve IDs must be empty when copying from template");
+				throw new EONEException("Preserve IDs must be empty when copying from template");
 			try {
 				Integer.parseInt(p_ClientsToInclude);
 			} catch (NumberFormatException e) {
-				throw new AdempiereException("Error in parameter Clients to Include, must be just one integer");
+				throw new EONEException("Error in parameter Clients to Include, must be just one integer");
 			}
 		} else {
 			if (Util.isEmpty(p_JDBC_URL, true))
-				throw new AdempiereException("Fill mandatory JDBC_URL");
+				throw new EONEException("Fill mandatory JDBC_URL");
 		}
 		if (! Util.isEmpty(p_ClientsToInclude, true) && ! Util.isEmpty(p_ClientsToExclude, true))
-			throw new AdempiereException("Clients to exclude and include cannot be used at the same time");
+			throw new EONEException("Clients to exclude and include cannot be used at the same time");
 		if (Util.isEmpty(p_UserName, true))
 			p_UserName = CConnection.get().getDbUid();
 		if (Util.isEmpty(p_Password, true))
@@ -167,7 +167,7 @@ public class MoveClient extends SvrProcess {
 				try {
 					clientInt = Integer.parseInt(clientStr);
 				} catch (NumberFormatException e) {
-					throw new AdempiereException("Error in parameter Clients to Exclude, must be a list of integer separated by commas, wrong format: " + clientStr);
+					throw new EONEException("Error in parameter Clients to Exclude, must be a list of integer separated by commas, wrong format: " + clientStr);
 				}
 				p_whereClient.append(clientInt);
 			}
@@ -186,7 +186,7 @@ public class MoveClient extends SvrProcess {
 				try {
 					clientInt = Integer.parseInt(clientStr);
 				} catch (NumberFormatException e) {
-					throw new AdempiereException("Error in parameter Clients to Include, must be a list of integer separated by commas, wrong format: " + clientStr);
+					throw new EONEException("Error in parameter Clients to Include, must be a list of integer separated by commas, wrong format: " + clientStr);
 				}
 				p_whereClient.append(clientInt);
 			}
@@ -214,7 +214,7 @@ public class MoveClient extends SvrProcess {
 					externalConn = DB.getDatabase(p_JDBC_URL).getDriverConnection(p_JDBC_URL, p_UserName, p_Password);
 				}
 			} catch (Exception e) {
-				throw new AdempiereException("Could not get a connection to " + p_JDBC_URL + ",\nCause: " + e.getLocalizedMessage());
+				throw new EONEException("Could not get a connection to " + p_JDBC_URL + ",\nCause: " + e.getLocalizedMessage());
 			}
 
 			validate();
@@ -289,7 +289,7 @@ public class MoveClient extends SvrProcess {
 				}
 			}
 		} catch (SQLException e) {
-			throw new AdempiereException("Could not execute external query: " + sqlValidClients + "\nCause = " + e.getLocalizedMessage());
+			throw new EONEException("Could not execute external query: " + sqlValidClients + "\nCause = " + e.getLocalizedMessage());
 		} finally {
 			DB.close(rsVC, stmtVC);
 		}
@@ -358,7 +358,7 @@ public class MoveClient extends SvrProcess {
 				validateExternalTable(tableName);
 			}
 		} catch (SQLException e) {
-			throw new AdempiereException("Could not execute external query: " + sqlRemoteTables + "\nCause = " + e.getLocalizedMessage());
+			throw new EONEException("Could not execute external query: " + sqlRemoteTables + "\nCause = " + e.getLocalizedMessage());
 		} finally {
 			DB.close(rsRT, stmtRT);
 		}
@@ -426,7 +426,7 @@ public class MoveClient extends SvrProcess {
 				}
 			}
 		} catch (SQLException e) {
-			throw new AdempiereException("Could not execute external query: " + sqlRemoteColumns + "\nCause = " + e.getLocalizedMessage());
+			throw new EONEException("Could not execute external query: " + sqlRemoteColumns + "\nCause = " + e.getLocalizedMessage());
 		} finally {
 			DB.close(rsRC, stmtRC);
 		}
@@ -571,7 +571,7 @@ public class MoveClient extends SvrProcess {
 					*/
 				}
 			} catch (SQLException e) {
-				throw new AdempiereException("Could not execute external query: " + sqlForeignClient + "\nCause = " + e.getLocalizedMessage());
+				throw new EONEException("Could not execute external query: " + sqlForeignClient + "\nCause = " + e.getLocalizedMessage());
 			} finally {
 				DB.close(rsFC, stmtFC);
 			}
@@ -649,7 +649,7 @@ public class MoveClient extends SvrProcess {
 			if (rs.next())
 				cnt = rs.getInt(1);
 		} catch (SQLException e) {
-			throw new AdempiereException("Could not execute external query: " + sql + "\nCause = " + e.getLocalizedMessage());
+			throw new EONEException("Could not execute external query: " + sql + "\nCause = " + e.getLocalizedMessage());
 		} finally {
 			DB.close(rs, stmt);
 		}
@@ -742,7 +742,7 @@ public class MoveClient extends SvrProcess {
 			try {
 				clientInt = Integer.parseInt(p_ClientsToInclude);
 			} catch (NumberFormatException e) {
-				throw new AdempiereException("Error in parameter Clients to Include, must be just one integer");
+				throw new EONEException("Error in parameter Clients to Include, must be just one integer");
 			}
 			//newADClientID = DB.getSQLValueEx(get_TrxName(),
 			//		"SELECT Target_ID FROM T_MoveClient WHERE AD_PInstance_ID=? AND TableName=? AND Source_ID=?",
@@ -903,7 +903,7 @@ public class MoveClient extends SvrProcess {
 												query,
 												getAD_PInstance_ID(), convertTable.toUpperCase(), id);
 									} catch (Exception e) {
-										throw new AdempiereException("Could not execute query: " + query + "\nCause = " + e.getLocalizedMessage());
+										throw new EONEException("Could not execute query: " + query + "\nCause = " + e.getLocalizedMessage());
 									}
 									if (convertedId < 0) {
 										// not found in the table - try to get it again - could be missed in first pass
@@ -935,7 +935,7 @@ public class MoveClient extends SvrProcess {
 												insertRecord = false;
 												break;
 											}
-											throw new AdempiereException("Found orphan record in " + tableName + "." + columnName + ": " + id + " related to table " + convertTable);
+											throw new EONEException("Found orphan record in " + tableName + "." + columnName + ": " + id + " related to table " + convertTable);
 										}
 									}
 									id = convertedId;
@@ -1009,12 +1009,12 @@ public class MoveClient extends SvrProcess {
 						try {
 							DB.executeUpdateEx(insertSB.toString(), parameters, get_TrxName());
 						} catch (Exception e) {
-							throw new AdempiereException("Could not execute: " + insertSB + "\nCause = " + e.getLocalizedMessage());
+							throw new EONEException("Could not execute: " + insertSB + "\nCause = " + e.getLocalizedMessage());
 						}
 					}
 				}
 			} catch (SQLException e) {
-				throw new AdempiereException("Could not execute external query: " + selectGetData + "\nCause = " + e.getLocalizedMessage());
+				throw new EONEException("Could not execute external query: " + selectGetData + "\nCause = " + e.getLocalizedMessage());
 			} finally {
 				DB.close(rsGD, stmtGD);
 			}
@@ -1026,7 +1026,7 @@ public class MoveClient extends SvrProcess {
 		try {
 			commitEx();
 		} catch (SQLException e) {
-			throw new AdempiereException("Could not commit,\nCause: " + e.getLocalizedMessage());
+			throw new EONEException("Could not commit,\nCause: " + e.getLocalizedMessage());
 		}
 	}
 
@@ -1068,7 +1068,7 @@ public class MoveClient extends SvrProcess {
 			if (rs.next())
 				tableName = rs.getString(1);
 		} catch (SQLException e) {
-			throw new AdempiereException("Could not execute external query: " + sqlTableTree + "\nCause = " + e.getLocalizedMessage());
+			throw new EONEException("Could not execute external query: " + sqlTableTree + "\nCause = " + e.getLocalizedMessage());
 		} finally {
 			DB.close(rs, stmt);
 		}
@@ -1087,7 +1087,7 @@ public class MoveClient extends SvrProcess {
 			if (rs.next())
 				tableName = rs.getString(1);
 		} catch (SQLException e) {
-			throw new AdempiereException("Could not execute external query: " + sql + "\nCause = " + e.getLocalizedMessage());
+			throw new EONEException("Could not execute external query: " + sql + "\nCause = " + e.getLocalizedMessage());
 		} finally {
 			DB.close(rs, stmt);
 		}
@@ -1131,7 +1131,7 @@ public class MoveClient extends SvrProcess {
 			if (rs.next())
 				remoteUUID = rs.getString(1);
 		} catch (SQLException e) {
-			throw new AdempiereException("Could not execute external query for table " + tableNameSource + ": " + sqlRemoteUU + "\nCause = " + e.getLocalizedMessage());
+			throw new EONEException("Could not execute external query for table " + tableNameSource + ": " + sqlRemoteUU + "\nCause = " + e.getLocalizedMessage());
 		} finally {
 			DB.close(rs, stmtUU);
 		}
