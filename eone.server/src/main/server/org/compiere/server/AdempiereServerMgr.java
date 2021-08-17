@@ -31,7 +31,7 @@ import org.adempiere.base.Core;
 import org.adempiere.base.Service;
 import org.adempiere.server.AdempiereServerActivator;
 import org.adempiere.server.IServerFactory;
-import org.compiere.EONE;
+import org.compiere.EOne;
 import org.compiere.util.CLogger;
 import org.compiere.util.Env;
 import org.idempiere.distributed.ICacheService;
@@ -114,7 +114,7 @@ public class AdempiereServerMgr implements ServiceTrackerCustomizer<IServerFacto
 	 */
 	private boolean startEnvironment()
 	{
-		EONE.startup(false);
+		EOne.startup(false);
 		log.info("");
 		
 		//	Set Session
@@ -677,7 +677,7 @@ public class AdempiereServerMgr implements ServiceTrackerCustomizer<IServerFacto
 	@Override
 	public String getDescription()
 	{
-		return EONE.getVersion();
+		return EOne.getVersion();
 	}	//	getDescription
 	
 	/**
@@ -726,7 +726,7 @@ public class AdempiereServerMgr implements ServiceTrackerCustomizer<IServerFacto
 		}
 		
 		public void start() {
-			scheduleFuture = EONE.getThreadPoolExecutor().schedule(this, server.getInitialNap() * 1000 + server.getSleepMS(), TimeUnit.MILLISECONDS);
+			scheduleFuture = EOne.getThreadPoolExecutor().schedule(this, server.getInitialNap() * 1000 + server.getSleepMS(), TimeUnit.MILLISECONDS);
 		}
 
 		@Override
@@ -734,11 +734,11 @@ public class AdempiereServerMgr implements ServiceTrackerCustomizer<IServerFacto
 			if (server.isSleeping()) {
 				server.run();
 				if (server.getSleepMS() != 0) {
-					scheduleFuture = EONE.getThreadPoolExecutor().schedule(this, server.getSleepMS(), TimeUnit.MILLISECONDS);
+					scheduleFuture = EOne.getThreadPoolExecutor().schedule(this, server.getSleepMS(), TimeUnit.MILLISECONDS);
 				}
 			}  else {
 				//server busy, try again after one minute
-				scheduleFuture = EONE.getThreadPoolExecutor().schedule(this, 60 * 1000, TimeUnit.MILLISECONDS);
+				scheduleFuture = EOne.getThreadPoolExecutor().schedule(this, 60 * 1000, TimeUnit.MILLISECONDS);
 			}
 		}
 		

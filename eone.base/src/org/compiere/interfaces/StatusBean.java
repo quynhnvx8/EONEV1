@@ -16,7 +16,7 @@
  *****************************************************************************/
 package org.compiere.interfaces;
 
-import org.compiere.EONE;
+import org.compiere.EOne;
 import org.compiere.db.CConnection;
 import org.compiere.util.CLogger;
 
@@ -41,7 +41,7 @@ public class StatusBean implements Status
 	 */
 	public String getDateVersion()
 	{
-		return EONE.DATE_VERSION;
+		return EOne.DATE_VERSION;
 	}	//	getDateVersion
 
 	/**
@@ -50,7 +50,7 @@ public class StatusBean implements Status
 	 */
 	public String getMainVersion()
 	{
-		return EONE.MAIN_VERSION;
+		return EOne.MAIN_VERSION;
 	}	//	getMainVersion
 
 	/**

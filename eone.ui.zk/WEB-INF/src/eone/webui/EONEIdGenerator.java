@@ -40,7 +40,7 @@ import org.zkoss.zk.ui.sys.IdGenerator;
  * @author hengsin
  *
  */
-public class AdempiereIdGenerator implements IdGenerator {
+public class EONEIdGenerator implements IdGenerator {
 
 	public static final String ZK_LOCATOR_ATTRIBUTE = "_zk_locator";
 	
@@ -52,7 +52,7 @@ public class AdempiereIdGenerator implements IdGenerator {
 		boolean useIdSpace = true;
 		if (Util.isEmpty(uuid)) {
 			useIdSpace = false;
-			String attribute = comp.getClientAttribute(AdempiereWebUI.WIDGET_INSTANCE_NAME);
+			String attribute = comp.getClientAttribute(EONEWebUI.WIDGET_INSTANCE_NAME);
 			if (!Util.isEmpty(attribute)) {
 				String widgetName = getWidgetName(comp.getWidgetClass());
 				uuid = widgetName+"0"+attribute;
@@ -156,12 +156,12 @@ public class AdempiereIdGenerator implements IdGenerator {
 		}
 		
 		if (Util.isEmpty(id)) {
-			String attribute = comp.getClientAttribute(AdempiereWebUI.WIDGET_INSTANCE_NAME);
+			String attribute = comp.getClientAttribute(EONEWebUI.WIDGET_INSTANCE_NAME);
 			if (attribute != null && attribute.length() > 0) {
 				String widgetName = getWidgetName(comp.getWidgetClass());
 				locatorBuilder.append("@")
 					.append(widgetName).append("[")
-					.append(AdempiereWebUI.WIDGET_INSTANCE_NAME)
+					.append(EONEWebUI.WIDGET_INSTANCE_NAME)
 					.append("=\'").append(attribute).append("']");
 			} else {
 				locatorBuilder.append("@").append(getWidgetName(comp.getWidgetClass()));

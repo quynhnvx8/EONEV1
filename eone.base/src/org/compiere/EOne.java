@@ -34,7 +34,7 @@ import eone.base.model.ServerStateChangeEvent;
 import eone.base.model.ServerStateChangeListener;
 
 
-public final class EONE
+public final class EOne
 {
 	static public final String	ID				= "EOne java 11, maven 3.6.3, ERP - CRM";
 	static public String	MAIN_VERSION	= "Version 1.0";
@@ -76,7 +76,7 @@ public final class EONE
     private static EventListenerList m_listenerList = new EventListenerList();
 
 	static {
-		ClassLoader loader = EONE.class.getClassLoader();
+		ClassLoader loader = EOne.class.getClassLoader();
 		InputStream inputStream = loader.getResourceAsStream("org/adempiere/version.properties");
 		if (inputStream != null)
 		{
@@ -390,12 +390,12 @@ public final class EONE
 	 *  Get default (Home) directory
 	 *  @return Home directory
 	 */
-	public static String getAdempiereHome()
+	public static String getEOneHome()
 	{
 		//  Try Environment
 		String retValue = Ini.getEOneHome();
 		if (retValue == null)
-			retValue = File.separator + "idempiere";
+			retValue = File.separator + "eone";
 		return retValue;
 	}   //  getHome
 
@@ -447,7 +447,7 @@ public final class EONE
 		
 		if (! isClient)  
 			CLogMgt.initialize(isClient);
-		log = CLogger.getCLogger(EONE.class);
+		log = CLogger.getCLogger(EOne.class);
 		if (log.isLoggable(Level.INFO)) log.info(getSummaryAscii());
 		Ini.loadProperties (false);
 

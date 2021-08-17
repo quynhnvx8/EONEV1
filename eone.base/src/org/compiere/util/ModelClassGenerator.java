@@ -16,7 +16,7 @@ import java.util.StringTokenizer;
 import java.util.TreeSet;
 import java.util.logging.Level;
 
-import org.compiere.EONE;
+import org.compiere.EOne;
 
 import eone.base.model.MTable;
 import eone.exceptions.DBException;
@@ -121,7 +121,7 @@ public class ModelClassGenerator
 		//	Class
 		start.append("/** Generated Model for ").append(tableName).append(NL)
 			 .append(" *  @author EOne (generated) ").append(NL)
-			 .append(" *  @version ").append(EONE.MAIN_VERSION).append(" - $Id$ */").append(NL)
+			 .append(" *  @version ").append(EOne.MAIN_VERSION).append(" - $Id$ */").append(NL)
 			 .append("public class ").append(className)
 			 	.append(" extends PO")
 			 	.append(" implements I_").append(tableName)

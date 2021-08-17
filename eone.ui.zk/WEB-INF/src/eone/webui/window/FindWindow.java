@@ -45,7 +45,7 @@ import eone.base.model.MLookupFactory;
 import eone.base.model.MLookupInfo;
 import eone.base.model.MQuery;
 import eone.base.model.MRole;
-import eone.webui.AdempiereWebUI;
+import eone.webui.EONEWebUI;
 import eone.webui.LayoutUtils;
 import eone.webui.component.Button;
 import eone.webui.component.Column;
@@ -188,7 +188,7 @@ public class FindWindow extends Window implements EventListener<Event>, ValueCha
         this.setSizable(true);  
         this.setMaximizable(false);
         
-        this.setWidgetAttribute(AdempiereWebUI.WIDGET_INSTANCE_NAME, "findWindow");
+        this.setWidgetAttribute(EONEWebUI.WIDGET_INSTANCE_NAME, "findWindow");
         this.setId("findWindow_"+targetWindowNo);
         LayoutUtils.addSclass("find-window", this);
     }

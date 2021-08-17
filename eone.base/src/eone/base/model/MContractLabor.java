@@ -38,7 +38,7 @@ public class MContractLabor extends X_HR_ContractLabor
 	protected boolean beforeSave(boolean newRecord) {
 		
 		String sql = "Select max(StartTime) From HR_ContractLabor Where HR_Employee_ID = ? And HR_ContractLabor_ID != ? "+
-					" And StartTime < (Select Max(StartTime) From HR_ContractLabor Where HR_ContractLabor_ID = ?)";
+					" And StartTime <= (Select Max(StartTime) From HR_ContractLabor Where HR_ContractLabor_ID = ?)";
 		Object [] params = {getHR_Employee_ID(), getHR_ContractLabor_ID(), getHR_ContractLabor_ID()};
 		
 		
@@ -48,7 +48,7 @@ public class MContractLabor extends X_HR_ContractLabor
 		}
 		Timestamp startDateOld = DB.getSQLValueTS(get_TrxName(), sql, params);
 		if (startDateOld != null) {
-			if (startDateOld.compareTo(getStartTime()) > 0 && isSelected()) {
+			if (startDateOld.compareTo(getStartTime()) >= 0 && isSelected()) {
 				log.saveError("Error", "StartTime must be great than max StartTime current !");
 				return false;
 			} 
@@ -63,9 +63,13 @@ public class MContractLabor extends X_HR_ContractLabor
 		dataColumn.put(COLUMNNAME_IsSelected, true);
 		dataColumn.put(COLUMNNAME_HR_Employee_ID, getHR_Employee_ID());
 		boolean check = isCheckDoubleValue(Table_Name, dataColumn, COLUMNNAME_HR_ContractLabor_ID, getHR_ContractLabor_ID());
-		if (!check) {
+		if (!check && isSelected()) {
 			log.saveError("Error", Msg.getMsg(Env.getLanguage(getCtx()), "ValueExists") + ": " + COLUMNNAME_IsSelected);
 			return false;
+		}
+		
+		if (newRecord) {
+			setEndTime(null);
 		}
 		
 		return true;

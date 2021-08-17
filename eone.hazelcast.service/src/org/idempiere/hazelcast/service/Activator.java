@@ -21,7 +21,7 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Enumeration;
 
-import org.compiere.EONE;
+import org.compiere.EOne;
 import org.compiere.util.CLogger;
 import org.eclipse.osgi.framework.console.CommandProvider;
 import org.osgi.framework.BundleActivator;
@@ -60,10 +60,10 @@ public class Activator implements BundleActivator {
 	public void start(BundleContext bundleContext) throws Exception {
 		Activator.context = bundleContext;
 		
-		if (EONE.isStarted())
+		if (EOne.isStarted())
 			createHazelCastInstance();
 		else {
-			EONE.addServerStateChangeListener(new ServerStateChangeListener() {
+			EOne.addServerStateChangeListener(new ServerStateChangeListener() {
 				@Override
 				public void stateChange(ServerStateChangeEvent event) {
 					if (event.getEventType() == ServerStateChangeEvent.SERVER_START) 

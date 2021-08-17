@@ -1,5 +1,6 @@
 package org.adempiere.pdf;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
 import java.awt.print.PageFormat;
@@ -8,13 +9,14 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import org.compiere.EONE;
+import org.compiere.EOne;
 import org.compiere.print.CPaper;
 import org.compiere.print.MPrintFormat;
 import org.compiere.print.MPrintFormatItem;
@@ -28,7 +30,7 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
 
-import com.itextpdf.awt.DefaultFontMapper;
+import com.itextpdf.awt.FontMapper;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -50,6 +52,7 @@ import com.itextpdf.text.pdf.PdfTemplate;
 import com.itextpdf.text.pdf.PdfWriter;
 
 import eone.base.model.MConfigSignReport;
+import eone.base.model.X_AD_PrintFormat;
 import eone.base.process.ProcessInfo;
 import eone.base.process.ProcessInfoParameter;
 import eone.exceptions.EONEException;
@@ -69,7 +72,7 @@ public class WritePDF {
 		
 	}
 	
-	public static final String FONT = EONE.getAdempiereHome() + File.separator + "arial.ttf";
+	public static final String FONT = EOne.getEOneHome() + File.separator + "arial.ttf";
 
 	
 	//Create Header
@@ -94,7 +97,7 @@ public class WritePDF {
         cell.setHorizontalAlignment(Element.ALIGN_LEFT);
         cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
         cell.setBorder(Rectangle.NO_BORDER);
-        cell.setColspan((int)columnCount/2);
+        cell.setColspan((int)columnCount/2 + 1);
         cell.setPadding(4);
         table.addCell(cell);
         
@@ -104,7 +107,7 @@ public class WritePDF {
         cell.setHorizontalAlignment(Element.ALIGN_CENTER);
         cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
         cell.setBorder(Rectangle.NO_BORDER);
-        cell.setColspan(columnCount - (int)columnCount/2);
+        cell.setColspan(columnCount - (int)columnCount/2 - 1);
         cell.setRowspan(2);
         cell.setPadding(4);
         table.addCell(cell);
@@ -116,7 +119,7 @@ public class WritePDF {
         cell.setHorizontalAlignment(Element.ALIGN_LEFT);
         cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
         cell.setBorder(Rectangle.NO_BORDER);
-        cell.setColspan((int)columnCount/2);
+        cell.setColspan((int)columnCount/2 + 1);
         cell.setPadding(4);
         table.addCell(cell);
         
@@ -328,6 +331,7 @@ public class WritePDF {
     private static int countRow = 0;
     private static int windowNo = 0;
     private static List<ArrayList<PrintDataItem>> dataQuery = null;
+    private static List<Object []> dataChart = null;
     private static List<ArrayList<PrintDataItem>> dataHeader = null;
     private static List<ArrayList<PrintDataItem>> dataFooter = null;
     private static MPrintFormatItem [] items = null;
@@ -486,6 +490,7 @@ public class WritePDF {
 			dataQuery = pi.getDataQueryC();
 			dataHeader = pi.getDataQueryH();
 			dataFooter = pi.getDataQueryF();
+			dataChart = pi.getDataChart();
 			maxRow = pi.getMaxRow();
 			windowNo = (int)m_params.get("WindowNo");
 			
@@ -537,12 +542,19 @@ public class WritePDF {
             //End For all row
     		document.add(table);
     		
-    		writeChartToPDF(writer, generatePieChart(), 300, 300, pf);
             //Create Footer
     		
     		table = createFooter(m_params, format, courier, items);
     		if (table != null)
     			document.add(table);
+
+    		//Vẽ biểu đồ trên trang mới
+    		if (format.isShowChart() && dataChart != null && dataChart.size() > 0) {
+    			document.newPage();
+        		writeChartToPDF(writer, document, (int) pf.getWidth(), (int) pf.getHeight(), format);
+        		
+    		}
+    		
     		document.close();
         } catch (Exception e) {
             throw new EONEException(e);
@@ -554,55 +566,73 @@ public class WritePDF {
         return name;
     }
     
-    //Hàm tạo chart theo hình tròn
-    
-    public static JFreeChart generatePieChart() {
-		DefaultPieDataset dataSet = new DefaultPieDataset();
-		dataSet.setValue("China", 19.64);
-		dataSet.setValue("India", 17.3);
-		dataSet.setValue("United States", 4.54);
-		dataSet.setValue("Indonesia", 3.4);
-		dataSet.setValue("Brazil", 2.83);
-		dataSet.setValue("Pakistan", 2.48);
-		dataSet.setValue("Bangladesh", 2.38);
-
-		JFreeChart chart = ChartFactory.createPieChart(
-				"World Population by countries", dataSet, true, true, false);
-
-		return chart;
-	}
-
-    //Hàm tạo chart theo hình cột
-	public static JFreeChart generateBarChart() {
-		DefaultCategoryDataset dataSet = new DefaultCategoryDataset();
-		dataSet.setValue(791, "Population", "1750 AD");
-		dataSet.setValue(978, "Population", "1800 AD");
-		dataSet.setValue(1262, "Population", "1850 AD");
-		dataSet.setValue(1650, "Population", "1900 AD");
-		dataSet.setValue(2519, "Population", "1950 AD");
-		dataSet.setValue(6070, "Population", "2000 AD");
-
-		JFreeChart chart = ChartFactory.createBarChart(
-				"World Population growth", "Year", "Population in millions",
-				dataSet, PlotOrientation.VERTICAL, false, true, false);
-
-		return chart;
-	}
 	
 	//Hàm writechart to PDF
-	public static void writeChartToPDF(PdfWriter writer, JFreeChart chart, int width, int height, PageFormat pf) {
-
-		PdfContentByte contentByte = writer.getDirectContent();
-		PdfTemplate template = contentByte.createTemplate(width + 100, height + 100);
+	public static void writeChartToPDF(PdfWriter writer, Document PieChart3D_PDF, int width, int height, MPrintFormat pf) {
 		
-		@SuppressWarnings("deprecation")
-		Graphics2D graphics2d = template.createGraphics(width, height, new DefaultFontMapper());
-		Rectangle2D rectangle2d = new Rectangle2D.Double(100, 100, width+100, height+100);
-
-		chart.draw(graphics2d, rectangle2d);
+		DefaultPieDataset piaChart = new DefaultPieDataset();
+		DefaultCategoryDataset barChart = new DefaultCategoryDataset();
+		DefaultCategoryDataset lineChart = new DefaultCategoryDataset();
+		if (dataChart != null) {
+			for(int i = 0; i < dataChart.size(); i++) {
+				Object [] obj = dataChart.get(i);
+				
+	        	if(pf.getChartType().equalsIgnoreCase(X_AD_PrintFormat.CHARTTYPE_BarChart)) {
+	        		barChart.setValue(new BigDecimal(obj[2].toString()), obj[0].toString(), obj[1].toString());				
+				} else if (pf.getChartType().equalsIgnoreCase(X_AD_PrintFormat.CHARTTYPE_LineChart)) {
+					lineChart.setValue(new BigDecimal(obj[2].toString()), obj[0].toString(), obj[1].toString());	
+				} else if (pf.getChartType().equalsIgnoreCase(X_AD_PrintFormat.CHARTTYPE_PieChart)) {
+					piaChart.setValue(obj[1].toString(), new BigDecimal(obj[2].toString()));
+				}
+			}
+		}
 		
-		graphics2d.dispose();
-		contentByte.addTemplate(template, 0, 0);
+		                
+        JFreeChart chart=null;
+        
+        if(pf.getChartType().equalsIgnoreCase(X_AD_PrintFormat.CHARTTYPE_BarChart)) {
+        	chart = ChartFactory.createBarChart(pf.getChartTitle(), pf.getAxisX(), pf.getAxisY(), barChart, PlotOrientation.VERTICAL, true, true, false);				
+		} else if (pf.getChartType().equalsIgnoreCase(X_AD_PrintFormat.CHARTTYPE_LineChart)) {
+			chart = ChartFactory.createLineChart(pf.getChartTitle(), pf.getAxisX(), pf.getAxisY(), lineChart, PlotOrientation.VERTICAL, true, true, false);
+		} else if (pf.getChartType().equalsIgnoreCase(X_AD_PrintFormat.CHARTTYPE_PieChart)) {
+			chart = ChartFactory.createPieChart(pf.getChartTitle(),piaChart,true,true,false);
+		}
+        
+        //Font
+        FontMapper myChartFont = new FontMapper() {
+            public BaseFont awtToPdf(java.awt.Font font) {
+                try {
+                    return BaseFont.createFont(FONT,BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+                } catch (DocumentException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                return null;
+            }
+
+            public java.awt.Font pdfToAwt(BaseFont font, int size) {
+                return null;
+            }
+        };
+        //chart.getTitle().setFont(new Font("Serif", java.awt.Font.PLAIN, 14));
+        chart.setBackgroundPaint(Color.WHITE);
+        
+        PieChart3D_PDF=new Document(new Rectangle(width,height));                 
+        
+        PdfContentByte Add_Chart_Content= writer.getDirectContent();
+        
+        PdfTemplate template_Chart_Holder=Add_Chart_Content.createTemplate(width,height);
+        
+        @SuppressWarnings("deprecation")
+		Graphics2D Graphics_Chart=template_Chart_Holder.createGraphics(width,height, myChartFont);                
+        Rectangle2D Chart_Region=new Rectangle2D.Double(100,100,width - 200,height - 200);
+        
+        chart.draw(Graphics_Chart,Chart_Region);            
+        Graphics_Chart.dispose();
+        
+        Add_Chart_Content.addTemplate(template_Chart_Holder,0,0);            
+        
 		
 	}
     
@@ -687,4 +717,6 @@ public class WritePDF {
                 2, 4, 0);
         }
     }
+    
+    
 }

@@ -17,7 +17,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-import org.compiere.EONE;
+import org.compiere.EOne;
 
 /**
  *
@@ -54,7 +54,7 @@ public class ModelGeneratorDialog extends JDialog implements ActionListener {
 
 		Panel filePanel = new Panel();
 		filePanel.setLayout(new BorderLayout());
-		String defaultPath = EONE.getAdempiereHome() + File.separator + "eone.base" + File.separator + "src";
+		String defaultPath = EOne.getEOneHome() + File.separator + "eone.base" + File.separator + "src";
 		fFolderName = new JTextField(defaultPath);
 		filePanel.add(fFolderName, BorderLayout.CENTER);
 		bFolder = new JButton("...");

@@ -1217,7 +1217,7 @@ public final class EMail implements Serializable
 	 */
 	public static void main (String[] args)
 	{
-		org.compiere.EONE.startup(true);
+		org.compiere.EOne.startup(true);
 
 		if (args.length != 5)
 		{

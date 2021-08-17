@@ -57,7 +57,7 @@ import eone.base.process.DocAction;
 import eone.base.process.DocumentEngine;
 import eone.base.process.ProcessInfo;
 import eone.base.process.ProcessInfoLog;
-import eone.webui.AdempiereWebUI;
+import eone.webui.EONEWebUI;
 import eone.webui.ClientInfo;
 import eone.webui.LayoutUtils;
 import eone.webui.WRequest;
@@ -3264,7 +3264,7 @@ public abstract class AbstractADWindowContent extends AbstractUIPart implements 
 	@Override
 	public void onProcess() {
 		ProcessButtonPopup popup = new ProcessButtonPopup();
-		popup.setWidgetAttribute(AdempiereWebUI.WIDGET_INSTANCE_NAME, "processButtonPopup");
+		popup.setWidgetAttribute(EONEWebUI.WIDGET_INSTANCE_NAME, "processButtonPopup");
 		ADTabpanel adtab = (ADTabpanel) adTabbox.getSelectedTabpanel();
 		popup.render(adtab.getToolbarButtons());
 		if (popup.getChildren().size() > 0) {

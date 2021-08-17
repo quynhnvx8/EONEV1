@@ -37,7 +37,7 @@ import javax.xml.transform.stream.StreamResult;
 
 import org.adempiere.base.event.EventManager;
 import org.adempiere.base.event.IEventTopics;
-import org.compiere.EONE;
+import org.compiere.EOne;
 import org.compiere.util.AdempiereUserError;
 import org.compiere.util.CCache;
 import org.compiere.util.CLogMgt;
@@ -4335,7 +4335,7 @@ public abstract class PO
 			DocumentBuilder builder = factory.newDocumentBuilder();
 			document = builder.newDocument();
 			if (!noComment)
-				document.appendChild(document.createComment(EONE.getSummaryAscii()));
+				document.appendChild(document.createComment(EOne.getSummaryAscii()));
 		}
 		catch (Exception e)
 		{

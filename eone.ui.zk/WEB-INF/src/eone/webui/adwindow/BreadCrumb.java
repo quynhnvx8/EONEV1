@@ -38,7 +38,7 @@ import org.zkoss.zul.Menuitem;
 import eone.base.model.DataStatusEvent;
 import eone.base.model.GridTab;
 import eone.base.model.MRole;
-import eone.webui.AdempiereWebUI;
+import eone.webui.EONEWebUI;
 import eone.webui.LayoutUtils;
 import eone.webui.component.Label;
 import eone.webui.component.Menupopup;
@@ -134,7 +134,7 @@ public class BreadCrumb extends Div implements EventListener<Event> {
         btnLast.setTooltiptext(btnLast.getTooltiptext()+"    Alt+End");
         toolbar.appendChild(btnLast);
 
-		setWidgetAttribute(AdempiereWebUI.WIDGET_INSTANCE_NAME, "breadcrumb");
+		setWidgetAttribute(EONEWebUI.WIDGET_INSTANCE_NAME, "breadcrumb");
 		
 		this.addEventListener(ON_MOUSE_OUT_ECHO_EVENT, this);
 	}

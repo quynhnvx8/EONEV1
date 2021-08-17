@@ -1,18 +1,6 @@
 /******************************************************************************
- * Product: iDempiere ERP & CRM Smart Business Solution                       *
- * Copyright (C) 1999-2012 ComPiere, Inc. All Rights Reserved.                *
- * This program is free software, you can redistribute it and/or modify it    *
- * under the terms version 2 of the GNU General Public License as published   *
- * by the Free Software Foundation. This program is distributed in the hope   *
- * that it will be useful, but WITHOUT ANY WARRANTY, without even the implied *
- * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.           *
- * See the GNU General Public License for more details.                       *
- * You should have received a copy of the GNU General Public License along    *
- * with this program, if not, write to the Free Software Foundation, Inc.,    *
- * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.                     *
- * For the text or an alternative of this public license, you may reach us    *
- * ComPiere, Inc., 2620 Augustine Dr. #245, Santa Clara, CA 95054, USA        *
- * or via info@compiere.org or http://www.compiere.org/license.html           *
+ * Product: EOoe ERP & CRM Smart Business Solution	                        *
+ * Copyright (C) 2020, Inc. All Rights Reserved.				                *
  *****************************************************************************/
 /** Generated Model - DO NOT CHANGE */
 package eone.base.model;
@@ -24,7 +12,7 @@ import java.util.Properties;
 import org.compiere.util.Env;
 
 /** Generated Model for Fact_Acct
- *  @author iDempiere (generated) 
+ *  @author EOne (generated) 
  *  @version Version 1.0 - $Id$ */
 public class X_Fact_Acct extends PO implements I_Fact_Acct, I_Persistent 
 {
@@ -32,7 +20,7 @@ public class X_Fact_Acct extends PO implements I_Fact_Acct, I_Persistent
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = 20201009L;
+	private static final long serialVersionUID = 20210810L;
 
     /** Standard Constructor */
     public X_Fact_Acct (Properties ctx, int Fact_Acct_ID, String trxName)
@@ -156,6 +144,31 @@ public class X_Fact_Acct extends PO implements I_Fact_Acct, I_Persistent
 	public int getAccount_Dr_ID () 
 	{
 		Integer ii = (Integer)get_Value(COLUMNNAME_Account_Dr_ID);
+		if (ii == null)
+			 return 0;
+		return ii.intValue();
+	}
+
+	public I_AD_Department getAD_Department() throws RuntimeException
+    {
+		return (I_AD_Department)MTable.get(getCtx(), I_AD_Department.Table_Name)
+			.getPO(getAD_Department_ID(), get_TrxName());	}
+
+	/** Set Department.
+		@param AD_Department_ID Department	  */
+	public void setAD_Department_ID (int AD_Department_ID)
+	{
+		if (AD_Department_ID < 1) 
+			set_ValueNoCheck (COLUMNNAME_AD_Department_ID, null);
+		else 
+			set_ValueNoCheck (COLUMNNAME_AD_Department_ID, Integer.valueOf(AD_Department_ID));
+	}
+
+	/** Get Department.
+		@return Department	  */
+	public int getAD_Department_ID () 
+	{
+		Integer ii = (Integer)get_Value(COLUMNNAME_AD_Department_ID);
 		if (ii == null)
 			 return 0;
 		return ii.intValue();
@@ -867,34 +880,12 @@ public class X_Fact_Acct extends PO implements I_Fact_Acct, I_Persistent
 		return ii.intValue();
 	}
 
-	
-	/** Set Department.
-		@param AD_Department_ID Department	  */
-	public void setAD_Department_ID (int AD_Department_ID)
-	{
-		if (AD_Department_ID < 1) 
-			set_ValueNoCheck (COLUMNNAME_AD_Department_ID, null);
-		else 
-			set_ValueNoCheck (COLUMNNAME_AD_Department_ID, Integer.valueOf(AD_Department_ID));
-	}
-
-	/** Get Department.
-		@return Department	  */
-	public int getAD_Department_ID () 
-	{
-		Integer ii = (Integer)get_Value(COLUMNNAME_AD_Department_ID);
-		if (ii == null)
-			 return 0;
-		return ii.intValue();
-	}
-
 	/** Set InvoiceNo.
 		@param InvoiceNo InvoiceNo	  */
 	public void setInvoiceNo (String InvoiceNo)
 	{
 		set_Value (COLUMNNAME_InvoiceNo, InvoiceNo);
 	}
-
 
 	/** Get InvoiceNo.
 		@return InvoiceNo	  */
@@ -924,6 +915,29 @@ public class X_Fact_Acct extends PO implements I_Fact_Acct, I_Persistent
 		if (ii == null)
 			 return 0;
 		return ii.intValue();
+	}
+
+	/** LessThan3 = 03 */
+	public static final String LISTDURATION_LessThan3 = "03";
+	/** LessThan6 = 06 */
+	public static final String LISTDURATION_LessThan6 = "06";
+	/** LessThan12 = 12 */
+	public static final String LISTDURATION_LessThan12 = "12";
+	/** GreatThan12 = 13 */
+	public static final String LISTDURATION_GreatThan12 = "13";
+	/** Set ListDuration.
+		@param ListDuration ListDuration	  */
+	public void setListDuration (String ListDuration)
+	{
+
+		set_Value (COLUMNNAME_ListDuration, ListDuration);
+	}
+
+	/** Get ListDuration.
+		@return ListDuration	  */
+	public String getListDuration () 
+	{
+		return (String)get_Value(COLUMNNAME_ListDuration);
 	}
 
 	public eone.base.model.I_M_Product getM_Product_Cr() throws RuntimeException
@@ -1196,6 +1210,4 @@ public class X_Fact_Acct extends PO implements I_Fact_Acct, I_Persistent
 			 return 0;
 		return ii.intValue();
 	}
-
-	
 }

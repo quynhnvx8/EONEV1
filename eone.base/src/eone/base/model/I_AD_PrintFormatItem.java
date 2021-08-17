@@ -136,6 +136,15 @@ public interface I_AD_PrintFormatItem
 	  */
 	public String getBarcodeType();
 
+    /** Column name ChartColumn */
+    public static final String COLUMNNAME_ChartColumn = "ChartColumn";
+
+	/** Set ChartColumn	  */
+	public void setChartColumn (String ChartColumn);
+
+	/** Get ChartColumn	  */
+	public String getChartColumn();
+
     /** Column name ColumnSpan */
     public static final String COLUMNNAME_ColumnSpan = "ColumnSpan";
 

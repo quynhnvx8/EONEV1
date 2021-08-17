@@ -63,7 +63,7 @@ import eone.base.model.MRole;
 import eone.base.model.MTable;
 import eone.base.model.MUser;
 import eone.base.model.PO;
-import eone.webui.AdempiereWebUI;
+import eone.webui.EONEWebUI;
 import eone.webui.ClientInfo;
 import eone.webui.apps.AEnv;
 import eone.webui.component.ConfirmPanel;
@@ -119,7 +119,7 @@ public class WRecordInfo extends Window implements EventListener<Event>
 		this.setSizable(true);
 		this.setClosable(true);
 		this.setMaximizable(true);
-		this.setWidgetAttribute(AdempiereWebUI.WIDGET_INSTANCE_NAME, "recordInfo");
+		this.setWidgetAttribute(EONEWebUI.WIDGET_INSTANCE_NAME, "recordInfo");
 		this.setSclass("popup-dialog record-info-dialog");
 		
 		try

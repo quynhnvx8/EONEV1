@@ -32,7 +32,7 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.BorderStyle;
 import org.apache.poi.ss.usermodel.FillPatternType;
 import org.apache.poi.ss.usermodel.IndexedColors;
-import org.compiere.EONE;
+import org.compiere.EOne;
 import org.compiere.util.CLogger;
 import org.compiere.util.DB;
 import org.compiere.util.DisplayType;
@@ -858,7 +858,7 @@ public class GridTabXLSExporter implements IGridTabExporter
 		header.setRight(HSSFHeader.page()+ " / "+HSSFHeader.numPages());
 		// Sheet Footer
 		HSSFFooter footer = sheet.getFooter();
-		footer.setLeft(EONE.ADEMPIERE_R);
+		footer.setLeft(EOne.ADEMPIERE_R);
 		footer.setCenter(Env.getHeader(Env.getCtx(), 0));
 		Timestamp now = new Timestamp(System.currentTimeMillis());
 		footer.setRight(DisplayType.getDateFormat(DisplayType.DateTime, languageDefault).format(now));

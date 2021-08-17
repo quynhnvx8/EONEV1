@@ -19,8 +19,6 @@ package eone.base.model;
 import java.sql.ResultSet;
 import java.util.Properties;
 
-import org.compiere.util.Env;
-
 
 /**
  *	Form Model
@@ -70,9 +68,7 @@ public class MForm extends X_AD_Form
 			return success;
 		if (newRecord)
 		{
-			int AD_Role_ID = Env.getAD_Role_ID(getCtx());
-			MFormAccess pa = new MFormAccess(this, AD_Role_ID);
-			pa.saveEx();
+			;
 		}
 		//	Menu
 		else if (is_ValueChanged("IsActive") || is_ValueChanged("Name") 

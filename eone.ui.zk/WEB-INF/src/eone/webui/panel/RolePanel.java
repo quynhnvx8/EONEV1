@@ -37,7 +37,7 @@ import eone.base.model.MEmployee;
 import eone.base.model.MRole;
 import eone.base.model.MSysConfig;
 import eone.base.model.MUser;
-import eone.webui.AdempiereIdGenerator;
+import eone.webui.EONEIdGenerator;
 import eone.webui.LayoutUtils;
 import eone.webui.component.ComboItem;
 import eone.webui.component.Combobox;
@@ -315,7 +315,7 @@ public class RolePanel extends Window implements EventListener<Event>, Deferrabl
 		if (m_clientKNPairs != null && m_clientKNPairs.length > 0) {
 			for (int i = 0; i < m_clientKNPairs.length; i++) {
 				ComboItem ci = new ComboItem(m_clientKNPairs[i].getName(), m_clientKNPairs[i].getID());
-				String id = AdempiereIdGenerator.escapeId(ci.getLabel());
+				String id = EONEIdGenerator.escapeId(ci.getLabel());
 				if (lstClient.getFellowIfAny(id) == null)
 					ci.setId(id);
 				lstClient.appendChild(ci);
@@ -366,7 +366,7 @@ public class RolePanel extends Window implements EventListener<Event>, Deferrabl
 			if (roleKNPairs != null && roleKNPairs.length > 0) {
 				for (int i = 0; i < roleKNPairs.length; i++) {
 					ComboItem ci = new ComboItem(roleKNPairs[i].getName(), roleKNPairs[i].getID());
-					String id = AdempiereIdGenerator.escapeId(ci.getLabel());
+					String id = EONEIdGenerator.escapeId(ci.getLabel());
 					if (lstRole.getFellowIfAny(id) == null)
 						ci.setId(id);
 					lstRole.appendChild(ci);
@@ -415,7 +415,7 @@ public class RolePanel extends Window implements EventListener<Event>, Deferrabl
 						continue;
 					}
 					ComboItem ci = new ComboItem(orgKNPairs[i].getName(), orgKNPairs[i].getID());
-					String id = AdempiereIdGenerator.escapeId(ci.getLabel());
+					String id = EONEIdGenerator.escapeId(ci.getLabel());
 					if (lstOrganisation.getFellowIfAny(id) == null)
 						ci.setId(id);
 					lstOrganisation.appendChild(ci);
@@ -604,7 +604,7 @@ public class RolePanel extends Window implements EventListener<Event>, Deferrabl
 		Env.setContext(m_ctx, "#Month", new SimpleDateFormat("MM").format(ts));
 		Env.setContext(m_ctx, "#Year", new SimpleDateFormat("yyyy").format(ts));
 		Env.setContext(m_ctx, "#FDate", TimeUtil.getDayFirstMonth(ts));
-		Env.setContext(m_ctx, "#LDate", TimeUtil.getDayLastMonth(ts));
+		Env.setContext(m_ctx, "#TDate", TimeUtil.getDayLastMonth(ts));
 		Env.setContext(m_ctx, "#FYDate", TimeUtil.getDayFirstYear(ts));
 		Env.setContext(m_ctx, "#LYDate", TimeUtil.getDayLastYear(ts));
 		

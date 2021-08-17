@@ -46,6 +46,16 @@ input:focus, textarea:focus, .z-combobox-input:focus, z-datebox-input:focus {
     cursor: default !important;
 }
 
+.z-chosenbox {
+    background-color: #FFF;
+    border: 1px solid #cfcfcf;
+    border-radius: 3px;
+    margin: 0;
+    padding: 2px 5px;
+    line-height: 14px;
+    height: 24px;
+}
+
 <%-- workaround for http://jira.idempiere.com/browse/IDEMPIERE-692 --%>
 .z-combobox-popup {
 	max-height: 200px;

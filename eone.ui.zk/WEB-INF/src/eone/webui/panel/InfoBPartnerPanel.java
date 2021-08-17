@@ -42,7 +42,7 @@ import org.zkoss.zul.South;
 import org.zkoss.zul.Vbox;
 
 import eone.base.model.MQuery;
-import eone.webui.AdempiereWebUI;
+import eone.webui.EONEWebUI;
 import eone.webui.apps.AEnv;
 import eone.webui.component.Checkbox;
 import eone.webui.component.Grid;
@@ -167,19 +167,19 @@ public class InfoBPartnerPanel extends InfoPanel implements EventListener<Event>
 		
 		fieldValue = new Textbox();
 		fieldValue.setMaxlength(40);
-		fieldValue.setWidgetAttribute(AdempiereWebUI.WIDGET_INSTANCE_NAME, "value");
+		fieldValue.setWidgetAttribute(EONEWebUI.WIDGET_INSTANCE_NAME, "value");
 		fieldName = new Textbox();
 		fieldName.setMaxlength(40);
-		fieldName.setWidgetAttribute(AdempiereWebUI.WIDGET_INSTANCE_NAME, "name");
+		fieldName.setWidgetAttribute(EONEWebUI.WIDGET_INSTANCE_NAME, "name");
 		fieldContact = new Textbox();
 		fieldContact.setMaxlength(40);
-		fieldContact.setWidgetAttribute(AdempiereWebUI.WIDGET_INSTANCE_NAME, "contact");
+		fieldContact.setWidgetAttribute(EONEWebUI.WIDGET_INSTANCE_NAME, "contact");
 		fieldEMail = new Textbox();
 		fieldEMail.setMaxlength(40);
-		fieldEMail.setWidgetAttribute(AdempiereWebUI.WIDGET_INSTANCE_NAME, "email");
+		fieldEMail.setWidgetAttribute(EONEWebUI.WIDGET_INSTANCE_NAME, "email");
 		fieldPhone = new Textbox();		
 		fieldPhone.setMaxlength(40);
-		fieldPhone.setWidgetAttribute(AdempiereWebUI.WIDGET_INSTANCE_NAME, "phone");
+		fieldPhone.setWidgetAttribute(EONEWebUI.WIDGET_INSTANCE_NAME, "phone");
 		
 		checkAND = new Checkbox();
 		checkAND.setLabel(Msg.getMsg(Env.getCtx(), "SearchAND", true));
@@ -204,7 +204,7 @@ public class InfoBPartnerPanel extends InfoPanel implements EventListener<Event>
 		ZKUpdateUtil.setHflex(fieldEMail, "1");
 		
 		Grid grid = GridFactory.newGridLayout();
-		grid.setWidgetAttribute(AdempiereWebUI.WIDGET_INSTANCE_NAME, "infoParameterPanel");
+		grid.setWidgetAttribute(EONEWebUI.WIDGET_INSTANCE_NAME, "infoParameterPanel");
 		
 		Rows rows = new Rows();
 		grid.appendChild(rows);

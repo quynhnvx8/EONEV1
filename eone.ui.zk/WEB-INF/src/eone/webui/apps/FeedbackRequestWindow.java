@@ -39,7 +39,7 @@ import org.zkoss.zul.Center;
 import org.zkoss.zul.Div;
 import org.zkoss.zul.South;
 
-import eone.webui.AdempiereWebUI;
+import eone.webui.EONEWebUI;
 import eone.webui.component.AttachmentItem;
 import eone.webui.component.Button;
 import eone.webui.component.ConfirmPanel;
@@ -198,7 +198,7 @@ public class FeedbackRequestWindow extends Window implements EventListener<Event
 		
 		Button btn = new Button();
 		btn.setImage(ThemeManager.getThemeResource("images/Attachment24.png"));
-		btn.setUpload(AdempiereWebUI.getUploadSetting());
+		btn.setUpload(EONEWebUI.getUploadSetting());
 		btn.addEventListener(Events.ON_UPLOAD, this);
 		btn.setTooltiptext(Msg.getMsg(Env.getCtx(), "Attachment"));
 		confirmPanel.addComponentsLeft(btn);

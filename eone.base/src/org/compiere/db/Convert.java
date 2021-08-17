@@ -460,7 +460,6 @@ public abstract class Convert
 	private static String [] dontLogTables = new String[] {
 			"AD_ALERTPROCESSORLOG",
 			"AD_CHANGELOG",
-			"AD_FORM_ACCESS",
 			"AD_INFOWINDOW_ACCESS",
 			"AD_LDAPPROCESSORLOG",
 			"AD_PACKAGE_IMP",

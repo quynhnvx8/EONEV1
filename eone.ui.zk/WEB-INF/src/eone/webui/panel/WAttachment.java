@@ -38,7 +38,7 @@ import eone.base.model.MAttachment;
 import eone.base.model.MAttachmentEntry;
 import eone.base.model.MTable;
 import eone.exceptions.EONEException;
-import eone.webui.AdempiereWebUI;
+import eone.webui.EONEWebUI;
 import eone.webui.ClientInfo;
 import eone.webui.apps.AEnv;
 import eone.webui.component.Button;
@@ -207,7 +207,7 @@ public class WAttachment extends Window implements EventListener<Event>
 
 	void staticInit() throws Exception
 	{
-		this.setAttribute(AdempiereWebUI.WIDGET_INSTANCE_NAME, "attachment");
+		this.setAttribute(EONEWebUI.WIDGET_INSTANCE_NAME, "attachment");
 		this.setMaximizable(true);
 		if (!ThemeManager.isUseCSSForWindowSize())
 		{
@@ -284,7 +284,7 @@ public class WAttachment extends Window implements EventListener<Event>
 		bLoad.setId("bLoad");
 //		bLoad.setAttribute("org.zkoss.zul.image.preload", Boolean.TRUE);
 		bLoad.setTooltiptext(Msg.getMsg(Env.getCtx(), "Load"));
-		bLoad.setUpload("multiple=true," + AdempiereWebUI.getUploadSetting());
+		bLoad.setUpload("multiple=true," + EONEWebUI.getUploadSetting());
 		bLoad.addEventListener(Events.ON_UPLOAD, this);
 
 		bDelete.addEventListener(Events.ON_CLICK, this);

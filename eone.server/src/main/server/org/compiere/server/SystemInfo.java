@@ -37,7 +37,7 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 import java.util.logging.Level;
 
-import org.compiere.EONE;
+import org.compiere.EOne;
 import org.compiere.db.AdempiereDatabase;
 import org.compiere.db.CConnection;
 import org.compiere.util.CLogMgt;
@@ -62,7 +62,7 @@ public class SystemInfo implements Serializable {
 	private static final long serialVersionUID = -4451616690416295597L;
 	
 	private String propertyFileName;
-	private String idempereHome;
+	private String eoneHome;
 	private String operatingSystem;
 	private String javaVM;
 	private String databaseDescription;
@@ -107,8 +107,8 @@ public class SystemInfo implements Serializable {
 	 * 
 	 * @return idempiere home
 	 */
-	public String getIDempiereHome() {
-		return idempereHome;
+	public String getEOneHome() {
+		return eoneHome;
 	}
 	
 	/**
@@ -240,7 +240,7 @@ public class SystemInfo implements Serializable {
 	public static SystemInfo getLocalSystemInfo() {
 		SystemInfo si = new SystemInfo();
 		si.propertyFileName = Ini.getPropertyFileName();
-		si.idempereHome = EONE.getAdempiereHome();
+		si.eoneHome = EOne.getEOneHome();
 		OperatingSystemMXBean os = ManagementFactory.getOperatingSystemMXBean();
 		String osInfo = os.getName() + " " + os.getVersion();
 		osInfo += " (" + os.getArch() + ")";

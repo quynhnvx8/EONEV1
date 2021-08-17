@@ -3,7 +3,7 @@ package org.adempiere.server;
 import java.io.File;
 import java.util.Properties;
 
-import org.compiere.EONE;
+import org.compiere.EOne;
 import org.compiere.util.Ini;
 import org.compiere.util.ServerContext;
 import org.eclipse.equinox.app.IApplication;
@@ -23,9 +23,9 @@ public class Application implements IApplication {
         if (!file.exists()) {
         	throw new IllegalStateException("eone.properties file missing. Path="+file.getAbsolutePath());
         }
-        if (!EONE.isStarted())
+        if (!EOne.isStarted())
         {
-	        boolean started = EONE.startup(false);
+	        boolean started = EOne.startup(false);
 	        if(!started)
 	        {
 	            throw new Exception("Could not start EONE");

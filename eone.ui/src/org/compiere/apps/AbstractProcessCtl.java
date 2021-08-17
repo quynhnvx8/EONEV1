@@ -359,12 +359,20 @@ public abstract class AbstractProcessCtl implements Runnable
         List<ArrayList<PrintDataItem>> arrsH = new ArrayList<ArrayList<PrintDataItem>>();
         List<ArrayList<PrintDataItem>> arrsF = new ArrayList<ArrayList<PrintDataItem>>();
         
+        //Object chart
+        Object [] arrChart = null;
+        List<Object []> arrsChart = new ArrayList<Object []>();
+        
         
 		ResultSet rs = null;
 		MPrintFormatItem [] itemsC = format.getItemContent();
 		MPrintFormatItem [] itemsG = format.getItemGroup();
 		MPrintFormatItem [] itemsH = format.getItemHeader();
 		MPrintFormatItem [] itemsF = format.getItemFooter();
+		MPrintFormatItem [] itemsR = null;
+		if (format.isShowChart()) {
+			itemsR = format.getItemChart();
+		}
 		
 		//Group by
 		Map<String, BigDecimal> objGroup = new HashMap<String, BigDecimal>();
@@ -479,6 +487,7 @@ public abstract class AbstractProcessCtl implements Runnable
 							if (rowCount == 0)
 								arrWidth.add((float)itemsC[i].getMaxWidth());
 						}
+						
 						if (Integer.parseInt(item.getOrderRowHeader()) > maxRow && !item.isGroupBy()) {
 							maxRow = Integer.parseInt(item.getOrderRowHeader());
 						}
@@ -528,6 +537,48 @@ public abstract class AbstractProcessCtl implements Runnable
 				//End Footer
 				/*=========================================================*/
 				
+				if (format.isShowChart()) {
+					ResultSet rsChart = (ResultSet) rs.getObject(4);
+					while (rsChart.next()) {
+						
+						arrC = new ArrayList<PrintDataItem>();
+						if(itemsR == null)
+							break;
+						Object name = null;
+						Object value = null;
+						String key = "No Value";
+						
+						for(int i = 0; i < itemsR.length; i++) {
+							MPrintFormatItem item = itemsR[i];
+							element = (Serializable) rsChart.getObject(item.getName());
+							
+							if(!"NONE".equalsIgnoreCase(item.getChartColumn())) {
+								if ("NAME".equals(item.getChartColumn()))
+									name = element;
+								if ("VALUE".equals(item.getChartColumn())) {
+									value = element;
+									if (value == null)
+										value = Env.ZERO;
+								}
+								if ("GROUP".equals(item.getChartColumn())) {
+									key = (String) element;
+									if (key == null)
+										key = "No Value";
+								}
+							}
+							if (name != null && value != null) {
+								arrChart = new Object [] {key, name, value};
+							}
+						}
+						if (arrChart != null) {
+							arrsChart.add(arrChart);
+						}						
+					}
+					rsChart.close();
+					
+				}
+				//End chart
+				/*=========================================================*/
 				
 				
 			} 
@@ -571,6 +622,7 @@ public abstract class AbstractProcessCtl implements Runnable
 		
 		m_pi.setWidthTable(retValue);
 		m_pi.setDataQueryC(arrsC);
+		m_pi.setDataChart(arrsChart);
 		m_pi.setDataQueryH(arrsH);
 		m_pi.setDataQueryF(arrsF);
 		m_pi.setRowCountQuery(rowCount + countGroup);

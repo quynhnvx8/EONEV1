@@ -14,7 +14,7 @@ import java.util.Set;
 import java.util.concurrent.Future;
 import java.util.logging.Level;
 
-import org.compiere.EONE;
+import org.compiere.EOne;
 import org.compiere.util.CCache;
 import org.compiere.util.CLogMgt;
 import org.compiere.util.ContextRunnable;
@@ -855,7 +855,7 @@ public final class MLookup extends Lookup implements Serializable
 		if (log.isLoggable(Level.FINE)) log.fine(m_info.KeyColumn + ": start");
 		
 		m_loader = new MLoader();
-		m_loaderFuture = EONE.getThreadPoolExecutor().submit(m_loader);
+		m_loaderFuture = EOne.getThreadPoolExecutor().submit(m_loader);
 		loadComplete();
 		if (log.isLoggable(Level.FINE)) log.fine(m_info.KeyColumn + ": #" + m_lookup.size());
 		

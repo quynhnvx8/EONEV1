@@ -37,7 +37,7 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
 import org.adempiere.base.Core;
-import org.compiere.EONE;
+import org.compiere.EOne;
 import org.compiere.server.IServerManager;
 import org.compiere.server.ServerCount;
 import org.compiere.server.ServerInstance;
@@ -337,7 +337,7 @@ public class ClusterServerMgr implements IServerManager {
 
 	@Override
 	public String getDescription() {
-		return EONE.getVersion();
+		return EOne.getVersion();
 	}
 	
 	@Override

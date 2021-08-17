@@ -18,7 +18,7 @@ public class X_PA_ReportLine extends PO implements I_PA_ReportLine, I_Persistent
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = 20210402L;
+	private static final long serialVersionUID = 20210806L;
 
     /** Standard Constructor */
     public X_PA_ReportLine (Properties ctx, int PA_ReportLine_ID, String trxName)
@@ -80,6 +80,24 @@ public class X_PA_ReportLine extends PO implements I_PA_ReportLine, I_Persistent
 		return (String)get_Value(COLUMNNAME_C_ElementValue_ID);
 	}
 
+	/** Set Account Element Other.
+		@param C_ElementValueOT_ID 
+		Account Element
+	  */
+	public void setC_ElementValueOT_ID (String C_ElementValueOT_ID)
+	{
+
+		set_ValueNoCheck (COLUMNNAME_C_ElementValueOT_ID, C_ElementValueOT_ID);
+	}
+
+	/** Get Account Element Other.
+		@return Account Element
+	  */
+	public String getC_ElementValueOT_ID () 
+	{
+		return (String)get_Value(COLUMNNAME_C_ElementValueOT_ID);
+	}
+
 	/** Set Description.
 		@param Description 
 		Optional short description of the record
@@ -97,6 +115,23 @@ public class X_PA_ReportLine extends PO implements I_PA_ReportLine, I_Persistent
 		return (String)get_Value(COLUMNNAME_Description);
 	}
 
+	/** Set FixZero.
+		@param FixZero FixZero	  */
+	public void setFixZero (int FixZero)
+	{
+		set_Value (COLUMNNAME_FixZero, Integer.valueOf(FixZero));
+	}
+
+	/** Get FixZero.
+		@return FixZero	  */
+	public int getFixZero () 
+	{
+		Integer ii = (Integer)get_Value(COLUMNNAME_FixZero);
+		if (ii == null)
+			 return 0;
+		return ii.intValue();
+	}
+
 	/** Set FormulaSetup.
 		@param FormulaSetup FormulaSetup	  */
 	public void setFormulaSetup (String FormulaSetup)
@@ -109,6 +144,27 @@ public class X_PA_ReportLine extends PO implements I_PA_ReportLine, I_Persistent
 	public String getFormulaSetup () 
 	{
 		return (String)get_Value(COLUMNNAME_FormulaSetup);
+	}
+
+	/** Set IsBisexual .
+		@param IsBisexual IsBisexual 	  */
+	public void setIsBisexual (boolean IsBisexual)
+	{
+		set_Value (COLUMNNAME_IsBisexual, Boolean.valueOf(IsBisexual));
+	}
+
+	/** Get IsBisexual .
+		@return IsBisexual 	  */
+	public boolean isBisexual () 
+	{
+		Object oo = get_Value(COLUMNNAME_IsBisexual);
+		if (oo != null) 
+		{
+			 if (oo instanceof Boolean) 
+				 return ((Boolean)oo).booleanValue(); 
+			return "Y".equals(oo);
+		}
+		return false;
 	}
 
 	/** Set IsBold.
@@ -199,6 +255,23 @@ public class X_PA_ReportLine extends PO implements I_PA_ReportLine, I_Persistent
 			return "Y".equals(oo);
 		}
 		return false;
+	}
+
+	/** Set Multiply Value.
+		@param MultiplyValue Multiply Value	  */
+	public void setMultiplyValue (int MultiplyValue)
+	{
+		set_Value (COLUMNNAME_MultiplyValue, Integer.valueOf(MultiplyValue));
+	}
+
+	/** Get Multiply Value.
+		@return Multiply Value	  */
+	public int getMultiplyValue () 
+	{
+		Integer ii = (Integer)get_Value(COLUMNNAME_MultiplyValue);
+		if (ii == null)
+			 return 0;
+		return ii.intValue();
 	}
 
 	/** Set Name.
@@ -317,10 +390,6 @@ public class X_PA_ReportLine extends PO implements I_PA_ReportLine, I_Persistent
 	public static final String TYPEACCOUNT_BalanceCreditAcct = "BCR_ACCT";
 	/** BalanceDebitAcct = BDR_ACCT */
 	public static final String TYPEACCOUNT_BalanceDebitAcct = "BDR_ACCT";
-	/** BalanceCreditAcctFinal = BCR_ACCT_F */
-	public static final String TYPEACCOUNT_BalanceCreditAcctFinal = "BCR_ACCT_F";
-	/** BalanceDebitAcctFinal = BDR_ACCT_F */
-	public static final String TYPEACCOUNT_BalanceDebitAcctFinal = "BDR_ACCT_F";
 	/** AccumulateDebitAcct = ACCDR_ACCT */
 	public static final String TYPEACCOUNT_AccumulateDebitAcct = "ACCDR_ACCT";
 	/** AccumulateCreditAcct = ACCCR_ACCT */
@@ -342,6 +411,35 @@ public class X_PA_ReportLine extends PO implements I_PA_ReportLine, I_Persistent
 	public String getTypeAccount () 
 	{
 		return (String)get_Value(COLUMNNAME_TypeAccount);
+	}
+
+	/** TypeAccountOT AD_Reference_ID=53280 */
+	public static final int TYPEACCOUNTOT_AD_Reference_ID=53280;
+	/** BalanceCreditAcct = BCR_ACCT */
+	public static final String TYPEACCOUNTOT_BalanceCreditAcct = "BCR_ACCT";
+	/** BalanceDebitAcct = BDR_ACCT */
+	public static final String TYPEACCOUNTOT_BalanceDebitAcct = "BDR_ACCT";
+	/** AccumulateDebitAcct = ACCDR_ACCT */
+	public static final String TYPEACCOUNTOT_AccumulateDebitAcct = "ACCDR_ACCT";
+	/** AccumulateCreditAcct = ACCCR_ACCT */
+	public static final String TYPEACCOUNTOT_AccumulateCreditAcct = "ACCCR_ACCT";
+	/** IncuredCreditAcct = INCCR_ACCT */
+	public static final String TYPEACCOUNTOT_IncuredCreditAcct = "INCCR_ACCT";
+	/** IncuredDebitAcct = INCDR_ACCT */
+	public static final String TYPEACCOUNTOT_IncuredDebitAcct = "INCDR_ACCT";
+	/** Set TypeAccount Other.
+		@param TypeAccountOT TypeAccount Other	  */
+	public void setTypeAccountOT (String TypeAccountOT)
+	{
+
+		set_Value (COLUMNNAME_TypeAccountOT, TypeAccountOT);
+	}
+
+	/** Get TypeAccount Other.
+		@return TypeAccount Other	  */
+	public String getTypeAccountOT () 
+	{
+		return (String)get_Value(COLUMNNAME_TypeAccountOT);
 	}
 
 	/** Set Code.

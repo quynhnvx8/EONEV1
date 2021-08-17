@@ -35,7 +35,7 @@ import org.zkoss.zul.ListitemRenderer;
 import org.zkoss.zul.ListitemRendererExt;
 
 import eone.base.model.MImage;
-import eone.webui.AdempiereWebUI;
+import eone.webui.EONEWebUI;
 import eone.webui.ClientInfo;
 import eone.webui.apps.AEnv;
 import eone.webui.event.TableValueChangeEvent;
@@ -174,7 +174,7 @@ public class WListItemRenderer implements ListitemRenderer<Object>, EventListene
 		if (m_tableColumns.size() > columnIndex) {
 			WTableColumn column = getColumn(columnIndex);
 			if (column != null && column.getHeaderValue() != null) {
-				listcell.setWidgetAttribute(AdempiereWebUI.WIDGET_INSTANCE_NAME, column.getHeaderValue().toString());
+				listcell.setWidgetAttribute(EONEWebUI.WIDGET_INSTANCE_NAME, column.getHeaderValue().toString());
 			}
 		}
 		boolean isCellEditable = table != null ? table.isCellEditable(rowIndex, columnIndex) : false;

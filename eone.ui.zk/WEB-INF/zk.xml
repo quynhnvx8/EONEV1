@@ -40,7 +40,7 @@
 
 	<!-- uncomment the following for selenium testing / see zk-selenium.xml for an easier way -->
 	<!--  system-config>
-		<id-generator-class>eone.webui.AdempiereIdGenerator</id-generator-class>
+		<id-generator-class>eone.webui.EONEIdGenerator</id-generator-class>
 	</system-config -->
 
 	<!--
@@ -50,7 +50,7 @@
 	<!-- 
 	<system-config>
 		<ui-factory-class>eone.webui.RenewUiFactory</ui-factory-class>
-		<id-generator-class>eone.webui.AdempiereIdGenerator</id-generator-class>
+		<id-generator-class>eone.webui.EONEIdGenerator</id-generator-class>
 	</system-config>	
 	 -->
 	<device-config>

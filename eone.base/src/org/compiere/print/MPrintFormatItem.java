@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 import java.util.logging.Level;
 
@@ -11,6 +12,7 @@ import org.compiere.util.DB;
 import org.compiere.util.DisplayType;
 import org.compiere.util.Env;
 import org.compiere.util.Language;
+import org.compiere.util.Msg;
 
 import eone.base.model.X_AD_PrintFormatItem;
 
@@ -207,9 +209,14 @@ public class MPrintFormatItem extends X_AD_PrintFormatItem
 		return getPrintAreaType().equals(PRINTAREATYPE_Content);
 	}
 	
-	public boolean isContentOther()
+	public boolean isGroupBy()
 	{
-		return getPrintAreaType().equals(PRINTAREATYPE_ContentOther);
+		return getPrintAreaType().equals(PRINTAREATYPE_GroupBy);
+	}
+	
+	public boolean isChart()
+	{
+		return getPrintAreaType().equals(PRINTAREATYPE_Chart);
 	}
 	/**
 	 * 	Footer
@@ -300,7 +307,14 @@ public class MPrintFormatItem extends X_AD_PrintFormatItem
 	 */
 	protected boolean beforeSave (boolean newRecord)
 	{
-		
+		Map<String, Object> dataColumn = new HashMap<String, Object>();
+		dataColumn.put(COLUMNNAME_ChartColumn, getChartColumn());
+		dataColumn.put(COLUMNNAME_AD_PrintFormat_ID, getAD_PrintFormat_ID());
+		boolean check = isCheckDoubleValue(Table_Name, dataColumn, COLUMNNAME_AD_PrintFormatItem_ID, getAD_PrintFormatItem_ID());
+		if (!check && is_ValueChanged(X_AD_PrintFormatItem.COLUMNNAME_ChartColumn) && !"NONE".equals(getChartColumn())) {
+			log.saveError("Error", Msg.getMsg(Env.getLanguage(getCtx()), "ValueExists") + ": " + COLUMNNAME_ChartColumn);
+			return false;
+		}
 		return true;
 	}	//	beforeSave
 	

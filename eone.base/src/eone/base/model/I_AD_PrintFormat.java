@@ -108,6 +108,46 @@ public interface I_AD_PrintFormat
 
 	public eone.base.model.I_AD_PrintPaper getAD_PrintPaper() throws RuntimeException;
 
+    /** Column name AxisX */
+    public static final String COLUMNNAME_AxisX = "AxisX";
+
+	/** Set AxisX	  */
+	public void setAxisX (String AxisX);
+
+	/** Get AxisX	  */
+	public String getAxisX();
+
+    /** Column name AxisY */
+    public static final String COLUMNNAME_AxisY = "AxisY";
+
+	/** Set AxisY	  */
+	public void setAxisY (String AxisY);
+
+	/** Get AxisY	  */
+	public String getAxisY();
+
+    /** Column name ChartTitle */
+    public static final String COLUMNNAME_ChartTitle = "ChartTitle";
+
+	/** Set ChartTitle	  */
+	public void setChartTitle (String ChartTitle);
+
+	/** Get ChartTitle	  */
+	public String getChartTitle();
+
+    /** Column name ChartType */
+    public static final String COLUMNNAME_ChartType = "ChartType";
+
+	/** Set Chart Type.
+	  * Type of chart to render
+	  */
+	public void setChartType (String ChartType);
+
+	/** Get Chart Type.
+	  * Type of chart to render
+	  */
+	public String getChartType();
+
     /** Column name CreateCopy */
     public static final String COLUMNNAME_CreateCopy = "CreateCopy";
 
@@ -184,6 +224,15 @@ public interface I_AD_PrintFormat
 	  * The record is active in the system
 	  */
 	public boolean isActive();
+
+    /** Column name IsShowChart */
+    public static final String COLUMNNAME_IsShowChart = "IsShowChart";
+
+	/** Set Show Chart	  */
+	public void setIsShowChart (boolean IsShowChart);
+
+	/** Get Show Chart	  */
+	public boolean isShowChart();
 
     /** Column name Name */
     public static final String COLUMNNAME_Name = "Name";

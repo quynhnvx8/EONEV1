@@ -32,7 +32,7 @@ import javax.mail.Part;
 import javax.mail.Session;
 import javax.mail.Store;
 
-import org.compiere.EONE;
+import org.compiere.EOne;
 import org.compiere.util.CLogMgt;
 import org.compiere.util.CLogger;
 import org.compiere.util.EMailAuthenticator;
@@ -705,7 +705,7 @@ public class EMailProcessor
 	 */
 	public static void main (String[] args)
 	{
-		EONE.startupEnvironment(true);
+		EOne.startupEnvironment(true);
 		EMailProcessor m = new EMailProcessor("admin", "test", "testadempiere");
 		m.processMessages();
 		

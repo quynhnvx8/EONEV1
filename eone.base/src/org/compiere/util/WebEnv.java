@@ -43,7 +43,7 @@ import org.apache.ecs.xhtml.script;
 import org.apache.ecs.xhtml.table;
 import org.apache.ecs.xhtml.td;
 import org.apache.ecs.xhtml.tr;
-import org.compiere.EONE;
+import org.compiere.EOne;
 
 import eone.base.model.MClient;
 import eone.base.model.MSystem;
@@ -168,7 +168,7 @@ public class WebEnv
 		}
 		try
 		{
-			s_initOK = EONE.startup(false);
+			s_initOK = EOne.startup(false);
 		}
 		catch (Exception ex)
 		{
@@ -495,7 +495,7 @@ public class WebEnv
 		body.addElement(new comment(" --- Footer Start --- "));
 		//  Command Line
 		p footer = new p();
-		footer.addElement(org.compiere.EONE.DATE_VERSION + ": ");
+		footer.addElement(org.compiere.EOne.DATE_VERSION + ": ");
 		footer.addElement(new a("javascript:diag_window();", "Window Info"));
 		footer.addElement(" - ");
 		footer.addElement(new a("javascript:parent.resizeFrame('5,*');", "Menu"));

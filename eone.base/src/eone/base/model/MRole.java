@@ -390,15 +390,6 @@ public final class MRole extends X_AD_Role
 			+ " AND p.AD_Process_ID = pa.AD_Process_ID) "
 			+ "WHERE pa.AD_Process_ID IS NULL AND AccessLevel IN ";
 
-		String sqlForm = "INSERT INTO AD_Form_Access "
-			+ "(AD_Form_ID, AD_Role_ID," 
-			+ " AD_Client_ID,AD_Org_ID,IsActive,Created,CreatedBy,Updated,UpdatedBy,IsReadWrite) "
-			+ "SELECT f.AD_Form_ID, " + roleClientOrgUser
-			+ "FROM AD_Form f LEFT JOIN AD_Form_Access fa ON "
-			+ "(fa.AD_Role_ID=" + getAD_Role_ID()
-			+ " AND f.AD_Form_ID = fa.AD_Form_ID) "
-			+ "WHERE fa.AD_Form_ID IS NULL AND AccessLevel IN ";
-
 	
 		
 
@@ -451,13 +442,11 @@ public final class MRole extends X_AD_Role
 
 		int win = DB.executeUpdateEx(sqlWindow + roleAccessLevelWin, get_TrxName());
 		int proc = DB.executeUpdateEx(sqlProcess + roleAccessLevel, get_TrxName());
-		int form = DB.executeUpdateEx(sqlForm + roleAccessLevel, get_TrxName());
 		int info = DB.executeUpdateEx(sqlInfo + roleAccessLevel, get_TrxName());
 
 		loadAccess(true);
 		return "@AD_Window_ID@ #" + win 
 			+ " -  @AD_Process_ID@ #" + proc
-			+ " -  @AD_Form_ID@ #" + form
 			+ " -  @AD_InfoWindow_ID@ #" + info;
 		
 	}	//	createAccessRecords

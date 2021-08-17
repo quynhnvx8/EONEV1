@@ -15,7 +15,7 @@ package eone.webui.component;
 import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zk.ui.event.Events;
 
-import eone.webui.AdempiereWebUI;
+import eone.webui.EONEWebUI;
 
 /**
  * 
@@ -32,7 +32,7 @@ public class FilenameBox extends EditorBox
 	public FilenameBox()
     {
         super();
-        btn.setUpload(AdempiereWebUI.getUploadSetting());
+        btn.setUpload(EONEWebUI.getUploadSetting());
     }
 
 	/**
@@ -42,7 +42,7 @@ public class FilenameBox extends EditorBox
     {
         super();
         setText(fileName);
-        btn.setUpload(AdempiereWebUI.getUploadSetting());
+        btn.setUpload(EONEWebUI.getUploadSetting());
     }
 
 	/* (non-Javadoc)

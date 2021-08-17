@@ -12,7 +12,7 @@ import org.zkoss.zul.Div;
 import org.zkoss.zul.Hbox;
 import org.zkoss.zul.Vbox;
 
-import eone.webui.AdempiereWebUI;
+import eone.webui.EONEWebUI;
 import eone.webui.LayoutUtils;
 import eone.webui.component.Label;
 import eone.webui.component.Panel;
@@ -54,7 +54,7 @@ public class StatusBarPanel extends Panel implements  IStatusBar
 
     private void init()
     {
-    	setWidgetAttribute(AdempiereWebUI.WIDGET_INSTANCE_NAME, "statusBar");
+    	setWidgetAttribute(EONEWebUI.WIDGET_INSTANCE_NAME, "statusBar");
         statusLine = new Label();
 
         Hbox hbox = new Hbox();

@@ -43,7 +43,7 @@ import org.zkoss.zul.Vbox;
 
 import eone.base.model.MLookupFactory;
 import eone.base.model.MQuery;
-import eone.webui.AdempiereWebUI;
+import eone.webui.EONEWebUI;
 import eone.webui.apps.AEnv;
 import eone.webui.component.Checkbox;
 import eone.webui.component.Datebox;
@@ -179,11 +179,11 @@ public class InfoInOutPanel extends InfoPanel implements ValueChangeListener, Ev
 		fDescription.addEventListener(Events.ON_CHANGE, this);
 		fPOReference.addEventListener(Events.ON_CHANGE, this);
 		
-		fDocumentNo.setWidgetAttribute(AdempiereWebUI.WIDGET_INSTANCE_NAME, "documentNo");
-		fDescription.setWidgetAttribute(AdempiereWebUI.WIDGET_INSTANCE_NAME, "description");
-		fPOReference.setWidgetAttribute(AdempiereWebUI.WIDGET_INSTANCE_NAME, "poreference");
-		fDateFrom.setWidgetAttribute(AdempiereWebUI.WIDGET_INSTANCE_NAME, "dateFrom");
-		fDateTo.setWidgetAttribute(AdempiereWebUI.WIDGET_INSTANCE_NAME, "dateTo");
+		fDocumentNo.setWidgetAttribute(EONEWebUI.WIDGET_INSTANCE_NAME, "documentNo");
+		fDescription.setWidgetAttribute(EONEWebUI.WIDGET_INSTANCE_NAME, "description");
+		fPOReference.setWidgetAttribute(EONEWebUI.WIDGET_INSTANCE_NAME, "poreference");
+		fDateFrom.setWidgetAttribute(EONEWebUI.WIDGET_INSTANCE_NAME, "dateFrom");
+		fDateTo.setWidgetAttribute(EONEWebUI.WIDGET_INSTANCE_NAME, "dateTo");
 
 		fIsSOTrx.setLabel(Msg.translate(Env.getCtx(), "IsSOTrx"));
 		fIsSOTrx.setChecked(!"N".equals(Env.getContext(Env.getCtx(), p_WindowNo, "IsSOTrx")));

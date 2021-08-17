@@ -20,7 +20,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.logging.Level;
 
 import org.apache.commons.codec.binary.Base64;
-import org.compiere.EONE;
+import org.compiere.EOne;
 import org.compiere.util.CLogger;
 import org.compiere.util.Env;
 import org.zkoss.zk.au.out.AuScript;
@@ -115,7 +115,7 @@ public final class BrowserToken {
 	}
 
 	private static String getHomeToken() throws UnsupportedEncodingException {
-		String home = EONE.getAdempiereHome();
+		String home = EOne.getEOneHome();
 		Base64 encoder = new Base64();
 		home = new String(encoder.encode(home.getBytes("UTF-8")), "UTF-8");
 		home = URLEncoder.encode(home, "UTF-8");

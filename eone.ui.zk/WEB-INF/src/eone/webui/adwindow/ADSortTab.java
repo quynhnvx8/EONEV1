@@ -42,7 +42,7 @@ import org.zkoss.zul.event.ListDataEvent;
 
 import eone.base.model.GridTab;
 import eone.base.model.MRole;
-import eone.webui.AdempiereIdGenerator;
+import eone.webui.EONEIdGenerator;
 import eone.webui.LayoutUtils;
 import eone.webui.component.Button;
 import eone.webui.component.Label;
@@ -277,7 +277,7 @@ public class ADSortTab extends Panel implements IADTabpanel
 		ZKUpdateUtil.setVflex(yesList, true);
 		ZKUpdateUtil.setVflex(noList, true);
 
-        setId(AdempiereIdGenerator.escapeId(gridTab.getName()));
+        setId(EONEIdGenerator.escapeId(gridTab.getName()));
 
         EventListener<Event> mouseListener = new EventListener<Event>()
 		{

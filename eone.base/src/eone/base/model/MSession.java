@@ -23,7 +23,7 @@ import java.util.Properties;
 import java.util.Vector;
 import java.util.logging.Level;
 
-import org.compiere.EONE;
+import org.compiere.EOne;
 import org.compiere.util.Env;
 import org.compiere.util.TimeUtil;
 import org.compiere.util.WebUtil;
@@ -161,9 +161,9 @@ public class MSession extends X_AD_Session
 			setRemote_Host(Remote_Host);
 		if (WebSession != null)
 			setWebSession(WebSession);
-		setDescription(EONE.MAIN_VERSION + "_"
-				+ EONE.DATE_VERSION + " "
-				+ EONE.getImplementationVersion());
+		setDescription(EOne.MAIN_VERSION + "_"
+				+ EOne.DATE_VERSION + " "
+				+ EOne.getImplementationVersion());
 		setAD_Role_ID(Env.getContextAsInt(ctx, "#AD_Role_ID"));
 		setLoginDate(Env.getContextAsDate(ctx, "#Date"));
 	}	//	MSession
@@ -182,9 +182,9 @@ public class MSession extends X_AD_Session
 			setServerName(WebUtil.getServerName());
 			setRemote_Addr(lh.getHostAddress());
 			setRemote_Host(lh.getHostName());
-			setDescription(EONE.MAIN_VERSION + "_"
-					+ EONE.DATE_VERSION + " "
-					+ EONE.getImplementationVersion());
+			setDescription(EOne.MAIN_VERSION + "_"
+					+ EOne.DATE_VERSION + " "
+					+ EOne.getImplementationVersion());
 			setAD_Role_ID(Env.getContextAsInt(ctx, "#AD_Role_ID"));
 			setLoginDate(Env.getContextAsDate(ctx, "#Date"));
 		}

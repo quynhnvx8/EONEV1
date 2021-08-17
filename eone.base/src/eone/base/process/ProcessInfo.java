@@ -92,6 +92,16 @@ public class ProcessInfo implements Serializable
 	private List<ArrayList<PrintDataItem>> dataQueryH = null; //Header
 	private List<ArrayList<PrintDataItem>> dataQueryF = null; //Footer
 	
+	private List<Object []> dataChart = null; //Footer
+	
+	public List<Object []> getDataChart() {
+		return dataChart;
+	}
+
+	public void setDataChart(List<Object []> dataChart) {
+		this.dataChart = dataChart;
+	}
+
 	private Map<String, Map<String, BigDecimal>> dataGroup = null; //Group by
 	
 	

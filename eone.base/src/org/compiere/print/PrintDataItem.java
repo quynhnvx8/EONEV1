@@ -62,6 +62,7 @@ public class PrintDataItem implements Serializable
 	private int colSpan = 0;
 	private boolean isBreakPage = false;
 	
+
 	public boolean isBreakPage() {
 		return isBreakPage;
 	}

@@ -32,7 +32,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 
-import org.compiere.EONE;
+import org.compiere.EOne;
 import org.compiere.util.CLogFile;
 import org.compiere.util.CLogger;
 
@@ -66,7 +66,7 @@ public abstract class LogFileCallable {
 		dirAccessList.add(logDir);
 
 		// load from dirAccess.properties file
-		String dirAccessPathName = EONE.getAdempiereHome() + File.separator + s_dirAccessFileName;
+		String dirAccessPathName = EOne.getEOneHome() + File.separator + s_dirAccessFileName;
 		File dirAccessFile = new File(dirAccessPathName);
 		if (dirAccessFile.exists()) {
 			try (BufferedReader br = new BufferedReader(new FileReader(dirAccessFile))) {				

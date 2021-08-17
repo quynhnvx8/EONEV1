@@ -49,7 +49,7 @@ import eone.base.model.MLookup;
 import eone.base.model.MLookupFactory;
 import eone.base.model.MLookupInfo;
 import eone.exceptions.EONEException;
-import eone.webui.AdempiereWebUI;
+import eone.webui.EONEWebUI;
 import eone.webui.LayoutUtils;
 import eone.webui.adwindow.AbstractADWindowContent;
 import eone.webui.adwindow.IADTabbox;
@@ -149,7 +149,7 @@ public class FileImportAction implements EventListener<Event>
 			winImportFile.setClosable(true);
 			winImportFile.setBorder("normal");
 			winImportFile.setStyle("position:absolute");
-			winImportFile.setWidgetAttribute(AdempiereWebUI.WIDGET_INSTANCE_NAME, "importAction");
+			winImportFile.setWidgetAttribute(EONEWebUI.WIDGET_INSTANCE_NAME, "importAction");
 			winImportFile.setSclass("popup-dialog");
 
 			cboType.setMold("select");
@@ -210,7 +210,7 @@ public class FileImportAction implements EventListener<Event>
 			row.appendChild(new Space());
 			bFile.setLabel(Msg.getMsg(Env.getCtx(), "FileImportFile"));
 			bFile.setTooltiptext(Msg.getMsg(Env.getCtx(), "FileImportFileInfo"));
-			bFile.setUpload(AdempiereWebUI.getUploadSetting());
+			bFile.setUpload(EONEWebUI.getUploadSetting());
 			LayoutUtils.addSclass("txt-btn", bFile);
 			bFile.addEventListener(Events.ON_UPLOAD, this);
 			row.appendChild(bFile);

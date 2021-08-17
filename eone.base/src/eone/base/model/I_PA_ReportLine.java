@@ -63,6 +63,19 @@ public interface I_PA_ReportLine
 	  */
 	public String getC_ElementValue_ID();
 
+    /** Column name C_ElementValueOT_ID */
+    public static final String COLUMNNAME_C_ElementValueOT_ID = "C_ElementValueOT_ID";
+
+	/** Set Account Element Other.
+	  * Account Element
+	  */
+	public void setC_ElementValueOT_ID (String C_ElementValueOT_ID);
+
+	/** Get Account Element Other.
+	  * Account Element
+	  */
+	public String getC_ElementValueOT_ID();
+
     /** Column name Created */
     public static final String COLUMNNAME_Created = "Created";
 
@@ -92,6 +105,15 @@ public interface I_PA_ReportLine
 	  */
 	public String getDescription();
 
+    /** Column name FixZero */
+    public static final String COLUMNNAME_FixZero = "FixZero";
+
+	/** Set FixZero	  */
+	public void setFixZero (int FixZero);
+
+	/** Get FixZero	  */
+	public int getFixZero();
+
     /** Column name FormulaSetup */
     public static final String COLUMNNAME_FormulaSetup = "FormulaSetup";
 
@@ -113,6 +135,15 @@ public interface I_PA_ReportLine
 	  * The record is active in the system
 	  */
 	public boolean isActive();
+
+    /** Column name IsBisexual */
+    public static final String COLUMNNAME_IsBisexual = "IsBisexual";
+
+	/** Set IsBisexual 	  */
+	public void setIsBisexual (boolean IsBisexual);
+
+	/** Get IsBisexual 	  */
+	public boolean isBisexual();
 
     /** Column name IsBold */
     public static final String COLUMNNAME_IsBold = "IsBold";
@@ -157,6 +188,15 @@ public interface I_PA_ReportLine
 	  * This is a summary entity
 	  */
 	public boolean isSummary();
+
+    /** Column name MultiplyValue */
+    public static final String COLUMNNAME_MultiplyValue = "MultiplyValue";
+
+	/** Set Multiply Value	  */
+	public void setMultiplyValue (int MultiplyValue);
+
+	/** Get Multiply Value	  */
+	public int getMultiplyValue();
 
     /** Column name Name */
     public static final String COLUMNNAME_Name = "Name";
@@ -227,6 +267,15 @@ public interface I_PA_ReportLine
 
 	/** Get TypeAccount	  */
 	public String getTypeAccount();
+
+    /** Column name TypeAccountOT */
+    public static final String COLUMNNAME_TypeAccountOT = "TypeAccountOT";
+
+	/** Set TypeAccount Other	  */
+	public void setTypeAccountOT (String TypeAccountOT);
+
+	/** Get TypeAccount Other	  */
+	public String getTypeAccountOT();
 
     /** Column name Updated */
     public static final String COLUMNNAME_Updated = "Updated";

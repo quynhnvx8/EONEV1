@@ -1,18 +1,6 @@
 /******************************************************************************
- * Product: iDempiere ERP & CRM Smart Business Solution                       *
- * Copyright (C) 1999-2012 ComPiere, Inc. All Rights Reserved.                *
- * This program is free software, you can redistribute it and/or modify it    *
- * under the terms version 2 of the GNU General Public License as published   *
- * by the Free Software Foundation. This program is distributed in the hope   *
- * that it will be useful, but WITHOUT ANY WARRANTY, without even the implied *
- * warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.           *
- * See the GNU General Public License for more details.                       *
- * You should have received a copy of the GNU General Public License along    *
- * with this program, if not, write to the Free Software Foundation, Inc.,    *
- * 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.                     *
- * For the text or an alternative of this public license, you may reach us    *
- * ComPiere, Inc., 2620 Augustine Dr. #245, Santa Clara, CA 95054, USA        *
- * or via info@compiere.org or http://www.compiere.org/license.html           *
+ * Product: EOoe ERP & CRM Smart Business Solution	                        *
+ * Copyright (C) 2020, Inc. All Rights Reserved.				                *
  *****************************************************************************/
 package eone.base.model;
 
@@ -21,7 +9,7 @@ import java.sql.Timestamp;
 import org.compiere.util.KeyNamePair;
 
 /** Generated Interface for Fact_Acct
- *  @author iDempiere (generated) 
+ *  @author EOne (generated) 
  *  @version Version 1.0
  */
 public interface I_Fact_Acct 
@@ -93,6 +81,17 @@ public interface I_Fact_Acct
 	  * Client/Tenant for this installation.
 	  */
 	public int getAD_Client_ID();
+
+    /** Column name AD_Department_ID */
+    public static final String COLUMNNAME_AD_Department_ID = "AD_Department_ID";
+
+	/** Set Department	  */
+	public void setAD_Department_ID (int AD_Department_ID);
+
+	/** Get Department	  */
+	public int getAD_Department_ID();
+
+	public I_AD_Department getAD_Department() throws RuntimeException;
 
     /** Column name AD_Org_ID */
     public static final String COLUMNNAME_AD_Org_ID = "AD_Org_ID";
@@ -498,16 +497,6 @@ public interface I_Fact_Acct
 	/** Get Accounting Fact	  */
 	public int getFact_Acct_ID();
 
-    /** Column name AD_Department_ID */
-    public static final String COLUMNNAME_AD_Department_ID = "AD_Department_ID";
-
-	/** Set Department	  */
-	public void setAD_Department_ID (int AD_Department_ID);
-
-	/** Get Department	  */
-	public int getAD_Department_ID();
-
-	
     /** Column name InvoiceNo */
     public static final String COLUMNNAME_InvoiceNo = "InvoiceNo";
 
@@ -517,7 +506,6 @@ public interface I_Fact_Acct
 	/** Get InvoiceNo	  */
 	public String getInvoiceNo();
 
-	
     /** Column name IsActive */
     public static final String COLUMNNAME_IsActive = "IsActive";
 
@@ -543,6 +531,15 @@ public interface I_Fact_Acct
 	  * Transaction line ID (internal)
 	  */
 	public int getLine_ID();
+
+    /** Column name ListDuration */
+    public static final String COLUMNNAME_ListDuration = "ListDuration";
+
+	/** Set ListDuration	  */
+	public void setListDuration (String ListDuration);
+
+	/** Get ListDuration	  */
+	public String getListDuration();
 
     /** Column name M_Product_Cr_ID */
     public static final String COLUMNNAME_M_Product_Cr_ID = "M_Product_Cr_ID";

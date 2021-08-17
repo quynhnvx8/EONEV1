@@ -18,7 +18,7 @@ public class X_AD_PrintFormat extends PO implements I_AD_PrintFormat, I_Persiste
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = 20210701L;
+	private static final long serialVersionUID = 20210803L;
 
     /** Standard Constructor */
     public X_AD_PrintFormat (Properties ctx, int AD_PrintFormat_ID, String trxName)
@@ -170,6 +170,80 @@ public class X_AD_PrintFormat extends PO implements I_AD_PrintFormat, I_Persiste
 		return ii.intValue();
 	}
 
+	/** Set AxisX.
+		@param AxisX AxisX	  */
+	public void setAxisX (String AxisX)
+	{
+		set_Value (COLUMNNAME_AxisX, AxisX);
+	}
+
+	/** Get AxisX.
+		@return AxisX	  */
+	public String getAxisX () 
+	{
+		return (String)get_Value(COLUMNNAME_AxisX);
+	}
+
+	/** Set AxisY.
+		@param AxisY AxisY	  */
+	public void setAxisY (String AxisY)
+	{
+		set_Value (COLUMNNAME_AxisY, AxisY);
+	}
+
+	/** Get AxisY.
+		@return AxisY	  */
+	public String getAxisY () 
+	{
+		return (String)get_Value(COLUMNNAME_AxisY);
+	}
+
+	/** Set ChartTitle.
+		@param ChartTitle ChartTitle	  */
+	public void setChartTitle (String ChartTitle)
+	{
+		set_Value (COLUMNNAME_ChartTitle, ChartTitle);
+	}
+
+	/** Get ChartTitle.
+		@return ChartTitle	  */
+	public String getChartTitle () 
+	{
+		return (String)get_Value(COLUMNNAME_ChartTitle);
+	}
+
+	/** ChartType AD_Reference_ID=53315 */
+	public static final int CHARTTYPE_AD_Reference_ID=53315;
+	/** Bar Chart = BC */
+	public static final String CHARTTYPE_BarChart = "BC";
+	/** Pie Chart = PC */
+	public static final String CHARTTYPE_PieChart = "PC";
+	/** Ring Chart = RC */
+	public static final String CHARTTYPE_RingChart = "RC";
+	/** Line Chart = LC */
+	public static final String CHARTTYPE_LineChart = "LC";
+	/** Area Chart = AC */
+	public static final String CHARTTYPE_AreaChart = "AC";
+	/** Waterfall Chart = WC */
+	public static final String CHARTTYPE_WaterfallChart = "WC";
+	/** Set Chart Type.
+		@param ChartType 
+		Type of chart to render
+	  */
+	public void setChartType (String ChartType)
+	{
+
+		set_Value (COLUMNNAME_ChartType, ChartType);
+	}
+
+	/** Get Chart Type.
+		@return Type of chart to render
+	  */
+	public String getChartType () 
+	{
+		return (String)get_Value(COLUMNNAME_ChartType);
+	}
+
 	/** Set Create Copy.
 		@param CreateCopy Create Copy	  */
 	public void setCreateCopy (String CreateCopy)
@@ -239,6 +313,27 @@ public class X_AD_PrintFormat extends PO implements I_AD_PrintFormat, I_Persiste
 		if (ii == null)
 			 return 0;
 		return ii.intValue();
+	}
+
+	/** Set Show Chart.
+		@param IsShowChart Show Chart	  */
+	public void setIsShowChart (boolean IsShowChart)
+	{
+		set_Value (COLUMNNAME_IsShowChart, Boolean.valueOf(IsShowChart));
+	}
+
+	/** Get Show Chart.
+		@return Show Chart	  */
+	public boolean isShowChart () 
+	{
+		Object oo = get_Value(COLUMNNAME_IsShowChart);
+		if (oo != null) 
+		{
+			 if (oo instanceof Boolean) 
+				 return ((Boolean)oo).booleanValue(); 
+			return "Y".equals(oo);
+		}
+		return false;
 	}
 
 	/** Set Name.

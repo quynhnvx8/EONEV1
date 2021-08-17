@@ -26,7 +26,7 @@ import javax.swing.ImageIcon;
 
 import org.adempiere.base.Core;
 import org.adempiere.base.IResourceFinder;
-import org.compiere.EONE;
+import org.compiere.EOne;
 import org.compiere.db.CConnection;
 
 import eone.base.model.GridWindowVO;
@@ -1939,7 +1939,7 @@ public final class Env
 		if (Util.isEmpty(s, true))
 			s = Env.getContext(Env.getCtx(), STANDARD_REPORT_FOOTER_TRADEMARK_TEXT);
 		if (Util.isEmpty(s))
-			s = EONE.ADEMPIERE_R;
+			s = EOne.ADEMPIERE_R;
 		return s;
 	}
 	

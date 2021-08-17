@@ -41,7 +41,7 @@ import eone.base.model.GridTab;
 import eone.base.model.MTable;
 import eone.base.model.PO;
 import eone.base.process.DocumentEngine;
-import eone.webui.AdempiereWebUI;
+import eone.webui.EONEWebUI;
 import eone.webui.LayoutUtils;
 import eone.webui.component.ConfirmPanel;
 import eone.webui.component.Grid;
@@ -246,7 +246,7 @@ public class WDocActionPanel extends Window implements EventListener<Event>, Dia
 		ZKUpdateUtil.setHflex(vlayout, "1");
 		this.appendChild(vlayout);
 		
-		setWidgetAttribute(AdempiereWebUI.WIDGET_INSTANCE_NAME, "documentAction");
+		setWidgetAttribute(EONEWebUI.WIDGET_INSTANCE_NAME, "documentAction");
 		Grid grid = GridFactory.newGridLayout();
         grid.setStyle("background-image: none;");
         LayoutUtils.addSclass("dialog-content", grid);

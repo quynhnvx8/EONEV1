@@ -38,7 +38,7 @@ public class MWorking extends X_HR_Working
 	protected boolean beforeSave(boolean newRecord) {
 		
 		String sql = "Select max(StartDate) From HR_Working Where HR_Employee_ID = ? And HR_Working_ID != ? "+
-					" And StartDate < (Select Max(StartDate) From HR_Working Where HR_Working_ID = ?)";
+					" And StartDate <= (Select Max(StartDate) From HR_Working Where HR_Working_ID = ?)";
 		Object [] params = {getHR_Employee_ID(), getHR_Working_ID(), getHR_Working_ID()};
 		
 		
@@ -48,7 +48,7 @@ public class MWorking extends X_HR_Working
 		}
 		Timestamp startDateOld = DB.getSQLValueTS(get_TrxName(), sql, params);
 		if (startDateOld != null) {
-			if (startDateOld.compareTo(getStartDate()) > 0 && isSelected()) {
+			if (startDateOld.compareTo(getStartDate()) >= 0 && isSelected()) {
 				log.saveError("Error", "StartDate must be great than max StartDate current !");
 				return false;
 			} 
@@ -63,7 +63,7 @@ public class MWorking extends X_HR_Working
 		dataColumn.put(COLUMNNAME_IsSelected, true);
 		dataColumn.put(COLUMNNAME_HR_Employee_ID, getHR_Employee_ID());
 		boolean check = isCheckDoubleValue(Table_Name, dataColumn, COLUMNNAME_HR_Working_ID, getHR_Working_ID());
-		if (!check) {
+		if (!check && isSelected()) {
 			log.saveError("Error", Msg.getMsg(Env.getLanguage(getCtx()), "ValueExists") + ": " + COLUMNNAME_IsSelected);
 			return false;
 		}

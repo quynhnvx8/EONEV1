@@ -19,6 +19,7 @@ import org.compiere.util.DisplayType;
 import org.compiere.util.Env;
 import org.compiere.util.KeyNamePair;
 import org.compiere.util.Msg;
+import org.compiere.util.TimeUtil;
 import org.compiere.util.Util;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.EventListener;
@@ -260,8 +261,10 @@ public class WAcctViewer extends Window implements IFormController, EventListene
 		hlayout = new Hlayout();
 		ZKUpdateUtil.setWidth(hlayout, "100%");
 		hlayout.appendChild(selDateFrom);		
+		selDateFrom.setValue(Env.getContextAsDate(Env.getCtx(), "#FYDate"));
 		hlayout.appendChild(new Label(" - "));
 		hlayout.appendChild(selDateTo);
+		selDateTo.setValue(Env.getContextAsDate(Env.getCtx(), "#LDate"));
 		row.appendChild(hlayout);
 		
 		//Col 1.3: Account
@@ -534,6 +537,23 @@ public class WAcctViewer extends Window implements IFormController, EventListene
 			if (selRevenue == null || selRevenue.getValue() == null) {
 				m_data.C_TypeRevenue_ID = 0;
 			}
+			
+			if (selDateFrom == null || selDateFrom.getValue() == null) {
+				FDialog.warn(0, "From date is null");
+				return ;
+			}
+			if (selDateTo == null || selDateTo.getValue() == null) {
+				FDialog.warn(0, "To date is null");
+				return ;
+			}
+			Timestamp fromDate = new Timestamp(selDateFrom.getValue().getTime());
+			Timestamp toDate = new Timestamp(selDateTo.getValue().getTime());
+			
+			if (TimeUtil.getYearSel(fromDate) != TimeUtil.getYearSel(toDate)) {
+				FDialog.warn(0, "From Date and To date not same year !");
+				return ;
+			}
+			
 			actionQuery();
 			stateChanged();
 		}

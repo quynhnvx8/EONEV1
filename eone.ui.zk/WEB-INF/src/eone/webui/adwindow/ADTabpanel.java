@@ -69,8 +69,8 @@ import eone.base.model.Query;
 import eone.base.model.X_AD_FieldGroup;
 import eone.base.model.X_AD_ToolBarButton;
 import eone.exceptions.EONEException;
-import eone.webui.AdempiereIdGenerator;
-import eone.webui.AdempiereWebUI;
+import eone.webui.EONEIdGenerator;
+import eone.webui.EONEWebUI;
 import eone.webui.ClientInfo;
 import eone.webui.LayoutUtils;
 import eone.webui.apps.CalloutDialog;
@@ -234,7 +234,7 @@ DataStatusListener, IADTabpanel, IdSpace, IFieldEditorContainer
         ZKUpdateUtil.setHeight(form, null);
         form.setVflex(false);
         form.setSclass("grid-layout adwindow-form");
-        form.setWidgetAttribute(AdempiereWebUI.WIDGET_INSTANCE_NAME, "form");
+        form.setWidgetAttribute(EONEWebUI.WIDGET_INSTANCE_NAME, "form");
         
         if (ClientInfo.isMobile())
         {
@@ -346,7 +346,7 @@ DataStatusListener, IADTabpanel, IdSpace, IFieldEditorContainer
 
         this.getChildren().clear();
         
-        setId(AdempiereIdGenerator.escapeId(gridTab.getName()));
+        setId(EONEIdGenerator.escapeId(gridTab.getName()));
 
         int AD_Tree_ID = 0;
 		if (gridTab.isTreeTab())

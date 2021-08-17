@@ -12,7 +12,7 @@
 <zk>
 	<!-- id generator for selenium testing -->
 	<system-config>
-		<id-generator-class>eone.webui.AdempiereIdGenerator</id-generator-class>
+		<id-generator-class>eone.webui.EONEIdGenerator</id-generator-class>
 	</system-config>
 
 	<listener>

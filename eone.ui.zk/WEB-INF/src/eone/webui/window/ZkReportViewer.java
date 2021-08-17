@@ -33,7 +33,7 @@ import org.apache.ecs.xhtml.tbody;
 import org.apache.ecs.xhtml.td;
 import org.apache.ecs.xhtml.th;
 import org.apache.ecs.xhtml.tr;
-import org.compiere.EONE;
+import org.compiere.EOne;
 import org.compiere.print.IHTMLExtension;
 import org.compiere.print.MPrintColor;
 import org.compiere.print.MPrintFont;
@@ -434,11 +434,11 @@ public class ZkReportViewer extends Window implements EventListener<Event>, ITab
 		media = null;
 		Listitem selected = previewType.getSelectedItem();
 		if (selected == null || "PDF".equals(selected.getValue())) {
-			future = EONE.getThreadPoolExecutor().submit(new DesktopRunnable(new PDFRendererRunnable(this),getDesktop()));
+			future = EOne.getThreadPoolExecutor().submit(new DesktopRunnable(new PDFRendererRunnable(this),getDesktop()));
 		} else if ("HTML".equals(previewType.getSelectedItem().getValue())) {
-			future = EONE.getThreadPoolExecutor().submit(new DesktopRunnable(new HTMLRendererRunnable(this),getDesktop()));
+			future = EOne.getThreadPoolExecutor().submit(new DesktopRunnable(new HTMLRendererRunnable(this),getDesktop()));
 		} else if ("XLSX".equals(previewType.getSelectedItem().getValue())) {			
-			future = EONE.getThreadPoolExecutor().submit(new DesktopRunnable(new XLSXRendererRunnable(this),getDesktop()));
+			future = EOne.getThreadPoolExecutor().submit(new DesktopRunnable(new XLSXRendererRunnable(this),getDesktop()));
 		}		
 	}
 	

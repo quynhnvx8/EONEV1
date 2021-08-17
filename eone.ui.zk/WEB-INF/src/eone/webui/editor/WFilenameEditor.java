@@ -28,7 +28,7 @@ import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zk.ui.event.UploadEvent;
 
 import eone.base.model.GridField;
-import eone.webui.AdempiereWebUI;
+import eone.webui.EONEWebUI;
 import eone.webui.component.FilenameBox;
 import eone.webui.event.ValueChangeEvent;
 import eone.webui.theme.ThemeManager;
@@ -69,7 +69,7 @@ public class WFilenameEditor extends WEditor
 		else
 			getComponent().setButtonImage(ThemeManager.getThemeResource("images/Open16.png"));
 		getComponent().addEventListener(Events.ON_UPLOAD, this);
-		getComponent().getButton().setUpload(AdempiereWebUI.getUploadSetting());
+		getComponent().getButton().setUpload(EONEWebUI.getUploadSetting());
 		getComponent().getButton().setAttribute("org.zkoss.zul.image.preload", Boolean.TRUE);
 		if (gridField != null)
 			getComponent().getTextbox().setPlaceholder(gridField.getPlaceholder());

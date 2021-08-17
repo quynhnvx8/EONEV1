@@ -26,7 +26,7 @@ import org.zkoss.zul.South;
 
 import eone.base.model.MQuery;
 import eone.base.model.MRole;
-import eone.webui.AdempiereWebUI;
+import eone.webui.EONEWebUI;
 import eone.webui.apps.AEnv;
 import eone.webui.component.Button;
 import eone.webui.component.Grid;
@@ -190,9 +190,9 @@ public class InfoProductPanel extends InfoPanel implements EventListener<Event>
 		m_InfoPAttributeButton.addEventListener(Events.ON_CLICK,this);
 
 		fieldValue = new Textbox();
-		fieldValue.setWidgetAttribute(AdempiereWebUI.WIDGET_INSTANCE_NAME, "value");
+		fieldValue.setWidgetAttribute(EONEWebUI.WIDGET_INSTANCE_NAME, "value");
 		fieldName = new Textbox();
-		fieldName.setWidgetAttribute(AdempiereWebUI.WIDGET_INSTANCE_NAME, "name");
+		fieldName.setWidgetAttribute(EONEWebUI.WIDGET_INSTANCE_NAME, "name");
 		
 		// Elaine 2008/11/21
 		pickProductCategory = new Listbox();
@@ -201,7 +201,7 @@ public class InfoProductPanel extends InfoPanel implements EventListener<Event>
 		pickProductCategory.setMold("select");
 		ZKUpdateUtil.setHflex(pickProductCategory, "1");
 		pickProductCategory.addEventListener(Events.ON_SELECT, this);
-		pickProductCategory.setWidgetAttribute(AdempiereWebUI.WIDGET_INSTANCE_NAME, "productCategory");
+		pickProductCategory.setWidgetAttribute(EONEWebUI.WIDGET_INSTANCE_NAME, "productCategory");
 		
 		pickWarehouse = new Listbox();
 		pickWarehouse.setRows(0);
@@ -209,7 +209,7 @@ public class InfoProductPanel extends InfoPanel implements EventListener<Event>
 		pickWarehouse.setMold("select");
 		ZKUpdateUtil.setHflex(pickWarehouse, "1");
 		pickWarehouse.addEventListener(Events.ON_SELECT, this);
-		pickWarehouse.setWidgetAttribute(AdempiereWebUI.WIDGET_INSTANCE_NAME, "warehouse");
+		pickWarehouse.setWidgetAttribute(EONEWebUI.WIDGET_INSTANCE_NAME, "warehouse");
 
 		ZKUpdateUtil.setVflex(contentPanel, true);
 	}	//	initComponents

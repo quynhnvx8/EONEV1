@@ -28,7 +28,7 @@ import org.zkoss.zk.ui.util.DesktopInit;
 import org.zkoss.zk.ui.util.ExecutionCleanup;
 import org.zkoss.zk.ui.util.ExecutionInit;
 
-import eone.webui.AdempiereWebUI;
+import eone.webui.EONEWebUI;
 
 /**
  *
@@ -214,7 +214,7 @@ public class SessionContextListener implements ExecutionInit,
 			return;
 		}
 		
-		Object sessionInvalidated = desktop.getAttribute(AdempiereWebUI.DESKTOP_SESSION_INVALIDATED_ATTR);
+		Object sessionInvalidated = desktop.getAttribute(EONEWebUI.DESKTOP_SESSION_INVALIDATED_ATTR);
 		if (sessionInvalidated != null) {
 			return;
 		}
@@ -262,7 +262,7 @@ public class SessionContextListener implements ExecutionInit,
 			if (roots == null || roots.isEmpty()) continue;
 			boolean found = false;
 			for (Component root : roots) {
-				if (root instanceof AdempiereWebUI) {
+				if (root instanceof EONEWebUI) {
 					found = true;
 					break;
 				}

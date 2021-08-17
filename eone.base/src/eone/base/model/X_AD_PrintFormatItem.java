@@ -18,7 +18,7 @@ public class X_AD_PrintFormatItem extends PO implements I_AD_PrintFormatItem, I_
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = 20210714L;
+	private static final long serialVersionUID = 20210806L;
 
     /** Standard Constructor */
     public X_AD_PrintFormatItem (Properties ctx, int AD_PrintFormatItem_ID, String trxName)
@@ -285,6 +285,29 @@ public class X_AD_PrintFormatItem extends PO implements I_AD_PrintFormatItem, I_
 	public String getBarcodeType () 
 	{
 		return (String)get_Value(COLUMNNAME_BarcodeType);
+	}
+
+	/** Name = NAME */
+	public static final String CHARTCOLUMN_Name = "NAME";
+	/** Value = VALUE */
+	public static final String CHARTCOLUMN_Value = "VALUE";
+	/** None = NONE */
+	public static final String CHARTCOLUMN_None = "NONE";
+	/** For Group = GROUP */
+	public static final String CHARTCOLUMN_ForGroup = "GROUP";
+	/** Set ChartColumn.
+		@param ChartColumn ChartColumn	  */
+	public void setChartColumn (String ChartColumn)
+	{
+
+		set_Value (COLUMNNAME_ChartColumn, ChartColumn);
+	}
+
+	/** Get ChartColumn.
+		@return ChartColumn	  */
+	public String getChartColumn () 
+	{
+		return (String)get_Value(COLUMNNAME_ChartColumn);
 	}
 
 	/** Set Column Span.
@@ -657,8 +680,10 @@ public class X_AD_PrintFormatItem extends PO implements I_AD_PrintFormatItem, I_
 	public static final String PRINTAREATYPE_Header = "H";
 	/** Footer = F */
 	public static final String PRINTAREATYPE_Footer = "F";
-	/** Content Other = O */
-	public static final String PRINTAREATYPE_ContentOther = "O";
+	/** Group By = O */
+	public static final String PRINTAREATYPE_GroupBy = "O";
+	/** Chart = A */
+	public static final String PRINTAREATYPE_Chart = "A";
 	/** Set Area.
 		@param PrintAreaType 
 		Print Area

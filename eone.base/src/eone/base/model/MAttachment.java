@@ -541,7 +541,7 @@ public class MAttachment extends X_AD_Attachment
 
 		System.exit(0);
 		
-		org.compiere.EONE.startupEnvironment(true);
+		org.compiere.EOne.startupEnvironment(true);
 		MAttachment att = new MAttachment(Env.getCtx(), 100, 0, null);
 		att.addEntry(new File ("C:\\Adempiere\\Dev.properties"));
 		att.addEntry(new File ("C:\\Adempiere\\index.html"));

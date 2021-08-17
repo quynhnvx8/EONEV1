@@ -58,7 +58,7 @@ public class EMailTest extends TestCase
 	protected void setUp() throws Exception
 	{
 		super.setUp();
-		org.compiere.EONE.startup (true);
+		org.compiere.EOne.startup (true);
 	}	//	setup
 
 	/**

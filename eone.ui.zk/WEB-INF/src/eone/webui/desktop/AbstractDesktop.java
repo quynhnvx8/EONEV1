@@ -27,7 +27,7 @@ import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zul.Window.Mode;
 
 import eone.base.model.MMenu;
-import eone.webui.AdempiereWebUI;
+import eone.webui.EONEWebUI;
 import eone.webui.ClientInfo;
 import eone.webui.LayoutUtils;
 import eone.webui.component.Window;
@@ -210,7 +210,7 @@ public abstract class AbstractDesktop extends AbstractUIPart implements IDesktop
    	 */
    	protected void showModal(final Window win)
    	{
-   		if (AdempiereWebUI.isEventThreadEnabled()) 
+   		if (EONEWebUI.isEventThreadEnabled()) 
    		{
    			win.setPage(page);
    			win.doModal();

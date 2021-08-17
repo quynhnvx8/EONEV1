@@ -28,7 +28,7 @@ import org.zkoss.zul.Tabpanels;
 import eone.base.model.MInfoWindow;
 import eone.base.model.MQuery;
 import eone.base.model.MTask;
-import eone.webui.AdempiereIdGenerator;
+import eone.webui.EONEIdGenerator;
 import eone.webui.adwindow.ADWindow;
 import eone.webui.apps.ProcessDialog;
 import eone.webui.component.DesktopTabpanel;
@@ -139,7 +139,7 @@ public abstract class TabbedDesktop extends AbstractDesktop {
 		final ADWindow adWindow = new ADWindow(Env.getCtx(), windowId, query);
 
 		final DesktopTabpanel tabPanel = new DesktopTabpanel();		
-		String id = AdempiereIdGenerator.escapeId(adWindow.getTitle());
+		String id = EONEIdGenerator.escapeId(adWindow.getTitle());
 		tabPanel.setId(id+"_"+adWindow.getADWindowContent().getWindowNo());
 		final Tab tab = windowContainer.addWindow(tabPanel, adWindow.getTitle(), true, DecorateInfo.get(adWindow));
 		

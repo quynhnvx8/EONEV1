@@ -45,7 +45,7 @@ import eone.base.model.GridField;
 import eone.base.model.GridTab;
 import eone.base.model.MRole;
 import eone.base.model.MStyle;
-import eone.webui.AdempiereWebUI;
+import eone.webui.EONEWebUI;
 import eone.webui.ClientInfo;
 import eone.webui.LayoutUtils;
 import eone.webui.adwindow.IFieldEditorContainer;
@@ -208,10 +208,10 @@ public abstract class WEditor implements EventListener<Event>, PropertyChangeLis
         this.setComponent(comp);        
         this.gridField = gridField;
         if (gridField.getGridTab() != null) {
-        	comp.setClientAttribute(AdempiereWebUI.WIDGET_INSTANCE_NAME, gridField.getGridTab().getTableName()+"0"+gridField.getColumnName());
+        	comp.setClientAttribute(EONEWebUI.WIDGET_INSTANCE_NAME, gridField.getGridTab().getTableName()+"0"+gridField.getColumnName());
         	this.gridTab = gridField.getGridTab();
         } else {
-        	comp.setClientAttribute(AdempiereWebUI.WIDGET_INSTANCE_NAME, gridField.getColumnName());
+        	comp.setClientAttribute(EONEWebUI.WIDGET_INSTANCE_NAME, gridField.getColumnName());
         }
         if (editorConfiguration != null && editorConfiguration.getMandatory() != null)
         	this.setMandatory(editorConfiguration.getMandatory());

@@ -27,7 +27,7 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.logging.Level;
 
-import org.compiere.EONE;
+import org.compiere.EOne;
 
 import eone.base.model.I_AD_Element;
 import eone.base.model.I_AD_Message;
@@ -243,8 +243,8 @@ public final class Msg
 			return File.separator;
 		if (text.equals(";") || text.equals(":"))
 			return File.pathSeparator;
-		if (text.equals("IDEMPIERE_HOME"))
-			return EONE.getAdempiereHome();
+		if (text.equals("EONE_HOME"))
+			return EOne.getEOneHome();
 		if (text.equals("bat") || text.equals("sh"))
 		{
 			if (System.getProperty("os.name").startsWith("Win"))
@@ -252,7 +252,7 @@ public final class Msg
 			return "sh";
 		}
 		if (text.equals("CopyRight"))
-			return EONE.COPYRIGHT;
+			return EOne.COPYRIGHT;
 		//
 		CCache<String, String> langMap = getMsgMap(AD_Language);
 		if (langMap == null)

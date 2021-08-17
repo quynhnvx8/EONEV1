@@ -11,7 +11,7 @@ import org.zkoss.zul.Panelchildren;
 import org.zkoss.zul.Toolbar;
 import org.zkoss.zul.Tree;
 
-import eone.webui.AdempiereWebUI;
+import eone.webui.EONEWebUI;
 import eone.webui.component.SimpleTreeModel;
 import eone.webui.component.ToolBarButton;
 import eone.webui.panel.TreeSearchPanel;
@@ -73,7 +73,7 @@ public class ADTreePanel extends Panel implements EventListener<Event>
     
     private void init()
     {
-    	setWidgetAttribute(AdempiereWebUI.WIDGET_INSTANCE_NAME, "treepanel");
+    	setWidgetAttribute(EONEWebUI.WIDGET_INSTANCE_NAME, "treepanel");
     	ZKUpdateUtil.setWidth(this, "100%");
     	ZKUpdateUtil.setHeight(this, "100%");
     	

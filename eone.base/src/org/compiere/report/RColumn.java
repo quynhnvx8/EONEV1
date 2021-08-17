@@ -26,18 +26,7 @@ public class RColumn
 		this (ctx, columnName, displayType, null, 0, null);
 	}	//	RColumn
 
-	/**
-	 * 	Create Report Column
-	 *	@param ctx context 
-	 *	@param columnName column name
-	 *	@param displayType display type
-	 *	@param AD_Reference_Value_ID List/Table Reference
-	 */
-	public RColumn (Properties ctx, String columnName, int displayType, int AD_Reference_Value_ID)
-	{
-		this (ctx, columnName, displayType, null, AD_Reference_Value_ID, null);
-	}	//	RColumn
-
+	
 	/**
 	 *  Create Report Column
 	 *	@param ctx context 

@@ -44,7 +44,7 @@ import org.zkoss.zul.Vbox;
 import eone.base.model.MLookup;
 import eone.base.model.MLookupFactory;
 import eone.base.model.MQuery;
-import eone.webui.AdempiereWebUI;
+import eone.webui.EONEWebUI;
 import eone.webui.apps.AEnv;
 import eone.webui.component.Checkbox;
 import eone.webui.component.Datebox;
@@ -175,20 +175,20 @@ public class InfoInvoicePanel extends InfoPanel implements ValueChangeListener
         txtDocumentNo = new Textbox();
         txtDescription = new Textbox();
         
-        txtDocumentNo.setWidgetAttribute(AdempiereWebUI.WIDGET_INSTANCE_NAME, "documentNo");
-        txtDescription.setWidgetAttribute(AdempiereWebUI.WIDGET_INSTANCE_NAME, "description");
+        txtDocumentNo.setWidgetAttribute(EONEWebUI.WIDGET_INSTANCE_NAME, "documentNo");
+        txtDescription.setWidgetAttribute(EONEWebUI.WIDGET_INSTANCE_NAME, "description");
 
         dateFrom = new Datebox();
         dateTo= new Datebox();
         
-        dateFrom.setWidgetAttribute(AdempiereWebUI.WIDGET_INSTANCE_NAME, "dateFrom");
-        dateTo.setWidgetAttribute(AdempiereWebUI.WIDGET_INSTANCE_NAME, "dateTo");
+        dateFrom.setWidgetAttribute(EONEWebUI.WIDGET_INSTANCE_NAME, "dateFrom");
+        dateTo.setWidgetAttribute(EONEWebUI.WIDGET_INSTANCE_NAME, "dateTo");
 
         amountFrom = new NumberBox(false);
         amountTo = new NumberBox(false);
         
-        amountFrom.setWidgetAttribute(AdempiereWebUI.WIDGET_INSTANCE_NAME, "amountFrom");
-        amountTo.setWidgetAttribute(AdempiereWebUI.WIDGET_INSTANCE_NAME, "amountTo");
+        amountFrom.setWidgetAttribute(EONEWebUI.WIDGET_INSTANCE_NAME, "amountFrom");
+        amountTo.setWidgetAttribute(EONEWebUI.WIDGET_INSTANCE_NAME, "amountTo");
 
         isPaid = new Checkbox();
         isPaid.setLabel(Msg.translate(Env.getCtx(), "IsPaid"));
@@ -202,7 +202,7 @@ public class InfoInvoicePanel extends InfoPanel implements ValueChangeListener
                 Env.getCtx(), "C_BPartner_ID"), "", false, false, true);
         editorBPartner.addValueChangeListener(this);
         ZKUpdateUtil.setHflex(editorBPartner.getComponent(), "1");
-        editorBPartner.getComponent().setWidgetAttribute(AdempiereWebUI.WIDGET_INSTANCE_NAME, "bpartnerLookup");
+        editorBPartner.getComponent().setWidgetAttribute(EONEWebUI.WIDGET_INSTANCE_NAME, "bpartnerLookup");
 
         MLookup lookupOrder = MLookupFactory.get(Env.getCtx(), p_WindowNo,
                 0, 4247, DisplayType.Search);
@@ -210,7 +210,7 @@ public class InfoInvoicePanel extends InfoPanel implements ValueChangeListener
                 Env.getCtx(), "C_Order_ID"), "", false, false, true);
         editorOrder.addValueChangeListener(this);
         ZKUpdateUtil.setHflex(editorOrder.getComponent(), "1");
-        editorOrder.getComponent().setWidgetAttribute(AdempiereWebUI.WIDGET_INSTANCE_NAME, "orderLookup");
+        editorOrder.getComponent().setWidgetAttribute(EONEWebUI.WIDGET_INSTANCE_NAME, "orderLookup");
     }
 
     private void init()

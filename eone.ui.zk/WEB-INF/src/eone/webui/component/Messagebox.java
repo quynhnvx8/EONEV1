@@ -18,7 +18,7 @@ import org.zkoss.zul.Hbox;
 import org.zkoss.zul.Image;
 import org.zkoss.zul.Vbox;
 
-import eone.webui.AdempiereIdGenerator;
+import eone.webui.EONEIdGenerator;
 import eone.webui.ClientInfo;
 import eone.webui.apps.AEnv;
 import eone.webui.editor.WEditor;
@@ -293,7 +293,7 @@ public class Messagebox extends Window implements EventListener<Event>
 		this.setSizable(true);
 
 		this.setVisible(true);
-		String id = "MessageBox_"+AdempiereIdGenerator.escapeId(title);
+		String id = "MessageBox_"+EONEIdGenerator.escapeId(title);
 		//make sure id is unique
 		Page page = AEnv.getDesktop().getFirstPage();
 		Component fellow = page.getFellowIfAny(id);

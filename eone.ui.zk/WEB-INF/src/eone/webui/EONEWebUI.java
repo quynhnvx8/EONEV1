@@ -54,7 +54,7 @@ import eone.webui.theme.ThemeManager;
 import eone.webui.util.BrowserToken;
 import eone.webui.util.UserPreference;
 
-public class AdempiereWebUI extends Window implements EventListener<Event>, IWebClient
+public class EONEWebUI extends Window implements EventListener<Event>, IWebClient
 {
 	public static final String DESKTOP_SESSION_INVALIDATED_ATTR = "DesktopSessionInvalidated";
 
@@ -83,7 +83,7 @@ public class AdempiereWebUI extends Window implements EventListener<Event>, IWeb
 
 	private Keylistener keyListener;
 
-	private static final CLogger logger = CLogger.getCLogger(AdempiereWebUI.class);
+	private static final CLogger logger = CLogger.getCLogger(EONEWebUI.class);
 
 	public static final String EXECUTION_CARRYOVER_SESSION_KEY = "execution.carryover";
 
@@ -95,7 +95,7 @@ public class AdempiereWebUI extends Window implements EventListener<Event>, IWeb
 
 	private static final String ON_LOGIN_COMPLETED = "onLoginCompleted";
 	
-    public AdempiereWebUI()
+    public EONEWebUI()
     {
     	this.setVisible(false);
 

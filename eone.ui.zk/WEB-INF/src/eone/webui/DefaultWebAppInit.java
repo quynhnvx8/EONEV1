@@ -46,7 +46,7 @@ public class DefaultWebAppInit implements WebAppInit {
 	public void init(WebApp wapp) throws Exception {
 		this.webApp = wapp;
 		// save app name get from zk.xml to restore when delete app name in system config value
-		AdempiereWebUI.APP_NAME = this.webApp.getAppName();
+		EONEWebUI.APP_NAME = this.webApp.getAppName();
 		String appNameConfig = MSysConfig.getValue(MSysConfig.ZK_BROWSER_TITLE);
 		if (appNameConfig != null){
 			this.webApp.setAppName(appNameConfig);
@@ -153,7 +153,7 @@ public class DefaultWebAppInit implements WebAppInit {
 				// when delete ZK_BROWSER_TITLE, set web config to default value "Idempiere"
 				// user old value of name for correct meaning of record delete, change
 				if (MSysConfig.ZK_BROWSER_TITLE.equals(getOldValueOfName(po))){					
-					webApp.setAppName(AdempiereWebUI.APP_NAME);									
+					webApp.setAppName(EONEWebUI.APP_NAME);									
 				}
 			}
 		}

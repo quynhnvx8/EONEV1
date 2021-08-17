@@ -23,7 +23,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.logging.Level;
 
-import org.compiere.EONE;
+import org.compiere.EOne;
 
 /**
  *  Generate Model Classes extending PO.
@@ -68,7 +68,7 @@ public class GenerateModel
 	 */
 	public static void main (String[] args)
 	{
-		EONE.startupEnvironment((args.length > 4 && args[4].equals("Client")));
+		EOne.startupEnvironment((args.length > 4 && args[4].equals("Client")));
 		CLogMgt.setLevel(Level.FINE);
 		log.info("Generate Model   $Revision: 1.42 $");
 		log.info("----------------------------------");

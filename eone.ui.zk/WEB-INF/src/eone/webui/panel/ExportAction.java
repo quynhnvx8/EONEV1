@@ -36,7 +36,7 @@ import org.zkoss.zul.Vlayout;
 
 import eone.base.model.GridTab;
 import eone.exceptions.EONEException;
-import eone.webui.AdempiereWebUI;
+import eone.webui.EONEWebUI;
 import eone.webui.LayoutUtils;
 import eone.webui.adwindow.AbstractADWindowContent;
 import eone.webui.adwindow.IADTabbox;
@@ -113,7 +113,7 @@ public class ExportAction implements EventListener<Event>
 			winExportFile.setBorder("normal");
 			winExportFile.setStyle("position:absolute");
 			winExportFile.setSclass("popup-dialog");
-			winExportFile.setWidgetAttribute(AdempiereWebUI.WIDGET_INSTANCE_NAME, "exportAction");
+			winExportFile.setWidgetAttribute(EONEWebUI.WIDGET_INSTANCE_NAME, "exportAction");
 
 			cboType.setMold("select");
 

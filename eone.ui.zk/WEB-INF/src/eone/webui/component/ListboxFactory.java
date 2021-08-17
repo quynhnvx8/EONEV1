@@ -40,6 +40,7 @@ public class ListboxFactory {
 		ZKUpdateUtil.setWidth(dataTable, "100%");
 		ZKUpdateUtil.setHeight(dataTable, "100%");
 		dataTable.setSizedByContent(false);
+		dataTable.setCheckmark(false);
 		ZKUpdateUtil.setVflex(dataTable, true);
 		
 		return dataTable;

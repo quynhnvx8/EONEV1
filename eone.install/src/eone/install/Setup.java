@@ -33,7 +33,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
-import org.compiere.EONE;
+import org.compiere.EOne;
 import org.compiere.util.CLogFile;
 import org.compiere.util.CLogMgt;
 import org.compiere.util.CLogger;
@@ -56,7 +56,7 @@ public class Setup extends JFrame implements ActionListener
 	 */
 	public Setup()
 	{
-		CLogger.get().info(EONE.getSummaryAscii());
+		CLogger.get().info(EOne.getSummaryAscii());
 		enableEvents(AWTEvent.WINDOW_EVENT_MASK);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	//	addWindowListener(this);
@@ -107,7 +107,7 @@ public class Setup extends JFrame implements ActionListener
 	 */
 	private void jbInit() throws Exception
 	{
-		this.setIconImage(EONE.getImage16());
+		this.setIconImage(EOne.getImage16());
 		contentPane = (JPanel) this.getContentPane();
 		contentPane.setLayout(borderLayout);
 

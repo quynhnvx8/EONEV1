@@ -38,6 +38,12 @@ public class MPrintFormat extends X_AD_PrintFormat
 		
 	}	//	MPrintFormat
 
+	@Override
+	protected boolean beforeSave(boolean newRecord) {
+		
+		return super.beforeSave(newRecord);
+	}
+
 	public void reloadItems() {
 		getItems();
 	}
@@ -59,12 +65,14 @@ public class MPrintFormat extends X_AD_PrintFormat
 	private static CCache<Integer,MPrintFormatItem[]> s_itemsContent = new CCache<Integer,MPrintFormatItem[]>(Table_Name, 5);
 	private static CCache<Integer,MPrintFormatItem[]> s_itemsGroup = new CCache<Integer,MPrintFormatItem[]>(Table_Name, 5);
 	private static CCache<Integer,MPrintFormatItem[]> s_itemsFooter = new CCache<Integer,MPrintFormatItem[]>(Table_Name, 5);
+	private static CCache<Integer,MPrintFormatItem[]> s_itemsChart = new CCache<Integer,MPrintFormatItem[]>(Table_Name, 5);
 	
 	/** Items							*/
 	private MPrintFormatItem[]		m_itemsContent = null;
 	private MPrintFormatItem[]		m_itemsGroup = null;
 	private MPrintFormatItem[]		m_itemsHeader = null;
 	private MPrintFormatItem[]		m_itemsFooter = null;
+	private MPrintFormatItem[]		m_itemsChart = null;
 	
 	private Map<String, String> formula = new HashMap<String, String>();
 	
@@ -101,6 +109,12 @@ public class MPrintFormat extends X_AD_PrintFormat
 		return m_itemsFooter;
 	}
 
+	public MPrintFormatItem[] getItemChart() {
+		if (s_itemsChart.containsKey(getAD_PrintFormat_ID()))
+			return s_itemsChart.get(getAD_PrintFormat_ID());
+		getItems();
+		return m_itemsChart;
+	}
 	
 	private Language 				m_language;
 	
@@ -136,6 +150,9 @@ public class MPrintFormat extends X_AD_PrintFormat
 		ArrayList<MPrintFormatItem> lsContent = new ArrayList<MPrintFormatItem>();
 		ArrayList<MPrintFormatItem> lsGroup = new ArrayList<MPrintFormatItem>();
 		ArrayList<MPrintFormatItem> lsFooter = new ArrayList<MPrintFormatItem>();
+		
+		ArrayList<MPrintFormatItem> lsChart = new ArrayList<MPrintFormatItem>();
+		
 		String sql = "SELECT * FROM AD_PrintFormatItem pfi "
 			+ "WHERE pfi.AD_PrintFormat_ID=? AND pfi.IsActive='Y' "
 			+ "ORDER BY IsGroupBy Desc, SeqNo ASC";
@@ -156,8 +173,10 @@ public class MPrintFormat extends X_AD_PrintFormat
 					lsHeader.add (pfi);
 				else if (pfi.isFooter())
 					lsFooter.add (pfi);
-				else if(pfi.isContentOther())
+				else if(pfi.isGroupBy())
 					lsGroup.add(pfi);
+				else if(pfi.isChart())
+					lsChart.add(pfi);
 			}
 		}
 		catch (SQLException e)
@@ -181,10 +200,15 @@ public class MPrintFormat extends X_AD_PrintFormat
 		m_itemsFooter = new MPrintFormatItem[lsFooter.size()];
 		lsFooter.toArray(m_itemsFooter);
 		
+		m_itemsChart = new MPrintFormatItem[lsChart.size()];
+		lsChart.toArray(m_itemsChart);
+		
 		s_itemsContent.put(getAD_PrintFormat_ID(), m_itemsContent);
 		s_itemsHeader.put(getAD_PrintFormat_ID(), m_itemsHeader);
 		s_itemsFooter.put(getAD_PrintFormat_ID(), m_itemsFooter);
 		s_itemsGroup.put(getAD_PrintFormat_ID(), m_itemsGroup);
+		s_itemsChart.put(getAD_PrintFormat_ID(), m_itemsChart);
+		
 		//s_formula.put(getAD_PrintFormat_ID(), formula);
 	}
 	

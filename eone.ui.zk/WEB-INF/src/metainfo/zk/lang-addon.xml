@@ -19,7 +19,7 @@ Copyright (C) 2007 Ashley G Ramdass (ADempiere WebUI).
 	<language-name>xul/html</language-name>
 
 	<version>
-		<version-class>eone.webui.AdempiereWebUI</version-class>
+		<version-class>eone.webui.EONEWebUI</version-class>
 		<version-uid>1.0.0</version-uid>
 	</version>
 	

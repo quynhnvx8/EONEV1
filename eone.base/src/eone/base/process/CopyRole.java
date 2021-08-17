@@ -82,7 +82,7 @@ public class CopyRole extends SvrProcess
 		if (m_AD_Role_ID_From == m_AD_Role_ID_To)
 			throw new EONEException("Roles must be different");
 
-		String[] tables = new String[] {"AD_Window_Access", "AD_Process_Access", "AD_Form_Access",
+		String[] tables = new String[] {"AD_Window_Access", "AD_Process_Access",
 				"AD_Task_Access", "AD_InfoWindow_Access",
 				I_AD_Role_Included.Table_Name
 		};

@@ -30,7 +30,7 @@ import java.util.logging.Level;
 
 import javax.swing.JFrame;
 
-import org.compiere.EONE;
+import org.compiere.EOne;
 import org.compiere.util.CLogMgt;
 import org.compiere.util.CLogger;
 
@@ -491,7 +491,7 @@ public class KeyStoreMgt
 	 */
 	public static void main (String[] args)
 	{
-		EONE.startupEnvironment(true);
+		EOne.startupEnvironment(true);
 		System.out.println(new KeyStoreMgt (
 			"C:/Adempiere/keystore/myKeystore2", "myPassword".toCharArray()).verify(null, "idempiere"));
 	}	//	main

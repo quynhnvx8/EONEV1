@@ -25,7 +25,7 @@ import org.zkoss.zk.ui.WrongValueException;
 import org.zkoss.zk.ui.util.Clients;
 import org.zkoss.zul.Comboitem;
 
-import eone.webui.AdempiereIdGenerator;
+import eone.webui.EONEIdGenerator;
 
 /**
  *
@@ -74,7 +74,7 @@ public class Combobox extends org.zkoss.zul.Combobox implements IdSpace
     public Comboitem appendItem(String label) 
     {
         ComboItem item = new ComboItem(label);
-        String id = AdempiereIdGenerator.escapeId(label);
+        String id = EONEIdGenerator.escapeId(label);
         if (getFellowIfAny(id) == null )
         	item.setId(id);
         item.setParent(this);
@@ -97,7 +97,7 @@ public class Combobox extends org.zkoss.zul.Combobox implements IdSpace
 
 	public void appendItem(String name, Object value) {
 		ComboItem item = new ComboItem(name, value);
-		String id = AdempiereIdGenerator.escapeId(name);
+		String id = EONEIdGenerator.escapeId(name);
 		if (getFellowIfAny(id) == null)
 			item.setId(id);
 		this.appendChild(item);

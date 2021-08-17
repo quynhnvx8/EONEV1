@@ -53,7 +53,7 @@ import eone.base.model.MRole;
 import eone.base.model.MSysConfig;
 import eone.base.model.MTable;
 import eone.exceptions.EONEException;
-import eone.webui.AdempiereWebUI;
+import eone.webui.EONEWebUI;
 import eone.webui.ClientInfo;
 import eone.webui.LayoutUtils;
 import eone.webui.apps.AEnv;
@@ -188,7 +188,7 @@ public abstract class InfoPanel extends Window implements EventListener<Event>, 
 			}
 		});
 		
-		setWidgetAttribute(AdempiereWebUI.WIDGET_INSTANCE_NAME, "infopanel");
+		setWidgetAttribute(EONEWebUI.WIDGET_INSTANCE_NAME, "infopanel");
 		
 		addEventListener(WindowContainer.ON_WINDOW_CONTAINER_SELECTION_CHANGED_EVENT, this);
 		addEventListener(Events.ON_CLOSE, this);
@@ -261,7 +261,7 @@ public abstract class InfoPanel extends Window implements EventListener<Event>, 
         if (isLookup())
         	addEventListener(Events.ON_CANCEL, this);
         contentPanel.setOddRowSclass(null);
-        contentPanel.setWidgetAttribute(AdempiereWebUI.WIDGET_INSTANCE_NAME, "infoListbox");
+        contentPanel.setWidgetAttribute(EONEWebUI.WIDGET_INSTANCE_NAME, "infoListbox");
         contentPanel.addEventListener("onAfterRender", this);
         contentPanel.setSclass("z-word-nowrap");
         

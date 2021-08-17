@@ -42,7 +42,7 @@ import org.zkoss.zul.South;
 import org.zkoss.zul.Space;
 
 import eone.base.model.MImage;
-import eone.webui.AdempiereWebUI;
+import eone.webui.EONEWebUI;
 import eone.webui.ClientInfo;
 import eone.webui.LayoutUtils;
 import eone.webui.apps.AEnv;
@@ -215,7 +215,7 @@ public class WImageDialog extends Window implements EventListener<Event>
 		south.appendChild(confirmPanel);
 
 		//
-		fileButton.setUpload(AdempiereWebUI.getUploadSetting());
+		fileButton.setUpload(EONEWebUI.getUploadSetting());
 		fileButton.addEventListener(Events.ON_UPLOAD, this);
 		captureButton.addEventListener(Events.ON_CLICK, this);
 		confirmPanel.addActionListener(Events.ON_CLICK, this);

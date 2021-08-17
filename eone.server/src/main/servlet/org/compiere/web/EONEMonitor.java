@@ -56,7 +56,7 @@ import org.apache.ecs.xhtml.table;
 import org.apache.ecs.xhtml.td;
 import org.apache.ecs.xhtml.th;
 import org.apache.ecs.xhtml.tr;
-import org.compiere.EONE;
+import org.compiere.EOne;
 import org.compiere.server.AdempiereServerGroup;
 import org.compiere.server.AdempiereServerMgr;
 import org.compiere.server.IServerManager;
@@ -666,12 +666,12 @@ public class EONEMonitor extends HttpServlet
 		table.setCellPadding(2);
 		//
 		tr line = new tr();
-		line.addElement(new th().addElement(EONE.getName()));
-		line.addElement(new td().addElement(EONE.getVersion()));
+		line.addElement(new th().addElement(EOne.getName()));
+		line.addElement(new td().addElement(EOne.getVersion()));
 		table.addElement(line);
 		line = new tr();
-		line.addElement(new th().addElement(EONE.getImplementationVendor()));
-		line.addElement(new td().addElement(EONE.getImplementationVersion()));
+		line.addElement(new th().addElement(EOne.getImplementationVendor()));
+		line.addElement(new td().addElement(EOne.getImplementationVersion()));
 		table.addElement(line);
 		line = new tr();
 		line.addElement(new th().addElement("Manager"));
@@ -928,19 +928,19 @@ public class EONEMonitor extends HttpServlet
 		
 		//	Summary
 		writer.print("\t<name>");
-		writer.print(EONE.getName());
+		writer.print(EOne.getName());
 		writer.println("</name>");
 		
 		writer.print("\t<version>");
-		writer.print(EONE.getVersion());
+		writer.print(EOne.getVersion());
 		writer.println("</version>");
 
 		writer.print("\t<implementation-vendor>");
-		writer.print(EONE.getImplementationVendor());
+		writer.print(EOne.getImplementationVendor());
 		writer.println("</implementation-vendor>");
 		
 		writer.print("\t<implementation-version>");
-		writer.print(EONE.getImplementationVersion());
+		writer.print(EOne.getImplementationVersion());
 		writer.println("</implementation-version>");
 
 		writer.println("\t<server-manager>");
@@ -1024,7 +1024,7 @@ public class EONEMonitor extends HttpServlet
 		MSystem system = MSystem.get(Env.getCtx());
 		SystemInfo systemInfo = SystemInfo.getLocalSystemInfo();				
 		tr line = new tr();
-		line.addElement(new th().addElement(EONE.getURL()));
+		line.addElement(new th().addElement(EOne.getURL()));
 		line.addElement(new td().addElement(systemInfo.getPropertyFileName()));
 		table.addElement(line);
 		//	OS + Name
@@ -1350,7 +1350,7 @@ public class EONEMonitor extends HttpServlet
 		dirAccessList.add(logDir);
 		
 		// load from dirAccess.properties file
-		String dirAccessPathName = EONE.getAdempiereHome() + File.separator + s_dirAccessFileName;
+		String dirAccessPathName = EOne.getEOneHome() + File.separator + s_dirAccessFileName;
 		File dirAccessFile = new File(dirAccessPathName);
 		if (dirAccessFile.exists()) 
 		{

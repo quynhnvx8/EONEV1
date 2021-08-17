@@ -11,7 +11,7 @@
 
 	<properties>
 		<jdk.version>11</jdk.version>
-		<tycho.version>2.4.0-SNAPSHOT</tycho.version>
+		<tycho.version>2.4.0</tycho.version>
 		<tycho.extras.version>${tycho.version}</tycho.extras.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<jp.version>6.11.0</jp.version>
@@ -29,8 +29,8 @@
 		<eone.target>eone.p2.targetplatform</eone.target>
 		<idempiere-equinox-url>https://download.eclipse.org/eclipse/updates/4.15</idempiere-equinox-url>
 		<idempiere-equinox-repository-id>eclipse-2020-03</idempiere-equinox-repository-id>
-		<idempiere-orbit-url>https://download.eclipse.org/tools/orbit/downloads/drops/R20200224183213/repository</idempiere-orbit-url>
-		<idempiere-orbit-repository-id>orbit-2020-03-R20200224183213</idempiere-orbit-repository-id>
+		<idempiere-orbit-url>https://download.eclipse.org/tools/orbit/downloads/drops/R20200831200620/repository</idempiere-orbit-url>
+		<idempiere-orbit-repository-id>orbit-2020-09-R20200831200620</idempiere-orbit-repository-id>
 		<url.file.srv>https://raw.githubusercontent.com/idempiere/binary.file/master</url.file.srv>
 		<extra.ui.install>org.eclipse.equinox.p2.director, eone.equinox.p2.director.feature.feature.group</extra.ui.install>
 		<idempiere.product.id>eone.server.product</idempiere.product.id>

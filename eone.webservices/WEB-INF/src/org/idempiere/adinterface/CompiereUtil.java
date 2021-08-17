@@ -14,7 +14,7 @@ package org.idempiere.adinterface;
 
 import java.util.logging.Level;
 
-import org.compiere.EONE;
+import org.compiere.EOne;
 import org.compiere.util.CLogger;
 
 
@@ -36,7 +36,7 @@ public class CompiereUtil {
 		try
 		{
 			if (log.isLoggable(Level.INFO)) log.info("Starting webservices iDempiere session");
-			s_initOK = EONE.startup(false);
+			s_initOK = EOne.startup(false);
 		}
 		catch (Exception ex)
 		{

@@ -29,7 +29,7 @@ import org.zkoss.zul.Vbox;
 import eone.base.model.MColumn;
 import eone.base.model.MLookupFactory;
 import eone.base.model.MTable;
-import eone.webui.AdempiereWebUI;
+import eone.webui.EONEWebUI;
 import eone.webui.ClientInfo;
 import eone.webui.component.Grid;
 import eone.webui.component.GridFactory;
@@ -182,7 +182,7 @@ public class InfoGeneralPanel extends InfoPanel implements EventListener<Event>
 	{
 		txt1 = new Textbox();
 		
-		txt1.setWidgetAttribute(AdempiereWebUI.WIDGET_INSTANCE_NAME, "textbox1");
+		txt1.setWidgetAttribute(EONEWebUI.WIDGET_INSTANCE_NAME, "textbox1");
 		
 		lbl1 = new Label();
 		

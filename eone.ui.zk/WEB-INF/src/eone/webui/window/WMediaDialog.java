@@ -35,7 +35,7 @@ import org.zkoss.zul.Center;
 import org.zkoss.zul.North;
 import org.zkoss.zul.South;
 
-import eone.webui.AdempiereWebUI;
+import eone.webui.EONEWebUI;
 import eone.webui.component.Button;
 import eone.webui.component.Panel;
 import eone.webui.component.Window;
@@ -167,7 +167,7 @@ public class WMediaDialog extends Window implements EventListener<Event>
 		bLoad.setImage(ThemeManager.getThemeResource("images/Import24.png"));
 		bLoad.setTooltiptext(Msg.getMsg(Env.getCtx(), "Load"));
 		bLoad.addEventListener(Events.ON_UPLOAD, this);
-		bLoad.setUpload(AdempiereWebUI.getUploadSetting());
+		bLoad.setUpload(EONEWebUI.getUploadSetting());
 
 		bDelete.setImage(ITheme.ICON_DELETE);
 		bDelete.setSclass("img-btn");

@@ -15,7 +15,7 @@ package org.adempiere.base;
 
 import java.util.Map;
 
-import org.compiere.EONE;
+import org.compiere.EOne;
 import org.compiere.util.ModelClassGenerator;
 import org.compiere.util.ModelGeneratorDialog;
 import org.compiere.util.ModelInterfaceGenerator;
@@ -34,7 +34,7 @@ public class ModelGeneratorApplication implements IApplication {
 	 */
 	@Override
 	public Object start(IApplicationContext context) throws Exception {
-		EONE.startup(false);
+		EOne.startup(false);
 		Map<?, ?> args = context.getArguments();
 		// IDEMPIERE-1686 - GenerateModel does not take commandline arguments
 		String commandlineArgs[] = (String[]) args.get("application.args");

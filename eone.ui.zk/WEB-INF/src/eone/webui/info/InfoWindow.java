@@ -61,7 +61,7 @@ import eone.base.model.MLookupInfo;
 import eone.base.model.MRole;
 import eone.base.model.MTable;
 import eone.base.model.X_AD_InfoColumn;
-import eone.webui.AdempiereWebUI;
+import eone.webui.EONEWebUI;
 import eone.webui.ClientInfo;
 import eone.webui.ISupportMask;
 import eone.webui.LayoutUtils;
@@ -875,7 +875,7 @@ public class InfoWindow extends InfoPanel implements ValueChangeListener, EventL
 	protected void layoutParameterGrid(boolean update) {
 		if (!update) {
 			parameterGrid = GridFactory.newGridLayout();
-			parameterGrid.setWidgetAttribute(AdempiereWebUI.WIDGET_INSTANCE_NAME, "infoParameterPanel");
+			parameterGrid.setWidgetAttribute(EONEWebUI.WIDGET_INSTANCE_NAME, "infoParameterPanel");
 			parameterGrid.setStyle("width: 95%; margin: auto !important;");
 		}
 		if (parameterGrid.getColumns() != null)
