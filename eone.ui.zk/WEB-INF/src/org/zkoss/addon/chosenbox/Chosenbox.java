@@ -33,6 +33,7 @@ import org.zkoss.lang.Objects;
 import org.zkoss.xel.VariableResolver;
 import org.zkoss.zk.au.out.AuSetAttribute;
 import org.zkoss.zk.ui.Component;
+import org.zkoss.zk.ui.Executions;
 import org.zkoss.zk.ui.HtmlBasedComponent;
 import org.zkoss.zk.ui.UiException;
 import org.zkoss.zk.ui.WrongValueException;
@@ -806,6 +807,14 @@ public class Chosenbox<T> extends HtmlBasedComponent {
 			final Set<T> objects = getSelectedObjects();
 			Events.postEvent(new SelectEvent<Component, T>(Events.ON_SELECT, this, null, null, null, 
 					objects, null, null, null, index, 0));
+			//upgrade idempiere
+			if (selItems.size() < (getSubListModel() != null ? getSubListModel().getSize() : getModel().getSize())) {
+				StringBuilder script = new StringBuilder();
+				script.append("var w=zk.Widget.$('#").append(getUuid()).append("');");
+				script.append("w.$n('inp').focus();");
+				Executions.schedule(getDesktop(), e -> {setOpen(true);Clients.evalJavaScript(script.toString());}, new Event("onPostSelect"));
+			}
+			//end upgrade
 			_onSelectTimestamp = System.currentTimeMillis();
 		} else if (cmd.equals(Events.ON_OPEN)) {
 			_open = (Boolean)request.getData().get("open");

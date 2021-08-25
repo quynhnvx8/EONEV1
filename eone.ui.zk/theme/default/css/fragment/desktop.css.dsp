@@ -158,7 +158,7 @@
 .z-tabpanel {
     border: 0px solid #CFCFCF;
     border-top: 0px;
-    padding: 5px;
+    padding: 0px 5px 5px 5px;
     zoom: 1;
 }
 

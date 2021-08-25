@@ -149,9 +149,8 @@
 
 .adwindow-detailpane-toolbar .z-toolbarbutton {
 	float: left;
-	display: inline-block;
 	padding: 0px;
-	padding-left: 1px;
+	padding-left: 2px;
 	width: 24px;
 	height: 24px;
 }

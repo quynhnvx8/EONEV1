@@ -15,10 +15,11 @@ import eone.base.model.MProduct;
 import eone.base.model.MWarehouse;
 import eone.base.model.X_C_DocType;
 
-//eone.base.model.CalloutCommon.cal_From_Curr_To_Rate
-//eone.base.model.CalloutCommon.cal_From_Amount_To_AmountConvert
-//eone.base.model.CalloutCommon.fill_UOM
-//eone.base.model.CalloutCommon.getNewDocumentNo
+//eone.base.callout.CalloutCommon.cal_From_Curr_To_Rate
+//eone.base.callout.CalloutCommon.cal_From_Amount_To_AmountConvert
+//eone.base.callout.CalloutCommon.fill_UOM
+//eone.base.callout.CalloutCommon.getNewDocumentNo
+//eone.base.callout.CalloutCommon.getNewValue 
 public class CalloutCommon extends CalloutEngine
 {
 	
@@ -104,6 +105,27 @@ public class CalloutCommon extends CalloutEngine
 		
 		return "";
 	}
+	
+
+	public String getNewValue(Properties ctx, int WindowNo, GridTab mTab, GridField mField, Object value)
+	{
+		if(value == null) {			
+			return "";
+		}
+		
+		
+		String p_Value = CalloutUtil.getValue(ctx, null, WindowNo, mTab);
+		if (p_Value == null || p_Value.length() <= 0) {
+			return "";
+		}
+		
+		mTab.setValue("Value", p_Value);
+		
+		setDefault(ctx, mTab, mField, value);
+		
+		return "";
+	}
+
 	
 	private void setDefault(Properties ctx, GridTab mTab, GridField mField, Object value) {
 		Object objDocType = mTab.getValue("C_DocType_ID");

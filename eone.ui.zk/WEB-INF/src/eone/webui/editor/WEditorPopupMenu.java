@@ -28,7 +28,6 @@ import org.zkoss.zk.ui.event.EventListener;
 import org.zkoss.zk.ui.event.Events;
 import org.zkoss.zul.Menuitem;
 
-import eone.base.model.GridField;
 import eone.base.model.Lookup;
 import eone.base.model.MRole;
 import eone.base.model.MTable;
@@ -37,7 +36,6 @@ import eone.webui.component.Menupopup;
 import eone.webui.event.ContextMenuEvent;
 import eone.webui.event.ContextMenuListener;
 import eone.webui.theme.ThemeManager;
-import eone.webui.window.WFieldSuggestion;
 
 /**
  *
@@ -289,21 +287,5 @@ public class WEditorPopupMenu extends Menupopup implements EventListener<Event>
         }
     }
 
-	public void addSuggestion(final GridField field) {
-		//if (!MRole.getDefault().isTableAccessExcluded(MFieldSuggestion.Table_ID)) {
-		if (true) {	
-			Menuitem editor = new Menuitem(Msg.getElement(Env.getCtx(), "AD_FieldSuggestion_ID"));
-			if (ThemeManager.isUseFontIconForImage())
-				editor.setIconSclass("z-icon-FieldSuggestion");
-			editor.addEventListener(Events.ON_CLICK, new EventListener<Event>() {
-				@Override
-				public void onEvent(Event event) throws Exception {
-					WFieldSuggestion fieldSuggestion = new WFieldSuggestion(field.getAD_Field_ID());
-					fieldSuggestion.setPage(WEditorPopupMenu.this.getPage());
-					fieldSuggestion.doHighlighted();
-				}
-			});
-			appendChild(editor);
-		}
-	}	
+	
 }

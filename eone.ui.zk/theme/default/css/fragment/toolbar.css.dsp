@@ -23,6 +23,15 @@
     padding: 1px 2px;
 }
 
+.z-toolbarbutton[disabled] {
+    color: rgba(0,0,0,0.34) !important;
+    border-color: transparent;
+    background-color: #D9D9D9;
+    cursor: default !important;
+    width: 24px;
+    height: 24px;
+}
+
 .toolbar-button {
 	background-color: transparent; 	
 	margin-left: 1px; 
@@ -78,7 +87,7 @@
 	display:inline-flex;
 	align-items: center;
 	padding: 0px;
-	margin: 3px 1px;
+	margin: 3px 2px;
 }
 .z-toolbar-content {
 	display:flex;

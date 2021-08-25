@@ -152,7 +152,7 @@ public class WSearchEditor extends WEditor implements ContextMenuListener, Value
 	 */
 	private void init()
 	{
-
+		/* Bỏ icon search product và bpartner. 25/08/2021
 		columnName = this.getColumnName();
 		if (columnName.equals("C_BPartner_ID"))
 		{
@@ -178,6 +178,14 @@ public class WSearchEditor extends WEditor implements ContextMenuListener, Value
 			else
 				imageUrl = ThemeManager.getThemeResource("images/PickOpen16.png");
 		}
+		*/
+		popupMenu = new WEditorPopupMenu(true, true, isShowPreference(), false, false, false, lookup);
+		if (ThemeManager.isUseFontIconForImage())
+			imageUrl = "z-icon-More";
+		else
+			imageUrl = ThemeManager.getThemeResource("images/PickOpen16.png");
+		
+		
 		if (ThemeManager.isUseFontIconForImage())
 			getComponent().getButton().setIconSclass(imageUrl);
 		else

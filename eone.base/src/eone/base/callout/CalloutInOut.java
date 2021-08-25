@@ -18,8 +18,8 @@ import eone.base.model.MStorage;
 import eone.base.model.MTax;
 import eone.base.model.X_M_InOut;
 
-//eone.base.model.CalloutInOut.fillAmount_QtyPrice
-//eone.base.model.CalloutInOut.fillAmount_Discount
+//eone.base.callout.CalloutInOut.fillAmount_QtyPrice
+//eone.base.callout.CalloutInOut.fillAmount_Discount
 
 public class CalloutInOut extends CalloutEngine
 {

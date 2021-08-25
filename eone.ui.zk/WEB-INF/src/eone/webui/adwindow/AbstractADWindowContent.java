@@ -1028,7 +1028,7 @@ public abstract class AbstractADWindowContent extends AbstractUIPart implements 
 		form.setVisible(true);
 		form.setSizable(true);
 		form.setMaximizable(true);
-		form.setMaximized(true);
+		form.setMaximized(false);
 		form.setPosition("center");
 		ZKUpdateUtil.setWindowHeightX(form, 550);
 		ZKUpdateUtil.setWindowWidthX(form, 900);

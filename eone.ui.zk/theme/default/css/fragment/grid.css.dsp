@@ -45,7 +45,7 @@ div.z-column-cnt, div.z-grid-header div.z-auxheader-cnt {
 
 .z-grid-header {
     width: 100%;
-    background: #F0F0F0;
+    background: #C5C5C5; /*Header column*/  
     position: relative;
     overflow: hidden;
 }
@@ -68,7 +68,7 @@ div.z-column-cnt, div.z-grid-header div.z-auxheader-cnt {
 }
 
 .z-column-content, .z-listheader-content, .z-listcell-content {
-	padding: 2px 2px;
+	padding: 3px 9px 2px 7px;
 }
 
 .z-column-content {
@@ -170,14 +170,25 @@ div.z-listbox-body .z-listcell {
 }
 .z-column {
     padding: 0;
-    background: #F0F0F0;
+    background: #C5C5C5; /*#F0F0F0; */
+    border-left: 1px solid #FFFFFF;
+    border-bottom: 1px solid #C5C5C5; /*Header column*/  
     position: relative;
     overflow: hidden;
     white-space: nowrap;
 }
 
+.z-row .z-row-inner, .z-row .z-cell {
+    border-top: none;
+    border-bottom: 1px solid #F2F2F2;
+    overflow: hidden;
+    position: relative;
+    z-index: 0;
+    /* border-collapse: collapse; */
+}
+
 .z-columns-bar {
-    background: #F0F0F0;    
+    background: #C5C5C5; /*Header column*/    
     border: none;
 }
 
@@ -189,4 +200,11 @@ div.z-listbox-body .z-listcell {
     padding: 4px 5px 3px;
     line-height: 14px;
     background: #FFFFFF;
+}
+
+.z-paging {
+    height: 35px;
+    padding: 0px;
+    background: #F2F2F2;
+    position: relative;
 }

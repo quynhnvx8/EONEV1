@@ -2709,13 +2709,17 @@ public class GridTab implements DataStatusListener, Evaluatee, Serializable
 	 * get Parent Tab No
 	 * @return Tab No
 	 */
+	private int m_parentTabNo = -1;
+	
 	private int getParentTabNo()
 	{
+		if (m_parentTabNo >= 0)
+			return m_parentTabNo;
 		int tabNo = m_vo.TabNo;
 		int currentLevel = m_vo.TabLevel;
 		int parentLevel = currentLevel-1;
 		if (parentLevel < 0)
-			return tabNo;
+			return (m_parentTabNo = tabNo);
 		while (parentLevel != currentLevel)
 		{
 			tabNo--;
@@ -2723,7 +2727,7 @@ public class GridTab implements DataStatusListener, Evaluatee, Serializable
 			if (tabNo == 0)
 				break;
 		}
-		return tabNo;
+		return (m_parentTabNo = tabNo);
 	}
 
 	public GridTab getParentTab()

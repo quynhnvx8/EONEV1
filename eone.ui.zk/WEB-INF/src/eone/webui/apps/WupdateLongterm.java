@@ -256,17 +256,6 @@ public class WupdateLongterm extends Window implements IFormController, EventLis
 		
 		lbListDuration = new Label(Msg.translate(Env.getCtx(), "ListDuration"));
 		
-		/*
-		cbListDuration = new Combobox();
-		List<String> list2 = new ArrayList<String>();
-		list2.add("---- Select ----");
-		list2.add("1. ShortTeam");
-		list2.add("2. LongTeam");
-		ListModelList<String> lm2 = new ListModelList<String>(list2);
-		lm2.addToSelection(lm2.get(0));
-		cbListDuration.setModel(lm2);
-		*/
-		
 		ComboItem item = null;
 		cbListDuration = new Combobox("---- Select ----");
 		item =new ComboItem(Msg.translate(Env.getCtx(), "---- Select ----"), "00");

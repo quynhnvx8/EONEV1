@@ -12,7 +12,7 @@ import eone.base.model.GridField;
 import eone.base.model.GridTab;
 import eone.base.model.MTax;
 
-//eone.base.model.CalloutInvoice.fillAmount_TaxRate
+//eone.base.callout.CalloutInvoice.fillAmount_TaxRate
 public class CalloutInvoice extends CalloutEngine
 {
 

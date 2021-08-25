@@ -147,7 +147,7 @@ public class CalloutUtil
 		return p_calloutValue;
 	}
 	
-	@SuppressWarnings({ "deprecation", "unused" })
+	@SuppressWarnings("deprecation")
 	private static String parseDisplayFormat(Properties ctx, PO po, int C_DocType_ID, 
 			int WindowNo, GridTab mTab, 
 			String dataColumnName, String p_elementFormat, String p_dateColumn, 
@@ -303,13 +303,7 @@ public class CalloutUtil
 									String sqlSelect = "SELECT " + p_valueColumn 
 													+ " FROM " + p_tableName 
 													+ " WHERE " + p_keyColumn + "=?";
-									if (p_format == null || p_format.length() == 0)
-										p_selectValue = DB.getSQLValueString(null, sqlSelect, new Object[] { p_intValue });
-									else {
-										Object p_oValue = DB.getSQLValueObject(null, sqlSelect, new Object[] { p_intValue });
-										if (p_oValue != null)
-											p_selectValue = formatValue(p_oValue, p_format);
-									}
+									p_selectValue = DB.getSQLValueString(null, sqlSelect, new Object[] { p_intValue });
 									// History
 									if (withHistory) {
 										if (isHasElement)

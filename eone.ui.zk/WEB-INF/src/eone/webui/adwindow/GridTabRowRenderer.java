@@ -409,6 +409,7 @@ public class GridTabRowRenderer implements RowRenderer<Object[]>, RowRendererExt
 				gridTabFields = gridTab.getFields();
 				isGridViewCustomized = gridTabFields.length != gridPanelFields.length;
 			}	
+			gridPanel.autoHideEmptyColumns();
 		}
 		
 		if (grid == null)
@@ -557,7 +558,8 @@ public class GridTabRowRenderer implements RowRenderer<Object[]>, RowRendererExt
 			ZKUpdateUtil.setWidth(div, "100%");
 			div.setAttribute("columnName", gridPanelFields[i].getColumnName());
 			div.addEventListener(Events.ON_CLICK, rowListener);
-			div.addEventListener(Events.ON_DOUBLE_CLICK, rowListener);						
+			div.addEventListener(Events.ON_DOUBLE_CLICK, rowListener);		
+			div.addEventListener(Events.ON_CTRL_KEY, rowListener);
 			row.appendChild(div);
 		}
 
@@ -568,6 +570,7 @@ public class GridTabRowRenderer implements RowRenderer<Object[]>, RowRendererExt
 		row.setStyle("cursor:pointer");
 		row.addEventListener(Events.ON_CLICK, rowListener);
 		row.addEventListener(Events.ON_OK, rowListener);
+		row.addEventListener(Events.ON_CTRL_KEY, rowListener);
 		row.setTooltiptext(Msg.getMsg(Env.getCtx(), "Row") + " " + (rowIndex+1));
 		
 		if (isActive == null) {
@@ -710,7 +713,6 @@ public class GridTabRowRenderer implements RowRenderer<Object[]>, RowRendererExt
 		            	: gridPanelFields[i].getVO().ctx;
 		            //check context
 					if (!gridPanelFields[i].isDisplayed(ctx, true)){
-						// IDEMPIERE-2253 
 						editor.getComponent().setVisible(false);
 					}
 					
@@ -980,5 +982,17 @@ public class GridTabRowRenderer implements RowRenderer<Object[]>, RowRendererExt
 	
 	private boolean isShowCurrentRowIndicatorColumn() {
 		return gridPanel != null && gridPanel.isShowCurrentRowIndicatorColumn();
+	}
+	
+	
+	protected String getDisplayTextWithEditorCheck(Object value, GridField gridField, int rowIndex) {
+		WEditor readOnlyEditor = readOnlyEditors.get(gridField);
+		if (readOnlyEditor == null) {
+			readOnlyEditor = WebEditorFactory.getEditor(gridField, true, readOnlyEditorConfiguration);
+			if (readOnlyEditor != null) {
+				readOnlyEditors.put(gridField, readOnlyEditor);
+			}
+		}
+		return getDisplayText(value, gridField, rowIndex);
 	}
 }

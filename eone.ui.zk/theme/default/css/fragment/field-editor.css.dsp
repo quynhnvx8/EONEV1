@@ -32,18 +32,20 @@
 }
 	
 .editor-button {
-	padding: 0px;
-	margin: 0px;
-	display: inline-block;
-	background-color: transparent;
-	background-image: none;
-	width: 20px;
-	height: 22px;
-	min-height: 22px;
-	border: none;
-	position: absolute;
-	right: 1px;
-	top: 2px;
+    padding: 0px;
+    border-radius: 0px 4px 4px 0px;
+    box-shadow: none;
+    margin: 3px 0px;
+    display: grid;
+    background-color: white;
+    background-image: none;
+    width: 20px;
+    height: 18px;
+    min-height: 18px;
+    border: none;
+    position: absolute;
+    right: 1px;
+    top: 4px;
 }
 
 .editor-button :hover {

@@ -1368,7 +1368,7 @@ public class GridField
 	 */
 	public boolean isDisplayedGrid()
 	{
-		return m_vo.IsDisplayedGrid;
+		return m_vo.IsDisplayed;//m_vo.IsDisplayedGrid;
 	}
 	/**
 	 * 	Grid sequence number
@@ -1376,7 +1376,7 @@ public class GridField
 	 */
 	public int getSeqNoGrid()
 	{
-		return m_vo.SeqNoGrid;
+		return  m_vo.SeqNo;// m_vo.SeqNoGrid;
 	}
 	/**
 	 * 	Get DisplayLogic
@@ -1499,9 +1499,7 @@ public class GridField
 	{
 		if (m_vo.IsEncryptedField)
 			return true;
-		String ob = getObscureType();
-		if (ob != null && ob.length() > 0)
-			return true;
+		
 		return m_vo.ColumnName.equals("Password");
 	}
 	/**

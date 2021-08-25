@@ -739,7 +739,7 @@ DataStatusListener, IADTabpanel, IdSpace, IFieldEditorContainer
 	        			if (popupMenu == null) 
 	        			{
 	        				popupMenu = new WEditorPopupMenu(false, false, false, false, false, false, null);
-	        				popupMenu.addSuggestion(field);
+	        				//popupMenu.addSuggestion(field);
 	        			}
 	        			if (popupMenu != null)
 	        			{
@@ -769,7 +769,7 @@ DataStatusListener, IADTabpanel, IdSpace, IFieldEditorContainer
 		        					}
 	        					}
 	        				} 
-	        				popupMenu.addSuggestion(field);
+	        				//popupMenu.addSuggestion(field);
 	        			}      
         			}
         		}

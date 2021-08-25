@@ -790,7 +790,7 @@ public class ADWindowToolbar extends FToolbar implements EventListener<Event>
 	public void enableQuickForm(boolean enabled)
 	{
 		btnQuickForm.setDisabled(!enabled);
-		enableMenuitem(btnQuickForm, enabled);
+		//enableMenuitem(btnQuickForm, enabled);
 	}
 
 	/*

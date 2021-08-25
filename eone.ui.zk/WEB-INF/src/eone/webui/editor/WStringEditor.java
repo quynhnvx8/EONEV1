@@ -93,7 +93,7 @@ public class WStringEditor extends WEditor implements ContextMenuListener
         if (gridField.getVFormat() != null && !gridField.getVFormat().isEmpty())
         	getComponent().setWidgetListener("onBind", "jq(this).mask('" + gridField.getVFormat() + "');");
 
-        init(gridField.getObscureType());
+        init(null);//gridField.getObscureType(). Bỏ cái này
     }
 
     /**
